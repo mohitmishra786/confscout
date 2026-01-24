@@ -7,12 +7,13 @@ import { z } from 'zod';
 const subscribeSchema = z.object({
     email: z.string().email(),
     preferences: z.record(z.string(), z.any()).optional(),
+    frequency: z.enum(['daily', 'weekly']).default('weekly'),
 });
 
 export async function POST(request: Request) {
     try {
         const body = await request.json();
-        const { email, preferences } = subscribeSchema.parse(body);
+        const { email, preferences, frequency } = subscribeSchema.parse(body);
         const token = crypto.randomBytes(32).toString('hex');
 
         // Check if email exists
@@ -20,13 +21,13 @@ export async function POST(request: Request) {
         try {
             // Upsert user
             const query = `
-        INSERT INTO subscribers (email, preferences, verification_token, verified)
-        VALUES ($1, $2, $3, FALSE)
+        INSERT INTO subscribers (email, preferences, frequency, verification_token, verified)
+        VALUES ($1, $2, $3, $4, FALSE)
         ON CONFLICT (email) 
-        DO UPDATE SET verification_token = $3, preferences = $2, updated_at = CURRENT_TIMESTAMP
+        DO UPDATE SET verification_token = $4, preferences = $2, frequency = $3, updated_at = CURRENT_TIMESTAMP
         RETURNING id, verified;
       `;
-            const result = await client.query(query, [email, preferences || {}, token]);
+            const result = await client.query(query, [email, preferences || {}, frequency, token]);
 
             const user = result.rows[0];
             if (user.verified) {
