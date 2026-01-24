@@ -200,7 +200,7 @@ export default function Home() {
           onClick={() => setIsSubscribeOpen(true)}
           className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-transform hover:scale-105 flex items-center gap-2"
         >
-          📧 Get Weekly Updates
+          Get Updates
         </button>
       </div>
 

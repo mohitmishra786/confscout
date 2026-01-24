@@ -11,6 +11,7 @@ interface SubscribeModalProps {
 export default function SubscribeModal({ isOpen, onClose }: SubscribeModalProps) {
     const [email, setEmail] = useState('');
     const [domain, setDomain] = useState('all');
+    const [frequency, setFrequency] = useState('weekly');
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
     const [message, setMessage] = useState('');
 
@@ -26,7 +27,8 @@ export default function SubscribeModal({ isOpen, onClose }: SubscribeModalProps)
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     email,
-                    preferences: { domain: domain === 'all' ? undefined : domain }
+                    preferences: { domain: domain === 'all' ? undefined : domain },
+                    frequency
                 })
             });
 
@@ -57,9 +59,9 @@ export default function SubscribeModal({ isOpen, onClose }: SubscribeModalProps)
                     ✕
                 </button>
 
-                <h2 className="text-2xl font-bold mb-2 text-white">Get Weekly Updates</h2>
+                <h2 className="text-2xl font-bold mb-2 text-white">Get Updates</h2>
                 <p className="text-zinc-400 mb-6 text-sm">
-                    Never miss a deadline. Receive a curated digest of upcoming conferences and CFPs tailored to your interests.
+                    Receive curated updates of upcoming conferences and CFPs delivered to your inbox.
                 </p>
 
                 {status === 'success' ? (
@@ -82,18 +84,31 @@ export default function SubscribeModal({ isOpen, onClose }: SubscribeModalProps)
                             />
                         </div>
 
-                        <div>
-                            <label className="block text-xs font-medium text-zinc-500 mb-1">Interest</label>
-                            <select
-                                value={domain}
-                                onChange={(e) => setDomain(e.target.value)}
-                                className="w-full bg-zinc-800 border border-zinc-700 rounded p-2.5 text-white focus:ring-2 focus:ring-blue-500 outline-none"
-                            >
-                                <option value="all">All Tech Domains</option>
-                                {Object.entries(DOMAIN_INFO).map(([slug, info]) => (
-                                    <option key={slug} value={slug}>{info.name}</option>
-                                ))}
-                            </select>
+                        <div className="grid grid-cols-2 gap-4">
+                            <div>
+                                <label className="block text-xs font-medium text-zinc-500 mb-1">Interest</label>
+                                <select
+                                    value={domain}
+                                    onChange={(e) => setDomain(e.target.value)}
+                                    className="w-full bg-zinc-800 border border-zinc-700 rounded p-2.5 text-white focus:ring-2 focus:ring-blue-500 outline-none"
+                                >
+                                    <option value="all">All Domains</option>
+                                    {Object.entries(DOMAIN_INFO).map(([slug, info]) => (
+                                        <option key={slug} value={slug}>{info.name}</option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div>
+                                <label className="block text-xs font-medium text-zinc-500 mb-1">Frequency</label>
+                                <select
+                                    value={frequency}
+                                    onChange={(e) => setFrequency(e.target.value)}
+                                    className="w-full bg-zinc-800 border border-zinc-700 rounded p-2.5 text-white focus:ring-2 focus:ring-blue-500 outline-none"
+                                >
+                                    <option value="daily">Daily</option>
+                                    <option value="weekly">Weekly</option>
+                                </select>
+                            </div>
                         </div>
 
                         {status === 'error' && (
@@ -105,7 +120,7 @@ export default function SubscribeModal({ isOpen, onClose }: SubscribeModalProps)
                             disabled={status === 'loading'}
                             className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2.5 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                            {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
+                            {status === 'loading' ? 'Subscribing...' : 'Get Updates'}
                         </button>
                     </form>
                 )}
