@@ -1,54 +1,72 @@
-# ConfScout
+# ConfScout - Tech Conference Tracker
 
-A modern, open-source directory for technical conferences.
+ConfScout helps you discover upcoming tech conferences worldwide. Now with enhanced visualization and weekly updates.
 
-## Overview
+Check it out: [https://www.confscout.site/](https://www.confscout.site/)
 
-ConfScout helps developers discover conferences, track Call for Papers (CFP) deadlines, and find speaking opportunities. It aggregates data from multiple sources to provide a comprehensive and up-to-date view of the global tech conference landscape.
+## 🚀 Key Features
 
-## Features
+*   **Interactive World Map**: Browse conferences on a beautiful dark-mode map with clustering and category-specific coloring.
+*   **Smart Search & Filtering**: Filter by Domain (AI, Web, Mobile, etc.), Speaker Mode (Open CFPs), and Date timeline.
+*   **Weekly Digests**: improved! Subscribe to get a curated list of upcoming conferences and closing CFPs delivered to your inbox via Zoho Mail.
+*   **RSS Feed**: Subscribe via your favorite RSS reader at `/rss.xml`.
+*   **Geospatial Discovery**: "Near Me" button to find events around your location.
 
-### Data Aggregation
-- **Modular Scraper Engine**: Fetches data from 8+ sources including developers.events, WikiCFP, DBLP, IEEE, and ACM.
-- **Automated Updates**: GitHub Actions workflows run daily to keep the data fresh.
-- **Smart Deduplication**: Merges duplicate entries from different sources.
-- **Date Filtering**: Automatically removes past conferences to keep the list relevant.
+## 🛠 Tech Stack
 
-### User Interface
-- **Timeline View**: Chronological display of conferences with sticky month headers.
-- **World Map**: Interactive map visualization to find events by location.
-- **Speaker Mode**: Toggle to highlight open CFPs and sort by upcoming deadlines.
-- **Advanced Filtering**: Filter by domain (AI, Web, DevOps, etc.), financial aid availability, and location.
-- **Dark Mode**: Optimized for developer ergonomics.
+*   **Framework**: Next.js 15 (App Router)
+*   **Language**: TypeScript, Python (Data Scraping)
+*   **Styling**: Tailwind CSS 4
+*   **Map**: Leaflet, React Leaflet, CartoDB Dark Matter tiles
+*   **Database**: Vercel Postgres (for subscriptions)
+*   **Email**: Nodemailer + Zoho Mail
+*   **RSS**: `feed` package
 
-### Integration
-- **Calendar Support**: Export individual conferences to ICS format for Google Calendar, Outlook, and Apple Calendar.
-- **Discord Notifications**: Automated webhooks for new CFPs and closing deadlines.
-- **Analytics**: Integrated Vercel Analytics for usage tracking.
+## 📦 Data Pipeline
 
-## Tech Stack
+1.  `scripts/fetch_confs.py`: Scrapes data from *confs.tech* (GitHub) and *Sessionize*.
+2.  **Geocoding**: Uses `geopy` (Nominatim) to fetch coordinates for cities.
+3.  **Output**: Generates `public/data/conferences.json` used by the frontend.
 
-- **Framework**: Next.js 15 (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Maps**: React Leaflet
-- **Backend/Scripts**: Python 3.11 (Scrapers, Data Processing)
-- **Infrastructure**: Vercel (Hosting), GitHub Actions (Automation)
+## 🔧 Setup & Environment Variables
 
-## Future Enhancements
+To run this project locally, create a `.env` file with the following variables:
 
-- **Email Subscriptions**: Weekly digests of new conferences and closing CFPs.
-- **RSS Feeds**: Standard RSS/Atom feeds for integration with aggregators.
-- **User Accounts**: Ability to save favorite conferences and track submissions.
-- **Personalized Dashboard**: Recommendations based on improved domain matching.
-- **Travel Integration**: Estimated flight and hotel costs for in-person events.
-- **Mobile Application**: Native mobile experience using React Native.
-- **API Access**: Public REST API for developers to consume conference data.
+```bash
+# Database (Vercel Postgres / Neon)
+DATABASE_URL="postgresql://user:pass@host/db?sslmode=require"
 
-## Contributing
+# Email Service (Zoho)
+ZOHO_EMAIL="admin@mohitmishra7.com"
+ZOHO_PASSWORD="your-app-password"
+ZOHO_USER="admin@mohitmishra7.com"
 
-Contributions are welcome. Please read the [contribution guidelines](CONTRIBUTING.md) for details on how to add new data sources or features.
+# App URL (For verification links)
+NEXT_PUBLIC_APP_URL="http://localhost:3000"
+```
 
-## License
+### Installation
 
-[MIT](LICENSE)
+```bash
+# 1. Install Dependencies
+npm install
+
+# 2. Install Python Deps (for scraper)
+pip install -r scripts/requirements.txt
+
+# 3. Fetch Data (First time setup)
+python3 scripts/fetch_confs.py
+
+# 4. Initialize Database
+node scripts/init_db.js
+
+# 5. Run Dev Server
+npm run dev
+```
+
+## 🔮 Future Enhancements
+
+*   **User Accounts**: personalized profiles to save favorite conferences.
+*   **Trip Planning**: Integration with Skyscanner/Hotels.com for travel estimates.
+*   **Archives**: Access to past conference recordings.
+*   **Reviews**: Community ratings and reviews for events.
