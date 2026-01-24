@@ -44,23 +44,22 @@ export async function GET(request: Request) {
         // Get verified subscribers matching the frequency
         const client = await pool.connect();
         try {
-            const query = `
-            SELECT email FROM subscribers 
-            WHERE verified = TRUE 
-            AND (frequency = $1 OR frequency IS NULL)
-        `;
-            // Note: handling 'OR frequency IS NULL' to support legacy users as weekly if needed, or strictly $1.
-            // Let's rely on default 'weekly' being set in DB, so strictly check frequency.
-            // Actually, let's allow 'weekly' job to pick up those without specific frequency if we want default.
-            // But for now, strict match is safer.
-            const res = await client.query('SELECT email FROM subscribers WHERE verified = TRUE AND frequency = $1', [triggerFrequency]);
+            // Include verification_token in selection
+            // const query = `...`; // unused, using direct string below
+
+            // Note: strict match for now
+            const res = await client.query(
+                `SELECT email, verification_token FROM subscribers 
+                 WHERE verified = TRUE 
+                 AND (frequency = $1 OR frequency IS NULL)`,
+                [triggerFrequency]
+            );
             const subscribers = res.rows;
 
             console.log(`Sending ${triggerFrequency} digest to ${subscribers.length} subscribers.`);
 
             // Send emails
-            // Ideally use a queue (e.g. Inngest/BullMQ) for large lists. For now, sequential/parallel awaits.
-            const emailPromises = subscribers.map(sub => sendDigestEmail(sub.email, upcomingConfs));
+            const emailPromises = subscribers.map(sub => sendDigestEmail(sub.email, sub.verification_token, upcomingConfs));
             await Promise.allSettled(emailPromises);
 
             return NextResponse.json({ count: subscribers.length, frequency: triggerFrequency });

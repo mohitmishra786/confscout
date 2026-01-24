@@ -36,7 +36,7 @@ export default function SubscribeModal({ isOpen, onClose }: SubscribeModalProps)
 
             if (res.ok) {
                 setStatus('success');
-                setMessage(data.message || 'Check your email to verify!');
+                setMessage(data.message || 'Subscribed successfully!');
                 setTimeout(onClose, 3000);
             } else {
                 setStatus('error');
@@ -67,7 +67,7 @@ export default function SubscribeModal({ isOpen, onClose }: SubscribeModalProps)
                 {status === 'success' ? (
                     <div className="text-center py-8">
                         <div className="text-5xl mb-4">✨</div>
-                        <h3 className="text-xl font-bold text-white mb-2">Check your inbox!</h3>
+                        <h3 className="text-xl font-bold text-white mb-2">All set!</h3>
                         <p className="text-zinc-400">{message}</p>
                     </div>
                 ) : (

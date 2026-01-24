@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import pool from '@/lib/db';
-import { sendWelcomeEmail } from '@/lib/email';
+import { sendUnsubscribeEmail } from '@/lib/email';
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
@@ -13,11 +13,9 @@ export async function GET(request: Request) {
     try {
         const client = await pool.connect();
         try {
+            // Find and delete the subscriber
             const result = await client.query(
-                `UPDATE subscribers 
-         SET verified = TRUE, updated_at = CURRENT_TIMESTAMP 
-         WHERE verification_token = $1 
-         RETURNING email`,
+                'DELETE FROM subscribers WHERE verification_token = $1 RETURNING email',
                 [token]
             );
 
@@ -27,16 +25,16 @@ export async function GET(request: Request) {
 
             const email = result.rows[0].email;
 
-            // Send welcome email
-            await sendWelcomeEmail(email, token);
+            // Send confirmation email
+            await sendUnsubscribeEmail(email);
 
-            // Redirect to success page or show message
-            return NextResponse.redirect(new URL('/?verified=true', request.url));
+            // Redirect to success page
+            return NextResponse.redirect(new URL('/unsubscribe/success', request.url));
         } finally {
             client.release();
         }
     } catch (error) {
-        console.error('Verify Error:', error);
-        return NextResponse.json({ error: 'Verification failed' }, { status: 500 });
+        console.error('Unsubscribe Error:', error);
+        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }
 }
