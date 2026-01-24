@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import crypto from 'crypto';
 import pool from '@/lib/db';
-import { sendVerificationEmail } from '@/lib/email';
+import { sendWelcomeEmail } from '@/lib/email';
 import { z } from 'zod';
 
 const subscribeSchema = z.object({
@@ -19,25 +19,22 @@ export async function POST(request: Request) {
         // Check if email exists
         const client = await pool.connect();
         try {
-            // Upsert user
+            // Upsert user - Verified by default
             const query = `
         INSERT INTO subscribers (email, preferences, frequency, verification_token, verified)
-        VALUES ($1, $2, $3, $4, FALSE)
+        VALUES ($1, $2, $3, $4, TRUE)
         ON CONFLICT (email) 
-        DO UPDATE SET verification_token = $4, preferences = $2, frequency = $3, updated_at = CURRENT_TIMESTAMP
+        DO UPDATE SET verification_token = $4, preferences = $2, frequency = $3, verified = TRUE, updated_at = CURRENT_TIMESTAMP
         RETURNING id, verified;
       `;
-            const result = await client.query(query, [email, preferences || {}, frequency, token]);
+            await client.query(query, [email, preferences || {}, frequency, token]);
 
-            const user = result.rows[0];
-            if (user.verified) {
-                return NextResponse.json({ message: 'Already subscribed' }, { status: 200 });
-            }
+            // Send Confirmation/Welcome email
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const domain = (preferences as any)?.domain || 'all';
+            await sendWelcomeEmail(email, token, frequency, domain);
 
-            // Send verification email
-            await sendVerificationEmail(email, token);
-
-            return NextResponse.json({ message: 'Verification email sent' }, { status: 200 });
+            return NextResponse.json({ message: 'Subcribed successfully!' }, { status: 200 });
         } finally {
             client.release();
         }
