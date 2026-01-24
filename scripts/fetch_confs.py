@@ -12,19 +12,26 @@ Outputs merged, deduplicated data to public/data/conferences.json
 import json
 import re
 import hashlib
+import time
 from datetime import datetime, date
-from typing import Optional
+from typing import Optional, Dict
 from pathlib import Path
 
 import requests
 from bs4 import BeautifulSoup
 from dateutil.parser import parse as parse_date
-
+from geopy.geocoders import Nominatim
+from geopy.exc import GeocoderTimedOut
 
 # Configuration
 GITHUB_BASE_URL = "https://raw.githubusercontent.com/tech-conferences/conference-data/main/conferences"
 SESSIONIZE_EXPLORE_URL = "https://sessionize.com/app/speaker/opportunities"
 OUTPUT_PATH = Path("public/data/conferences.json")
+CACHE_PATH = Path("scripts/city_cache.json")
+
+# Initialize Geocoder
+geolocator = Nominatim(user_agent="conf_scout_fetcher_v2")
+city_cache = {}
 
 # Domain classification keywords with priority scoring
 DOMAIN_KEYWORDS = {
@@ -101,6 +108,69 @@ COUNTRY_CONTINENTS = {
     "Australia": "Oceania", "New Zealand": "Oceania",
     "South Africa": "Africa", "Kenya": "Africa", "Nigeria": "Africa", "Egypt": "Africa",
 }
+
+
+def load_cache():
+    """Load city coordinates cache."""
+    global city_cache
+    if CACHE_PATH.exists():
+        try:
+            with open(CACHE_PATH, 'r', encoding='utf-8') as f:
+                city_cache = json.load(f)
+            print(f"[INFO] Loaded {len(city_cache)} cached locations.")
+        except json.JSONDecodeError:
+            print("[WARN] Cache file corrupted. Starting fresh.")
+            city_cache = {}
+    else:
+        city_cache = {}
+
+
+def save_cache():
+    """Save city coordinates cache."""
+    CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with open(CACHE_PATH, 'w', encoding='utf-8') as f:
+        json.dump(city_cache, f, indent=2, ensure_ascii=False)
+    print(f"[INFO] Saved {len(city_cache)} locations to cache.")
+
+
+def get_coordinates(city: str, country: str) -> Dict[str, float]:
+    """
+    Get coordinates for a city, country pair.
+    Uses caching and rate limiting.
+    """
+    if not city or not country:
+        return {}
+
+    key = f"{city}, {country}".lower()
+    
+    # Check cache
+    if key in city_cache:
+        return city_cache[key]
+
+    # Clean up inputs
+    query = f"{city}, {country}"
+    
+    try:
+        # Be nice to Nominatim
+        time.sleep(1) 
+        location = geolocator.geocode(query)
+        
+        if location:
+            coords = {
+                "lat": location.latitude,
+                "lng": location.longitude
+            }
+            city_cache[key] = coords
+            print(f"  [GEO] Found: {query} -> {coords}")
+            return coords
+        else:
+            print(f"  [GEO] Not found: {query}")
+            city_cache[key] = {} # Cache misses too to avoid repaying
+            return {}
+            
+    except (GeocoderTimedOut, Exception) as e:
+        print(f"  [GEO] Error geocoding {query}: {e}")
+        return {}
 
 
 def get_continent(country: str) -> str:
@@ -278,6 +348,9 @@ def parse_confs_tech_entry(entry: dict, source_topic: str) -> dict:
 
     # Determine hybrid status
     hybrid = online and bool(city)
+    
+    # Get coordinates
+    coords = get_coordinates(city, country) if city and country else {}
 
     return {
         "id": generate_id(name, start_date),
@@ -285,8 +358,13 @@ def parse_confs_tech_entry(entry: dict, source_topic: str) -> dict:
         "url": entry.get("url", ""),
         "startDate": start_date,
         "endDate": end_date,
-        "city": city or "",
-        "country": country or "",
+        "location": {
+            "city": city or "",
+            "country": country or "",
+            "raw": f"{city}, {country}" if city and country else "Online" if online else "",
+            "lat": coords.get("lat"),
+            "lng": coords.get("lng")
+        },
         "continent": get_continent(country) if country else "Online",
         "online": online,
         "hybrid": hybrid,
@@ -426,14 +504,21 @@ def scrape_sessionize_cfp_page(url: str, headers: dict) -> Optional[dict]:
             "isOpen": days_remaining > 0
         }
     
+    coords = get_coordinates(city, country) if city and country else {}
+    
     return {
         "id": generate_id(name, event_start or ""),
         "name": name,
         "url": website,
         "startDate": event_start or "",
         "endDate": event_end or event_start or "",
-        "city": city,
-        "country": country,
+        "location": {
+            "city": city,
+            "country": country,
+            "raw": location,
+            "lat": coords.get("lat"),
+            "lng": coords.get("lng")
+        },
         "continent": get_continent(country) if country else "Other",
         "online": "online" in location.lower() or "virtual" in location.lower(),
         "hybrid": False,
@@ -601,6 +686,8 @@ def main():
     print("Conference Data Fetcher v2.0")
     print(f"Started at: {datetime.now().isoformat()}")
     print("=" * 60)
+    
+    load_cache()
 
     # Collect conferences from all sources
     all_conferences = []
@@ -647,6 +734,8 @@ def main():
     # Write output
     with open(OUTPUT_PATH, 'w', encoding='utf-8') as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
+        
+    save_cache()
 
     print(f"\n{'=' * 60}")
     print(f"[SUCCESS] Wrote {len(upcoming_conferences)} conferences to {OUTPUT_PATH}")

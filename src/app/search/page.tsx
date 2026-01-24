@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { Conference, ConferenceData, SortOption, DOMAIN_INFO } from '@/types/conference';
+import { ConferenceData, SortOption, DOMAIN_INFO } from '@/types/conference';
 
 import Header from '@/components/Header';
 import ConferenceCard from '@/components/ConferenceCard';
@@ -37,7 +37,7 @@ function SearchContent() {
         if (!response.ok) throw new Error('Failed to fetch');
         const jsonData = await response.json();
         setData(jsonData);
-      } catch (_err) {
+      } catch {
         setError('Failed to load conference data');
       } finally {
         setLoading(false);

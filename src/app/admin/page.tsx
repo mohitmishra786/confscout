@@ -22,7 +22,7 @@ export default function AdminPage() {
         if (!response.ok) throw new Error('Failed to fetch data');
         const jsonData = await response.json();
         setData(jsonData);
-      } catch (_err) {
+      } catch {
         setError('Failed to load data');
       } finally {
         setLoading(false);

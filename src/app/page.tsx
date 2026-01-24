@@ -17,12 +17,14 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import TimelineView from '@/components/TimelineView';
 import ConferenceCard from '@/components/ConferenceCard';
+import SubscribeModal from '@/components/SubscribeModal';
+import NearMeButton from '@/components/NearMeButton';
 
 // Dynamic import for WorldMap (requires browser APIs)
 const WorldMap = dynamic(() => import('@/components/WorldMap'), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-[400px] bg-gray-900 rounded-lg flex items-center justify-center">
+    <div className="w-full h-[600px] bg-gray-900 rounded-lg flex items-center justify-center">
       <div className="text-gray-400">Loading map...</div>
     </div>
   ),
@@ -37,8 +39,13 @@ export default function Home() {
   const [viewMode, setViewMode] = useState<'timeline' | 'grid'>('timeline');
   const [speakerMode, setSpeakerMode] = useState(false);
   const [selectedDomain, setSelectedDomain] = useState('all');
-  const [showMap, setShowMap] = useState(false);
+  const [showMap, setShowMap] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+
+  // Subscription and Map UI state
+  const [isSubscribeOpen, setIsSubscribeOpen] = useState(false);
+  const [mapCenter, setMapCenter] = useState<[number, number] | undefined>(undefined);
+  const [mapZoom, setMapZoom] = useState<number | undefined>(undefined);
 
   useEffect(() => {
     const loadData = async () => {
@@ -55,6 +62,18 @@ export default function Home() {
       }
     };
     loadData();
+  }, []);
+
+  // Check for verified query param to show thank you
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('verified') === 'true') {
+        alert('Email verified successfully! You will now receive weekly updates.');
+        // Clean up URL
+        window.history.replaceState({}, '', '/');
+      }
+    }
   }, []);
 
   // Flatten conferences for filtering
@@ -126,6 +145,21 @@ export default function Home() {
       }));
   }, [allConferences]);
 
+  const handleLocationFound = (lat: number, lng: number) => {
+    setMapCenter([lat, lng]);
+    setMapZoom(6);
+    setShowMap(true); // Ensure map is visible
+  };
+
+  const handleConfClick = (conf: Conference) => {
+    if (conf.location.lat && conf.location.lng) {
+      setMapCenter([conf.location.lat, conf.location.lng]);
+      setMapZoom(10);
+      setShowMap(true);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-black">
@@ -159,6 +193,18 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-black">
       <Header />
+
+      {/* Subscribe Button (Fixed or top) */}
+      <div className="fixed bottom-6 right-6 z-40">
+        <button
+          onClick={() => setIsSubscribeOpen(true)}
+          className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-transform hover:scale-105 flex items-center gap-2"
+        >
+          📧 Get Weekly Updates
+        </button>
+      </div>
+
+      <SubscribeModal isOpen={isSubscribeOpen} onClose={() => setIsSubscribeOpen(false)} />
 
       <main className="w-full max-w-7xl mx-auto px-4 py-6 sm:py-8">
         {/* Hero */}
@@ -199,24 +245,31 @@ export default function Home() {
 
         {/* World Map Toggle */}
         <section className="mb-6">
-          <button
-            onClick={() => setShowMap(!showMap)}
-            className={`w-full card p-3 text-center transition-all ${showMap ? 'ring-2 ring-blue-500' : ''}`}
-          >
-            <span className="text-zinc-400">
-              {showMap ? 'Hide' : 'Show'} World Map
-            </span>
-          </button>
+          <div className="flex items-center justify-between mb-2">
+            <button
+              onClick={() => setShowMap(!showMap)}
+              className={`text-sm text-zinc-400 hover:text-white transition-colors`}
+            >
+              {showMap ? 'Hide Map' : 'Show Map'}
+            </button>
+            {showMap && <NearMeButton onLocationFound={handleLocationFound} />}
+          </div>
+
 
           {showMap && (
-            <div className="mt-4">
-              <WorldMap conferences={filteredConferences} />
+            <div className="mt-2 transition-all">
+              <WorldMap
+                conferences={filteredConferences}
+                center={mapCenter}
+                zoom={mapZoom}
+                onMarkerClick={handleConfClick}
+              />
             </div>
           )}
         </section>
 
         {/* Filters */}
-        <section className="mb-6 card p-4 sm:p-6">
+        <section className="mb-6 card p-4 sm:p-6 sticky top-0 z-30 bg-black/90 backdrop-blur-md border-b border-zinc-800">
           <div className="flex flex-col md:flex-row gap-3 mb-4">
             {/* Search */}
             <div className="flex-1">
@@ -225,7 +278,7 @@ export default function Home() {
                 placeholder="Search conferences..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full"
+                className="w-full bg-zinc-900 border border-zinc-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 outline-none"
               />
             </div>
 
@@ -234,7 +287,7 @@ export default function Home() {
               <select
                 value={selectedDomain}
                 onChange={(e) => setSelectedDomain(e.target.value)}
-                className="w-full"
+                className="w-full bg-zinc-900 border border-zinc-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 outline-none"
               >
                 <option value="all">All Domains ({allConferences.length})</option>
                 {domains.map(d => (
@@ -250,29 +303,29 @@ export default function Home() {
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-center gap-4">
               {/* Speaker Mode */}
-              <label className="flex items-center gap-2 cursor-pointer">
+              <label className="flex items-center gap-2 cursor-pointer select-none">
                 <input
                   type="checkbox"
                   checked={speakerMode}
                   onChange={(e) => setSpeakerMode(e.target.checked)}
-                  className="form-checkbox"
+                  className="w-4 h-4 rounded border-gray-600 text-blue-600 focus:ring-blue-500"
                 />
                 <span className={`text-sm ${speakerMode ? 'text-green-400 font-medium' : 'text-zinc-400'}`}>
-                  Speaker Mode
+                  Speaker Mode (Open CFPs)
                 </span>
               </label>
 
               {/* View Toggle */}
-              <div className="flex items-center gap-1 bg-gray-800 rounded-lg p-1">
+              <div className="flex items-center gap-1 bg-zinc-800 rounded-lg p-1">
                 <button
                   onClick={() => setViewMode('timeline')}
-                  className={`px-3 py-1 text-sm rounded ${viewMode === 'timeline' ? 'bg-blue-600 text-white' : 'text-zinc-400'}`}
+                  className={`px-3 py-1 text-xs font-medium rounded ${viewMode === 'timeline' ? 'bg-zinc-600 text-white' : 'text-zinc-400 hover:text-zinc-200'}`}
                 >
                   Timeline
                 </button>
                 <button
                   onClick={() => setViewMode('grid')}
-                  className={`px-3 py-1 text-sm rounded ${viewMode === 'grid' ? 'bg-blue-600 text-white' : 'text-zinc-400'}`}
+                  className={`px-3 py-1 text-xs font-medium rounded ${viewMode === 'grid' ? 'bg-zinc-600 text-white' : 'text-zinc-400 hover:text-zinc-200'}`}
                 >
                   Grid
                 </button>
