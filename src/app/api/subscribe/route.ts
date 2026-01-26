@@ -34,7 +34,7 @@ export async function POST(request: Request) {
             const domain = (preferences as any)?.domain || 'all';
             await sendWelcomeEmail(email, token, frequency, domain);
 
-            return NextResponse.json({ message: 'Subcribed successfully!' }, { status: 200 });
+            return NextResponse.json({ message: 'Subscribed successfully!' }, { status: 200 });
         } finally {
             client.release();
         }

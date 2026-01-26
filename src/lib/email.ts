@@ -13,23 +13,7 @@ const transporter = nodemailer.createTransport({
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://confscout.site';
 
-export async function sendVerificationEmail(to: string, token: string) {
-  const verifyUrl = `${APP_URL}/api/verify?token=${token}`;
-
-  await transporter.sendMail({
-    from: `"ConfScout" <${process.env.ZOHO_USER || process.env.ZOHO_EMAIL}>`,
-    to,
-    subject: 'Verify your subscription - ConfScout',
-    html: `
-      <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-        <h1>Verify your email</h1>
-        <p>Thanks for subscribing to ConfScout updates! Please confirm your email address by clicking the link below:</p>
-        <p><a href="${verifyUrl}" style="background: #2563eb; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Verify Subscription</a></p>
-        <p>If you didn't request this, you can safely ignore this email.</p>
-      </div>
-    `,
-  });
-}
+// Note: sendVerificationEmail was removed - verification is no longer used
 
 export async function sendWelcomeEmail(to: string, token: string, frequency: string = 'weekly', domain: string = 'all') {
   const unsubscribeUrl = `${APP_URL}/api/unsubscribe?token=${token}`;

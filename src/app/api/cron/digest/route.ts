@@ -3,6 +3,17 @@ import pool from '@/lib/db';
 import { sendDigestEmail } from '@/lib/email';
 import { promises as fs } from 'fs';
 import path from 'path';
+import { Conference } from '@/types/conference';
+
+// Filter conferences based on user preferences
+function filterConferencesForUser(conferences: Conference[], preferences: Record<string, unknown>): Conference[] {
+    const domain = preferences?.domain as string | undefined;
+    // If no domain preference or 'all', return all conferences
+    if (!domain || domain === 'all') {
+        return conferences;
+    }
+    return conferences.filter(c => c.domain === domain);
+}
 
 export async function GET(request: Request) {
     // Parse frequency from query param (default to 'weekly' if not specified)
@@ -20,12 +31,11 @@ export async function GET(request: Request) {
         const dataPath = path.join(process.cwd(), 'public/data/conferences.json');
         const fileContents = await fs.readFile(dataPath, 'utf8');
         const data = JSON.parse(fileContents);
-        const conferences = data.conferences || [];
+        const conferences: Conference[] = data.conferences || [];
 
         // Filter "New" conferences (simulated: start date in next 14 days OR CFP closing in next 7 days)
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const upcomingConfs = conferences.filter((c: any) => {
-            const start = new Date(c.startDate);
+        const upcomingConfs = conferences.filter((c) => {
+            const start = c.startDate ? new Date(c.startDate) : null;
             const now = new Date();
             const twoWeeks = new Date();
             twoWeeks.setDate(now.getDate() + 14);
@@ -34,35 +44,61 @@ export async function GET(request: Request) {
             const oneWeek = new Date();
             oneWeek.setDate(now.getDate() + 7);
 
-            return (start >= now && start <= twoWeeks) || (cfpEnd && cfpEnd >= now && cfpEnd <= oneWeek);
+            return (start && start >= now && start <= twoWeeks) || (cfpEnd && cfpEnd >= now && cfpEnd <= oneWeek);
         });
 
         if (upcomingConfs.length === 0) {
             return NextResponse.json({ message: 'No upcoming conferences to send.' });
         }
 
-        // Get verified subscribers matching the frequency
+        // Get verified subscribers matching the frequency, including their preferences
         const client = await pool.connect();
         try {
-            // Include verification_token in selection
-            // const query = `...`; // unused, using direct string below
-
-            // Note: strict match for now
             const res = await client.query(
-                `SELECT email, verification_token FROM subscribers 
+                `SELECT email, verification_token, preferences FROM subscribers 
                  WHERE verified = TRUE 
                  AND (frequency = $1 OR frequency IS NULL)`,
                 [triggerFrequency]
             );
             const subscribers = res.rows;
 
-            console.log(`Sending ${triggerFrequency} digest to ${subscribers.length} subscribers.`);
+            console.log(`Processing ${triggerFrequency} digest for ${subscribers.length} subscribers.`);
 
-            // Send emails
-            const emailPromises = subscribers.map(sub => sendDigestEmail(sub.email, sub.verification_token, upcomingConfs));
+            // Send emails with per-user filtering
+            let sentCount = 0;
+            let skippedCount = 0;
+
+            const emailPromises = subscribers.map(async sub => {
+                // Filter conferences based on user's domain preference
+                const userConfs = filterConferencesForUser(upcomingConfs, sub.preferences || {});
+
+                if (userConfs.length === 0) {
+                    console.log(`Skipping ${sub.email}: no matching conferences for their preferences`);
+                    skippedCount++;
+                    return { status: 'skipped', email: sub.email };
+                }
+
+                try {
+                    await sendDigestEmail(sub.email, sub.verification_token, userConfs);
+                    sentCount++;
+                    return { status: 'sent', email: sub.email };
+                } catch (error) {
+                    console.error(`Failed to send digest to ${sub.email}:`, error);
+                    return { status: 'failed', email: sub.email, error };
+                }
+            });
+
             await Promise.allSettled(emailPromises);
 
-            return NextResponse.json({ count: subscribers.length, frequency: triggerFrequency });
+            console.log(`Digest complete: ${sentCount} sent, ${skippedCount} skipped`);
+
+            return NextResponse.json({
+                frequency: triggerFrequency,
+                totalSubscribers: subscribers.length,
+                sent: sentCount,
+                skipped: skippedCount,
+                upcomingConferences: upcomingConfs.length
+            });
         } finally {
             client.release();
         }
@@ -71,3 +107,4 @@ export async function GET(request: Request) {
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }
 }
+
