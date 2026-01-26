@@ -64,17 +64,7 @@ export default function Home() {
     loadData();
   }, []);
 
-  // Check for verified query param to show thank you
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      if (params.get('verified') === 'true') {
-        alert('Email verified successfully! You will now receive weekly updates.');
-        // Clean up URL
-        window.history.replaceState({}, '', '/');
-      }
-    }
-  }, []);
+  // Note: Verification redirect was removed - users are verified immediately on subscribe
 
   // Flatten conferences for filtering
   const allConferences = useMemo(() => {
