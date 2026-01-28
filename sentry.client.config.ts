@@ -19,18 +19,12 @@ Sentry.init({
     if (event.user) {
       delete event.user.email;
     }
+    
+    // Filter out ResizeObserver errors
+    if (event.exception?.values?.[0]?.value?.includes('ResizeObserver')) {
+      return null;
+    }
+    
     return event;
   },
-
-  filters: [
-    {
-      type: 'error',
-      filter: (event) => {
-        if (event.exception?.values?.[0]?.value?.includes('ResizeObserver')) {
-          return false;
-        }
-        return true;
-      },
-    },
-  ],
 });

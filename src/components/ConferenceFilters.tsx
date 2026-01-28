@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { ConferenceFilters } from '@/types/conference';
-import { SlidersHorizontal, Calendar, MapPin, DollarSign, Users, Shield, X } from 'lucide-react';
+import type { ConferenceFilters } from '@/types/conference';
+import { SlidersHorizontal, Calendar, MapPin, DollarSign, Shield, X } from 'lucide-react';
 
 interface ConferenceFiltersProps {
   filters: ConferenceFilters;
@@ -13,7 +13,7 @@ interface ConferenceFiltersProps {
 export default function ConferenceFilters({ filters, onFiltersChange, totalResults }: ConferenceFiltersProps) {
   const [showAdvanced, setShowAdvanced] = useState(false);
 
-  const handleFilterChange = (key: keyof ConferenceFilters, value: any) => {
+  const handleFilterChange = (key: keyof ConferenceFilters, value: string | boolean | number | string[] | Record<string, unknown>) => {
     onFiltersChange({ ...filters, [key]: value });
   };
 
@@ -183,7 +183,7 @@ export default function ConferenceFilters({ filters, onFiltersChange, totalResul
                 value={filters.location?.type || 'all'}
                 onChange={(e) => handleFilterChange('location', {
                   ...(filters.location || {}),
-                  type: e.target.value as any
+                  type: e.target.value as 'all' | 'online' | 'country' | 'nearby'
                 })}
                 className="bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-blue-500"
               >
@@ -217,10 +217,10 @@ export default function ConferenceFilters({ filters, onFiltersChange, totalResul
               Budget / Entry Fee
             </label>
             <div className="flex flex-wrap gap-2">
-              {['all', 'free', 'low', 'medium', 'high'].map((budget) => (
+              {(['all', 'free', 'low', 'medium', 'high'] as const).map((budget) => (
                 <button
                   key={budget}
-                  onClick={() => handleFilterChange('budget', budget as any)}
+                  onClick={() => handleFilterChange('budget', budget)}
                   className={`px-4 py-2 rounded-lg capitalize ${
                     filters.budget === budget
                       ? 'bg-blue-600 text-white'
@@ -267,7 +267,7 @@ export default function ConferenceFilters({ filters, onFiltersChange, totalResul
             <label className="text-xs font-medium text-zinc-500 mb-2 block">Sort By</label>
             <select
               value={filters.sortBy || 'date'}
-              onChange={(e) => handleFilterChange('sortBy', e.target.value as any)}
+              onChange={(e) => handleFilterChange('sortBy', e.target.value as 'date' | 'cfpDeadline' | 'relevance' | 'rating')}
               className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-blue-500"
             >
               <option value="date">Start Date</option>

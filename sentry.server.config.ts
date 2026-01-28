@@ -16,17 +16,14 @@ Sentry.init({
       delete event.request.headers['x-api-key'];
     }
 
-    return event;
-  },
-
-  filterTransactions: (event) => {
+    // Filter out health check transactions
     const healthCheckUrls = ['/health', '/api/health', '/_next/health'];
     const url = event.request?.url;
     
     if (url && healthCheckUrls.some(checkUrl => url.includes(checkUrl))) {
-      return false;
+      return null;
     }
-    
-    return true;
+
+    return event;
   },
 });

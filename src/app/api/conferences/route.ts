@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getCachedConferences } from '@/lib/cache';
+import { Conference, ConferenceData } from '@/types/conference';
 
 /**
  * GET /api/conferences
@@ -18,35 +19,9 @@ export async function GET(request: Request) {
     // Get data from cache
     const data = await getCachedConferences();
 
-    // Type assertion for the cached data
-    type ConferenceEntry = {
-      id: string;
-      name: string;
-      url: string;
-      startDate: string | null;
-      domain: string;
-      location?: { raw?: string; lat?: number; lng?: number };
-      cfp?: { status?: string; url?: string; endDate?: string | null; daysRemaining?: number } | null;
-      tags?: string[];
-      source: string;
-      online?: boolean;
-      [key: string]: unknown;
-    };
-
-    const conferenceData = data as {
-      lastUpdated: string;
-      stats: {
-        total: number;
-        withOpenCFP: number;
-        withLocation: number;
-        byDomain: Record<string, number>;
-      };
-      months: Record<string, ConferenceEntry[]>;
-    };
-
     // Flatten months into a single array for filtering
-    let conferences: ConferenceEntry[] = [];
-    for (const monthConfs of Object.values(conferenceData.months)) {
+    let conferences: Conference[] = [];
+    for (const monthConfs of Object.values(data.months)) {
       conferences.push(...monthConfs);
     }
 
@@ -61,7 +36,7 @@ export async function GET(request: Request) {
     }
 
     // Re-group by month
-    const months: Record<string, ConferenceEntry[]> = {};
+    const months: Record<string, Conference[]> = {};
     for (const conf of conferences) {
       const monthKey = conf.startDate
         ? new Date(conf.startDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
@@ -71,12 +46,12 @@ export async function GET(request: Request) {
     }
 
     return NextResponse.json({
-      lastUpdated: conferenceData.lastUpdated,
+      lastUpdated: data.lastUpdated,
       stats: {
         total: conferences.length,
         withOpenCFP: conferences.filter(c => c.cfp?.status === 'open').length,
         withLocation: conferences.filter(c => c.location?.lat).length,
-        byDomain: conferenceData.stats.byDomain,
+        byDomain: data.stats.byDomain,
       },
       months,
     });

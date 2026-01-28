@@ -1,16 +1,17 @@
 import { kv } from '@vercel/kv';
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import { ConferenceData } from '@/types/conference';
 
 const CACHE_KEY = 'conferences';
 const CACHE_TTL = 3600; // 1 hour
 
 export interface CachedData {
-  data: any;
+  data: ConferenceData;
   timestamp: number;
 }
 
-export async function getCachedConferences(): Promise<any> {
+export async function getCachedConferences(): Promise<ConferenceData> {
   try {
     const cached = await kv.get<CachedData>(CACHE_KEY);
     
