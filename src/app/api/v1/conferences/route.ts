@@ -1,6 +1,22 @@
 import { NextResponse } from 'next/server';
 import { getCachedConferences } from '@/lib/cache';
 
+function escapeCsvCell(value: string | null | undefined): string {
+  if (!value) return '""';
+  
+  // Convert to string and handle null/undefined
+  const stringValue = String(value);
+  
+  // Check if the value starts with dangerous characters that could trigger formulas
+  if (/^[=+\-@]/.test(stringValue)) {
+    return `'${stringValue}`; // Prefix with single quote to neutralize formulas
+  }
+  
+  // Escape double quotes by doubling them and wrap in quotes
+  const escaped = stringValue.replace(/"/g, '""');
+  return `"${escaped}"`;
+}
+
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
@@ -26,9 +42,16 @@ export async function GET(request: Request) {
     if (format === 'csv') {
       const csv = [
         'Name,URL,Start Date,End Date,Domain,Location,CFP URL,CFP End Date',
-        ...conferences.map(c => 
-          `"${c.name}","${c.url}","${c.startDate || ''}","${c.endDate || ''}","${c.domain}","${c.location?.raw || ''}","${c.cfp?.url || ''}","${c.cfp?.endDate || ''}"`
-        )
+        ...conferences.map(c => [
+          escapeCsvCell(c.name),
+          escapeCsvCell(c.url),
+          escapeCsvCell(c.startDate || ''),
+          escapeCsvCell(c.endDate || ''),
+          escapeCsvCell(c.domain),
+          escapeCsvCell(c.location?.raw || ''),
+          escapeCsvCell(c.cfp?.url || ''),
+          escapeCsvCell(c.cfp?.endDate || '')
+        ].join(','))
       ].join('\n');
 
       return new NextResponse(csv, {
@@ -49,8 +72,9 @@ export async function GET(request: Request) {
     });
 
   } catch (error) {
+    console.error('V1 API error:', error);
     return NextResponse.json(
-      { error: 'API Error', message: error instanceof Error ? error.message : 'Unknown error' },
+      { error: 'API Error', message: 'Internal server error' },
       { status: 500 }
     );
   }

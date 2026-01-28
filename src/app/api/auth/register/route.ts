@@ -20,7 +20,7 @@ export async function POST(request: Request) {
 
     if (existingUser) {
       return NextResponse.json(
-        { error: 'User already exists' },
+        { error: 'Registration failed. If you already have an account, try signing in.' },
         { status: 400 }
       );
     }

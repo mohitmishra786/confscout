@@ -46,9 +46,13 @@ CREATE TABLE IF NOT EXISTS conference_submissions (
 
 -- Indexes for performance
 CREATE INDEX IF NOT EXISTS idx_conference_submissions_status ON conference_submissions(status);
-CREATE INDEX IF NOT EXISTS idx_conference_submissions_url ON conference_submissions(url);
 CREATE INDEX IF NOT EXISTS idx_conference_submissions_domain ON conference_submissions(domain);
 CREATE INDEX IF NOT EXISTS idx_conference_submissions_created_at ON conference_submissions(created_at DESC);
+
+-- Unique constraint to prevent duplicate pending submissions for the same URL
+CREATE UNIQUE INDEX IF NOT EXISTS idx_conference_submissions_unique_pending_url 
+ON conference_submissions(url) 
+WHERE status = 'pending';
 
 -- Add comments
 COMMENT ON TABLE conference_submissions IS 'User-submitted conferences for review and approval';

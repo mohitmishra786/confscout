@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { z } from 'zod';
+import { Prisma } from '@prisma/client';
 
 const bookmarkSchema = z.object({
   conferenceId: z.string()
@@ -24,6 +25,7 @@ export async function GET() {
     return NextResponse.json(bookmarks);
 
   } catch (error) {
+    console.error('Bookmark fetch error:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
@@ -52,10 +54,19 @@ export async function POST(request: Request) {
     return NextResponse.json(bookmark, { status: 201 });
 
   } catch (error) {
+    console.error('Bookmark creation error:', error);
+    
     if (error instanceof z.ZodError) {
       return NextResponse.json(
         { error: 'Validation failed', details: error.issues },
         { status: 400 }
+      );
+    }
+
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
+      return NextResponse.json(
+        { error: 'Conference already bookmarked' },
+        { status: 409 }
       );
     }
 
@@ -94,6 +105,7 @@ export async function DELETE(request: Request) {
     return NextResponse.json({ success: true });
 
   } catch (error) {
+    console.error('Bookmark deletion error:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

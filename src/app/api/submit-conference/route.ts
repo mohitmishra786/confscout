@@ -30,22 +30,9 @@ export async function POST(request: Request) {
     // Validate submission
     const validated = conferenceSubmissionSchema.parse(body);
 
-    // Check for duplicate submissions
+    // Insert submission into database with ON CONFLICT handling
     const client = await pool.connect();
     try {
-      const duplicateCheck = await client.query(
-        'SELECT id FROM conference_submissions WHERE url = $1 AND status = $2 ORDER BY created_at DESC LIMIT 1',
-        [validated.url, 'pending']
-      );
-
-      if (duplicateCheck.rows.length > 0) {
-        return NextResponse.json(
-          { error: 'This conference URL already has a pending submission' },
-          { status: 409 }
-        );
-      }
-
-      // Insert submission into database
       const result = await client.query(
         `INSERT INTO conference_submissions (
           name, url, start_date, end_date, city, country, online, domain,
@@ -53,6 +40,7 @@ export async function POST(request: Request) {
           description, tags, organizer_name, organizer_email, submission_type,
           additional_notes, status, created_at
         ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, 'pending', NOW())
+        ON CONFLICT (url) WHERE status = 'pending' DO NOTHING
         RETURNING id`,
         [
           validated.name,
@@ -75,6 +63,14 @@ export async function POST(request: Request) {
           validated.additionalNotes || null,
         ]
       );
+
+      // Check if the insertion was successful (no conflict)
+      if (result.rows.length === 0) {
+        return NextResponse.json(
+          { error: 'This conference URL already has a pending submission' },
+          { status: 409 }
+        );
+      }
 
       return NextResponse.json({
         success: true,
