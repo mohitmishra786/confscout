@@ -1,0 +1,41 @@
+{
+  "name": "ConfScout - Tech Conferences Directory",
+  "short_name": "ConfScout",
+  "description": "Discover upcoming tech conferences, track CFPs, and find speaking opportunities.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "education", "lifestyle"],
+  "shortcuts": [
+    {
+      "name": "Search Conferences",
+      "short_name": "Search",
+      "description": "Find tech conferences",
+      "url": "/search",
+      "icons": [{ "src": "/icon.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Submit Conference",
+      "short_name": "Submit",
+      "description": "Add a new conference",
+      "url": "/submit",
+      "icons": [{ "src": "/icon.png", "sizes": "192x192" }]
+    }
+  ]
+}

@@ -1,10 +1,11 @@
 import { NextResponse } from 'next/server';
-import conferenceData from '../../../../public/data/conferences.json';
+import { getCachedConferences } from '@/lib/cache';
+import { Conference, ConferenceData } from '@/types/conference';
 
 /**
  * GET /api/conferences
  * 
- * Returns conference data in the new month-grouped format.
+ * Returns conference data in the new month-grouped format with caching.
  * Query params:
  * - domain: Filter by domain (ai, web, software, etc.)
  * - cfpOpen: Only show conferences with open CFPs
@@ -15,34 +16,11 @@ export async function GET(request: Request) {
     const domain = searchParams.get('domain');
     const cfpOnly = searchParams.get('cfpOpen') === 'true';
 
-    // Type assertion for the imported data
-    type ConferenceEntry = {
-      id: string;
-      name: string;
-      url: string;
-      startDate: string | null;
-      domain: string;
-      location?: { raw?: string; lat?: number; lng?: number };
-      cfp?: { status?: string; url?: string; endDate?: string | null; daysRemaining?: number } | null;
-      tags?: string[];
-      source: string;
-      online?: boolean;
-      [key: string]: unknown;
-    };
-
-    const data = conferenceData as {
-      lastUpdated: string;
-      stats: {
-        total: number;
-        withOpenCFP: number;
-        withLocation: number;
-        byDomain: Record<string, number>;
-      };
-      months: Record<string, ConferenceEntry[]>;
-    };
+    // Get data from cache
+    const data = await getCachedConferences();
 
     // Flatten months into a single array for filtering
-    let conferences: ConferenceEntry[] = [];
+    let conferences: Conference[] = [];
     for (const monthConfs of Object.values(data.months)) {
       conferences.push(...monthConfs);
     }
@@ -58,7 +36,7 @@ export async function GET(request: Request) {
     }
 
     // Re-group by month
-    const months: Record<string, ConferenceEntry[]> = {};
+    const months: Record<string, Conference[]> = {};
     for (const conf of conferences) {
       const monthKey = conf.startDate
         ? new Date(conf.startDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })

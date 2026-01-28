@@ -1,7 +1,12 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { useSession, signOut } from 'next-auth/react';
 
 export default function Header() {
+  const { data: session, status } = useSession();
+
   return (
     <header className="sticky top-0 z-50 backdrop-blur-xl bg-black/80 border-b border-zinc-800/50">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,6 +52,46 @@ export default function Header() {
 
             {/* Divider */}
             <div className="hidden sm:block w-px h-6 bg-zinc-700 mx-2" aria-hidden="true"></div>
+
+            {/* User Authentication */}
+            {status === 'loading' ? (
+              <div className="w-20 h-8 bg-zinc-800 animate-pulse rounded-lg"></div>
+            ) : session?.user ? (
+              <div className="flex items-center gap-2">
+                <Link
+                  href="/submit"
+                  className="text-zinc-400 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-zinc-800/50"
+                >
+                  Submit
+                </Link>
+                <div className="relative group">
+                  <button className="flex items-center gap-2 text-zinc-400 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-zinc-800/50">
+                    <span>{session.user.name || session.user.email?.split('@')[0]}</span>
+                  </button>
+                  <div className="absolute right-0 mt-2 w-48 bg-zinc-900 border border-zinc-800 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                    <Link
+                      href="/bookmarks"
+                      className="block px-4 py-2 text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
+                    >
+                      Bookmarks
+                    </Link>
+                    <button
+                      onClick={() => signOut({ callbackUrl: '/' })}
+                      className="w-full text-left px-4 py-2 text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
+                    >
+                      Sign Out
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <Link
+                href="/auth/signin"
+                className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+              >
+                Sign In
+              </Link>
+            )}
 
             {/* Star on GitHub */}
             <a

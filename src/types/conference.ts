@@ -97,6 +97,25 @@ export interface ConferenceFilters {
   country?: string;
   online?: boolean;
   entryFee?: 'free' | 'paid' | 'all';
+  
+  // Advanced filters
+  dateRange?: {
+    start: string;
+    end: string;
+  };
+  location?: {
+    type: 'nearby' | 'country' | 'online' | 'all';
+    radius?: number; // km
+    userLat?: number;
+    userLng?: number;
+    countries?: string[];
+  };
+  budget?: 'free' | 'low' | 'medium' | 'high' | 'all';
+  attendance?: 'small' | 'medium' | 'large' | 'xl' | 'all';
+  visaRequirements?: string[];
+  organizerRating?: number;
+  conferenceType?: string[];
+  sortBy?: 'date' | 'cfpDeadline' | 'relevance' | 'rating';
 }
 
 // Sort options

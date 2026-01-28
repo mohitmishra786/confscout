@@ -4,6 +4,7 @@ import { sendDigestEmail } from '@/lib/email';
 import { promises as fs } from 'fs';
 import path from 'path';
 import { Conference } from '@/types/conference';
+import { invalidateCache } from '@/lib/cache';
 
 // Filter conferences based on user preferences
 function filterConferencesForUser(conferences: Conference[], preferences: Record<string, unknown>): Conference[] {
@@ -63,6 +64,9 @@ export async function GET(request: Request) {
             const subscribers = res.rows;
 
             console.log(`Processing ${triggerFrequency} digest for ${subscribers.length} subscribers.`);
+
+            // Invalidate cache to ensure fresh data
+            await invalidateCache();
 
             // Send emails with per-user filtering
             let sentCount = 0;
