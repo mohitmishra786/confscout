@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
-import conferenceData from '../../../../public/data/conferences.json';
+import { getCachedConferences } from '@/lib/cache';
 
 /**
  * GET /api/conferences
  * 
- * Returns conference data in the new month-grouped format.
+ * Returns conference data in the new month-grouped format with caching.
  * Query params:
  * - domain: Filter by domain (ai, web, software, etc.)
  * - cfpOpen: Only show conferences with open CFPs
@@ -15,7 +15,10 @@ export async function GET(request: Request) {
     const domain = searchParams.get('domain');
     const cfpOnly = searchParams.get('cfpOpen') === 'true';
 
-    // Type assertion for the imported data
+    // Get data from cache
+    const data = await getCachedConferences();
+
+    // Type assertion for the cached data
     type ConferenceEntry = {
       id: string;
       name: string;
@@ -30,7 +33,7 @@ export async function GET(request: Request) {
       [key: string]: unknown;
     };
 
-    const data = conferenceData as {
+    const conferenceData = data as {
       lastUpdated: string;
       stats: {
         total: number;
@@ -43,7 +46,7 @@ export async function GET(request: Request) {
 
     // Flatten months into a single array for filtering
     let conferences: ConferenceEntry[] = [];
-    for (const monthConfs of Object.values(data.months)) {
+    for (const monthConfs of Object.values(conferenceData.months)) {
       conferences.push(...monthConfs);
     }
 
@@ -68,12 +71,12 @@ export async function GET(request: Request) {
     }
 
     return NextResponse.json({
-      lastUpdated: data.lastUpdated,
+      lastUpdated: conferenceData.lastUpdated,
       stats: {
         total: conferences.length,
         withOpenCFP: conferences.filter(c => c.cfp?.status === 'open').length,
         withLocation: conferences.filter(c => c.location?.lat).length,
-        byDomain: data.stats.byDomain,
+        byDomain: conferenceData.stats.byDomain,
       },
       months,
     });
