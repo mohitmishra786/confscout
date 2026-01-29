@@ -28,3 +28,7 @@ Error [SentryExampleAPIError]: This error is raised on the backend called by the
   16 |   );
   17 | }
  HEAD /api/sentry-example-api 500 in 893ms
+ ✓ Compiled instrumentation Node.js in 15ms
+ ✓ Compiled instrumentation Edge in 3ms
+ ✓ Compiled middleware in 2ms
+ ✓ Compiled in 445ms
