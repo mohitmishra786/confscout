@@ -1,0 +1,16 @@
+
+> conf-finder@2.0.0 dev
+> next dev --turbopack
+
+   ▲ Next.js 15.5.9 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.8:3000
+   - Environments: .env
+
+ ✓ Starting...
+ ✓ Compiled middleware in 113ms
+ ✓ Ready in 1007ms
+ ○ Compiling /api/conferences ...
+ ✓ Compiled /api/conferences in 653ms
+[Cache] Fetched 1650 conferences from Database.
+ GET /api/conferences 200 in 7332ms
