@@ -28,7 +28,8 @@ export async function PATCH(request: Request) {
       return NextResponse.json({ error: 'Not found or forbidden' }, { status: 404 });
     }
 
-    const updated = await prisma.bookmark.update({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const updated = await (prisma as any).bookmark.update({
       where: { id: bookmarkId },
       data: { status },
     });

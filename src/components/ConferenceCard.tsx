@@ -188,11 +188,15 @@ export default function ConferenceCard({ conference, searchTerm }: ConferenceCar
             {/* Visa Support Button */}
             {!conference.online && (
               <button
-                onClick={() => setIsVisaOpen(true)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setIsVisaOpen(true);
+                }}
                 className="p-1.5 text-zinc-500 hover:text-blue-400 transition-colors"
                 title="Visa Support Letter Request"
               >
-                <span className="text-sm">🛂</span>
+                <span className="text-sm" aria-hidden="true">🛂</span>
               </button>
             )}
 
