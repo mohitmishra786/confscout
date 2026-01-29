@@ -62,6 +62,7 @@ model Bookmark {
   id           String   @id @default(cuid())
   userId       String
   conferenceId String
+  status       String   @default("saved") // saved, applied, accepted, rejected
   createdAt    DateTime @default(now())
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)

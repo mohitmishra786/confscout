@@ -82,14 +82,12 @@ export async function getCachedConferences(): Promise<ConferenceData> {
     // 2. Try Database
     let conferences: Conference[] = [];
     try {
-      // Cast the prisma result to Conference[] because the DB types might be slightly strict/loose
-      // compared to the frontend interface (e.g. JSON fields). 
-      // In a real scenario, we might need a mapper. 
-      // For now, assume schema matches closely enough or use 'any'.
-      const dbConfs = await prisma.conference.findMany();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const dbConfs = await (prisma as any).conference.findMany();
       if (dbConfs.length > 0) {
         console.log(`[Cache] Fetched ${dbConfs.length} conferences from Database.`);
-        conferences = dbConfs.map(c => ({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        conferences = dbConfs.map((c: any) => ({
           ...c,
           startDate: c.startDate ? c.startDate.toISOString().split('T')[0] : null,
           endDate: c.endDate ? c.endDate.toISOString().split('T')[0] : null,
