@@ -87,3 +87,12 @@
  ✓ Compiled instrumentation Node.js in 502ms
  ✓ Compiled instrumentation Edge in 180ms
  ✓ Compiled middleware in 1ms
+ ✓ Compiled instrumentation Node.js in 15ms
+ ✓ Compiled instrumentation Edge in 6ms
+[Error: ENOENT: no such file or directory, open '/Users/chessman/Desktop/Projects/Github/confscout/.next/static/development/_buildManifest.js.tmp.t8egykf5h1e'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/chessman/Desktop/Projects/Github/confscout/.next/static/development/_buildManifest.js.tmp.t8egykf5h1e'
+}
+[?25h

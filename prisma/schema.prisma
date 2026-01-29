@@ -21,6 +21,7 @@ model User {
   sessions      Session[]
   bookmarks     Bookmark[]
   savedSearches SavedSearch[]
+  attendances   Attendance[]
 }
 
 model Account {
@@ -68,6 +69,18 @@ model Bookmark {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, conferenceId])
+}
+
+model Attendance {
+  id           String   @id @default(cuid())
+  userId       String
+  conferenceId String
+  createdAt    DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, conferenceId])
+  @@map("attendances")
 }
 
 model SavedSearch {
