@@ -91,6 +91,12 @@ export default function Header() {
                   </button>
                   <div className="absolute right-0 mt-2 w-48 bg-zinc-900 border border-zinc-800 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
                     <Link
+                      href={`/u/${session.user.id}`}
+                      className="block px-4 py-2 text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
+                    >
+                      My Profile
+                    </Link>
+                    <Link
                       href="/bookmarks"
                       className="block px-4 py-2 text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
                     >
