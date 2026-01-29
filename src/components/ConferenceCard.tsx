@@ -11,6 +11,7 @@ import Image from 'next/image';
 import { Conference, DOMAIN_INFO } from '@/types/conference';
 import { useCompare } from '@/context/CompareContext';
 import VisaModal from './VisaModal';
+import TravelModal from './TravelModal';
 
 interface ConferenceCardProps {
   conference: Conference;
@@ -19,6 +20,7 @@ interface ConferenceCardProps {
 
 export default function ConferenceCard({ conference, searchTerm }: ConferenceCardProps) {
   const [isVisaOpen, setIsVisaOpen] = useState(false);
+  const [isTravelOpen, setIsTravelOpen] = useState(false);
   const [isAttending, setIsAttending] = useState(conference.isAttending || false);
   const [attendeeCount, setAttendeeCount] = useState(conference.attendeeCount || 0);
   const { isInCompare, addToCompare, removeFromCompare } = useCompare();
@@ -251,17 +253,30 @@ export default function ConferenceCard({ conference, searchTerm }: ConferenceCar
 
             {/* Visa Support Button */}
             {!conference.online && (
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  setIsVisaOpen(true);
-                }}
-                className="p-1.5 text-zinc-500 hover:text-blue-400 transition-colors"
-                title="Visa Support Letter Request"
-              >
-                <span className="text-sm" aria-hidden="true">🛂</span>
-              </button>
+              <>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setIsTravelOpen(true);
+                  }}
+                  className="p-1.5 text-zinc-500 hover:text-blue-400 transition-colors"
+                  title="Travel Logistics (Flights/Hotels)"
+                >
+                  <span className="text-sm" aria-hidden="true">✈️</span>
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setIsVisaOpen(true);
+                  }}
+                  className="p-1.5 text-zinc-500 hover:text-blue-400 transition-colors"
+                  title="Visa Support Letter Request"
+                >
+                  <span className="text-sm" aria-hidden="true">🛂</span>
+                </button>
+              </>
             )}
 
             {/* Calendar Button */}
@@ -293,6 +308,12 @@ export default function ConferenceCard({ conference, searchTerm }: ConferenceCar
           </div>
         </div>
       </div>
+
+      <TravelModal
+        isOpen={isTravelOpen}
+        onClose={() => setIsTravelOpen(false)}
+        conference={conference}
+      />
 
       <VisaModal 
         isOpen={isVisaOpen} 
