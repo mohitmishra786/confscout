@@ -6,38 +6,29 @@
    - Local:        http://localhost:3000
    - Network:      http://192.168.1.8:3000
    - Environments: .env
+   - Experiments (use with caution):
+     · clientTraceMetadata
 
  ✓ Starting...
- ✓ Compiled middleware in 97ms
- ✓ Ready in 888ms
- ○ Compiling /api/recommendations ...
- ✓ Compiled /api/recommendations in 70 ✓ Compiled middleware in 1ms
+ ✓ Compiled instrumentation Node.js in 479ms
+ ✓ Compiled instrumentation Edge in 143ms
+ ✓ Compiled middleware in 91ms
+ ✓ Ready in 1891ms
+ ○ Compiling /[locale]/sentry-example-page ...
+ ✓ Compiled /[locale]/sentry-example-page in 1723ms
+ HEAD /en/sentry-example-page 200 in 2211ms
+ ✓ Compiled /api/sentry-example-api in 481ms
+Error [SentryExampleAPIError]: This error is raised on the backend called by the example page.
+    at GET (src/app/api/sentry-example-api/route.ts:14:9)
+  12 | export function GET() {
+  13 |   Sentry.logger.info("Sentry example API called");
+> 14 |   throw new SentryExampleAPIError(
+     |         ^
+  15 |     "This error is raised on the backend called by the example page.",
+  16 |   );
+  17 | }
+ HEAD /api/sentry-example-api 500 in 893ms
+ ✓ Compiled instrumentation Node.js in 15ms
+ ✓ Compiled instrumentation Edge in 3ms
  ✓ Compiled middleware in 2ms
-[?25h
-ywords: [ 'react', 'javascript' ]
-Candidates found: 30
- POST /api/recommendations 200 in 2604ms
-Total conferences: 1650
-Keywords: [ 'react', 'javascript' ]
-Candidates found: 30
-Groq Response: {
-  "conferences": [
-       {
-           "id": "a1d39bad5e35",
-           "reason": "This conference focuses on React, which is one of your interests."
-       },
-       {
-           "id": "0480b889f5b5",
-           "reason": "This conference covers JavaScript, which is one of your interests, although it's not in the USA, it's still relevant to your profile."
-       },
-       {
-           "id": "c9ea26dce41f",
-           "reason": "As a software-focused conference, DeveloperWeek 2026 might have sessions or tracks related to React or JavaScript, aligning with your interests."
-       }
-   ]
-}
- POST /api/recommendations 200 in 2265ms
- POST /api/recommendations 200 in 2636ms
- ✓ Compiled middleware in 3ms
- ✓ Compiled middleware in 1ms
-[?25h
+ ✓ Compiled in 445ms

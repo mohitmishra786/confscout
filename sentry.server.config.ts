@@ -1,29 +1,19 @@
+// This file configures the initialization of Sentry on the server.
+// The config you add here will be used whenever the server handles a request.
+// https://docs.sentry.io/platforms/javascript/guides/nextjs/
+
 import * as Sentry from "@sentry/nextjs";
 
 Sentry.init({
-  dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
-  environment: process.env.NODE_ENV,
-  tracesSampleRate: process.env.NODE_ENV === 'production' ? 0.2 : 1.0,
+  dsn: "https://08ef976a6ae888b9f6ee576aacaa036d@o4510784958955520.ingest.us.sentry.io/4510795687723008",
 
-  beforeSend(event, hint) {
-    if (event.user) {
-      delete event.user.email;
-    }
+  // Define how likely traces are sampled. Adjust this value in production, or use tracesSampler for greater control.
+  tracesSampleRate: 1,
 
-    if (event.request?.headers) {
-      delete event.request.headers['authorization'];
-      delete event.request.headers['cookie'];
-      delete event.request.headers['x-api-key'];
-    }
+  // Enable logs to be sent to Sentry
+  enableLogs: true,
 
-    // Filter out health check transactions
-    const healthCheckUrls = ['/health', '/api/health', '/_next/health'];
-    const url = event.request?.url;
-    
-    if (url && healthCheckUrls.some(checkUrl => url.includes(checkUrl))) {
-      return null;
-    }
-
-    return event;
-  },
+  // Enable sending user PII (Personally Identifiable Information)
+  // https://docs.sentry.io/platforms/javascript/guides/nextjs/configuration/options/#sendDefaultPii
+  sendDefaultPii: true,
 });
