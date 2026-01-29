@@ -1,5 +1,5 @@
 # ConfScout Conference Aggregator - Python Dependencies
-# 
+#
 # Required for GitHub Actions workflow and local development
 # Install with: pip install -r requirements.txt
 
@@ -8,6 +8,9 @@ requests>=2.28.0
 
 # HTML parsing for web scraping (WikiCFP, etc.)
 beautifulsoup4>=4.11.0
+
+# Geocoding for location coordinates
+geopy>=2.3.0
 
 # (Optional) Discord notifications
 # If using Discord webhooks, requests is sufficient
