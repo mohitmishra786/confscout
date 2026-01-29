@@ -31,8 +31,12 @@ export default function RecommendationsPage() {
       if (!res.ok) throw new Error(data.error || 'Failed to get recommendations');
       
       setRecommendations(data.recommendations);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('An unexpected error occurred');
+      }
     } finally {
       setLoading(false);
     }
@@ -47,7 +51,7 @@ export default function RecommendationsPage() {
             AI <span className="gradient-text">Conference Match</span>
           </h1>
           <p className="text-zinc-400">
-            Tell us what you're interested in, and our AI will find the perfect conferences for you.
+            Tell us what you&apos;re interested in, and our AI will find the perfect conferences for you.
           </p>
         </div>
 
@@ -120,7 +124,7 @@ export default function RecommendationsPage() {
                   <div className="absolute -left-3 top-6 bottom-6 w-1 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full opacity-50" />
                   <div className="mb-2 pl-4">
                     <p className="text-sm text-purple-300 font-medium italic">
-                      " {conf.recommendationReason} "
+                      &quot; {conf.recommendationReason} &quot;
                     </p>
                   </div>
                   <ConferenceCard conference={conf} />

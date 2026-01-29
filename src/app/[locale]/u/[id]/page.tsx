@@ -27,7 +27,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
     });
     
     if (user) {
-      bookmarks = user.bookmarks.map((b: any) => b.conferenceId);
+      bookmarks = user.bookmarks.map((b: { conferenceId: string }) => b.conferenceId);
     }
   } catch (e) {
     console.error('Failed to fetch user profile:', e);
