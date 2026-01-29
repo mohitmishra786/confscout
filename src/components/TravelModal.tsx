@@ -28,8 +28,6 @@ export default function TravelModal({ isOpen, onClose, conference }: TravelModal
   if (!isOpen || !mounted) return null;
 
   const destination = encodeURIComponent(`${conference.location.city}, ${conference.location.country}`);
-  const startDate = conference.startDate ? conference.startDate.replace(/-/g, '') : '';
-  const endDate = conference.endDate ? conference.endDate.replace(/-/g, '') : '';
 
   // Deep links
   const googleFlightsUrl = `https://www.google.com/travel/flights?q=flights+to+${destination}+on+${conference.startDate}`;
