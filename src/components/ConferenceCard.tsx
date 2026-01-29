@@ -6,8 +6,10 @@
  * Displays a single conference with CFP status, domain badge, location, and tags.
  */
 
+import { useState } from 'react';
 import { Conference, DOMAIN_INFO } from '@/types/conference';
 import { useCompare } from '@/context/CompareContext';
+import VisaModal from './VisaModal';
 
 interface ConferenceCardProps {
   conference: Conference;
@@ -15,6 +17,7 @@ interface ConferenceCardProps {
 }
 
 export default function ConferenceCard({ conference, searchTerm }: ConferenceCardProps) {
+  const [isVisaOpen, setIsVisaOpen] = useState(false);
   const { isInCompare, addToCompare, removeFromCompare } = useCompare();
   const isCompared = isInCompare(conference.id);
 
@@ -182,6 +185,17 @@ export default function ConferenceCard({ conference, searchTerm }: ConferenceCar
               </svg>
             </button>
 
+            {/* Visa Support Button */}
+            {!conference.online && (
+              <button
+                onClick={() => setIsVisaOpen(true)}
+                className="p-1.5 text-zinc-500 hover:text-blue-400 transition-colors"
+                title="Visa Support Letter Request"
+              >
+                <span className="text-sm">🛂</span>
+              </button>
+            )}
+
             {/* Calendar Button */}
             {conference.startDate && (
               <a
@@ -209,6 +223,12 @@ export default function ConferenceCard({ conference, searchTerm }: ConferenceCar
           </div>
         </div>
       </div>
+
+      <VisaModal 
+        isOpen={isVisaOpen} 
+        onClose={() => setIsVisaOpen(false)} 
+        conference={conference} 
+      />
     </article>
   );
 }

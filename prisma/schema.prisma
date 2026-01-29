@@ -62,6 +62,7 @@ model Bookmark {
   id           String   @id @default(cuid())
   userId       String
   conferenceId String
+  status       String   @default("saved") // saved, applied, accepted, rejected
   createdAt    DateTime @default(now())
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -77,4 +78,56 @@ model SavedSearch {
   createdAt   DateTime @default(now())
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Subscriber {
+  id                Int      @id @default(autoincrement())
+  email             String   @unique
+  preferences       Json?
+  frequency         String   @default("weekly")
+  verificationToken String?  @map("verification_token")
+  verified          Boolean  @default(false)
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("subscribers")
+}
+
+model Conference {
+  id          String    @id
+  name        String
+  url         String
+  startDate   DateTime?
+  endDate     DateTime?
+  
+  // Location
+  city        String?
+  country     String?
+  lat         Float?
+  lng         Float?
+  locationRaw String?   @map("location_raw")
+
+  online      Boolean   @default(false)
+  
+  // CFP
+  cfpUrl      String?   @map("cfp_url")
+  cfpEndDate  DateTime? @map("cfp_end_date")
+  cfpStatus   String?   @map("cfp_status") // 'open' | 'closed'
+
+  // Metadata
+  domain      String
+  description String?
+  source      String
+  tags        String[]
+  
+  // Objects stored as Json
+  financialAid Json?    @map("financial_aid")
+  
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([domain])
+  @@index([startDate])
+  @@index([cfpEndDate])
+  @@map("conferences")
 }
