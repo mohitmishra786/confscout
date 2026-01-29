@@ -71,18 +71,6 @@ model Bookmark {
   @@unique([userId, conferenceId])
 }
 
-model Attendance {
-  id           String   @id @default(cuid())
-  userId       String
-  conferenceId String
-  createdAt    DateTime @default(now())
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([userId, conferenceId])
-  @@map("attendances")
-}
-
 model SavedSearch {
   id          String   @id @default(cuid())
   userId      String
@@ -139,8 +127,23 @@ model Conference {
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
+  attendances Attendance[]
+
   @@index([domain])
   @@index([startDate])
   @@index([cfpEndDate])
   @@map("conferences")
+}
+
+model Attendance {
+  id           String   @id @default(cuid())
+  userId       String
+  conferenceId String
+  createdAt    DateTime @default(now())
+
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  conference Conference @relation(fields: [conferenceId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, conferenceId])
+  @@map("attendances")
 }

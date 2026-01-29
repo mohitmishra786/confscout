@@ -7,6 +7,7 @@
  */
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { Conference, DOMAIN_INFO } from '@/types/conference';
 import { useCompare } from '@/context/CompareContext';
 import VisaModal from './VisaModal';
@@ -18,10 +19,38 @@ interface ConferenceCardProps {
 
 export default function ConferenceCard({ conference, searchTerm }: ConferenceCardProps) {
   const [isVisaOpen, setIsVisaOpen] = useState(false);
+  const [isAttending, setIsAttending] = useState(conference.isAttending || false);
+  const [attendeeCount, setAttendeeCount] = useState(conference.attendeeCount || 0);
   const { isInCompare, addToCompare, removeFromCompare } = useCompare();
   const isCompared = isInCompare(conference.id);
 
-  const toggleCompare = () => {
+  const toggleAttendance = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // Optimistic update
+    const prevAttending = isAttending;
+    setIsAttending(!prevAttending);
+    setAttendeeCount(prev => prevAttending ? prev - 1 : prev + 1);
+
+    try {
+      const res = await fetch('/api/conferences/attendance', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ conferenceId: conference.id })
+      });
+      if (!res.ok) throw new Error();
+    } catch {
+      // Revert on error
+      setIsAttending(prevAttending);
+      setAttendeeCount(prev => prevAttending ? prev + 1 : prev - 1);
+      alert('Failed to update attendance');
+    }
+  };
+
+  const toggleCompare = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (isCompared) removeFromCompare(conference.id);
     else addToCompare(conference);
   };
@@ -153,27 +182,62 @@ export default function ConferenceCard({ conference, searchTerm }: ConferenceCar
 
         {/* Bottom Section */}
         <div className="mt-auto pt-3 flex items-end justify-between gap-4 border-t border-dashed border-zinc-800/50">
-          {/* Tags */}
-          <div className="flex flex-wrap gap-1.5 overflow-hidden max-h-[1.5rem]">
-            {conference.financialAid?.available && (
-              <span className="px-1.5 py-0.5 rounded text-[10px] uppercase font-bold text-purple-300 bg-purple-500/10 border border-purple-500/20">
-                Fin Aid
-              </span>
+          <div className="flex flex-col gap-2 flex-1 min-w-0">
+            {/* Attendees / Who's Going */}
+            {attendeeCount > 0 && (
+              <div className="flex items-center gap-2 mb-1">
+                <div className="flex -space-x-2">
+                  {conference.attendees?.map((a, i) => (
+                    <div key={i} className="w-5 h-5 rounded-full border border-zinc-900 overflow-hidden bg-zinc-800">
+                      {a.image ? (
+                        <Image src={a.image} alt={a.name || ''} width={20} height={20} />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-[8px] text-zinc-500">
+                          {a.name?.[0]}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+                <span className="text-[10px] text-zinc-500 font-medium">
+                  {attendeeCount} going
+                </span>
+              </div>
             )}
-            {conference.online && (
-              <span className="px-1.5 py-0.5 rounded text-[10px] uppercase font-bold text-cyan-300 bg-cyan-500/10 border border-cyan-500/20">
-                Online
-              </span>
-            )}
-            {conference.tags?.slice(0, 2).map(tag => (
-              <span key={tag} className="px-1.5 py-0.5 rounded text-[10px] text-zinc-500 bg-zinc-900 border border-zinc-800">
-                {tag}
-              </span>
-            ))}
+
+            {/* Tags */}
+            <div className="flex flex-wrap gap-1.5 overflow-hidden max-h-[1.5rem]">
+              {conference.financialAid?.available && (
+                <span className="px-1.5 py-0.5 rounded text-[10px] uppercase font-bold text-purple-300 bg-purple-500/10 border border-purple-500/20">
+                  Fin Aid
+                </span>
+              )}
+              {conference.online && (
+                <span className="px-1.5 py-0.5 rounded text-[10px] uppercase font-bold text-cyan-300 bg-cyan-500/10 border border-cyan-500/20">
+                  Online
+                </span>
+              )}
+              {conference.tags?.slice(0, 2).map(tag => (
+                <span key={tag} className="px-1.5 py-0.5 rounded text-[10px] text-zinc-500 bg-zinc-900 border border-zinc-800">
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
 
           {/* Action Buttons */}
           <div className="flex items-center gap-2 whitespace-nowrap">
+            {/* Attendance Toggle */}
+            <button
+              onClick={toggleAttendance}
+              className={`p-1.5 rounded-lg transition-all border ${isAttending ? 'text-green-400 bg-green-400/10 border-green-400/20' : 'text-zinc-500 hover:text-zinc-300 border-transparent hover:bg-zinc-800'}`}
+              title={isAttending ? "I'm not going" : "I'm going!"}
+            >
+              <svg className="w-4 h-4" fill={isAttending ? "currentColor" : "none"} stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            </button>
+
             {/* Compare Toggle */}
             <button
               onClick={toggleCompare}
@@ -206,6 +270,7 @@ export default function ConferenceCard({ conference, searchTerm }: ConferenceCar
                 href={`/api/calendar/${conference.id}`}
                 title="Add to Calendar"
                 className="p-1.5 text-zinc-500 hover:text-green-400 transition-colors"
+                onClick={(e) => e.stopPropagation()}
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -218,6 +283,7 @@ export default function ConferenceCard({ conference, searchTerm }: ConferenceCar
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1 text-sm font-medium text-white hover:text-blue-400 transition-colors pl-2"
+              onClick={(e) => e.stopPropagation()}
             >
               Visit
               <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">

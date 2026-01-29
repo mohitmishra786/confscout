@@ -1,4 +1,6 @@
 import { NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
 import { getCachedConferences } from '@/lib/cache';
 import { Conference } from '@/types/conference';
 import { prisma } from '@/lib/prisma';
@@ -12,13 +14,15 @@ import { prisma } from '@/lib/prisma';
  */
 export async function GET(request: Request) {
   try {
+    const session = await getServerSession(authOptions);
     const { searchParams } = new URL(request.url);
     const domain = searchParams.get('domain');
     const cfpOnly = searchParams.get('cfpOpen') === 'true';
     const search = searchParams.get('search');
 
-    // Optimization: If no filters, use the Redis/File cache (pre-formatted)
-    if ((!domain || domain === 'all') && !cfpOnly && !search) {
+    // Optimization: If no filters AND not logged in, use the Redis/File cache
+    // (If logged in, we want to show 'isAttending' status correctly, so we might need a dynamic query or merge)
+    if (!session?.user && (!domain || domain === 'all') && !cfpOnly && !search) {
       const data = await getCachedConferences();
       return NextResponse.json(data);
     }
@@ -41,14 +45,23 @@ export async function GET(request: Request) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const conferences = await (prisma as any).conference.findMany({
       where,
+      include: {
+        attendances: {
+          select: {
+            userId: true,
+            user: {
+              select: {
+                image: true,
+                name: true
+              }
+            }
+          }
+        }
+      },
       orderBy: { startDate: 'asc' }
     });
 
     // Format for frontend (Month grouping)
-    // We reuse the logic from cache.ts conceptually, but inline here for simplicity
-    // or we could export the helper from cache.ts.
-    // Let's re-implement strictly what's needed.
-    
     const months: Record<string, Conference[]> = {};
     const byDomain: Record<string, number> = {};
     let withOpenCFP = 0;
@@ -56,7 +69,7 @@ export async function GET(request: Request) {
 
     // Transform DB shape to Frontend Interface
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const formattedConferences: Conference[] = conferences.map((c: any) => ({
+    const formattedConferences: any[] = conferences.map((c: any) => ({
       id: c.id,
       name: c.name,
       url: c.url,
@@ -79,7 +92,16 @@ export async function GET(request: Request) {
       description: c.description || undefined,
       source: c.source,
       tags: c.tags,
-      financialAid: c.financialAid ? JSON.parse(JSON.stringify(c.financialAid)) : undefined
+      financialAid: c.financialAid ? JSON.parse(JSON.stringify(c.financialAid)) : undefined,
+      // Attendance data
+      attendeeCount: c.attendances.length,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      isAttending: session?.user ? c.attendances.some((a: any) => a.userId === session.user.id) : false,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      attendees: c.attendances.slice(0, 5).map((a: any) => ({
+        image: a.user.image,
+        name: a.user.name
+      }))
     }));
 
     for (const conf of formattedConferences) {
