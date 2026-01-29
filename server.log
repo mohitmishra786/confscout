@@ -1,0 +1,43 @@
+
+> conf-finder@2.0.0 dev
+> next dev --turbopack
+
+   ▲ Next.js 15.5.9 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.8:3000
+   - Environments: .env
+
+ ✓ Starting...
+ ✓ Compiled middleware in 97ms
+ ✓ Ready in 888ms
+ ○ Compiling /api/recommendations ...
+ ✓ Compiled /api/recommendations in 70 ✓ Compiled middleware in 1ms
+ ✓ Compiled middleware in 2ms
+[?25h
+ywords: [ 'react', 'javascript' ]
+Candidates found: 30
+ POST /api/recommendations 200 in 2604ms
+Total conferences: 1650
+Keywords: [ 'react', 'javascript' ]
+Candidates found: 30
+Groq Response: {
+  "conferences": [
+       {
+           "id": "a1d39bad5e35",
+           "reason": "This conference focuses on React, which is one of your interests."
+       },
+       {
+           "id": "0480b889f5b5",
+           "reason": "This conference covers JavaScript, which is one of your interests, although it's not in the USA, it's still relevant to your profile."
+       },
+       {
+           "id": "c9ea26dce41f",
+           "reason": "As a software-focused conference, DeveloperWeek 2026 might have sessions or tracks related to React or JavaScript, aligning with your interests."
+       }
+   ]
+}
+ POST /api/recommendations 200 in 2265ms
+ POST /api/recommendations 200 in 2636ms
+ ✓ Compiled middleware in 3ms
+ ✓ Compiled middleware in 1ms
+[?25h

@@ -46,6 +46,12 @@ export default function Header() {
               {t('openCfps')}
             </Link>
             <Link
+              href="/recommendations"
+              className="text-zinc-400 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-zinc-800/50 min-h-[2.75rem] flex items-center"
+            >
+              <span className="mr-1">✨</span> AI Match
+            </Link>
+            <Link
               href="/about"
               className="text-zinc-400 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-zinc-800/50 min-h-[2.75rem] flex items-center"
             >
@@ -84,6 +90,12 @@ export default function Header() {
                     <span>{session.user.name || session.user.email?.split('@')[0]}</span>
                   </button>
                   <div className="absolute right-0 mt-2 w-48 bg-zinc-900 border border-zinc-800 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                    <Link
+                      href={`/u/${session.user.id}`}
+                      className="block px-4 py-2 text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
+                    >
+                      My Profile
+                    </Link>
                     <Link
                       href="/bookmarks"
                       className="block px-4 py-2 text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
