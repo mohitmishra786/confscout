@@ -4,6 +4,8 @@ import { Analytics } from "@vercel/analytics/next";
 import SessionProvider from "@/components/SessionProvider";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
+import { CompareProvider } from '@/context/CompareContext';
+import CompareBar from '@/components/CompareBar';
 import "../globals.css";
 
 const geistSans = Geist({
@@ -63,7 +65,10 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider messages={messages}>
           <SessionProvider>
-            {children}
+            <CompareProvider>
+              {children}
+              <CompareBar />
+            </CompareProvider>
           </SessionProvider>
         </NextIntlClientProvider>
         <Analytics />

@@ -7,6 +7,7 @@
  */
 
 import { Conference, DOMAIN_INFO } from '@/types/conference';
+import { useCompare } from '@/context/CompareContext';
 
 interface ConferenceCardProps {
   conference: Conference;
@@ -14,6 +15,14 @@ interface ConferenceCardProps {
 }
 
 export default function ConferenceCard({ conference, searchTerm }: ConferenceCardProps) {
+  const { isInCompare, addToCompare, removeFromCompare } = useCompare();
+  const isCompared = isInCompare(conference.id);
+
+  const toggleCompare = () => {
+    if (isCompared) removeFromCompare(conference.id);
+    else addToCompare(conference);
+  };
+
   // CFP status
   const cfp = conference.cfp;
   const cfpIsOpen = cfp?.status === 'open';
@@ -162,6 +171,17 @@ export default function ConferenceCard({ conference, searchTerm }: ConferenceCar
 
           {/* Action Buttons */}
           <div className="flex items-center gap-2 whitespace-nowrap">
+            {/* Compare Toggle */}
+            <button
+              onClick={toggleCompare}
+              className={`p-1.5 transition-colors ${isCompared ? 'text-blue-400' : 'text-zinc-500 hover:text-zinc-300'}`}
+              title={isCompared ? "Remove from comparison" : "Add to comparison"}
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+            </button>
+
             {/* Calendar Button */}
             {conference.startDate && (
               <a
