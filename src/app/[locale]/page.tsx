@@ -152,6 +152,41 @@ export default function Home() {
     }
   };
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Tech Conferences Worldwide',
+    description: 'A curated list of upcoming tech conferences, CFPs, and events.',
+    url: 'https://confscout.site',
+    mainEntity: allConferences.slice(0, 20).map(conf => ({
+      '@type': 'Event',
+      name: conf.name,
+      startDate: conf.startDate,
+      endDate: conf.endDate,
+      eventStatus: 'https://schema.org/EventScheduled',
+      eventAttendanceMode: conf.online ? 'https://schema.org/OnlineEventAttendanceMode' : 'https://schema.org/OfflineEventAttendanceMode',
+      location: conf.online ? {
+        '@type': 'VirtualLocation',
+        url: conf.url
+      } : {
+        '@type': 'Place',
+        name: conf.location.raw,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: conf.location.city,
+          addressCountry: conf.location.country
+        }
+      },
+      image: 'https://confscout.site/og-image.png',
+      description: conf.description || `Tech conference focused on ${conf.domain}.`,
+      offers: {
+        '@type': 'Offer',
+        url: conf.url,
+        availability: 'https://schema.org/InStock'
+      }
+    }))
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-black">
@@ -197,6 +232,11 @@ export default function Home() {
       </div>
 
       <SubscribeModal isOpen={isSubscribeOpen} onClose={() => setIsSubscribeOpen(false)} />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       <main className="w-full max-w-7xl mx-auto px-4 py-6 sm:py-8">
         {/* Hero */}
