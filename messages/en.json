@@ -1,0 +1,48 @@
+{
+  "HomePage": {
+    "title": "Tech Conferences Worldwide",
+    "subtitle": "{total} conferences from {domains} domains.",
+    "stats": {
+      "conferences": "Conferences",
+      "openCfps": "Open CFPs",
+      "mapped": "Mapped",
+      "months": "Months"
+    },
+    "map": {
+      "show": "Show Map",
+      "hide": "Hide Map"
+    },
+    "filters": {
+      "searchPlaceholder": "Search conferences...",
+      "allDomains": "All Domains",
+      "speakerMode": "Speaker Mode (Open CFPs)",
+      "clear": "Clear",
+      "timeline": "Timeline",
+      "grid": "Grid"
+    }
+  },
+  "Header": {
+    "explore": "Explore",
+    "openCfps": "Open CFPs",
+    "about": "About",
+    "submit": "Submit",
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "bookmarks": "Bookmarks",
+    "star": "Star",
+    "support": "Support"
+  },
+  "Footer": {
+    "tagline": "ConfScout - Your tech conference companion",
+    "dataSource": "Data Source",
+    "github": "GitHub",
+    "support": "Support",
+    "dataUpdate": "Data updated daily via GitHub Actions. Zero-cost infrastructure.",
+    "builtWith": "Built with <link>Next.js, TypeScript & Tailwind</link>"
+  },
+  "Common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "visit": "Visit"
+  }
+}

@@ -12,6 +12,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import dynamic from 'next/dynamic';
+import { useTranslations } from 'next-intl';
 import { Conference, ConferenceData, DOMAIN_INFO } from '@/types/conference';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -31,6 +32,9 @@ const WorldMap = dynamic(() => import('@/components/WorldMap'), {
 });
 
 export default function Home() {
+  const t = useTranslations('HomePage');
+  const commonT = useTranslations('Common');
+
   const [data, setData] = useState<ConferenceData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -50,7 +54,7 @@ export default function Home() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const response = await fetch('/data/conferences.json');
+        const response = await fetch('/api/conferences');
         if (!response.ok) throw new Error('Failed to fetch conferences');
         const jsonData = await response.json();
         setData(jsonData);
@@ -63,8 +67,6 @@ export default function Home() {
     };
     loadData();
   }, []);
-
-  // Note: Verification redirect was removed - users are verified immediately on subscribe
 
   // Flatten conferences for filtering
   const allConferences = useMemo(() => {
@@ -157,7 +159,7 @@ export default function Home() {
         <main className="w-full max-w-7xl mx-auto px-4 py-16 flex items-center justify-center min-h-[60vh]">
           <div className="flex flex-col items-center gap-4">
             <div className="w-12 h-12 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
-            <p className="text-zinc-400">Loading conferences...</p>
+            <p className="text-zinc-400">{commonT('loading')}</p>
           </div>
         </main>
         <Footer />
@@ -205,9 +207,9 @@ export default function Home() {
             <span className="text-white">Worldwide</span>
           </h1>
           <p className="text-zinc-400 text-base sm:text-lg max-w-2xl mx-auto">
-            {data?.stats.total.toLocaleString()} conferences from {domains.length} domains.
+            {t('subtitle', { total: data?.stats.total.toLocaleString() || '0', domains: domains.length })}
             <br />
-            {data?.stats.withOpenCFP} open CFPs waiting for speakers.
+            {data?.stats.withOpenCFP} {t('stats.openCfps')} waiting for speakers.
           </p>
         </section>
 
@@ -216,19 +218,19 @@ export default function Home() {
           <section className="mb-6 grid grid-cols-2 md:grid-cols-4 gap-3">
             <div className="card p-4 text-center">
               <div className="text-2xl font-bold text-white mb-1">{data.stats.total.toLocaleString()}</div>
-              <div className="text-xs text-zinc-500">Conferences</div>
+              <div className="text-xs text-zinc-500">{t('stats.conferences')}</div>
             </div>
             <div className="card p-4 text-center">
               <div className="text-2xl font-bold text-green-400 mb-1">{data.stats.withOpenCFP}</div>
-              <div className="text-xs text-zinc-500">Open CFPs</div>
+              <div className="text-xs text-zinc-500">{t('stats.openCfps')}</div>
             </div>
             <div className="card p-4 text-center">
               <div className="text-2xl font-bold text-blue-400 mb-1">{data.stats.withLocation.toLocaleString()}</div>
-              <div className="text-xs text-zinc-500">Mapped</div>
+              <div className="text-xs text-zinc-500">{t('stats.mapped')}</div>
             </div>
             <div className="card p-4 text-center">
               <div className="text-2xl font-bold text-purple-400 mb-1">{Object.keys(data.months).length}</div>
-              <div className="text-xs text-zinc-500">Months</div>
+              <div className="text-xs text-zinc-500">{t('stats.months')}</div>
             </div>
           </section>
         )}
@@ -240,7 +242,7 @@ export default function Home() {
               onClick={() => setShowMap(!showMap)}
               className={`text-sm text-zinc-400 hover:text-white transition-colors`}
             >
-              {showMap ? 'Hide Map' : 'Show Map'}
+              {showMap ? t('map.hide') : t('map.show')}
             </button>
             {showMap && <NearMeButton onLocationFound={handleLocationFound} />}
           </div>
@@ -265,7 +267,7 @@ export default function Home() {
             <div className="flex-1">
               <input
                 type="text"
-                placeholder="Search conferences..."
+                placeholder={t('filters.searchPlaceholder')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full bg-zinc-900 border border-zinc-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 outline-none"
@@ -279,7 +281,7 @@ export default function Home() {
                 onChange={(e) => setSelectedDomain(e.target.value)}
                 className="w-full bg-zinc-900 border border-zinc-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 outline-none"
               >
-                <option value="all">All Domains ({allConferences.length})</option>
+                <option value="all">{t('filters.allDomains')} ({allConferences.length})</option>
                 {domains.map(d => (
                   <option key={d.slug} value={d.slug}>
                     {d.name} ({d.count})
@@ -301,7 +303,7 @@ export default function Home() {
                   className="w-4 h-4 rounded border-gray-600 text-blue-600 focus:ring-blue-500"
                 />
                 <span className={`text-sm ${speakerMode ? 'text-green-400 font-medium' : 'text-zinc-400'}`}>
-                  Speaker Mode (Open CFPs)
+                  {t('filters.speakerMode')}
                 </span>
               </label>
 
@@ -311,13 +313,13 @@ export default function Home() {
                   onClick={() => setViewMode('timeline')}
                   className={`px-3 py-1 text-xs font-medium rounded ${viewMode === 'timeline' ? 'bg-zinc-600 text-white' : 'text-zinc-400 hover:text-zinc-200'}`}
                 >
-                  Timeline
+                  {t('filters.timeline')}
                 </button>
                 <button
                   onClick={() => setViewMode('grid')}
                   className={`px-3 py-1 text-xs font-medium rounded ${viewMode === 'grid' ? 'bg-zinc-600 text-white' : 'text-zinc-400 hover:text-zinc-200'}`}
                 >
-                  Grid
+                  {t('filters.grid')}
                 </button>
               </div>
             </div>
@@ -333,7 +335,7 @@ export default function Home() {
                   }}
                   className="ml-4 text-blue-400 hover:text-blue-300 underline"
                 >
-                  Clear
+                  {t('filters.clear')}
                 </button>
               )}
             </div>

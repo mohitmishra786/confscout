@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import SessionProvider from "@/components/SessionProvider";
-import "./globals.css";
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
+import { CompareProvider } from '@/context/CompareContext';
+import CompareBar from '@/components/CompareBar';
+import "../globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,19 +48,29 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  params
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }>) {
+  const { locale } = await params;
+  const messages = await getMessages();
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SessionProvider>
-          {children}
-        </SessionProvider>
+        <NextIntlClientProvider messages={messages}>
+          <SessionProvider>
+            <CompareProvider>
+              {children}
+              <CompareBar />
+            </CompareProvider>
+          </SessionProvider>
+        </NextIntlClientProvider>
         <Analytics />
       </body>
     </html>
