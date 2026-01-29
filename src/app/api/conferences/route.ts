@@ -2,8 +2,9 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { getCachedConferences } from '@/lib/cache';
-import { Conference } from '@/types/conference';
+import { Conference, ConferenceData } from '@/types/conference';
 import { prisma } from '@/lib/prisma';
+import { apiLogger } from '@/lib/logger';
 
 /**
  * GET /api/conferences
@@ -13,6 +14,7 @@ import { prisma } from '@/lib/prisma';
  * - If filters: Queries database directly (dynamic).
  */
 export async function GET(request: Request) {
+  apiLogger.info('/api/conferences called');
   try {
     const session = await getServerSession(authOptions);
     const { searchParams } = new URL(request.url);
@@ -20,14 +22,24 @@ export async function GET(request: Request) {
     const cfpOnly = searchParams.get('cfpOpen') === 'true';
     const search = searchParams.get('search');
 
+    apiLogger.info('Request params', { domain, cfpOnly, search, hasSession: !!session?.user });
+
     // Optimization: If no filters AND not logged in, use the Redis/File cache
     // (If logged in, we want to show 'isAttending' status correctly, so we might need a dynamic query or merge)
     if (!session?.user && (!domain || domain === 'all') && !cfpOnly && !search) {
-      const data = await getCachedConferences();
+      apiLogger.info('Using cached conferences');
+      const data = await Promise.race([
+        getCachedConferences(),
+        new Promise<ConferenceData>((_, reject) => 
+          setTimeout(() => reject(new Error('Cache fetch timeout after 15s')), 15000)
+        )
+      ]);
+      apiLogger.info('Returning cached data', { months: Object.keys(data.months).length });
       return NextResponse.json(data);
     }
 
     // Dynamic Query via Prisma
+    apiLogger.info('Performing dynamic database query');
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const where: any = {
       ...(domain && domain !== 'all' ? { domain } : {}),
@@ -42,24 +54,30 @@ export async function GET(request: Request) {
       } : {})
     };
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const conferences = await (prisma as any).conference.findMany({
-      where,
-      include: {
-        attendances: {
-          select: {
-            userId: true,
-            user: {
-              select: {
-                image: true,
-                name: true
+    apiLogger.time('dbQuery');
+    const conferences = await Promise.race([
+      prisma.conference.findMany({
+        where,
+        include: {
+          attendances: {
+            select: {
+              userId: true,
+              user: {
+                select: {
+                  image: true,
+                  name: true
+                }
               }
             }
           }
-        }
-      },
-      orderBy: { startDate: 'asc' }
-    });
+        },
+        orderBy: { startDate: 'asc' }
+      }),
+      new Promise<never>((_, reject) => 
+        setTimeout(() => reject(new Error('Database query timeout after 15s')), 15000)
+      )
+    ]);
+    apiLogger.timeEnd('dbQuery');
 
     // Format for frontend (Month grouping)
     const months: Record<string, Conference[]> = {};
@@ -68,8 +86,7 @@ export async function GET(request: Request) {
     let withLocation = 0;
 
     // Transform DB shape to Frontend Interface
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const formattedConferences: any[] = conferences.map((c: any) => ({
+    const formattedConferences = conferences.map((c) => ({
       id: c.id,
       name: c.name,
       url: c.url,
@@ -86,7 +103,7 @@ export async function GET(request: Request) {
       cfp: {
         url: c.cfpUrl || '',
         endDate: c.cfpEndDate ? c.cfpEndDate.toISOString().split('T')[0] : null,
-        status: c.cfpStatus as 'open' | 'closed' | undefined
+        status: (c.cfpStatus as 'open' | 'closed' | undefined)
       },
       domain: c.domain,
       description: c.description || undefined,
@@ -95,10 +112,8 @@ export async function GET(request: Request) {
       financialAid: c.financialAid ? JSON.parse(JSON.stringify(c.financialAid)) : undefined,
       // Attendance data
       attendeeCount: c.attendances.length,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      isAttending: session?.user ? c.attendances.some((a: any) => a.userId === session.user.id) : false,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      attendees: c.attendances.slice(0, 5).map((a: any) => ({
+      isAttending: session?.user ? c.attendances.some((a) => a.userId === session.user.id) : false,
+      attendees: c.attendances.slice(0, 5).map((a) => ({
         image: a.user.image,
         name: a.user.name
       }))
@@ -129,7 +144,7 @@ export async function GET(request: Request) {
     });
 
   } catch (error) {
-    console.error('Error fetching conferences:', error);
+    apiLogger.error('Error fetching conferences', error);
     return NextResponse.json(
       { error: 'Failed to fetch conferences' },
       { status: 500 }

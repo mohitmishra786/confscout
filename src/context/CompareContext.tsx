@@ -23,7 +23,7 @@ export function CompareProvider({ children }: { children: ReactNode }) {
       try {
         setSelectedConferences(JSON.parse(saved));
       } catch (e) {
-        console.error('Failed to parse saved comparisons', e);
+        // Silently fail to parse - will use empty state
       }
     }
   }, []);
