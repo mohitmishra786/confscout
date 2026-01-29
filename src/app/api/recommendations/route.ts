@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import Groq from 'groq-sdk';
 import { getCachedConferences } from '@/lib/cache';
-import { Conference } from '@/types/conference';
 
 const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY,

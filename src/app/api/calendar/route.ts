@@ -28,7 +28,7 @@ export async function GET(request: Request) {
       },
     });
 
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: 'Failed to generate calendar' },
       { status: 500 }
