@@ -50,7 +50,7 @@ export default function SubmitConferencePage() {
       } else {
         alert(data.error || 'Submission failed');
       }
-    } catch (error) {
+    } catch {
       alert('Submission failed. Please try again.');
     } finally {
       setSubmitting(false);
