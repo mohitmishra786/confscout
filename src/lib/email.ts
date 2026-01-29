@@ -80,6 +80,13 @@ export async function sendDigestEmail(to: string, token: string, conferences: Co
       </div>
     `).join('');
 
+  console.log(`[Email] Sending digest to ${to} with ${conferences.length} conferences`);
+  
+  if (!process.env.ZOHO_PASSWORD) {
+    console.log('[Email] Mock send (no credentials):', { to, subject: `Upcoming Conferences Digest` });
+    return;
+  }
+
   await transporter.sendMail({
     from: `"ConfScout" <${process.env.ZOHO_USER || process.env.ZOHO_EMAIL}>`,
     to,

@@ -32,7 +32,8 @@ export async function GET(request: Request) {
         const dataPath = path.join(process.cwd(), 'public/data/conferences.json');
         const fileContents = await fs.readFile(dataPath, 'utf8');
         const data = JSON.parse(fileContents);
-        const conferences: Conference[] = data.conferences || [];
+        // Fix: Flatten months to get all conferences
+        const conferences: Conference[] = data.months ? Object.values(data.months).flat() as Conference[] : [];
 
         // Filter "New" conferences (simulated: start date in next 14 days OR CFP closing in next 7 days)
         const upcomingConfs = conferences.filter((c) => {
