@@ -16,3 +16,58 @@
  GET /api/conferences 200 in 7332ms
  ✓ Compiled middleware in 2ms
  ✓ Compiled middleware in 1ms
+ ⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+   ▲ Next.js 15.5.9 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.8:3000
+   - Environments: .env
+   - Experiments (use with caution):
+     · clientTraceMetadata
+
+ ✓ Starting...
+ ✓ Compiled middleware in 107ms
+ ✓ Ready in 1547ms
+ ⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+[@sentry/nextjs] DEPRECATION WARNING: disableLogger is deprecated and will be removed in a future version. Use webpack.treeshake.removeDebugLogging instead. (Not supported with Turbopack.)
+[@sentry/nextjs] DEPRECATION WARNING: automaticVercelMonitors is deprecated and will be removed in a future version. Use webpack.automaticVercelMonitors instead. (Not supported with Turbopack.)
+   ▲ Next.js 15.5.9 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.8:3000
+   - Environments: .env
+   - Experiments (use with caution):
+     · clientTraceMetadata
+
+ ✓ Starting...
+ ✓ Compiled middleware in 134ms
+ ✓ Ready in 1276ms
+ ⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+[@sentry/nextjs] DEPRECATION WARNING: disableLogger is deprecated and will be removed in a future version. Use webpack.treeshake.removeDebugLogging instead. (Not supported with Turbopack.)
+[@sentry/nextjs] DEPRECATION WARNING: automaticVercelMonitors is deprecated and will be removed in a future version. Use webpack.automaticVercelMonitors instead. (Not supported with Turbopack.)
+   ▲ Next.js 15.5.9 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.8:3000
+   - Environments: .env
+   - Experiments (use with caution):
+     · clientTraceMetadata
+
+ ✓ Starting...
+ ✓ Compiled middleware in 93ms
+ ✓ Ready in 1256ms
+ ⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+[@sentry/nextjs] DEPRECATION WARNING: disableLogger is deprecated and will be removed in a future version. Use webpack.treeshake.removeDebugLogging instead. (Not supported with Turbopack.)
+[@sentry/nextjs] DEPRECATION WARNING: automaticVercelMonitors is deprecated and will be removed in a future version. Use webpack.automaticVercelMonitors instead. (Not supported with Turbopack.)
+   ▲ Next.js 15.5.9 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.8:3000
+   - Environments: .env
+   - Experiments (use with caution):
+     · clientTraceMetadata
+
+ ✓ Starting...
+ ✓ Compiled middleware in 90ms
+ ✓ Ready in 1166ms
+ ○ Compiling /sitemap.xml ...
+ ✓ Compiled /sitemap.xml in 748ms
+ ⨯ A conflicting public file and page file was found for path /robots.txt https://nextjs.org/docs/messages/conflicting-public-file-page
+ GET /robots.txt 500 in 778ms
+ GET /sitemap.xml 200 in 1025ms
