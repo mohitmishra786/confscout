@@ -62,6 +62,9 @@ export interface Conference {
   // Source tracking
   source: string;
   sources?: string[]; // When merged from multiple sources
+
+  // AI Enrichment
+  recommendationReason?: string;
 }
 
 // Month-grouped conference data structure (matches JSON output)

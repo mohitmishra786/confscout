@@ -46,6 +46,12 @@ export default function Header() {
               {t('openCfps')}
             </Link>
             <Link
+              href="/recommendations"
+              className="text-zinc-400 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-zinc-800/50 min-h-[2.75rem] flex items-center"
+            >
+              <span className="mr-1">✨</span> AI Match
+            </Link>
+            <Link
               href="/about"
               className="text-zinc-400 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-zinc-800/50 min-h-[2.75rem] flex items-center"
             >
