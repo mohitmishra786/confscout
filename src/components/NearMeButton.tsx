@@ -22,7 +22,6 @@ export default function NearMeButton({ onLocationFound }: NearMeButtonProps) {
                 setLoading(false);
             },
             (error) => {
-                console.error('Error getting location:', error);
                 setLoading(false);
             }
         );
