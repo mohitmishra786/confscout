@@ -25,6 +25,8 @@ export default function Footer() {
 
           {/* Links */}
           <nav className="flex items-center gap-4 sm:gap-6 text-sm text-zinc-500" aria-label="Footer navigation">
+            <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
+            <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
             <a
               href="https://github.com/tech-conferences/conference-data"
               target="_blank"
