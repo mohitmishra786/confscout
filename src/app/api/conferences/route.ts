@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getCachedConferences } from '@/lib/cache';
-import { Conference, ConferenceData } from '@/types/conference';
+import { Conference } from '@/types/conference';
 
 /**
  * GET /api/conferences

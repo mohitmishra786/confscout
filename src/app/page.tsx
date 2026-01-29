@@ -50,7 +50,7 @@ export default function Home() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const response = await fetch('/data/conferences.json');
+        const response = await fetch('/api/conferences');
         if (!response.ok) throw new Error('Failed to fetch conferences');
         const jsonData = await response.json();
         setData(jsonData);

@@ -1,4 +1,4 @@
-import { kv } from '@vercel/kv';
+import { Redis } from '@upstash/redis';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { ConferenceData } from '@/types/conference';
@@ -6,29 +6,55 @@ import { ConferenceData } from '@/types/conference';
 const CACHE_KEY = 'conferences';
 const CACHE_TTL = 3600; // 1 hour
 
+// Initialize Redis client lazily to prevent build-time errors if env vars are missing
+let redis: Redis | null = null;
+
+function getRedisClient(): Redis | null {
+  if (redis) return redis;
+  
+  try {
+    // Check if env vars are present before trying to initialize
+    if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
+      redis = Redis.fromEnv();
+      return redis;
+    }
+    console.warn('Upstash Redis environment variables missing. Cache will default to filesystem.');
+    return null;
+  } catch (error) {
+    console.warn('Failed to initialize Redis client:', error);
+    return null;
+  }
+}
+
 export interface CachedData {
   data: ConferenceData;
   timestamp: number;
 }
 
 export async function getCachedConferences(): Promise<ConferenceData> {
+  const redisClient = getRedisClient();
+  
   try {
-    const cached = await kv.get<CachedData>(CACHE_KEY);
-    
-    if (cached && Date.now() - cached.timestamp < CACHE_TTL * 1000) {
-      return cached.data;
+    if (redisClient) {
+      const cached = await redisClient.get<CachedData>(CACHE_KEY);
+      
+      if (cached && Date.now() - cached.timestamp < CACHE_TTL * 1000) {
+        return cached.data;
+      }
     }
     
-    // Cache miss or expired, load from file
+    // Cache miss, expired, or no Redis: load from file
     const filePath = join(process.cwd(), 'public/data/conferences.json');
     const fileData = readFileSync(filePath, 'utf8');
     const conferences = JSON.parse(fileData);
     
-    // Update cache
-    await kv.set(CACHE_KEY, {
-      data: conferences,
-      timestamp: Date.now()
-    }, { ex: CACHE_TTL });
+    // Update cache if Redis is available
+    if (redisClient) {
+      await redisClient.set(CACHE_KEY, {
+        data: conferences,
+        timestamp: Date.now()
+      }, { ex: CACHE_TTL });
+    }
     
     return conferences;
   } catch (error) {
@@ -47,8 +73,11 @@ export async function getCachedConferences(): Promise<ConferenceData> {
 }
 
 export async function invalidateCache(): Promise<void> {
+  const redisClient = getRedisClient();
+  if (!redisClient) return;
+
   try {
-    await kv.del(CACHE_KEY);
+    await redisClient.del(CACHE_KEY);
   } catch (error) {
     console.error('Failed to invalidate cache:', error);
   }
