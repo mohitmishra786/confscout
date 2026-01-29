@@ -66,6 +66,19 @@ export default function Header() {
                 </Link>
                 <div className="relative group">
                   <button className="flex items-center gap-2 text-zinc-400 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-zinc-800/50">
+                    {session.user.image ? (
+                      <Image
+                        src={session.user.image}
+                        alt={session.user.name || 'User'}
+                        width={24}
+                        height={24}
+                        className="rounded-full"
+                      />
+                    ) : (
+                      <div className="w-6 h-6 rounded-full bg-zinc-700 flex items-center justify-center text-xs">
+                        {(session.user.name?.[0] || session.user.email?.[0] || 'U').toUpperCase()}
+                      </div>
+                    )}
                     <span>{session.user.name || session.user.email?.split('@')[0]}</span>
                   </button>
                   <div className="absolute right-0 mt-2 w-48 bg-zinc-900 border border-zinc-800 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
