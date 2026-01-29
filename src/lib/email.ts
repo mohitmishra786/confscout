@@ -80,10 +80,14 @@ export async function sendDigestEmail(to: string, token: string, conferences: Co
       </div>
     `).join('');
 
-  console.log(`[Email] Sending digest to ${to} with ${conferences.length} conferences`);
+  const redactedTo = to.replace(/^(.)(.*)(.@.*)$/, (_, a, b, c) => `${a}***${c}`);
+  console.log(`[Email] Sending digest to ${redactedTo} with ${conferences.length} conferences`);
   
   if (!process.env.ZOHO_PASSWORD) {
-    console.log('[Email] Mock send (no credentials):', { to, subject: `Upcoming Conferences Digest` });
+    if (process.env.NODE_ENV === 'production') {
+      throw new Error('ZOHO_PASSWORD is missing in production environment');
+    }
+    console.log('[Email] Mock send (no credentials):', { to: redactedTo, subject: `Upcoming Conferences Digest` });
     return;
   }
 

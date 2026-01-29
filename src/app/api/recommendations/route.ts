@@ -1,22 +1,39 @@
 import { NextResponse } from 'next/server';
 import Groq from 'groq-sdk';
+import { z } from 'zod';
 import { getCachedConferences } from '@/lib/cache';
+
+const MAX_CANDIDATES = 30;
+const MODEL_NAME = 'llama-3.3-70b-versatile';
+const TEMPERATURE = 0.5;
+const RECOMMENDATION_COUNT = 3;
 
 const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY,
 });
 
+const requestSchema = z.object({
+  interests: z.string().optional(),
+  bio: z.string().optional(),
+  location: z.string().optional(),
+}).refine(data => data.interests || data.bio, {
+  message: "Either interests or bio must be provided",
+  path: ["interests"],
+});
+
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
-    const { interests, bio, location } = body;
+    const json = await request.json();
+    const parseResult = requestSchema.safeParse(json);
 
-    if (!interests && !bio) {
+    if (!parseResult.success) {
       return NextResponse.json(
-        { error: 'Please provide interests or a bio.' },
+        { error: parseResult.error.issues[0].message },
         { status: 400 }
       );
     }
+
+    const { interests, bio, location } = parseResult.data;
 
     // 1. Get Data
     const data = await getCachedConferences();
@@ -24,13 +41,26 @@ export async function POST(request: Request) {
 
     // 2. Pre-filter to reduce context size (Naive retrieval)
     // We prioritize upcoming conferences and those matching keywords roughly
-    const keywords = (interests || '').toLowerCase().split(/[\s,]+/).filter((k: string) => k.length > 0);
+    let keywords = (interests || '').toLowerCase().split(/[\s,]+/).filter((k: string) => k.length > 0);
     
+    // Fallback: Seed keywords from bio if interests are empty
+    if (keywords.length === 0 && bio) {
+      keywords = bio.toLowerCase().split(/[\s,]+/).filter((k: string) => k.length > 3); // Simple tokenization
+    }
+
     const candidates = allConferences.filter(c => {
+      // If no keywords (and no bio tokens), we rely on location or return broad set
+      if (keywords.length === 0) {
+        if (location) {
+           return c.location.country.toLowerCase().includes(location.toLowerCase());
+        }
+        return true; // No filters, return everything (will be sliced)
+      }
+
       const text = `${c.name} ${c.domain} ${c.tags?.join(' ')} ${c.location.raw}`.toLowerCase();
       return keywords.some((k: string) => text.includes(k)) || 
              (location && c.location.country.toLowerCase().includes(location.toLowerCase()));
-    }).slice(0, 30); // Limit to 30 candidates to save tokens
+    }).slice(0, MAX_CANDIDATES); // Limit to MAX_CANDIDATES candidates to save tokens
 
     if (candidates.length === 0) {
       return NextResponse.json({ recommendations: [] });
@@ -40,7 +70,7 @@ export async function POST(request: Request) {
     const prompt = `
       You are an expert conference scout. 
       User Profile:
-      - Interests: ${interests}
+      - Interests: ${interests || 'N/A'}
       - Bio: ${bio || 'N/A'}
       - Preferred Location: ${location || 'Any'}
 
@@ -55,7 +85,7 @@ export async function POST(request: Request) {
       })))}
 
       Task:
-      Identify the top 3 conferences for this user.
+      Identify the top ${RECOMMENDATION_COUNT} conferences for this user.
       For each, provide a "reason" (1 sentence) connecting the user's profile to the conference.
       
       Return strictly a JSON object with a single key "recommendations" containing an array of objects with keys: "id", "reason".
@@ -65,8 +95,8 @@ export async function POST(request: Request) {
     // 4. Call Groq
     const completion = await groq.chat.completions.create({
       messages: [{ role: 'user', content: prompt }],
-      model: 'llama-3.3-70b-versatile',
-      temperature: 0.5,
+      model: MODEL_NAME,
+      temperature: TEMPERATURE,
       response_format: { type: 'json_object' },
     });
 

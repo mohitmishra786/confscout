@@ -49,7 +49,7 @@ export default function Header() {
               href="/recommendations"
               className="text-zinc-400 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-zinc-800/50 min-h-[2.75rem] flex items-center"
             >
-              <span className="mr-1">✨</span> AI Match
+              <span className="mr-1" aria-hidden="true">✨</span> {t('aiMatch')}
             </Link>
             <Link
               href="/about"
@@ -94,7 +94,7 @@ export default function Header() {
                       href={`/u/${session.user.id}`}
                       className="block px-4 py-2 text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
                     >
-                      My Profile
+                      {t('myProfile')}
                     </Link>
                     <Link
                       href="/bookmarks"

@@ -1,10 +1,10 @@
-import { prisma } from '@/lib/prisma';
-import { notFound } from 'next/navigation';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import ConferenceCard from '@/components/ConferenceCard';
-import { getCachedConferences } from '@/lib/cache';
 import Image from 'next/image';
+import { notFound } from 'next/navigation';
+import ConferenceCard from '@/components/ConferenceCard';
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
+import { getCachedConferences } from '@/lib/cache';
+import { prisma } from '@/lib/prisma';
 
 interface ProfilePageProps {
   params: Promise<{
@@ -12,12 +12,29 @@ interface ProfilePageProps {
   }>;
 }
 
+interface UserBookmark {
+  conferenceId: string;
+}
+
+interface UserProfile {
+  name: string | null;
+  image: string | null;
+  createdAt: Date;
+  bookmarks?: UserBookmark[];
+}
+
+const DEMO_USER_ID = 'demo';
+const DEMO_BOOKMARK_IDS = ['a1d39bad5e35', 'c9ea26dce41f'];
+
+/**
+ * Renders a user profile with bookmarked conferences.
+ */
 export default async function ProfilePage({ params }: ProfilePageProps) {
   const { id } = await params;
 
   // 1. Fetch User (Public Info)
   // We need to try/catch because if DB is not reachable/migrated, this might fail in this env
-  let user;
+  let user: UserProfile | null = null;
   let bookmarks: string[] = [];
 
   try {
@@ -27,19 +44,21 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
     });
     
     if (user) {
-      bookmarks = user.bookmarks.map((b: { conferenceId: string }) => b.conferenceId);
+      bookmarks = (user.bookmarks ?? []).map(b => b.conferenceId);
     }
   } catch (e) {
     console.error('Failed to fetch user profile:', e);
     // Fallback for demo/dev without DB
-    if (id === 'demo') {
+    if (id === DEMO_USER_ID) {
       user = {
         name: 'Demo Speaker',
         image: null,
         createdAt: new Date(),
       };
-      bookmarks = ['a1d39bad5e35', 'c9ea26dce41f']; // Use some valid IDs from JSON
+      bookmarks = DEMO_BOOKMARK_IDS; // Use some valid IDs from JSON
     }
+  } finally {
+    await prisma.$disconnect();
   }
 
   if (!user) {

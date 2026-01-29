@@ -1,11 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ConferenceCard from '@/components/ConferenceCard';
 import { Conference } from '@/types/conference';
 
+/**
+ * Renders the AI-powered conference recommendation page.
+ */
 export default function RecommendationsPage() {
   const [interests, setInterests] = useState('');
   const [location, setLocation] = useState('');
@@ -14,7 +17,10 @@ export default function RecommendationsPage() {
   const [recommendations, setRecommendations] = useState<Conference[]>([]);
   const [error, setError] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  /**
+   * Submits the recommendation request and updates the UI state.
+   */
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setError('');
@@ -27,7 +33,7 @@ export default function RecommendationsPage() {
         body: JSON.stringify({ interests, location, bio })
       });
 
-      const data = await res.json();
+      const data: { recommendations: Conference[]; error?: string } = await res.json();
       if (!res.ok) throw new Error(data.error || 'Failed to get recommendations');
       
       setRecommendations(data.recommendations);
@@ -61,8 +67,9 @@ export default function RecommendationsPage() {
             <div className="card p-6 sticky top-24">
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-zinc-400 mb-1">Interests / Tech Stack</label>
+                  <label htmlFor="interests" className="block text-sm font-medium text-zinc-400 mb-1">Interests / Tech Stack</label>
                   <input
+                    id="interests"
                     type="text"
                     required
                     placeholder="React, AI, Rust..."
@@ -72,8 +79,9 @@ export default function RecommendationsPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-zinc-400 mb-1">Preferred Location</label>
+                  <label htmlFor="location" className="block text-sm font-medium text-zinc-400 mb-1">Preferred Location</label>
                   <input
+                    id="location"
                     type="text"
                     placeholder="Europe, USA, Online..."
                     value={location}
@@ -82,8 +90,9 @@ export default function RecommendationsPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-zinc-400 mb-1">Bio (Optional)</label>
+                  <label htmlFor="bio" className="block text-sm font-medium text-zinc-400 mb-1">Bio (Optional)</label>
                   <textarea
+                    id="bio"
                     placeholder="I am a senior frontend engineer looking for..."
                     value={bio}
                     onChange={e => setBio(e.target.value)}
@@ -119,14 +128,16 @@ export default function RecommendationsPage() {
             )}
 
             {recommendations.length > 0 ? (
-              recommendations.map((conf, idx) => (
-                <div key={idx} className="relative">
+              recommendations.map((conf) => (
+                <div key={conf.id} className="relative">
                   <div className="absolute -left-3 top-6 bottom-6 w-1 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full opacity-50" />
-                  <div className="mb-2 pl-4">
-                    <p className="text-sm text-purple-300 font-medium italic">
-                      &quot; {conf.recommendationReason} &quot;
-                    </p>
-                  </div>
+                  {conf.recommendationReason && (
+                    <div className="mb-2 pl-4">
+                      <p className="text-sm text-purple-300 font-medium italic">
+                        &quot; {conf.recommendationReason} &quot;
+                      </p>
+                    </div>
+                  )}
                   <ConferenceCard conference={conf} />
                 </div>
               ))
