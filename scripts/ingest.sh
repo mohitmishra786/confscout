@@ -4,8 +4,8 @@ set -e
 echo "🚀 Starting Data Ingestion..."
 
 # 1. Fetch data (Scrape)
-echo "📦 Fetching conference data..."
-python3 scripts/fetch_confs.py
+echo "📦 Fetching conference data from all sources..."
+python3 scripts/aggregate_data.py
 
 # 2. Migrate/Load to DB
 echo "💾 Loading data into Postgres..."
