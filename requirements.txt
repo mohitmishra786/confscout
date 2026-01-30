@@ -12,5 +12,8 @@ beautifulsoup4>=4.11.0
 # Geocoding for location coordinates
 geopy>=2.3.0
 
+# Date parsing for conference dates
+python-dateutil>=2.8.0
+
 # (Optional) Discord notifications
 # If using Discord webhooks, requests is sufficient
