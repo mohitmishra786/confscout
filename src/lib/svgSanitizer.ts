@@ -51,8 +51,10 @@ export function sanitizeSvg(svgContent: string): string {
   let sanitized = svgContent;
 
   // Remove dangerous elements (handles normal, self-closing, and whitespace in closing tags)
+  // SECURITY: Use non-backtracking lazy match to prevent ReDoS. 
+  // Tags come from trusted constants, but we use [\s\S]*? for safety.
   for (const element of DANGEROUS_SVG_ELEMENTS) {
-    const elementRegex = new RegExp(`<${element}\\b[^<]*(?:(?!<\\/${element}\\s*>)<[^<]*)*<\\/${element}\\s*>`, 'gi');
+    const elementRegex = new RegExp(`<${element}\\b[\\s\\S]*?<\\/${element}\\s*>`, 'gi');
     const selfClosingRegex = new RegExp(`<${element}\\b[^>]*\\/>`, 'gi');
     sanitized = sanitized.replace(elementRegex, '').replace(selfClosingRegex, '');
   }
@@ -63,16 +65,15 @@ export function sanitizeSvg(svgContent: string): string {
     sanitized = sanitized.replace(attrRegex, '');
   }
 
-  // Remove javascript: protocol in href/xlink:href attributes
-  sanitized = sanitized.replace(/href\s*=\s*["']\s*javascript:[^"']*["']/gi, '');
-  sanitized = sanitized.replace(/xlink:href\s*=\s*["']\s*javascript:[^"']*["']/gi, '');
-
-  // Remove all data: URLs that could contain JavaScript or malicious content
-  sanitized = sanitized.replace(/href\s*=\s*["']\s*data:[^"']*["']/gi, '');
-  sanitized = sanitized.replace(/xlink:href\s*=\s*["']\s*data:[^"']*["']/gi, '');
+  // Remove javascript: and data: protocols in href/xlink:href (handles unquoted attributes)
+  // Matches href=javascript:... href="javascript:..." href='javascript:...'
+  sanitized = sanitized.replace(/href\s*=\s*(?:["']?)\s*javascript:[^\s"'>]*/gi, '');
+  sanitized = sanitized.replace(/xlink:href\s*=\s*(?:["']?)\s*javascript:[^\s"'>]*/gi, '');
+  sanitized = sanitized.replace(/href\s*=\s*(?:["']?)\s*data:[^\s"'>]*/gi, '');
+  sanitized = sanitized.replace(/xlink:href\s*=\s*(?:["']?)\s*data:[^\s"'>]*/gi, '');
   
   // Remove dangerous style attribute data URLs
-  sanitized = sanitized.replace(/style\s*=\s*["'][^"']*\burl\s*\(\s*["']?\s*data:[^"']*["']?\s*\)[^"']*["']/gi, '');
+  sanitized = sanitized.replace(/style\s*=\s*(?:["']?)[^"'>]*\burl\s*\(\s*(?:["']?)\s*data:[^\s"'>]*\s*(?:["']?)\s*\)[^"'>]*/gi, '');
 
   return sanitized;
 }

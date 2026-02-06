@@ -14,10 +14,13 @@ describe('CompareContext Security Logic', () => {
         id: '123',
         name: 'JSConf',
         url: 'https://jsconf.com',
+        startDate: '2024-01-01',
+        endDate: '2024-01-02',
         location: { city: 'Berlin', country: 'Germany' },
         online: false,
         domain: 'web',
-        source: 'manual'
+        source: 'manual',
+        cfp: null
       };
       expect(isValidConference(validConf)).toBe(true);
     });
@@ -36,7 +39,8 @@ describe('CompareContext Security Logic', () => {
     });
 
     it('should return false for objects with prototype pollution attempt', () => {
-      // Direct property injection
+      // Direct property injection: Literal __proto__ sets the internal prototype
+      // isValidConference catches this by checking if getPrototypeOf(c) is Object.prototype
       const polluted = {
         id: '123',
         name: 'JSConf',
@@ -44,7 +48,8 @@ describe('CompareContext Security Logic', () => {
       };
       expect(isValidConference(polluted)).toBe(false);
 
-      // JSON.parse based pollution
+      // JSON.parse based pollution: creates an OWN property named "__proto__"
+      // isValidConference catches this by checking Object.keys(c)
       const parsedPolluted = JSON.parse('{"id": "123", "name": "JSConf", "__proto__": {"polluted": true}}');
       expect(isValidConference(parsedPolluted)).toBe(false);
     });

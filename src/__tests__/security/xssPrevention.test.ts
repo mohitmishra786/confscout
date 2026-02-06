@@ -1,21 +1,10 @@
-import { sanitizeXSS, sanitizeJsonLdValue } from '@/lib/validation';
+import { sanitizeXSS, sanitizeJsonLdValue, serializeSafeJsonLd } from '@/lib/validation';
 
 /**
  * Escape special regex characters to prevent ReDoS attacks
  */
 function escapeRegExp(string: string): string {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
-
-/**
- * Safely serialize JSON-LD data
- * (Copied from SafeJsonLd.tsx for testing until exported)
- */
-function serializeSafeJsonLd(data: Record<string, unknown>): string {
-  const sanitizedData = sanitizeJsonLdValue(data);
-  return JSON.stringify(sanitizedData)
-    .replace(/</g, '\\u003c')
-    .replace(/>/g, '\\u003e');
 }
 
 describe('XSS Prevention Tests', () => {

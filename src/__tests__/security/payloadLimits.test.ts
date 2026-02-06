@@ -13,14 +13,12 @@ describe('Payload Size Limits', () => {
   describe('Global Configuration', () => {
     it('should limit body size in next.config.ts', () => {
       // Next.js limits body size to 1MB by default for API routes
-      // However, it can be configured in next.config.ts or per-route
       const configPath = join(process.cwd(), 'next.config.ts');
       
       try {
         const content = readFileSync(configPath, 'utf-8');
         // SECURITY: Only allow body size overrides if they are small (< 10MB)
-        // This regex catches values like '10mb', '50mb', etc. while allowing '1mb'
-        const match = content.match(/bodySizeLimit:\s*['"]([1-9]\d+)mb['"]/i);
+        const match = content.match(/bodySizeLimit:\s*['"](\d+)mb['"]/i);
         if (match) {
           const size = parseInt(match[1], 10);
           expect(size).toBeLessThan(10);

@@ -55,6 +55,6 @@ export async function validateCsrfToken(request: Request): Promise<boolean> {
     }
     return result === 0;
   } catch {
-    return storedToken === receivedToken;
+    return false; // SECURITY: Reject on any error to prevent timing attacks or bypasses
   }
 }

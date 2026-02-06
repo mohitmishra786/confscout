@@ -50,6 +50,9 @@ describe('API Key and Secret Security', () => {
   });
 
   it('should use process.env for all sensitive configuration', () => {
+    // SECURITY: Heuristic check to ensure sensitive files don't have hardcoded values
+    // NOTE: This check confirms process.env appears in the file, but doesn't guarantee
+    // per-value assignment. It's a broad guardrail.
     const sensitiveFiles = [
       'src/lib/auth.ts',
       'src/lib/email.ts',

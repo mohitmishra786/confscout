@@ -12,22 +12,34 @@ export function isValidConference(conf: unknown): conf is Conference {
   const c = conf as Record<string, unknown>;
 
   // Ensure all required fields are present and of correct type
-  const requiredFields: Array<{ name: string; type: string; optional?: boolean }> = [
-    { name: 'id', type: 'string' },
-    { name: 'name', type: 'string' },
-    { name: 'url', type: 'string' },
-    { name: 'startDate', type: 'string', optional: true },
-    { name: 'endDate', type: 'string', optional: true },
-    { name: 'location', type: 'object' },
-    { name: 'online', type: 'boolean' },
-    { name: 'domain', type: 'string' },
-    { name: 'source', type: 'string' },
+  // FieldDescriptor definition: { name: string; type: string; optional?: boolean; nullable?: boolean }
+  const requiredFields: Array<{ name: string; type: string; optional?: boolean; nullable?: boolean }> = [
+    { name: 'id', type: 'string', optional: false, nullable: false },
+    { name: 'name', type: 'string', optional: false, nullable: false },
+    { name: 'url', type: 'string', optional: false, nullable: false },
+    { name: 'startDate', type: 'string', optional: false, nullable: true },
+    { name: 'endDate', type: 'string', optional: false, nullable: true },
+    { name: 'location', type: 'object', optional: false, nullable: false },
+    { name: 'online', type: 'boolean', optional: false, nullable: false },
+    { name: 'domain', type: 'string', optional: false, nullable: false },
+    { name: 'source', type: 'string', optional: false, nullable: false },
+    { name: 'cfp', type: 'object', optional: false, nullable: true },
   ];
 
   for (const field of requiredFields) {
     const value = c[field.name];
+    
+    // 1. Reject missing keys when optional is false
     if (!field.optional && value === undefined) return false;
-    if (value !== undefined && typeof value !== field.type && value !== null) return false;
+    
+    // 2. Only allow null when descriptor.nullable is true
+    if (value === null) {
+      if (!field.nullable) return false;
+      continue; // null is valid for this field
+    }
+    
+    // 3. Check typeof against field.type when value is not null/undefined
+    if (value !== undefined && typeof value !== field.type) return false;
   }
 
   // Validate nested objects
@@ -35,6 +47,12 @@ export function isValidConference(conf: unknown): conf is Conference {
     const loc = c.location as Record<string, unknown>;
     if (typeof loc.city !== 'string' && loc.city !== null) return false;
     if (typeof loc.country !== 'string' && loc.country !== null) return false;
+  }
+
+  if (c.cfp && typeof c.cfp === 'object') {
+    const cfp = c.cfp as Record<string, unknown>;
+    if (cfp.url !== undefined && typeof cfp.url !== 'string' && cfp.url !== null) return false;
+    if (cfp.endDate !== undefined && typeof cfp.endDate !== 'string' && cfp.endDate !== null) return false;
   }
 
   // Prevent prototype pollution
@@ -107,4 +125,15 @@ export function sanitizeJsonLdValue(value: unknown): unknown {
   }
 
   return value;
+}
+
+/**
+ * Safely serialize JSON-LD data
+ * Uses HTML escaping in the JSON string to prevent breaking out of the script tag
+ */
+export function serializeSafeJsonLd(data: Record<string, unknown>): string {
+  const sanitizedData = sanitizeJsonLdValue(data);
+  return JSON.stringify(sanitizedData)
+    .replace(/</g, '\\u003c')
+    .replace(/>/g, '\\u003e');
 }

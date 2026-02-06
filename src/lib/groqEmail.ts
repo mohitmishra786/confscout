@@ -6,6 +6,19 @@
 import Groq from 'groq-sdk';
 import { Conference } from '@/types/conference';
 import { formatDate } from '@/lib/emailTemplates';
+import { sanitizeXSS } from '@/lib/validation';
+
+/**
+ * Sanitize and encode a URL for safe attribute interpolation
+ */
+function sanitizeUrl(url: string | null | undefined): string {
+  if (!url || !/^https?:\/\//i.test(url)) return '#';
+  try {
+    return encodeURI(url).replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+  } catch {
+    return '#';
+  }
+}
 
 const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY,
@@ -221,24 +234,9 @@ export function generateFallbackEmailContent(
   
   const sectionHtml = sections.map(section => {
     const rows = section.conferences.map(c => {
-      const safeUrl = c.url && /^https?:\/\//i.test(c.url) ? c.url : '#';
-      // Sanitize fields before interpolation to prevent XSS
-      const safeName = c.name.replace(/[&<>"']/g, char => ({
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#039;'
-      }[char] || char));
-      
-      const rawLocation = c.location?.raw || (c.online ? 'Online' : 'TBA');
-      const safeLocation = rawLocation.replace(/[&<>"']/g, char => ({
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#039;'
-      }[char] || char));
+      const safeUrl = sanitizeUrl(c.url);
+      const safeName = sanitizeXSS(c.name);
+      const safeLocation = sanitizeXSS(c.location?.raw || (c.online ? 'Online' : 'TBA'));
       
       return `
       <tr style="border-bottom:1px solid #e5e7eb;">

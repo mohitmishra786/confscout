@@ -12,20 +12,24 @@ const rateLimitMap = new Map<string, { count: number, reset: number }>();
 
 export default function middleware(request: NextRequest) {
   // Use a trusted source for IP (platform-provided header or request.ip)
-  // Vercel and most providers provide x-real-ip or request.ip
   const ip = request.headers.get('x-real-ip') || request.headers.get('x-forwarded-for')?.split(',')[0] || '127.0.0.1';
   const now = Date.now();
+  const path = request.nextUrl.pathname;
   
   // Basic rate limiting for API routes
-  if (request.nextUrl.pathname.startsWith('/api/') && !request.nextUrl.pathname.startsWith('/api/auth/')) {
-    const limit = rateLimitMap.get(ip);
+  if (path.startsWith('/api/') && !path.startsWith('/api/cron/')) {
+    const isAuth = path.startsWith('/api/auth/');
+    const rateLimitKey = isAuth ? `${ip}:auth` : `${ip}:api`;
+    const limitMax = isAuth ? 10 : 100; // 10 requests/min for auth, 100 for others
+    
+    const limit = rateLimitMap.get(rateLimitKey);
     if (limit && now < limit.reset) {
-      if (limit.count >= 100) { // 100 requests per minute
+      if (limit.count >= limitMax) {
         return new NextResponse('Too Many Requests', { status: 429 });
       }
       limit.count++;
     } else {
-      rateLimitMap.set(ip, { count: 1, reset: now + 60000 });
+      rateLimitMap.set(rateLimitKey, { count: 1, reset: now + 60000 });
     }
   }
 

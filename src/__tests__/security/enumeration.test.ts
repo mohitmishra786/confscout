@@ -51,15 +51,16 @@ describe('Resource Enumeration Prevention', () => {
     }
     
     // Check for NextResponse.json calls and ensure they don't include raw IDs
-    // We search for the pattern where the success message is returned
-    const jsonCalls = content.match(/NextResponse\.json\([\s\S]*?\)/g) || [];
+    // Strip comments first to avoid false positives
+    const contentWithoutComments = content.replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, '');
+    
+    // Match NextResponse.json({ ... }) patterns
+    const jsonCalls = contentWithoutComments.match(/NextResponse\.json\s*\(\s*\{[\s\S]*?\}\s*(?:,|\))/g) || [];
     
     for (const call of jsonCalls) {
-      if (call.includes('message:')) {
-        // Should not contain "id:" or "id :" but can contain "conferenceId"
-        // Use negative lookbehind/lookahead if supported, or simpler regex
-        expect(call).not.toMatch(/\bid\s*:/i);
-      }
+      // Should not contain "id:" as a key (word boundary used to avoid conferenceId etc)
+      // Sequential IDs are usually just 'id'
+      expect(call).not.toMatch(/\bid\s*:/i);
     }
   });
 

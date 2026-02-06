@@ -106,15 +106,67 @@ function wrapGroqContent(
 }
 
 /**
+ * Redact PII from email for logging
+ */
+function maskEmail(email: string): string {
+  if (!email) return 'unknown';
+  const [local, domain] = email.split('@');
+  if (!domain) return email.substring(0, 3) + '...';
+  const maskedLocal = local.length > 2 
+    ? `${local.charAt(0)}***${local.charAt(local.length - 1)}` 
+    : `${local.charAt(0)}***`;
+  return `${maskedLocal}@${domain}`;
+}
+
+/**
  * Sanitize Groq AI content before interpolation into HTML
- * Removes dangerous tags but preserves structure
+ * Uses an allowlist-based approach for safe email elements
  */
 function sanitizeGroqContent(content: string): string {
   if (!content) return '';
-  return content
-    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
-    .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '')
-    .replace(/\s*on\w+\s*=\s*(?:"[^"]*"|'[^']*'|`[^`]*`|[^\s>]*)?/gi, '');
+  
+  const allowedTags = [
+    'table', 'tr', 'td', 'th', 'thead', 'tbody', 'a', 'p', 
+    'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'span', 'div', 
+    'img', 'br', 'strong', 'em', 'b', 'i', 'ul', 'ol', 'li'
+  ];
+  const allowedAttrs = ['style', 'href', 'src', 'alt', 'width', 'height', 'target', 'rel'];
+  
+  // 1. Strip all meta, script, style (the tag itself), iframe, etc.
+  let sanitized = content.replace(/<(script|iframe|meta|base|svg|object|embed|math|form|style|button|textarea|select)\b[\s\S]*?<\/\1\s*>/gi, '');
+  sanitized = sanitized.replace(/<(script|iframe|meta|base|svg|object|embed|math|form|style|button|textarea|select)\b[\s\S]*?>/gi, '');
+
+  // 2. Filter tags and attributes
+  sanitized = sanitized.replace(/<(\/?)(\w+)([^>]*)>/gi, (match, slash, tag, attrs) => {
+    const tagName = tag.toLowerCase();
+    if (!allowedTags.includes(tagName)) {
+      return ''; // Strip non-allowed tag
+    }
+    
+    // Filter attributes
+    const sanitizedAttrs = attrs.replace(/(\w+)\s*=\s*(?:"([^"]*)"|'[^']*'|([^\s>]+))/gi, (attrMatch: string, attrName: string, dQuote: string, sQuote: string, unquoted: string) => {
+      const name = attrName.toLowerCase();
+      const value = (dQuote || sQuote || unquoted || '').trim();
+      
+      if (!allowedAttrs.includes(name) || name.startsWith('on')) {
+        return ''; // Strip non-allowed or event handlers
+      }
+      
+      // Normalize URLs
+      if (name === 'href' || name === 'src') {
+        const lowerVal = value.toLowerCase();
+        if (lowerVal.startsWith('javascript:') || lowerVal.startsWith('data:') || lowerVal.startsWith('vbscript:')) {
+          return `${name}="#"`;
+        }
+      }
+      
+      return ` ${name}="${value.replace(/"/g, '&quot;')}"`;
+    });
+    
+    return `<${slash}${tagName}${sanitizedAttrs}>`;
+  });
+
+  return sanitized;
 }
 
 /**
@@ -169,7 +221,7 @@ export async function sendDigestEmail(
       },
     });
   } catch (error) {
-    console.error(`Failed to send digest email to ${to}:`, error);
+    console.error(`Failed to send digest email to ${maskEmail(to)}:`, error);
     throw error;
   }
 }
