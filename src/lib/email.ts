@@ -181,16 +181,29 @@ export async function sendDigestEmail(
   useGroq: boolean = true
 ) {
   const unsubscribeUrl = `${APP_URL}/api/unsubscribe?token=${token}`;
-  
+
+  // Log email send attempt with redacted email
+  const redactedTo = to.replace(/^(.)(.*)(.@.*)$/, (_, a, b, c) => `${a}***${c}`);
+  console.log(`[Email] Sending digest to ${redactedTo} with ${conferences.length} conferences`);
+
+  // Check for email credentials
+  if (!process.env.ZOHO_PASSWORD) {
+    if (process.env.NODE_ENV === 'production') {
+      throw new Error('ZOHO_PASSWORD is missing in production environment');
+    }
+    console.log('[Email] Mock send (no credentials):', { to: redactedTo, subject: `Upcoming Conferences Digest` });
+    return;
+  }
+
   // Categorize conferences into sections
   const sections = categorizeConferencesForEmail(conferences);
-  
+
   // Generate subject line
   const subject = generateEmailSubject(frequency, conferences.length);
-  
+
   let html: string;
   let text: string;
-  
+
   if (useGroq && process.env.GROQ_API_KEY) {
     try {
       // Try to generate enhanced content with Groq
@@ -200,7 +213,7 @@ export async function sendDigestEmail(
         sections,
         totalConferences: conferences.length,
       });
-      
+
       // Wrap Groq content in our template structure
       html = wrapGroqContent(groqContent, frequency, unsubscribeUrl, conferences.length);
       text = generatePlainTextEmail({ frequency, sections, unsubscribeUrl });
@@ -217,7 +230,7 @@ export async function sendDigestEmail(
     html = generateEnhancedEmailHTML(params);
     text = generatePlainTextEmail(params);
   }
-  
+
   await transporter.sendMail({
     from: `"ConfScout" <${process.env.ZOHO_USER || process.env.ZOHO_EMAIL}>`,
     to,

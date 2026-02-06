@@ -22,11 +22,11 @@ function filterConferencesForUser(
   preferences: Record<string, unknown>
 ): Conference[] {
   const domain = preferences?.domain as string | undefined;
-  
+
   if (!domain || domain === 'all') {
     return conferences;
   }
-  
+
   return conferences.filter(c => c.domain === domain);
 }
 
@@ -38,11 +38,11 @@ function filterConferencesForUser(
 function getUserLocation(preferences: Record<string, unknown>): string | undefined {
   const location = preferences?.location as string | undefined;
   const country = preferences?.country as string | undefined;
-  
+
   if (location && country) {
     return `${location}, ${country}`;
   }
-  
+
   return location || country;
 }
 
@@ -53,7 +53,7 @@ function getUserLocation(preferences: Record<string, unknown>): string | undefin
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const triggerFrequency = (searchParams.get('frequency') || 'weekly') as 'daily' | 'weekly';
-  
+
   // Validate frequency parameter
   if (!['daily', 'weekly'].includes(triggerFrequency)) {
     return NextResponse.json(
@@ -67,34 +67,35 @@ export async function GET(request: Request) {
     const dataPath = path.join(process.cwd(), 'public/data/conferences.json');
     const fileContents = await fs.readFile(dataPath, 'utf8');
     const data = JSON.parse(fileContents);
-    const conferences: Conference[] = data.conferences || [];
+    // Fix: Flatten months to get all conferences
+    const conferences: Conference[] = data.months ? Object.values(data.months).flat() as Conference[] : (data.conferences || []);
 
     // Filter conferences based on frequency
     const now = new Date();
     let upcomingConfs: Conference[];
-    
+
     if (triggerFrequency === 'daily') {
       // For daily: Next 7 days for conferences, next 3 days for CFPs
       const oneWeek = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
       const threeDays = new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000);
-      
+
       upcomingConfs = conferences.filter((c) => {
         const start = c.startDate ? new Date(c.startDate) : null;
         const cfpEnd = c.cfp?.endDate ? new Date(c.cfp.endDate) : null;
-        
-        return (start && start >= now && start <= oneWeek) || 
+
+        return (start && start >= now && start <= oneWeek) ||
                (cfpEnd && cfpEnd >= now && cfpEnd <= threeDays);
       });
     } else {
       // For weekly: Next 14 days for conferences, next 7 days for CFPs
       const twoWeeks = new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000);
       const oneWeek = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
-      
+
       upcomingConfs = conferences.filter((c) => {
         const start = c.startDate ? new Date(c.startDate) : null;
         const cfpEnd = c.cfp?.endDate ? new Date(c.cfp.endDate) : null;
-        
-        return (start && start >= now && start <= twoWeeks) || 
+
+        return (start && start >= now && start <= twoWeeks) ||
                (cfpEnd && cfpEnd >= now && cfpEnd <= oneWeek);
       });
     }
@@ -109,7 +110,7 @@ export async function GET(request: Request) {
 
     // Get verified subscribers matching the frequency
     const client = await pool.connect();
-    
+
     try {
       const res = await client.query(
         `SELECT email, verification_token, preferences 
@@ -118,7 +119,7 @@ export async function GET(request: Request) {
          AND (frequency = $1 OR frequency IS NULL)`,
         [triggerFrequency]
       );
-      
+
       const subscribers = res.rows;
 
       console.log(`[${triggerFrequency.toUpperCase()}] Processing digest for ${subscribers.length} subscribers.`);
@@ -162,13 +163,9 @@ export async function GET(request: Request) {
         }
       });
 
-      const results = await Promise.allSettled(emailPromises);
-      
-      // Log summary
-      const successful = results.filter(r => r.status === 'fulfilled' && (r.value as {status: string}).status === 'sent');
-      const failed = results.filter(r => r.status === 'rejected' || (r.status === 'fulfilled' && (r.value as {status: string}).status === 'failed'));
-      
-      console.log(`[${triggerFrequency.toUpperCase()}] Digest complete: ${successful.length} sent, ${skippedCount} skipped, ${failed.length} failed`);
+      await Promise.allSettled(emailPromises);
+
+      console.log(`[${triggerFrequency.toUpperCase()}] Digest complete: ${sentCount} sent, ${skippedCount} skipped, ${failedCount} failed`);
 
       return NextResponse.json({
         frequency: triggerFrequency,
@@ -185,7 +182,7 @@ export async function GET(request: Request) {
   } catch (error) {
     console.error('Digest Error:', error);
     return NextResponse.json(
-      { 
+      {
         error: 'Internal Server Error',
         message: error instanceof Error ? error.message : 'Unknown error',
         frequency: triggerFrequency,

@@ -1,62 +1,150 @@
 import { NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
 import { getCachedConferences } from '@/lib/cache';
 import { Conference, ConferenceData } from '@/types/conference';
+import { prisma } from '@/lib/prisma';
+import { apiLogger } from '@/lib/logger';
 
 /**
  * GET /api/conferences
  * 
- * Returns conference data in the new month-grouped format with caching.
- * Query params:
- * - domain: Filter by domain (ai, web, software, etc.)
- * - cfpOpen: Only show conferences with open CFPs
+ * Returns conference data.
+ * - If no filters: Returns cached full dataset (fast).
+ * - If filters: Queries database directly (dynamic).
  */
 export async function GET(request: Request) {
+  apiLogger.info('/api/conferences called');
   try {
+    const session = await getServerSession(authOptions);
     const { searchParams } = new URL(request.url);
     const domain = searchParams.get('domain');
     const cfpOnly = searchParams.get('cfpOpen') === 'true';
+    const search = searchParams.get('search');
 
-    // Get data from cache
-    const data = await getCachedConferences();
+    apiLogger.info('Request params', { domain, cfpOnly, search, hasSession: !!session?.user });
 
-    // Flatten months into a single array for filtering
-    let conferences: Conference[] = [];
-    for (const monthConfs of Object.values(data.months)) {
-      conferences.push(...monthConfs);
+    // Optimization: If no filters AND not logged in, use the Redis/File cache
+    // (If logged in, we want to show 'isAttending' status correctly, so we might need a dynamic query or merge)
+    if (!session?.user && (!domain || domain === 'all') && !cfpOnly && !search) {
+      apiLogger.info('Using cached conferences');
+      const data = await Promise.race([
+        getCachedConferences(),
+        new Promise<ConferenceData>((_, reject) => 
+          setTimeout(() => reject(new Error('Cache fetch timeout after 15s')), 15000)
+        )
+      ]);
+      apiLogger.info('Returning cached data', { months: Object.keys(data.months).length });
+      return NextResponse.json(data);
     }
 
-    // Filter by domain
-    if (domain && domain !== 'all') {
-      conferences = conferences.filter(c => c.domain === domain);
-    }
+    // Dynamic Query via Prisma
+    apiLogger.info('Performing dynamic database query');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const where: any = {
+      ...(domain && domain !== 'all' ? { domain } : {}),
+      ...(cfpOnly ? { cfpStatus: 'open' } : {}),
+      ...(search ? {
+        OR: [
+          { name: { contains: search, mode: 'insensitive' } },
+          { locationRaw: { contains: search, mode: 'insensitive' } },
+          { description: { contains: search, mode: 'insensitive' } },
+          { tags: { has: search.toLowerCase() } }
+        ]
+      } : {})
+    };
 
-    // Filter by CFP status
-    if (cfpOnly) {
-      conferences = conferences.filter(c => c.cfp?.status === 'open');
-    }
+    apiLogger.time('dbQuery');
+    const conferences = await Promise.race([
+      prisma.conference.findMany({
+        where,
+        include: {
+          attendances: {
+            select: {
+              userId: true,
+              user: {
+                select: {
+                  image: true,
+                  name: true
+                }
+              }
+            }
+          }
+        },
+        orderBy: { startDate: 'asc' }
+      }),
+      new Promise<never>((_, reject) => 
+        setTimeout(() => reject(new Error('Database query timeout after 15s')), 15000)
+      )
+    ]);
+    apiLogger.timeEnd('dbQuery');
 
-    // Re-group by month
+    // Format for frontend (Month grouping)
     const months: Record<string, Conference[]> = {};
-    for (const conf of conferences) {
+    const byDomain: Record<string, number> = {};
+    let withOpenCFP = 0;
+    let withLocation = 0;
+
+    // Transform DB shape to Frontend Interface
+    const formattedConferences = conferences.map((c) => ({
+      id: c.id,
+      name: c.name,
+      url: c.url,
+      startDate: c.startDate ? c.startDate.toISOString().split('T')[0] : null,
+      endDate: c.endDate ? c.endDate.toISOString().split('T')[0] : null,
+      location: {
+        city: c.city || '',
+        country: c.country || '',
+        raw: c.locationRaw || '',
+        lat: c.lat || undefined,
+        lng: c.lng || undefined
+      },
+      online: c.online,
+      cfp: {
+        url: c.cfpUrl || '',
+        endDate: c.cfpEndDate ? c.cfpEndDate.toISOString().split('T')[0] : null,
+        status: (c.cfpStatus as 'open' | 'closed' | undefined)
+      },
+      domain: c.domain,
+      description: c.description || undefined,
+      source: c.source,
+      tags: c.tags,
+      financialAid: c.financialAid ? JSON.parse(JSON.stringify(c.financialAid)) : undefined,
+      // Attendance data
+      attendeeCount: c.attendances.length,
+      isAttending: session?.user ? c.attendances.some((a) => a.userId === session.user.id) : false,
+      attendees: c.attendances.slice(0, 5).map((a) => ({
+        image: a.user.image,
+        name: a.user.name
+      }))
+    }));
+
+    for (const conf of formattedConferences) {
+      byDomain[conf.domain] = (byDomain[conf.domain] || 0) + 1;
+      if (conf.cfp?.status === 'open') withOpenCFP++;
+      if (conf.location.lat) withLocation++;
+
       const monthKey = conf.startDate
         ? new Date(conf.startDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
         : 'TBD';
+      
       if (!months[monthKey]) months[monthKey] = [];
       months[monthKey].push(conf);
     }
 
     return NextResponse.json({
-      lastUpdated: data.lastUpdated,
+      lastUpdated: new Date().toISOString(),
       stats: {
-        total: conferences.length,
-        withOpenCFP: conferences.filter(c => c.cfp?.status === 'open').length,
-        withLocation: conferences.filter(c => c.location?.lat).length,
-        byDomain: data.stats.byDomain,
+        total: formattedConferences.length,
+        withOpenCFP,
+        withLocation,
+        byDomain,
       },
       months,
     });
+
   } catch (error) {
-    console.error('Error fetching conferences:', error);
+    apiLogger.error('Error fetching conferences', error);
     return NextResponse.json(
       { error: 'Failed to fetch conferences' },
       { status: 500 }

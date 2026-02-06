@@ -1,0 +1,34 @@
+
+> conf-finder@2.0.0 dev
+> next dev --turbopack
+
+   ▲ Next.js 15.5.9 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.8:3000
+   - Environments: .env
+   - Experiments (use with caution):
+     · clientTraceMetadata
+
+ ✓ Starting...
+ ✓ Compiled instrumentation Node.js in 479ms
+ ✓ Compiled instrumentation Edge in 143ms
+ ✓ Compiled middleware in 91ms
+ ✓ Ready in 1891ms
+ ○ Compiling /[locale]/sentry-example-page ...
+ ✓ Compiled /[locale]/sentry-example-page in 1723ms
+ HEAD /en/sentry-example-page 200 in 2211ms
+ ✓ Compiled /api/sentry-example-api in 481ms
+Error [SentryExampleAPIError]: This error is raised on the backend called by the example page.
+    at GET (src/app/api/sentry-example-api/route.ts:14:9)
+  12 | export function GET() {
+  13 |   Sentry.logger.info("Sentry example API called");
+> 14 |   throw new SentryExampleAPIError(
+     |         ^
+  15 |     "This error is raised on the backend called by the example page.",
+  16 |   );
+  17 | }
+ HEAD /api/sentry-example-api 500 in 893ms
+ ✓ Compiled instrumentation Node.js in 15ms
+ ✓ Compiled instrumentation Edge in 3ms
+ ✓ Compiled middleware in 2ms
+ ✓ Compiled in 445ms

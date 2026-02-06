@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -58,7 +57,7 @@ export default function SignInPage() {
           setError('Invalid email or password');
         }
       }
-    } catch (err) {
+    } catch {
       setError('Something went wrong');
     } finally {
       setIsLoading(false);
@@ -69,7 +68,7 @@ export default function SignInPage() {
     setIsLoading(true);
     try {
       await signIn(provider, { callbackUrl: '/' });
-    } catch (err) {
+    } catch {
       setError('OAuth sign in failed');
       setIsLoading(false);
     }

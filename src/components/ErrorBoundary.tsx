@@ -23,7 +23,7 @@ export default class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: unknown) {
-    console.error('Error caught by boundary:', error, errorInfo);
+    // Error logged to Vercel via Sentry instrumentation
   }
 
   render() {

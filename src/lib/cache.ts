@@ -1,63 +1,207 @@
-import { kv } from '@vercel/kv';
+import { Redis } from '@upstash/redis';
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { ConferenceData } from '@/types/conference';
+import { Conference, ConferenceData } from '@/types/conference';
+import { prisma } from '@/lib/prisma';
+import { cacheLogger } from '@/lib/logger';
 
 const CACHE_KEY = 'conferences';
 const CACHE_TTL = 3600; // 1 hour
+
+// Initialize Redis client lazily
+let redis: Redis | null = null;
+
+function getRedisClient(): Redis | null {
+  if (redis) return redis;
+  try {
+    if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
+      redis = Redis.fromEnv();
+      cacheLogger.info('Redis client initialized');
+      return redis;
+    }
+    cacheLogger.warn('Upstash Redis environment variables missing');
+    return null;
+  } catch (error) {
+    cacheLogger.error('Failed to initialize Redis client', error);
+    return null;
+  }
+}
 
 export interface CachedData {
   data: ConferenceData;
   timestamp: number;
 }
 
-export async function getCachedConferences(): Promise<ConferenceData> {
-  try {
-    const cached = await kv.get<CachedData>(CACHE_KEY);
+// Helper to transform flat array to monthly grouped data
+function formatConferenceData(conferences: Conference[]): ConferenceData {
+  const months: Record<string, Conference[]> = {};
+  const byDomain: Record<string, number> = {};
+  let withOpenCFP = 0;
+  let withLocation = 0;
+
+  for (const conf of conferences) {
+    // Stats
+    byDomain[conf.domain] = (byDomain[conf.domain] || 0) + 1;
+    if (conf.cfp && conf.cfp.status === 'open') withOpenCFP++;
+    if (conf.location && conf.location.lat) withLocation++;
+
+    // Grouping
+    const monthKey = conf.startDate
+      ? new Date(conf.startDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+      : 'TBD';
     
-    if (cached && Date.now() - cached.timestamp < CACHE_TTL * 1000) {
-      return cached.data;
+    if (!months[monthKey]) months[monthKey] = [];
+    months[monthKey].push(conf);
+  }
+
+  // Sort months logic if needed, but keys are string. Frontend usually iterates or sorts.
+  // Actually the frontend sorts them.
+
+  return {
+    lastUpdated: new Date().toISOString(),
+    stats: {
+      total: conferences.length,
+      withOpenCFP,
+      withLocation,
+      byDomain
+    },
+    months
+  };
+}
+
+export async function getCachedConferences(): Promise<ConferenceData> {
+  const redisClient = getRedisClient();
+  
+  try {
+    cacheLogger.info('Starting getCachedConferences');
+    
+    // 1. Try Redis
+    if (redisClient) {
+      cacheLogger.info('Checking Redis cache');
+      const cached = await redisClient.get<CachedData>(CACHE_KEY);
+      if (cached && Date.now() - cached.timestamp < CACHE_TTL * 1000) {
+        cacheLogger.info('Returning cached data from Redis', { 
+          months: Object.keys(cached.data.months).length,
+          total: cached.data.stats.total 
+        });
+        return cached.data;
+      }
+      cacheLogger.info('Redis cache miss or expired');
+    } else {
+      cacheLogger.info('Redis not available, skipping');
     }
     
-    // Cache miss or expired, load from file
-    const filePath = join(process.cwd(), 'public/data/conferences.json');
-    const fileData = readFileSync(filePath, 'utf8');
-    const conferences = JSON.parse(fileData);
-    
-    // Update cache
-    await kv.set(CACHE_KEY, {
-      data: conferences,
-      timestamp: Date.now()
-    }, { ex: CACHE_TTL });
-    
-    return conferences;
-  } catch (error) {
-    console.error('Cache error, falling back to file:', error);
-    
-    // Fallback to file system
+    // 2. Try Database
+    cacheLogger.info('Attempting database fetch');
+    let conferences: Conference[] = [];
     try {
+      cacheLogger.time('dbFetch');
+      const dbConfs = await Promise.race([
+        prisma.conference.findMany(),
+        new Promise<never>((_, reject) => 
+          setTimeout(() => reject(new Error('Database query timeout after 10s')), 10000)
+        )
+      ]);
+      cacheLogger.timeEnd('dbFetch');
+      
+      if (dbConfs.length > 0) {
+        cacheLogger.info('Fetched conferences from database', { count: dbConfs.length });
+        conferences = dbConfs.map((c) => ({
+          id: c.id,
+          name: c.name,
+          url: c.url,
+          startDate: c.startDate ? c.startDate.toISOString().split('T')[0] : null,
+          endDate: c.endDate ? c.endDate.toISOString().split('T')[0] : null,
+          location: {
+            city: c.city || '',
+            country: c.country || '',
+            raw: c.locationRaw || '',
+            lat: c.lat || undefined,
+            lng: c.lng || undefined
+          },
+          online: c.online,
+          cfp: {
+            url: c.cfpUrl || '',
+            endDate: c.cfpEndDate ? c.cfpEndDate.toISOString().split('T')[0] : null,
+            status: (c.cfpStatus as 'open' | 'closed' | undefined)
+          },
+          domain: c.domain,
+          description: c.description || undefined,
+          source: c.source,
+          tags: c.tags,
+          financialAid: c.financialAid ? JSON.parse(JSON.stringify(c.financialAid)) : undefined
+        })) as Conference[];
+      }
+    } catch (dbError) {
+      cacheLogger.error('Database fetch failed, falling back to file', dbError);
+      conferences = [];
+    }
+
+    // 3. Fallback to File if DB failed or empty
+    if (conferences.length === 0) {
+      cacheLogger.info('Using file fallback');
       const filePath = join(process.cwd(), 'public/data/conferences.json');
       const fileData = readFileSync(filePath, 'utf8');
-      return JSON.parse(fileData);
-    } catch (fileError) {
-      console.error('Failed to load conferences from file:', fileError);
-      throw fileError;
+      const jsonData = JSON.parse(fileData);
+      // Handle legacy structure
+      if (jsonData.months) {
+        conferences = Object.values(jsonData.months).flat() as Conference[];
+      } else {
+        conferences = jsonData.conferences;
+      }
+      cacheLogger.info('Loaded conferences from file', { count: conferences.length });
     }
+
+    const formattedData = formatConferenceData(conferences);
+    
+    // 4. Update Redis
+    if (redisClient) {
+      try {
+        await redisClient.set(CACHE_KEY, {
+          data: formattedData,
+          timestamp: Date.now()
+        }, { ex: CACHE_TTL });
+        cacheLogger.info('Updated Redis cache');
+      } catch (redisError) {
+        cacheLogger.error('Failed to update Redis cache', redisError);
+      }
+    }
+    
+    cacheLogger.info('Returning formatted data', { 
+      months: Object.keys(formattedData.months).length,
+      total: formattedData.stats.total 
+    });
+    return formattedData;
+  } catch (error) {
+    cacheLogger.error('Critical cache error, using file fallback', error);
+    // Ultimate fallback
+    const filePath = join(process.cwd(), 'public/data/conferences.json');
+    const fileData = readFileSync(filePath, 'utf8');
+    return JSON.parse(fileData);
   }
 }
 
 export async function invalidateCache(): Promise<void> {
+  const redisClient = getRedisClient();
+  if (!redisClient) {
+    cacheLogger.warn('Redis not available, cannot invalidate cache');
+    return;
+  }
+
   try {
-    await kv.del(CACHE_KEY);
+    await redisClient.del(CACHE_KEY);
+    cacheLogger.info('Cache invalidated');
   } catch (error) {
-    console.error('Failed to invalidate cache:', error);
+    cacheLogger.error('Failed to invalidate cache', error);
   }
 }
 
 export async function warmCache(): Promise<void> {
   try {
+    cacheLogger.info('Warming cache...');
     await getCachedConferences();
+    cacheLogger.info('Cache warmed successfully');
   } catch (error) {
-    console.error('Failed to warm cache:', error);
+    cacheLogger.error('Failed to warm cache', error);
   }
 }
