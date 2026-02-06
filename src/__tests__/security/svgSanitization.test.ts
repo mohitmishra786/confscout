@@ -335,6 +335,10 @@ describe('SVG Sanitization Security Tests', () => {
         name: 'Encoded script tag',
         svg: '<svg xmlns="http://www.w3.org/2000/svg">&lt;script&gt;alert(1)&lt;/script&gt;</svg>',
       },
+      {
+        name: 'Unquoted javascript: href',
+        svg: '<svg xmlns="http://www.w3.org/2000/svg"><a href=javascript:alert(1)><rect/></a></svg>',
+      },
     ];
 
     attackVectors.forEach(({ name, svg }) => {

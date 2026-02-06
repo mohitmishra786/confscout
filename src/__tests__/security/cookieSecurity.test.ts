@@ -39,6 +39,7 @@ describe('Cookie Security', () => {
       
       try {
         // Broaden pattern to match (await cookies()).set, cookies().set, etc.
+        // Final regex passed to grep: cookies\(\).*\.set\(
         result = execSync(
           'git grep -n -E "cookies\\\\(\\\\).*\\\\.set\\\\(" -- "src/**/*.ts" "src/**/*.tsx" 2>/dev/null || true',
           { encoding: 'utf-8', cwd: process.cwd() }
@@ -51,12 +52,11 @@ describe('Cookie Security', () => {
       const lines = result.split('\n').filter(Boolean);
 
       for (const line of lines) {
-        // Filter out test files correctly using path segments
-        const filePath = line.split(':')[0];
-        if (/(^|[\\/])(test|spec|__tests__|__mocks__)s?([\\/]|$)/.test(filePath)) continue;
-        
         const [file, lineNumStr] = line.split(':');
         const lineNum = parseInt(lineNumStr, 10);
+        
+        // Filter out test files correctly using path segments
+        if (/(^|[\\/])(test|spec|__tests__|__mocks__)s?([\\/]|$)/.test(file)) continue;
         
         try {
           const fileContent = readFileSync(join(process.cwd(), file), 'utf-8');

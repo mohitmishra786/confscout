@@ -53,7 +53,7 @@ describe('Gitignore Security Configuration', () => {
         return (upper.includes('SECRET') || upper.includes('PRIVATE_KEY') ||
                 upper.includes('PASSWORD') || upper.includes('CREDENTIAL')) &&
                 !f.includes('.example') && !f.includes('.template') &&
-                !/(^|[\\/])(test|spec|__tests__|__mocks__)s?([\\/]|$)/.test(f);
+                !/(^|[\\/])(tests?|specs?|__tests__|__mocks__)([\\/]|$)/.test(f);
       });
       expect(sensitiveFiles).toHaveLength(0);
     });
@@ -136,15 +136,20 @@ describe('Secret Scanning', () => {
       if (!file) continue;
       // Skip test/mock files explicitly
       if (file.includes('.example') || file.includes('.template') ||
-          /(^|[\\/])(test|spec|__tests__|__mocks__)s?([\\/]|$)/.test(file) ||
+          /(^|[\\/])(tests?|specs?|__tests__|__mocks__)([\\/]|$)/.test(file) ||
           file.includes('package-lock.json')) continue;
 
       try {
         const content = readFileSync(join(process.cwd(), file), 'utf-8');
         for (const pattern of secretPatterns) {
-          expect(content).not.toMatch(pattern);
+          const match = content.match(pattern);
+          if (match) {
+            throw new Error(`Potential secret found in ${file}: matched ${pattern}`);
+          }
+          expect(match).toBeNull();
         }
-      } catch {
+      } catch (error) {
+        if (error instanceof Error && error.message.includes('Potential secret')) throw error;
         // Skip files that can't be read
       }
     }

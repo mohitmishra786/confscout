@@ -17,7 +17,7 @@ describe('Payload Size Limits', () => {
       
       try {
         const content = readFileSync(configPath, 'utf-8');
-        // SECURITY: Only allow body size overrides if they are small (< 10MB)
+        // SECURITY: Reject body size overrides >= 10MB
         const match = content.match(/bodySizeLimit:\s*['"](\d+)mb['"]/i);
         if (match) {
           const size = parseInt(match[1], 10);

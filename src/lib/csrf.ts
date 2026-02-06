@@ -30,8 +30,7 @@ export async function validateCsrfToken(request: Request): Promise<boolean> {
   const cookieStore = await cookies();
   const storedToken = cookieStore.get(CSRF_COOKIE)?.value;
   
-  const requestHeaders = new Headers(request.headers);
-  const receivedToken = requestHeaders.get(CSRF_HEADER);
+  const receivedToken = request.headers.get(CSRF_HEADER);
 
   if (!storedToken || !receivedToken) {
     return false;

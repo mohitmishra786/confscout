@@ -51,7 +51,8 @@ export default function middleware(request: NextRequest) {
         httpOnly: false, // Client needs to read this to send X-CSRF-Token header
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'strict',
-        path: '/'
+        path: '/',
+        maxAge: 86400 // 24 hours
       });
     }
 

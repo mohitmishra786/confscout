@@ -23,8 +23,6 @@ describe('External Link Security', () => {
     for (const file of files) {
       const content = readFileSync(join(process.cwd(), file), 'utf-8');
       
-      // Basic regex to find <a> tags with target="_blank" but without proper rel
-      // This is a bit simplistic due to multi-line tags but covers most cases
       const lines = content.split('\n');
       let currentTag = '';
       let inTag = false;
@@ -33,6 +31,8 @@ describe('External Link Security', () => {
         const line = lines[i];
         
         // Match only <a elements
+        // NOTE: This heuristic may miss tags that open and close across lines if a 
+        // closing '>' from a previous element appears on the same line as the '<a'.
         if (/<a[\s>]/i.test(line)) {
           inTag = true;
           currentTag = line;

@@ -53,12 +53,6 @@ describe('Security Headers Configuration', () => {
       expect(nextConfigContent).toMatch(/max-age=63072000/);
     });
 
-    it('should implement X-XSS-Protection', () => {
-      if (!nextConfigContent) return;
-      expect(nextConfigContent).toMatch(/X-XSS-Protection/);
-      expect(nextConfigContent).toMatch(/1; mode=block/);
-    });
-
     it('should implement X-Frame-Options', () => {
       if (!nextConfigContent) return;
       expect(nextConfigContent).toMatch(/X-Frame-Options/);

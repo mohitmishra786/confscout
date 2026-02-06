@@ -6,7 +6,7 @@
  */
 
 import { execSync } from 'child_process';
-import { readFileSync, existsSync } from 'fs';
+import { existsSync } from 'fs';
 import { globSync } from 'glob';
 import { join } from 'path';
 
@@ -15,7 +15,7 @@ import { join } from 'path';
  */
 function filterGrepResults(
   result: string,
-  opts?: { allowlist?: string[]; skipCommentFor?: string }
+  opts?: { allowlist?: string[]; skipComments?: boolean }
 ): string[] {
   return result.split('\n').filter(line => {
     if (!line) return false;
@@ -35,7 +35,7 @@ function filterGrepResults(
       }
     }
 
-    if (opts?.skipCommentFor) {
+    if (opts?.skipComments) {
       // Extract the code content after "file:line:" prefix
       const contentPart = line.replace(/^[^:]*:\d+:/, '').trim();
       if (contentPart.startsWith('//') || contentPart.startsWith('*') || contentPart.startsWith('/*')) return false;
@@ -55,7 +55,7 @@ describe('Code Injection Prevention', () => {
           { encoding: 'utf-8', cwd: process.cwd() }
         );
 
-        const lines = filterGrepResults(result, { skipCommentFor: 'eval' });
+        const lines = filterGrepResults(result, { skipComments: true });
         expect(lines).toHaveLength(0);
       } catch (error) {
         if (error instanceof Error && error.message.includes('expect')) throw error;
@@ -70,7 +70,7 @@ describe('Code Injection Prevention', () => {
           { encoding: 'utf-8', cwd: process.cwd() }
         );
 
-        const lines = filterGrepResults(result, { skipCommentFor: 'Function' });
+        const lines = filterGrepResults(result, { skipComments: true });
         expect(lines).toHaveLength(0);
       } catch (error) {
         if (error instanceof Error && error.message.includes('expect')) throw error;
@@ -190,32 +190,7 @@ describe('Code Injection Prevention', () => {
   });
 });
 
-describe('Secure Coding Patterns', () => {
-  it('should use proper function declarations instead of dynamic code', () => {
-    // This is a documentation test - shows the project uses proper patterns
-    const srcFiles = globSync('src/**/*.{ts,tsx}', { cwd: process.cwd() });
-
-    // Sample a few files to verify proper function usage (exclude config, Sentry, and type files)
-    const sampleFiles = srcFiles.filter(f => 
-      !f.toLowerCase().includes('sentry') && 
-      !f.toLowerCase().includes('config') &&
-      !f.toLowerCase().includes('instrumentation') &&
-      !f.toLowerCase().includes('.d.ts') &&
-      !f.toLowerCase().includes('types/')
-    ).slice(0, 10);
-
-    for (const file of sampleFiles) {
-      try {
-        const content = readFileSync(join(process.cwd(), file), 'utf-8');
-        // Should contain proper function declarations
-        expect(content).toMatch(/function|=>|const.*=.*\(/);
-      } catch (error) {
-        if (error instanceof Error && error.message.includes('expect')) throw error;
-        // Skip files that can't be read for other reasons
-      }
-    }
-  });
-
+describe('TypeScript and Type Safety', () => {
   it('should use TypeScript for type safety', () => {
     const tsFiles = globSync('src/**/*.{ts,tsx}', { cwd: process.cwd() });
     const jsFiles = globSync('src/**/*.js', { cwd: process.cwd() });

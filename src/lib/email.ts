@@ -10,7 +10,7 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://confscouting.com';
 
 const transporter = nodemailer.createTransport({
   host: process.env.ZOHO_HOST || 'smtp.zoho.com',
-  port: 465,
+  port: Number(process.env.ZOHO_PORT) || 465,
   secure: true,
   auth: {
     user: process.env.ZOHO_USER,

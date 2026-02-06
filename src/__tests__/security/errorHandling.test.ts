@@ -42,6 +42,10 @@ describe('Error Handling Security', () => {
         return;
       }
       
+      apiRoutes = apiRoutes.filter(Boolean);
+      // Ensure we actually found some routes to check
+      expect(apiRoutes.length).toBeGreaterThan(0);
+      
       let safeErrors = 0;
       let totalChecks = 0;
 
