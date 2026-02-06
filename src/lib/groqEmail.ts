@@ -115,6 +115,8 @@ REQUIREMENTS:
       ],
       temperature: 0.3,
       max_tokens: 4000,
+    }, {
+      timeout: 30000, // 30 seconds timeout
     });
 
     const content = completion.choices[0]?.message?.content;

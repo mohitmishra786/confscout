@@ -211,7 +211,13 @@ export async function GET(request: NextRequest) {
         }
       });
 
-      await Promise.allSettled(emailPromises);
+      // Use a timeout for the entire email processing batch to prevent function hang
+      await Promise.race([
+        Promise.allSettled(emailPromises),
+        new Promise((_, reject) => 
+          setTimeout(() => reject(new Error('Email batch processing timeout after 55s')), 55000)
+        )
+      ]);
 
       console.log(`[${triggerFrequency.toUpperCase()}] Digest complete: ${sentCount} sent, ${skippedCount} skipped, ${failedCount} failed`);
 
