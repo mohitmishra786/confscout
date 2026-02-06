@@ -2,14 +2,17 @@
 
 /**
  * ConferenceCard Component
- * 
+ *
  * Displays a single conference with CFP status, domain badge, location, and tags.
+ * SECURITY FIX: Removed dangerouslySetInnerHTML usage to prevent XSS attacks.
+ * Now uses SafeHighlightedText component for search term highlighting.
  */
 
 import { useState } from 'react';
 import Image from 'next/image';
 import { Conference, DOMAIN_INFO } from '@/types/conference';
 import { useCompare } from '@/context/CompareContext';
+import { SafeHighlightedText } from './SafeHighlightedText';
 import VisaModal from './VisaModal';
 import TravelModal from './TravelModal';
 
@@ -62,16 +65,9 @@ export default function ConferenceCard({ conference, searchTerm }: ConferenceCar
   const cfpIsOpen = cfp?.status === 'open';
   const daysRemaining = cfp?.daysRemaining ?? -1;
 
-  // Highlight search term in text
-  const highlightText = (text: string): string => {
-    if (!searchTerm || !text) return text;
-    try {
-      const regex = new RegExp(`(${searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-      return text.replace(regex, '<mark class="bg-blue-500/30 text-blue-300 rounded px-0.5">$1</mark>');
-    } catch {
-      return text;
-    }
-  };
+  // SECURITY FIX: Removed highlightText function that used dangerouslySetInnerHTML
+  // Now using SafeHighlightedText component which safely renders highlighted text
+  // This prevents XSS attacks from malicious search terms or conference data
 
   // CFP badge styling based on urgency
   const getCfpBadgeStyle = () => {
@@ -154,15 +150,16 @@ export default function ConferenceCard({ conference, searchTerm }: ConferenceCar
           )}
         </div>
 
-        {/* Title */}
+        {/* Title - SECURITY FIX: Using SafeHighlightedText instead of dangerouslySetInnerHTML */}
         <h3 className="text-lg font-bold text-white mb-2 leading-tight group-hover:text-blue-400 transition-colors">
           <a
             href={conference.url}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:underline decoration-blue-400/30 focus:outline-none"
-            dangerouslySetInnerHTML={{ __html: highlightText(conference.name) }}
-          />
+          >
+            <SafeHighlightedText text={conference.name} searchTerm={searchTerm || ''} />
+          </a>
         </h3>
 
         {/* Meta: Date & Location */}
@@ -178,7 +175,7 @@ export default function ConferenceCard({ conference, searchTerm }: ConferenceCar
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
-            <span dangerouslySetInnerHTML={{ __html: highlightText(locationText) }} />
+            <SafeHighlightedText text={locationText} searchTerm={searchTerm || ''} />
           </div>
         </div>
 

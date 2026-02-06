@@ -20,6 +20,7 @@ import TimelineView from '@/components/TimelineView';
 import ConferenceCard from '@/components/ConferenceCard';
 import SubscribeModal from '@/components/SubscribeModal';
 import NearMeButton from '@/components/NearMeButton';
+import { SafeJsonLd } from '@/components/SafeJsonLd';
 
 // Dynamic import for WorldMap (requires browser APIs)
 const WorldMap = dynamic(() => import('@/components/WorldMap'), {
@@ -232,10 +233,8 @@ export default function Home() {
 
       <SubscribeModal isOpen={isSubscribeOpen} onClose={() => setIsSubscribeOpen(false)} />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      {/* SECURITY FIX: Using SafeJsonLd component instead of dangerouslySetInnerHTML */}
+      <SafeJsonLd data={jsonLd} />
 
       <main className="w-full max-w-7xl mx-auto px-4 py-6 sm:py-8">
         {/* Hero */}
