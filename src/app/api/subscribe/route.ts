@@ -20,24 +20,28 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { email, preferences, frequency } = subscribeSchema.parse(body);
     
-    const client = await pool.connect();
-    try {
-      const token = crypto.randomBytes(32).toString('hex');
-      
-      await client.query(
-        `INSERT INTO subscribers (email, preferences, frequency, verification_token)
-         VALUES ($1, $2, $3, $4)
-         ON CONFLICT (email) DO UPDATE 
-         SET preferences = $2, frequency = $3, verification_token = $4`,
-        [email, JSON.stringify(preferences), frequency, token]
-      );
+        const client = await pool.connect();
+        try {
+            const token = crypto.randomBytes(32).toString('hex');
+            
+            const result = await client.query(
+                `INSERT INTO subscribers (email, preferences, frequency, verification_token)
+                 VALUES ($1, $2, $3, $4)
+                 ON CONFLICT (email) DO UPDATE 
+                 SET preferences = $2, frequency = $3, verification_token = $4
+                 RETURNING (xmax = 0) AS is_new`,
+                [email, JSON.stringify(preferences), frequency, token]
+            );
 
-      await sendWelcomeEmail(email, token);
+            // Only send welcome email for new subscribers
+            if (result.rows[0]?.is_new) {
+                await sendWelcomeEmail(email, token);
+            }
 
-      return NextResponse.json({ message: 'Subscribed successfully!' }, { status: 200 });
-    } finally {
-      client.release();
-    }
+            return NextResponse.json({ message: 'Subscribed successfully!' }, { status: 200 });
+        } finally {
+            client.release();
+        }
   } catch (error) {
     console.error('Subscribe Error:', error);
     return NextResponse.json({ error: 'Invalid request' }, { status: 400 });

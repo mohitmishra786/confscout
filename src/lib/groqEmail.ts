@@ -243,10 +243,10 @@ export function generateFallbackEmailContent(
         <td style="padding:12px;">
           <strong><a href="${safeUrl}" style="color:#2563eb;text-decoration:none;">${safeName}</a></strong>
         </td>
-        <td style="padding:12px;">${formatDate(c.startDate)}</td>
+        <td style="padding:12px;">${sanitizeXSS(formatDate(c.startDate))}</td>
         <td style="padding:12px;">${safeLocation}</td>
         <td style="padding:12px;">
-          ${c.cfp?.endDate ? `<span style="color:#dc2626;font-weight:600;">${formatDate(c.cfp.endDate)}</span>` : '-'}
+          ${c.cfp?.endDate ? `<span style="color:#dc2626;font-weight:600;">${sanitizeXSS(formatDate(c.cfp.endDate))}</span>` : '-'}
         </td>
       </tr>
     `;

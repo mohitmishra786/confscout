@@ -72,8 +72,9 @@ export function sanitizeSvg(svgContent: string): string {
   sanitized = sanitized.replace(/href\s*=\s*(?:["']?)\s*data:[^\s"'>]*/gi, '');
   sanitized = sanitized.replace(/xlink:href\s*=\s*(?:["']?)\s*data:[^\s"'>]*/gi, '');
   
-  // Remove dangerous style attribute data URLs
-  sanitized = sanitized.replace(/style\s*=\s*(?:["']?)[^"'>]*\burl\s*\(\s*(?:["']?)\s*data:[^\s"'>]*\s*(?:["']?)\s*\)[^"'>]*/gi, '');
+  // Remove dangerous style attribute data URLs (handles mixed quotes)
+  sanitized = sanitized.replace(/style\s*=\s*"[^"]*\burl\s*\([^)]*data:[^)]*\)[^"]*"/gi, '');
+  sanitized = sanitized.replace(/style\s*=\s*'[^']*\burl\s*\([^)]*data:[^)]*\)[^']*'/gi, '');
 
   return sanitized;
 }
@@ -197,7 +198,7 @@ export function validateSvgUpload(
 }
 
 /**
- * Basic HTML entity decoder
+ * Basic HTML entity decoder with bounds checking for security
  */
 function decodeHtmlEntities(str: string): string {
   if (typeof str !== 'string') return '';
@@ -207,6 +208,12 @@ function decodeHtmlEntities(str: string): string {
     .replace(/&quot;/g, '"')
     .replace(/&#039;/g, "'")
     .replace(/&amp;/g, '&')
-    .replace(/&#x([0-9a-f]+);/gi, (_, hex) => String.fromCharCode(parseInt(hex, 16)))
-    .replace(/&#([0-9]+);/gi, (_, dec) => String.fromCharCode(parseInt(dec, 10)));
+    .replace(/&#x([0-9a-f]+);/gi, (_, hex) => {
+      const code = parseInt(hex, 16);
+      return code > 0 && code <= 0x10FFFF ? String.fromCodePoint(code) : '';
+    })
+    .replace(/&#([0-9]+);/gi, (_, dec) => {
+      const code = parseInt(dec, 10);
+      return code > 0 && code <= 0x10FFFF ? String.fromCodePoint(code) : '';
+    });
 }

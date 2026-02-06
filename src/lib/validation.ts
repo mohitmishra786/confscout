@@ -99,8 +99,8 @@ export function sanitizeJsonLdValue(value: unknown): unknown {
     return value
       // Remove script tags and their content
       .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
-      // Remove all event handlers (onerror, onload, onclick, etc.) - handles various formats
-      .replace(/\s*on\w+\s*=\s*(?:"[^"]*"|'[^']*'|`[^`]*`|[^\s>]*)?/gi, '')
+      // Remove all event handlers (onerror, onload, onclick, etc.) - only in HTML-tag-like context
+      .replace(/(<[^>]*)\s+on\w+\s*=\s*(?:"[^"]*"|'[^']*'|`[^`]*`|[^\s>]*)/gi, '$1')
       // Remove javascript: protocol
       .replace(/javascript:/gi, '')
       // Remove all data: URLs that could execute scripts or contain malicious content

@@ -72,9 +72,8 @@ describe('Resource Enumeration Prevention', () => {
     } catch {
       return;
     }
-    // Should not distinguish between "email taken" and other failures if possible,
-    // but usually "Registration failed" is the generic way.
-    expect(content).toMatch(/Registration failed/);
+    // Should return a generic success message or generic failure to prevent enumeration
+    expect(content).toMatch(/Registration successful|Registration failed/);
   });
 
   it('should not have predictable sequential paths for sensitive resources', () => {

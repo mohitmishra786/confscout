@@ -28,6 +28,9 @@ export async function sendWelcomeEmail(to: string, token: string) {
     from: `"ConfScout" <${process.env.ZOHO_USER || process.env.ZOHO_EMAIL}>`,
     to,
     subject: 'Welcome to ConfScout!',
+    headers: {
+      'List-Unsubscribe': `<${unsubscribeUrl}>`,
+    },
     html: `
       <div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:20px;border:1px solid #e5e7eb;border-radius:8px;">
         <h1 style="color:#1e40af;">Welcome to ConfScout!</h1>
@@ -199,7 +202,7 @@ export async function sendDigestEmail(
         const safeGroqContent = sanitizeGroqContent(groqContent);
         
         htmlContent = wrapGroqContent(safeGroqContent, frequency, unsubscribeUrl, conferences.length);
-        textContent = groqContent.replace(/<[^>]*>/g, '');
+        textContent = safeGroqContent.replace(/<[^>]*>/g, '');
       } catch (error) {
         console.error('Groq email generation failed, falling back to template:', error);
         htmlContent = generateFallbackEmailContent(sections, frequency);
@@ -211,7 +214,7 @@ export async function sendDigestEmail(
     }
 
     await transporter.sendMail({
-      from: `"ConfScout" <${process.env.ZOHO_USER}>`,
+      from: `"ConfScout" <${process.env.ZOHO_USER || process.env.ZOHO_EMAIL}>`,
       to,
       subject: generateEmailSubject(frequency, conferences.length),
       html: htmlContent,

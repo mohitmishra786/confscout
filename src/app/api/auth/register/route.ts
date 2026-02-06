@@ -37,9 +37,12 @@ export async function POST(request: Request) {
       // Use a non-PII identifier for logging (first 4 chars of hash)
       const emailHash = crypto.createHash('sha256').update(email.toLowerCase()).digest('hex').substring(0, 8);
       securityLogger.info('Registration attempt with existing email', { emailId: emailHash });
+      
+      // SECURITY: Return success even if user exists to prevent email enumeration
+      // In a real app, you might send a "someone tried to register" or "you already have an account" email
       return NextResponse.json(
-        { error: 'Registration failed. If you already have an account, try signing in.' },
-        { status: 400 }
+        { message: 'Registration successful. Please check your email to verify your account.' },
+        { status: 201 }
       );
     }
 

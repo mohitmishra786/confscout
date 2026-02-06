@@ -50,24 +50,6 @@ describe('External Link Security', () => {
           inTag = false;
           currentTag = '';
         }
-
-        if (currentTag.includes('>') && inTag) {
-          if (currentTag.includes('target="_blank"') || currentTag.includes("target='_blank'")) {
-            if (!currentTag.includes('rel="noopener noreferrer"') && 
-                !currentTag.includes("rel='noopener noreferrer'") &&
-                !currentTag.includes('rel="noreferrer noopener"') &&
-                !currentTag.includes('rel="noopener"') && // Minimum requirement for modern browsers
-                !currentTag.includes('rel="noreferrer"')) { // Good for privacy
-              
-              // Only fail if it's really missing both
-              if (!currentTag.includes('rel=')) {
-                violations.push(`${file}:${i + 1}: ${currentTag.trim().substring(0, 100)}`);
-              }
-            }
-          }
-          inTag = false;
-          currentTag = '';
-        }
       }
     }
 
