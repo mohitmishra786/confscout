@@ -4,6 +4,7 @@ import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { z } from 'zod';
 import { validateCsrfToken } from '@/lib/csrf';
+import { securityLogger } from '@/lib/logger';
 
 const attendanceSchema = z.object({
   conferenceId: z.string(),
@@ -12,11 +13,13 @@ const attendanceSchema = z.object({
 export async function POST(request: Request) {
   try {
     if (!await validateCsrfToken(request)) {
+      securityLogger.warn('Invalid CSRF token on attendance toggle');
       return NextResponse.json({ error: 'Invalid CSRF token' }, { status: 403 });
     }
 
     const session = await getServerSession(authOptions);
     if (!session?.user) {
+      securityLogger.info('Unauthorized attendance toggle attempt');
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 

@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma';
 import bcrypt from 'bcrypt';
 import { z } from 'zod';
 import { validateCsrfToken } from '@/lib/csrf';
+import { securityLogger } from '@/lib/logger';
 
 const registerSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -20,6 +21,7 @@ const DEFAULT_BCRYPT_ROUNDS = 14;
 export async function POST(request: Request) {
   try {
     if (!await validateCsrfToken(request)) {
+      securityLogger.warn('Invalid CSRF token on registration attempt');
       return NextResponse.json({ error: 'Invalid CSRF token' }, { status: 403 });
     }
 
@@ -31,6 +33,7 @@ export async function POST(request: Request) {
     });
 
     if (existingUser) {
+      securityLogger.info('Registration attempt with existing email', { email });
       return NextResponse.json(
         { error: 'Registration failed. If you already have an account, try signing in.' },
         { status: 400 }
