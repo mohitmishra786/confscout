@@ -312,7 +312,8 @@ function wrapGroqContent(
                         <td style="background:#111827;border-radius:6px;text-align:center;">
                           <a href="${APP_URL}" 
                              style="display:inline-block;padding:14px 32px;color:#ffffff;text-decoration:none;font-weight:600;font-size:15px;"
-                             target="_blank">
+                             target="_blank"
+                             rel="noopener noreferrer">
                             Explore All Conferences
                           </a>
                         </td>

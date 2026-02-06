@@ -151,7 +151,7 @@ function MapContainerComponent({ conferences, center, zoom, onMarkerClick }: Wor
                                     <a
                                         href={conf.url}
                                         target="_blank"
-                                        rel="noreferrer"
+                                        rel="noopener noreferrer"
                                         className="text-center px-3 py-1.5 bg-zinc-900 text-white text-xs rounded hover:bg-zinc-700 transition-colors"
                                     >
                                         Website
@@ -159,7 +159,7 @@ function MapContainerComponent({ conferences, center, zoom, onMarkerClick }: Wor
                                     <a
                                         href={`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(conf.name)}&dates=${conf.startDate?.replace(/-/g, '')}/${conf.endDate?.replace(/-/g, '')}&details=${encodeURIComponent(conf.url)}&location=${encodeURIComponent(conf.location.raw)}`}
                                         target="_blank"
-                                        rel="noreferrer"
+                                        rel="noopener noreferrer"
                                         className="text-center px-3 py-1.5 border border-zinc-200 text-zinc-600 text-xs rounded hover:bg-zinc-50 transition-colors"
                                     >
                                         Add to Cal
