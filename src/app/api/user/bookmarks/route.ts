@@ -4,6 +4,7 @@ import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { z } from 'zod';
 import { Prisma } from '@prisma/client';
+import { validateCsrfToken } from '@/lib/csrf';
 
 const bookmarkSchema = z.object({
   conferenceId: z.string()
@@ -35,6 +36,10 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
+    if (!await validateCsrfToken(request)) {
+      return NextResponse.json({ error: 'Invalid CSRF token' }, { status: 403 });
+    }
+
     const session = await getServerSession(authOptions);
     
     if (!session?.user?.id) {
@@ -79,6 +84,10 @@ export async function POST(request: Request) {
 
 export async function DELETE(request: Request) {
   try {
+    if (!await validateCsrfToken(request)) {
+      return NextResponse.json({ error: 'Invalid CSRF token' }, { status: 403 });
+    }
+
     const session = await getServerSession(authOptions);
     
     if (!session?.user?.id) {

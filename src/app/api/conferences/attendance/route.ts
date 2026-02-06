@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { z } from 'zod';
+import { validateCsrfToken } from '@/lib/csrf';
 
 const attendanceSchema = z.object({
   conferenceId: z.string(),
@@ -10,6 +11,10 @@ const attendanceSchema = z.object({
 
 export async function POST(request: Request) {
   try {
+    if (!await validateCsrfToken(request)) {
+      return NextResponse.json({ error: 'Invalid CSRF token' }, { status: 403 });
+    }
+
     const session = await getServerSession(authOptions);
     if (!session?.user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

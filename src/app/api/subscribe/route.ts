@@ -3,6 +3,7 @@ import crypto from 'crypto';
 import pool from '@/lib/db';
 import { sendWelcomeEmail } from '@/lib/email';
 import { z } from 'zod';
+import { validateCsrfToken } from '@/lib/csrf';
 
 const subscribeSchema = z.object({
     email: z.string().email(),
@@ -12,6 +13,10 @@ const subscribeSchema = z.object({
 
 export async function POST(request: Request) {
     try {
+        if (!await validateCsrfToken(request)) {
+            return NextResponse.json({ error: 'Invalid CSRF token' }, { status: 403 });
+        }
+
         const body = await request.json();
         const { email, preferences, frequency } = subscribeSchema.parse(body);
         const token = crypto.randomBytes(32).toString('hex');

@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import bcrypt from 'bcrypt';
 import { z } from 'zod';
+import { validateCsrfToken } from '@/lib/csrf';
 
 const registerSchema = z.object({
   name: z.string().min(2),
@@ -11,6 +12,10 @@ const registerSchema = z.object({
 
 export async function POST(request: Request) {
   try {
+    if (!await validateCsrfToken(request)) {
+      return NextResponse.json({ error: 'Invalid CSRF token' }, { status: 403 });
+    }
+
     const body = await request.json();
     const { name, email, password } = registerSchema.parse(body);
 

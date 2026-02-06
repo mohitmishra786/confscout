@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import pool from '@/lib/db';
+import { validateCsrfToken } from '@/lib/csrf';
 
 const conferenceSubmissionSchema = z.object({
   name: z.string().min(2, 'Conference name must be at least 2 characters'),
@@ -25,6 +26,10 @@ const conferenceSubmissionSchema = z.object({
 
 export async function POST(request: Request) {
   try {
+    if (!await validateCsrfToken(request)) {
+      return NextResponse.json({ error: 'Invalid CSRF token' }, { status: 403 });
+    }
+
     const body = await request.json();
 
     // Validate submission
