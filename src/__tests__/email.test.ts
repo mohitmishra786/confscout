@@ -107,7 +107,7 @@ describe('Email Service', () => {
 
   describe('sendUnsubscribeEmail', () => {
     it('should send unsubscribe confirmation', async () => {
-      await sendUnsubscribeEmail('test@example.com');
+      await sendUnsubscribeEmail('test@example.com', 'token123');
 
       expect(mockSendMail).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -118,10 +118,22 @@ describe('Email Service', () => {
     });
 
     it('should include website link', async () => {
-      await sendUnsubscribeEmail('test@example.com');
+      await sendUnsubscribeEmail('test@example.com', 'token123');
 
       const callArgs = mockSendMail.mock.calls[0][0];
       expect(callArgs.html).toContain('confscouting.com');
+    });
+
+    it('should include List-Unsubscribe header', async () => {
+      await sendUnsubscribeEmail('test@example.com', 'token123');
+
+      expect(mockSendMail).toHaveBeenCalledWith(
+        expect.objectContaining({
+          headers: expect.objectContaining({
+            'List-Unsubscribe': expect.stringContaining('unsubscribe'),
+          }),
+        })
+      );
     });
   });
 
@@ -208,15 +220,28 @@ describe('Email Service', () => {
     });
 
     it('should not use Groq when API key is missing', async () => {
-      // This test verifies the code path - in production, missing API key would skip Groq
-      // The check is: if (useGroq && process.env.GROQ_API_KEY)
-      // Since we have the mock set up and process.env is set in setup.ts,
-      // Groq will be called. This test validates the logic exists.
-      expect(true).toBe(true);
+      const originalKey = process.env.GROQ_API_KEY;
+      const { generateEmailContent } = jest.requireMock('@/lib/groqEmail');
+
+      try {
+        // Clear the API key
+        process.env.GROQ_API_KEY = '';
+        generateEmailContent.mockClear();
+
+        await sendDigestEmail('test@example.com', 'token123', [mockConference], 'weekly', undefined, true);
+
+        // Groq should not have been called when API key is missing
+        expect(generateEmailContent).not.toHaveBeenCalled();
+        // But email should still be sent using fallback
+        expect(mockSendMail).toHaveBeenCalled();
+      } finally {
+        process.env.GROQ_API_KEY = originalKey;
+      }
     });
 
     it('should include conference count in subject', async () => {
-      await sendDigestEmail('test@example.com', 'token123', [mockConference, mockConference], 'weekly', undefined, false);
+      const secondConf = { ...mockConference, id: 'test-2' };
+      await sendDigestEmail('test@example.com', 'token123', [mockConference, secondConf], 'weekly', undefined, false);
 
       const callArgs = mockSendMail.mock.calls[0][0];
       expect(callArgs.subject).toContain('2');

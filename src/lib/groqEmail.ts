@@ -5,10 +5,13 @@
 
 import Groq from 'groq-sdk';
 import { Conference } from '@/types/conference';
+import { formatDate } from '@/lib/emailTemplates';
 
 const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY,
 });
+
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://confscouting.com';
 
 /**
  * System prompt for generating professional conference digest emails
@@ -97,7 +100,7 @@ ${s.conferences.slice(0, 5).map(c => `- ${c.name}: ${c.startDate} in ${c.locatio
 REQUIREMENTS:
 1. Generate professional HTML table for each section
 2. Link conference names to their URLs
-3. Add "See more conferences at https://confscouting.com/" after each section
+3. Add "See more conferences at ${APP_URL}/" after each section
 4. Use color #dc2626 for urgent CFP dates (closing within 3 days)
 5. Use color #059669 for upcoming events
 6. Include a brief opening paragraph
@@ -114,7 +117,12 @@ REQUIREMENTS:
       max_tokens: 4000,
     });
 
-    return completion.choices[0]?.message?.content || '';
+    const content = completion.choices[0]?.message?.content;
+    if (!content) {
+      console.error('Groq API returned empty content:', completion);
+      throw new Error('Groq API returned empty response');
+    }
+    return content;
   } catch (error) {
     console.error('Groq API error:', error);
     throw new Error('Failed to generate email content');
@@ -129,7 +137,6 @@ REQUIREMENTS:
 export function categorizeConferencesForEmail(conferences: Conference[]): EmailSection[] {
   const now = new Date();
   const oneWeek = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
-  const threeDays = new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000);
   const oneMonth = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
   
   const sections: EmailSection[] = [];
@@ -181,9 +188,9 @@ export function categorizeConferencesForEmail(conferences: Conference[]): EmailS
     });
   }
   
-  // Section 4: Online Events
+  // Section 4: Online Events (excluding all already listed conferences)
   const onlineEvents = conferences.filter(c => {
-    const alreadyListed = [...happeningSoon, ...upcoming].find(listed => listed.id === c.id);
+    const alreadyListed = [...happeningSoon, ...cfpClosing, ...upcoming].find(listed => listed.id === c.id);
     return c.online && !alreadyListed;
   }).slice(0, 5);
   
@@ -216,10 +223,10 @@ export function generateFallbackEmailContent(
         <td style="padding:12px;">
           <strong><a href="${c.url}" style="color:#2563eb;text-decoration:none;">${c.name}</a></strong>
         </td>
-        <td style="padding:12px;">${c.startDate || 'TBA'}</td>
+        <td style="padding:12px;">${formatDate(c.startDate)}</td>
         <td style="padding:12px;">${c.location?.raw || 'Online'}</td>
         <td style="padding:12px;">
-          ${c.cfp?.endDate ? `<span style="color:#dc2626;font-weight:600;">${c.cfp.endDate}</span>` : '-'}
+          ${c.cfp?.endDate ? `<span style="color:#dc2626;font-weight:600;">${formatDate(c.cfp.endDate)}</span>` : '-'}
         </td>
       </tr>
     `).join('');
@@ -227,7 +234,7 @@ export function generateFallbackEmailContent(
     return `
       <div style="margin:24px 0;">
         <h2 style="color:#111827;font-size:20px;margin-bottom:8px;">${section.title}</h2>
-        <p style="color:#6b7280;margin-bottom:16px;">${section.description}</p>
+        ${section.description ? `<p style="color:#6b7280;margin-bottom:16px;">${section.description}</p>` : ''}
         <table style="width:100%;border-collapse:collapse;">
           <thead>
             <tr style="background:#f8f9fa;">
@@ -240,7 +247,7 @@ export function generateFallbackEmailContent(
           <tbody>${rows}</tbody>
         </table>
         <p style="margin-top:12px;text-align:right;">
-          <a href="https://confscouting.com/" style="color:#2563eb;text-decoration:none;font-size:14px;">See more conferences</a>
+          <a href="${APP_URL}/" style="color:#2563eb;text-decoration:none;font-size:14px;">See more conferences</a>
         </p>
       </div>
     `;

@@ -10,13 +10,13 @@ import {
   generateEnhancedEmailHTML,
   generatePlainTextEmail,
   EmailTemplateParams,
-} from './emailTemplates';
+} from '@/lib/emailTemplates';
 import {
   generateEmailContent,
   categorizeConferencesForEmail,
   generateFallbackEmailContent,
   EmailSection,
-} from './groqEmail';
+} from '@/lib/groqEmail';
 
 const transporter = nodemailer.createTransport({
   host: process.env.ZOHO_SMTP_HOST || 'smtppro.zoho.in',
@@ -123,11 +123,16 @@ export async function sendWelcomeEmail(
  * Send unsubscribe confirmation email
  * @param to - Recipient email
  */
-export async function sendUnsubscribeEmail(to: string) {
+export async function sendUnsubscribeEmail(to: string, token: string) {
+  const unsubscribeUrl = `${APP_URL}/api/unsubscribe?token=${token}`;
+  
   await transporter.sendMail({
     from: `"ConfScout" <${process.env.ZOHO_USER || process.env.ZOHO_EMAIL}>`,
     to,
     subject: 'You have been unsubscribed',
+    headers: {
+      'List-Unsubscribe': `<${unsubscribeUrl}>`,
+    },
     html: `
       <!DOCTYPE html>
       <html lang="en">

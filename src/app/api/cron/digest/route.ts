@@ -3,13 +3,31 @@
  * Supports daily and weekly frequencies with dynamic email formatting
  */
 
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
 import pool from '@/lib/db';
 import { sendDigestEmail } from '@/lib/email';
-import { promises as fs } from 'fs';
-import path from 'path';
+import conferenceData from '../../../../public/data/conferences.json';
 import { Conference } from '@/types/conference';
 import { invalidateCache } from '@/lib/cache';
+
+/**
+ * Interface for subscriber preferences
+ */
+interface SubscriberPreferences {
+  domain?: string;
+  location?: string;
+  country?: string;
+}
+
+/**
+ * Mask email address for logging
+ * @param email - Raw email address
+ * @returns Masked email (e.g., t***t@example.com)
+ */
+function maskEmail(email: string): string {
+  return email.replace(/^(.)(.*)(.@.*)$/, (_, a, b, c) => `${a}${'*'.repeat(Math.min(b.length, 3))}${c}`);
+}
 
 /**
  * Filter conferences based on user preferences
@@ -19,9 +37,9 @@ import { invalidateCache } from '@/lib/cache';
  */
 function filterConferencesForUser(
   conferences: Conference[],
-  preferences: Record<string, unknown>
+  preferences: SubscriberPreferences
 ): Conference[] {
-  const domain = preferences?.domain as string | undefined;
+  const domain = preferences?.domain;
 
   if (!domain || domain === 'all') {
     return conferences;
@@ -35,9 +53,9 @@ function filterConferencesForUser(
  * @param preferences - User preferences object
  * @returns Location string or undefined
  */
-function getUserLocation(preferences: Record<string, unknown>): string | undefined {
-  const location = preferences?.location as string | undefined;
-  const country = preferences?.country as string | undefined;
+function getUserLocation(preferences: SubscriberPreferences): string | undefined {
+  const location = preferences?.location;
+  const country = preferences?.country;
 
   if (location && country) {
     return `${location}, ${country}`;
@@ -46,29 +64,54 @@ function getUserLocation(preferences: Record<string, unknown>): string | undefin
   return location || country;
 }
 
+// Zod schema for frequency validation
+const frequencySchema = z.enum(['daily', 'weekly']);
+
 /**
  * GET handler for cron digest endpoint
  * Supports query parameter: ?frequency=daily|weekly
+ * Requires CRON_SECRET authorization header
  */
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const triggerFrequency = (searchParams.get('frequency') || 'weekly') as 'daily' | 'weekly';
+export async function GET(request: NextRequest) {
+  // Verify CRON_SECRET
+  const authHeader = request.headers.get('authorization');
+  const expectedToken = process.env.CRON_SECRET;
+  
+  if (!expectedToken) {
+    console.error('CRON_SECRET is not configured');
+    return NextResponse.json(
+      { error: 'Server configuration error' },
+      { status: 500 }
+    );
+  }
+  
+  if (!authHeader || !authHeader.startsWith('Bearer ') || authHeader.slice(7) !== expectedToken) {
+    return NextResponse.json(
+      { error: 'Unauthorized' },
+      { status: 401 }
+    );
+  }
 
-  // Validate frequency parameter
-  if (!['daily', 'weekly'].includes(triggerFrequency)) {
+  // Validate frequency parameter using Zod
+  const { searchParams } = new URL(request.url);
+  const rawFrequency = searchParams.get('frequency') || 'weekly';
+  
+  const parseResult = frequencySchema.safeParse(rawFrequency);
+  if (!parseResult.success) {
     return NextResponse.json(
       { error: 'Invalid frequency. Must be "daily" or "weekly"' },
       { status: 400 }
     );
   }
+  
+  const triggerFrequency = parseResult.data;
 
   try {
-    // Load conference data
-    const dataPath = path.join(process.cwd(), 'public/data/conferences.json');
-    const fileContents = await fs.readFile(dataPath, 'utf8');
-    const data = JSON.parse(fileContents);
-    // Fix: Flatten months to get all conferences
-    const conferences: Conference[] = data.months ? Object.values(data.months).flat() as Conference[] : (data.conferences || []);
+    // Load conference data from static import
+    const data = conferenceData as { months?: Record<string, Conference[]>; conferences?: Conference[] };
+    const conferences: Conference[] = data.months 
+      ? Object.values(data.months).flat() as Conference[] 
+      : (data.conferences || []);
 
     // Filter conferences based on frequency
     const now = new Date();
@@ -137,9 +180,10 @@ export async function GET(request: Request) {
         const userConfs = filterConferencesForUser(upcomingConfs, sub.preferences || {});
 
         if (userConfs.length === 0) {
-          console.log(`Skipping ${sub.email}: no matching conferences for their preferences`);
+          const maskedEmail = maskEmail(sub.email);
+          console.log(`Skipping ${maskedEmail}: no matching conferences for their preferences`);
           skippedCount++;
-          return { status: 'skipped', email: sub.email };
+          return { status: 'skipped', maskedEmail };
         }
 
         // Get user location for prioritization
@@ -155,11 +199,12 @@ export async function GET(request: Request) {
             true // Use Groq AI for enhanced content
           );
           sentCount++;
-          return { status: 'sent', email: sub.email, conferences: userConfs.length };
+          return { status: 'sent', maskedEmail: maskEmail(sub.email), conferences: userConfs.length };
         } catch (error) {
-          console.error(`Failed to send digest to ${sub.email}:`, error);
+          const maskedEmail = maskEmail(sub.email);
+          console.error(`Failed to send digest to ${maskedEmail}:`, error);
           failedCount++;
-          return { status: 'failed', email: sub.email, error: String(error) };
+          return { status: 'failed', maskedEmail, error: String(error) };
         }
       });
 

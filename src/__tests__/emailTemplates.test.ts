@@ -2,6 +2,7 @@
  * Unit tests for emailTemplates.ts
  */
 
+import { Conference } from '@/types/conference';
 import {
   generateEmailSubject,
   generateEmailTitle,
@@ -10,15 +11,14 @@ import {
   generatePlainTextEmail,
   EmailTemplateParams,
 } from '@/lib/emailTemplates';
-import { Conference } from '@/types/conference';
 
 describe('Email Templates', () => {
   const mockConference: Conference = {
     id: 'test-1',
     name: 'Test Conference',
     url: 'https://testconf.com',
-    startDate: '2026-03-15',
-    endDate: '2026-03-17',
+    startDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+    endDate: new Date(Date.now() + 32 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
     location: {
       city: 'San Francisco',
       country: 'USA',
@@ -27,7 +27,7 @@ describe('Email Templates', () => {
     online: false,
     cfp: {
       url: 'https://testconf.com/cfp',
-      endDate: '2026-02-01',
+      endDate: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
       status: 'open',
     },
     domain: 'software',
@@ -241,7 +241,8 @@ describe('Email Templates', () => {
 
     it('should format dates properly', () => {
       const text = generatePlainTextEmail(baseParams);
-      expect(text).toContain('Mar 15, 2026');
+      // Check that the date is formatted (should contain a comma like "Mar 8, 2026")
+      expect(text).toMatch(/[A-Z][a-z]{2} \d{1,2}, \d{4}/);
     });
   });
 });

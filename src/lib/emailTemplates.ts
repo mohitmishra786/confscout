@@ -8,6 +8,34 @@ import { Conference } from '@/types/conference';
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://confscouting.com';
 
 /**
+ * Escape HTML special characters to prevent XSS
+ * @param text - Raw text to escape
+ * @returns Escaped HTML-safe text
+ */
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+/**
+ * Sanitize URL to ensure it's safe
+ * @param url - Raw URL to sanitize
+ * @returns Sanitized URL or empty string if invalid
+ */
+function sanitizeUrl(url: string | null | undefined): string {
+  if (!url) return '#';
+  // Only allow http and https protocols
+  if (!url.match(/^https?:\/\//i)) {
+    return '#';
+  }
+  return url;
+}
+
+/**
  * Generate dynamic email subject based on frequency
  * @param frequency - 'daily' or 'weekly'
  * @param conferenceCount - Number of conferences in the email
@@ -50,14 +78,19 @@ export function generateEmailSubtitle(frequency: 'daily' | 'weekly'): string {
  * @param dateString - ISO date string
  * @returns Formatted date
  */
-function formatDate(dateString: string | null): string {
+export function formatDate(dateString: string | null): string {
   if (!dateString) return 'TBA';
-  const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-  });
+  try {
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return dateString;
+    return date.toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    });
+  } catch {
+    return dateString;
+  }
 }
 
 /**
@@ -81,27 +114,31 @@ function isUrgentCFP(endDate: string | null | undefined): boolean {
 function generateConferenceRow(conference: Conference): string {
   const cfpEnd = conference.cfp?.endDate;
   const cfpUrgent = isUrgentCFP(cfpEnd);
-  
+  const safeUrl = sanitizeUrl(conference.url);
+  const safeName = escapeHtml(conference.name);
+  const safeDescription = conference.description ? escapeHtml(conference.description.substring(0, 100)) : '';
+  const safeLocation = escapeHtml(conference.location?.raw || (conference.online ? 'Online' : 'TBA'));
+
   return `
     <tr style="border-bottom:1px solid #e5e7eb;">
       <td style="padding:16px 12px;vertical-align:top;">
         <strong>
-          <a href="${conference.url}" 
+          <a href="${safeUrl}"
              style="color:#2563eb;text-decoration:none;font-size:15px;"
              target="_blank">
-            ${conference.name}
+            ${safeName}
           </a>
         </strong>
-        ${conference.description ? `<p style="margin:4px 0 0 0;color:#6b7280;font-size:13px;">${conference.description.substring(0, 100)}${conference.description.length > 100 ? '...' : ''}</p>` : ''}
+        ${safeDescription ? `<p style="margin:4px 0 0 0;color:#6b7280;font-size:13px;">${safeDescription}${conference.description!.length > 100 ? '...' : ''}</p>` : ''}
       </td>
       <td style="padding:16px 12px;vertical-align:top;white-space:nowrap;color:#374151;font-size:14px;">
         ${formatDate(conference.startDate)}
       </td>
       <td style="padding:16px 12px;vertical-align:top;color:#374151;font-size:14px;">
-        ${conference.location?.raw || (conference.online ? 'Online' : 'TBA')}
+        ${safeLocation}
       </td>
       <td style="padding:16px 12px;vertical-align:top;white-space:nowrap;font-size:14px;">
-        ${cfpEnd 
+        ${cfpEnd
           ? `<span style="color:${cfpUrgent ? '#dc2626' : '#059669'};font-weight:600;">${formatDate(cfpEnd)}</span>${cfpUrgent ? ' <span style="color:#dc2626;font-size:12px;">(URGENT)</span>' : ''}`
           : '<span style="color:#9ca3af;">Closed</span>'
         }
@@ -222,7 +259,7 @@ export function generateEnhancedEmailHTML(params: EmailTemplateParams): string {
           
           <!-- Header -->
           <tr>
-            <td style="background:linear-gradient(135deg,#1e40af 0%,#3b82f6 100%);padding:40px 40px 32px 40px;border-radius:8px 8px 0 0;text-align:center;">
+            <td style="background:#1e40af;background:linear-gradient(135deg,#1e40af 0%,#3b82f6 100%);padding:40px 40px 32px 40px;border-radius:8px 8px 0 0;text-align:center;">
               <h1 style="margin:0 0 8px 0;color:#ffffff;font-size:28px;font-weight:700;letter-spacing:-0.5px;">${title}</h1>
               <p style="margin:0;color:#dbeafe;font-size:16px;">${subtitle}</p>
               <p style="margin:16px 0 0 0;color:#bfdbfe;font-size:14px;">${totalConferences} events curated for you</p>
