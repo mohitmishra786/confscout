@@ -5,7 +5,7 @@
  */
 
 import { execSync } from 'child_process';
-import { readFileSync } from 'fs';
+import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
 
 describe('Cookie Security', () => {
@@ -17,61 +17,90 @@ describe('Cookie Security', () => {
       // Check auth options for secure cookie settings
       try {
         const authPath = join(process.cwd(), 'src/lib/auth.ts');
-        const content = readFileSync(authPath, 'utf-8');
-        
-        // If "cookies" option is present, check it
-        if (content.includes('cookies:')) {
-          expect(content).toMatch(/secure:\s*process\.env\.NODE_ENV\s*===\s*['"]production['"]/);
+        if (existsSync(authPath)) {
+          const content = readFileSync(authPath, 'utf-8');
+          
+          // If "cookies" option is present, check it
+          if (content.includes('cookies:')) {
+            expect(content).toMatch(/secure:\s*process\.env\.NODE_ENV\s*===\s*['"]production['"]/);
+          }
         }
-      } catch {
-        // Skip
+      } catch (error) {
+        if (error instanceof Error && error.message.includes('expect')) throw error;
       }
     });
   });
 
   describe('Manual Cookie Setting', () => {
     it('should use Secure and SameSite attributes when setting cookies manually', () => {
-      // Search for manual cookie setting
+      // Search for manual cookie setting (Async cookies in Next.js 15)
+      const violations: string[] = [];
+      let result = '';
+      
       try {
-        const result = execSync(
-          'git grep -n "cookies().set" -- "src/**/*.ts" "src/**/*.tsx" 2>/dev/null || true',
+        // Broaden pattern to match (await cookies()).set, cookies().set, etc.
+        // Final regex passed to grep: cookies\(\).*\.set\(
+        result = execSync(
+          'git grep -n -E "cookies\\\\(\\\\).*\\\\.set\\\\(" -- "src/**/*.ts" "src/**/*.tsx" 2>/dev/null || true',
           { encoding: 'utf-8', cwd: process.cwd() }
         );
-
-        const lines = result.split('\n').filter(Boolean);
-
-        for (const line of lines) {
-          if (line.includes('test')) continue;
-          
-          // Should see secure attributes
-          // This is a heuristic - actual object might be passed
-          if (!line.includes('secure') && !line.includes('httpOnly') && !line.includes('sameSite')) {
-             // Just a warning for manual review
-             // console.warn(`Potential insecure cookie setting: ${line}`);
-          }
-        }
-      } catch {
-        // Ok
+      } catch (error) {
+        console.warn('Skipping manual cookie check: git grep failed', error);
+        return;
       }
+
+      const lines = result.split('\n').filter(Boolean);
+
+      for (const line of lines) {
+        const [file, lineNumStr] = line.split(':');
+        const lineNum = parseInt(lineNumStr, 10);
+        
+        // Filter out test files correctly using path segments
+        if (/(^|[\\/])(test|spec|__tests__|__mocks__)s?([\\/]|$)/.test(file)) continue;
+        
+        try {
+          const fileContent = readFileSync(join(process.cwd(), file), 'utf-8');
+          const fileLines = fileContent.split('\n');
+          
+          // Get 15 lines of context to handle multi-line options
+          const contextLines = fileLines.slice(Math.max(0, lineNum - 1), lineNum + 14);
+          const context = contextLines.join('\n').toLowerCase();
+          
+          if (!context.includes('secure') || !context.includes('httponly') || !context.includes('samesite')) {
+             violations.push(`${file}:${lineNum}: ${line}`);
+          }
+        } catch (error) {
+          console.warn(`Could not read file ${file} for cookie check: ${error}`);
+        }
+      }
+      
+      expect(violations).toHaveLength(0);
     });
   });
 
   describe('Global Configuration', () => {
     it('should not have unsafe cookie defaults', () => {
       // Ensure no global config disables secure cookies
+      let result = '';
       try {
-        const result = execSync(
-          'git grep "secure:\s*false" -- "src/**/*.ts" "src/**/*.tsx" 2>/dev/null || true',
+        result = execSync(
+          "git grep 'secure:\\s*false' -- 'src/**/*.ts' 'src/**/*.tsx' 2>/dev/null || true",
           { encoding: 'utf-8', cwd: process.cwd() }
         );
-        // Only allow in development/test context
-        const lines = result.split('\n').filter(line => 
-          line && !line.includes('NODE_ENV') && !line.includes('development') && !line.includes('test')
-        );
-        expect(lines).toHaveLength(0);
-      } catch {
-        expect(true).toBe(true);
+      } catch (error) {
+        console.warn('Skipping global cookie check: git grep failed', error);
+        return;
       }
+
+      // Only allow in development/test context
+      const lines = result.split('\n').filter(line => {
+        if (!line) return false;
+        const filePath = line.split(':')[0];
+        const isTestFile = /(^|[\\/])(test|spec|__tests__|__mocks__)s?([\\/]|$)/.test(filePath);
+        return !isTestFile && !line.includes('NODE_ENV') && !line.includes('development');
+      });
+      
+      expect(lines).toHaveLength(0);
     });
   });
 });

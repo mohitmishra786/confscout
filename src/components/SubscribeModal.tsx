@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { DOMAIN_INFO } from '@/types/conference';
+import { secureFetch } from '@/lib/api';
 
 interface SubscribeModalProps {
     isOpen: boolean;
@@ -22,7 +23,7 @@ export default function SubscribeModal({ isOpen, onClose }: SubscribeModalProps)
         setStatus('loading');
 
         try {
-            const res = await fetch('/api/subscribe', {
+            const res = await secureFetch('/api/subscribe', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -42,7 +43,7 @@ export default function SubscribeModal({ isOpen, onClose }: SubscribeModalProps)
                 setStatus('error');
                 setMessage(data.error || 'Something went wrong');
             }
-        } catch (err) {
+        } catch {
             setStatus('error');
             setMessage('Network error. Please try again.');
         }

@@ -6,6 +6,19 @@
 import Groq from 'groq-sdk';
 import { Conference } from '@/types/conference';
 import { formatDate } from '@/lib/emailTemplates';
+import { sanitizeXSS } from '@/lib/validation';
+
+/**
+ * Sanitize and encode a URL for safe attribute interpolation
+ */
+function sanitizeUrl(url: string | null | undefined): string {
+  if (!url || !/^https?:\/\//i.test(url)) return '#';
+  try {
+    return encodeURI(url).replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+  } catch {
+    return '#';
+  }
+}
 
 const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY,
@@ -115,6 +128,8 @@ REQUIREMENTS:
       ],
       temperature: 0.3,
       max_tokens: 4000,
+    }, {
+      timeout: 30000, // 30 seconds timeout
     });
 
     const content = completion.choices[0]?.message?.content;
@@ -218,18 +233,24 @@ export function generateFallbackEmailContent(
   const frequencyText = frequency === 'daily' ? 'Daily' : 'Weekly';
   
   const sectionHtml = sections.map(section => {
-    const rows = section.conferences.map(c => `
+    const rows = section.conferences.map(c => {
+      const safeUrl = sanitizeUrl(c.url);
+      const safeName = sanitizeXSS(c.name);
+      const safeLocation = sanitizeXSS(c.location?.raw || (c.online ? 'Online' : 'TBA'));
+      
+      return `
       <tr style="border-bottom:1px solid #e5e7eb;">
         <td style="padding:12px;">
-          <strong><a href="${c.url}" style="color:#2563eb;text-decoration:none;">${c.name}</a></strong>
+          <strong><a href="${safeUrl}" style="color:#2563eb;text-decoration:none;">${safeName}</a></strong>
         </td>
-        <td style="padding:12px;">${formatDate(c.startDate)}</td>
-        <td style="padding:12px;">${c.location?.raw || 'Online'}</td>
+        <td style="padding:12px;">${sanitizeXSS(formatDate(c.startDate))}</td>
+        <td style="padding:12px;">${safeLocation}</td>
         <td style="padding:12px;">
-          ${c.cfp?.endDate ? `<span style="color:#dc2626;font-weight:600;">${formatDate(c.cfp.endDate)}</span>` : '-'}
+          ${c.cfp?.endDate ? `<span style="color:#dc2626;font-weight:600;">${sanitizeXSS(formatDate(c.cfp.endDate))}</span>` : '-'}
         </td>
       </tr>
-    `).join('');
+    `;
+    }).join('');
     
     return `
       <div style="margin:24px 0;">

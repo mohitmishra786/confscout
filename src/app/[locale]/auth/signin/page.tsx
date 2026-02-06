@@ -5,6 +5,7 @@ import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { secureFetch } from '@/lib/api';
 
 export default function SignInPage() {
   const router = useRouter();
@@ -24,7 +25,7 @@ export default function SignInPage() {
 
     try {
       if (isSignUp) {
-        const res = await fetch('/api/auth/register', {
+        const res = await secureFetch('/api/auth/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)

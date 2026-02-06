@@ -12,9 +12,10 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { Conference, DOMAIN_INFO } from '@/types/conference';
 import { useCompare } from '@/context/CompareContext';
-import { SafeHighlightedText } from './SafeHighlightedText';
+import { SafeHighlightedText } from '@/components/SafeHighlightedText';
 import VisaModal from './VisaModal';
 import TravelModal from './TravelModal';
+import { secureFetch } from '@/lib/api';
 
 interface ConferenceCardProps {
   conference: Conference;
@@ -39,7 +40,7 @@ export default function ConferenceCard({ conference, searchTerm }: ConferenceCar
     setAttendeeCount(prev => prevAttending ? prev - 1 : prev + 1);
 
     try {
-      const res = await fetch('/api/conferences/attendance', {
+      const res = await secureFetch('/api/conferences/attendance', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ conferenceId: conference.id })

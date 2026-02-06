@@ -1,8 +1,10 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
+import { z } from 'zod';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
-import { z } from 'zod';
+import { validateCsrfToken } from '@/lib/csrf';
+import { securityLogger } from '@/lib/logger';
 
 const attendanceSchema = z.object({
   conferenceId: z.string(),
@@ -10,8 +12,14 @@ const attendanceSchema = z.object({
 
 export async function POST(request: Request) {
   try {
+    if (!await validateCsrfToken(request)) {
+      securityLogger.warn('Invalid CSRF token on attendance toggle');
+      return NextResponse.json({ error: 'Invalid CSRF token' }, { status: 403 });
+    }
+
     const session = await getServerSession(authOptions);
-    if (!session?.user) {
+    if (!session?.user?.id) {
+      securityLogger.info('Unauthorized attendance toggle attempt');
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
@@ -46,7 +54,16 @@ export async function POST(request: Request) {
       return NextResponse.json({ attending: true });
     }
   } catch (error) {
+    if (error instanceof z.ZodError) {
+      return NextResponse.json(
+        { error: 'Validation failed', details: error.issues },
+        { status: 400 }
+      );
+    }
     console.error('Attendance Toggle Error:', error);
-    return NextResponse.json({ error: 'Invalid request' }, { status: 400 });
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
   }
 }

@@ -6,6 +6,7 @@
  */
 
 import React from 'react';
+import { sanitizeXSS } from '@/lib/validation';
 
 interface SafeHighlightedTextProps {
   text: string;
@@ -61,19 +62,5 @@ export function SafeHighlightedText({ text, searchTerm, className = '' }: SafeHi
   }
 }
 
-/**
- * Sanitize text to prevent XSS in HTML attributes or other contexts
- * This is a defense-in-depth measure
- */
-export function sanitizeXSS(text: string): string {
-  if (!text) return '';
-  
-  return text
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#x27;')
-    .replace(/\//g, '&#x2F;');
-}
-
+export { sanitizeXSS };
 export default SafeHighlightedText;

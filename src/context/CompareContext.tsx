@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import { Conference } from '@/types/conference';
+import { isValidConference } from '@/lib/validation';
 
 interface CompareContextType {
   selectedConferences: Conference[];
@@ -16,21 +17,29 @@ const CompareContext = createContext<CompareContextType | undefined>(undefined);
 export function CompareProvider({ children }: { children: ReactNode }) {
   const [selectedConferences, setSelectedConferences] = useState<Conference[]>([]);
 
-  // Load from local storage on mount
+  // Load from session storage on mount (more secure than localStorage for ephemeral data)
   useEffect(() => {
-    const saved = localStorage.getItem('compare_conferences');
-    if (saved) {
-      try {
-        setSelectedConferences(JSON.parse(saved));
-      } catch (e) {
-        // Silently fail to parse - will use empty state
+    try {
+      const saved = sessionStorage.getItem('compare_conferences');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) {
+          const validated = parsed.filter(isValidConference);
+          setSelectedConferences(validated);
+        }
       }
+    } catch {
+      console.warn('Failed to load compare data from storage');
     }
   }, []);
 
-  // Save to local storage on change
+  // Save to session storage on change
   useEffect(() => {
-    localStorage.setItem('compare_conferences', JSON.stringify(selectedConferences));
+    try {
+      sessionStorage.setItem('compare_conferences', JSON.stringify(selectedConferences));
+    } catch {
+      console.warn('Failed to save compare data to storage');
+    }
   }, [selectedConferences]);
 
   const addToCompare = (conf: Conference) => {

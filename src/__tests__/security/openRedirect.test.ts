@@ -76,8 +76,9 @@ describe('Open Redirect Prevention', () => {
       expect(isSafeRedirectUrl('https://evil.com/page', customHosts)).toBe(false);
     });
 
-    it('should handle URL encoding attacks', () => {
-      expect(isSafeRedirectUrl('/%2F%2Fe%76%69%6C%2E%63%6F%6D')).toBe(true); // Relative is OK
+    it('should reject encoded protocol-relative URLs', () => {
+      // /%2F%2Fe%76%69%6C%2E%63%6F%6D decodes to ///evil.com (starts with //)
+      expect(isSafeRedirectUrl('/%2F%2Fe%76%69%6C%2E%63%6F%6D')).toBe(false);
       expect(isSafeRedirectUrl('https://%65%76%69%6C%2E%63%6F%6D')).toBe(false); // External not allowed
     });
 

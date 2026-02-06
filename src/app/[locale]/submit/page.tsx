@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { secureFetch } from '@/lib/api';
 
 export default function SubmitConferencePage() {
   const router = useRouter();
@@ -33,7 +34,7 @@ export default function SubmitConferencePage() {
     setSubmitting(true);
 
     try {
-      const response = await fetch('/api/submit-conference', {
+      const response = await secureFetch('/api/submit-conference', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

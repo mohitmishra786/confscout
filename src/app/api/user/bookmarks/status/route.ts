@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { z } from 'zod';
+import { validateCsrfToken } from '@/lib/csrf';
 
 const statusSchema = z.object({
   bookmarkId: z.string(),
@@ -11,6 +12,10 @@ const statusSchema = z.object({
 
 export async function PATCH(request: Request) {
   try {
+    if (!await validateCsrfToken(request)) {
+      return NextResponse.json({ error: 'Invalid CSRF token' }, { status: 403 });
+    }
+
     const session = await getServerSession(authOptions);
     if (!session?.user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

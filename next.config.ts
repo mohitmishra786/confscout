@@ -5,6 +5,7 @@ import createNextIntlPlugin from 'next-intl/plugin';
 const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
+  poweredByHeader: false, // SECURITY FIX: Disable X-Powered-By header
   images: {
     remotePatterns: [
       {
@@ -28,13 +29,30 @@ const nextConfig: NextConfig = {
         headers: [
           { key: 'Access-Control-Allow-Credentials', value: 'true' },
           { key: 'Access-Control-Allow-Origin', value: process.env.NEXT_PUBLIC_APP_URL || 'https://confscout.site' },
-          { key: 'Access-Control-Allow-Methods', value: 'GET,DELETE,PATCH,POST,PUT' },
-          { key: 'Access-Control-Allow-Headers', value: 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version' },
+          { key: 'Access-Control-Allow-Methods', value: 'GET,DELETE,PATCH,POST,PUT,OPTIONS' },
+          { 
+            key: 'Access-Control-Allow-Headers', 
+            value: 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version' 
+          },
         ],
       },
       {
         source: '/(.*)',
         headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-inline' *.sentry.io", // Note: unsafe-eval removed for production hardening
+              "style-src 'self' 'unsafe-inline' *.googleapis.com",
+              "img-src 'self' data: blob: avatars.githubusercontent.com lh3.googleusercontent.com res.cloudinary.com *.tile.openstreetmap.org *.basemaps.cartocdn.com",
+              "font-src 'self' *.gstatic.com",
+              "connect-src 'self' *.sentry.io *.google-analytics.com",
+              "object-src 'none'", // Hardening: block plugins
+              "frame-ancestors 'self'",
+              "upgrade-insecure-requests"
+            ].join('; ')
+          },
           {
             key: 'X-DNS-Prefetch-Control',
             value: 'on'
@@ -42,10 +60,6 @@ const nextConfig: NextConfig = {
           {
             key: 'Strict-Transport-Security',
             value: 'max-age=63072000; includeSubDomains; preload'
-          },
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block'
           },
           {
             key: 'X-Frame-Options',
@@ -58,6 +72,10 @@ const nextConfig: NextConfig = {
           {
             key: 'Referrer-Policy',
             value: 'strict-origin-when-cross-origin'
+          },
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=(), browsing-topics=(), interest-cohort=(), payment=(), usb=(), bluetooth=()'
           }
         ]
       }

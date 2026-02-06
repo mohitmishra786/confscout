@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Conference } from '@/types/conference';
 import ConferenceCard from '@/components/ConferenceCard';
+import { secureFetch } from '@/lib/api';
 
 interface TrackedEvent {
   id: string;
@@ -29,7 +30,7 @@ export default function DashboardClient({ initialEvents }: DashboardClientProps)
   const updateStatus = async (bookmarkId: string, newStatus: string) => {
     setUpdatingId(bookmarkId);
     try {
-      const res = await fetch('/api/user/bookmarks/status', {
+      const res = await secureFetch('/api/user/bookmarks/status', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ bookmarkId, status: newStatus }),
@@ -40,7 +41,7 @@ export default function DashboardClient({ initialEvents }: DashboardClientProps)
       setEvents(prev => 
         prev.map(e => e.id === bookmarkId ? { ...e, status: newStatus } : e)
       );
-    } catch (err) {
+    } catch {
       alert('Failed to update status');
     } finally {
       setUpdatingId(null);

@@ -13,13 +13,16 @@ describe('Payload Size Limits', () => {
   describe('Global Configuration', () => {
     it('should limit body size in next.config.ts', () => {
       // Next.js limits body size to 1MB by default for API routes
-      // However, it can be configured in next.config.ts or per-route
       const configPath = join(process.cwd(), 'next.config.ts');
       
       try {
         const content = readFileSync(configPath, 'utf-8');
-        // Check if there are any overrides increasing the limit unsafely
-        expect(content).not.toMatch(/bodySizeLimit:\s*['"]\d+mb['"]/i); // e.g. '50mb'
+        // SECURITY: Reject body size overrides >= 10MB
+        const match = content.match(/bodySizeLimit:\s*['"](\d+)mb['"]/i);
+        if (match) {
+          const size = parseInt(match[1], 10);
+          expect(size).toBeLessThan(10);
+        }
       } catch {
         // Use default
       }
@@ -54,29 +57,26 @@ describe('Payload Size Limits', () => {
            const hasSizeCheck = content.includes('.size') || 
                                content.includes('MAX_FILE_SIZE') || 
                                content.includes('maxFileSize') ||
-                               content.includes('limit');
+                               content.includes('byteLength');
            
-           if (!hasSizeCheck) {
-             // Warn but don't fail as it might be handled by middleware or cloud provider
-             console.warn(`Potential missing size check in ${route}`);
-           }
+           expect(hasSizeCheck).toBe(true);
         }
       }
     });
   });
 
   describe('DoS Prevention', () => {
-    it('should use streaming for large responses', () => {
-      // Check for streaming responses in API
+    it('should use appropriate response types for large data', () => {
+      // Check for calendar or CSV routes that handle potentially large data
       try {
         const result = execSync(
-          'git grep "Stream" -- "src/app/api" 2>/dev/null || true',
+          'git grep -E "new NextResponse\\(|ReadableStream" -- "src/app/api" 2>/dev/null || true',
           { encoding: 'utf-8' }
         );
-        // Just an informational check that streaming is used where appropriate
-        expect(true).toBe(true);
-      } catch {
-        expect(true).toBe(true);
+        // Verify we have some large data handling patterns
+        expect(result.length).toBeGreaterThan(0);
+      } catch (error) {
+        if (error instanceof Error && error.message.includes('expect')) throw error;
       }
     });
   });

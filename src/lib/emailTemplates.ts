@@ -125,7 +125,8 @@ function generateConferenceRow(conference: Conference): string {
         <strong>
           <a href="${safeUrl}"
              style="color:#2563eb;text-decoration:none;font-size:15px;"
-             target="_blank">
+             target="_blank"
+             rel="noopener noreferrer">
             ${safeName}
           </a>
         </strong>
@@ -198,7 +199,8 @@ function generateSectionHTML(
             <td align="right">
               <a href="${APP_URL}" 
                  style="color:#2563eb;text-decoration:none;font-size:14px;font-weight:500;"
-                 target="_blank">
+                 target="_blank"
+                 rel="noopener noreferrer">
                 See ${conferences.length - maxItems} more conferences
               </a>
             </td>
@@ -287,7 +289,8 @@ export function generateEnhancedEmailHTML(params: EmailTemplateParams): string {
                         <td style="background:#111827;border-radius:6px;text-align:center;">
                           <a href="${APP_URL}" 
                              style="display:inline-block;padding:14px 32px;color:#ffffff;text-decoration:none;font-weight:600;font-size:15px;"
-                             target="_blank">
+                             target="_blank"
+                             rel="noopener noreferrer">
                             Explore All Conferences
                           </a>
                         </td>
