@@ -5,10 +5,17 @@ import { z } from 'zod';
 import { validateCsrfToken } from '@/lib/csrf';
 
 const registerSchema = z.object({
-  name: z.string().min(2),
-  email: z.string().email(),
-  password: z.string().min(8)
+  name: z.string().min(2, 'Name must be at least 2 characters'),
+  email: z.string().email('Invalid email address'),
+  password: z.string()
+    .min(10, 'Password must be at least 10 characters')
+    .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
+    .regex(/[a-z]/, 'Password must contain at least one lowercase letter')
+    .regex(/[0-9]/, 'Password must contain at least one number')
+    .regex(/[^A-Za-z0-9]/, 'Password must contain at least one special character')
 });
+
+const DEFAULT_BCRYPT_ROUNDS = 14;
 
 export async function POST(request: Request) {
   try {
@@ -30,7 +37,13 @@ export async function POST(request: Request) {
       );
     }
 
-    const hashedPassword = await bcrypt.hash(password, 12);
+    // Get salt rounds from env or use default
+    let saltRounds = parseInt(process.env.BCRYPT_ROUNDS || String(DEFAULT_BCRYPT_ROUNDS), 10);
+    if (isNaN(saltRounds) || saltRounds < 12 || saltRounds > 16) {
+      saltRounds = DEFAULT_BCRYPT_ROUNDS;
+    }
+
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
 
     const user = await prisma.user.create({
       data: {
