@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import bcrypt from 'bcrypt';
+import crypto from 'crypto';
 import { z } from 'zod';
 import { validateCsrfToken } from '@/lib/csrf';
 import { securityLogger } from '@/lib/logger';
@@ -33,7 +34,9 @@ export async function POST(request: Request) {
     });
 
     if (existingUser) {
-      securityLogger.info('Registration attempt with existing email', { email });
+      // Use a non-PII identifier for logging (first 4 chars of hash)
+      const emailHash = crypto.createHash('sha256').update(email.toLowerCase()).digest('hex').substring(0, 8);
+      securityLogger.info('Registration attempt with existing email', { emailId: emailHash });
       return NextResponse.json(
         { error: 'Registration failed. If you already have an account, try signing in.' },
         { status: 400 }

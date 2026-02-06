@@ -127,6 +127,18 @@ describe('SVG Sanitization Security Tests', () => {
       expect(sanitized).not.toContain('<set');
     });
 
+    it('should remove script tags with whitespace in closing tag', () => {
+      const maliciousSvg = '<svg><script>alert(1)</script ></svg>';
+      const sanitized = sanitizeSvg(maliciousSvg);
+      expect(sanitized).not.toContain('<script');
+    });
+
+    it('should remove script tags with multiple whitespaces or newlines in closing tag', () => {
+      const maliciousSvg = '<svg><script>alert(1)</script\n\r\t ></svg>';
+      const sanitized = sanitizeSvg(maliciousSvg);
+      expect(sanitized).not.toContain('<script');
+    });
+
     it('should handle case-mixed or whitespace-injected tags', () => {
       const maliciousSvg = '<svg><ScRiPt \n>alert(1)</sCrIpT><rect/></svg>';
       const sanitized = sanitizeSvg(maliciousSvg);

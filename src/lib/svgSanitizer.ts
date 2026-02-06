@@ -50,9 +50,9 @@ export function sanitizeSvg(svgContent: string): string {
 
   let sanitized = svgContent;
 
-  // Remove dangerous elements (handles normal and self-closing tags)
+  // Remove dangerous elements (handles normal, self-closing, and whitespace in closing tags)
   for (const element of DANGEROUS_SVG_ELEMENTS) {
-    const elementRegex = new RegExp(`<${element}\\b[^<]*(?:(?!<\\/${element}>)<[^<]*)*<\\/${element}>`, 'gi');
+    const elementRegex = new RegExp(`<${element}\\b[^<]*(?:(?!<\\/${element}\\s*>)<[^<]*)*<\\/${element}\\s*>`, 'gi');
     const selfClosingRegex = new RegExp(`<${element}\\b[^>]*\\/>`, 'gi');
     sanitized = sanitized.replace(elementRegex, '').replace(selfClosingRegex, '');
   }
@@ -179,15 +179,15 @@ export function validateSvgUpload(
   }
 
   // Always sanitize to be safe, handling potential entity-encoded bypasses
-  // We sanitize the raw content, but our sanitizer now handles more cases
+  // We sanitize the raw content first
   const sanitized = sanitizeSvg(fileContent);
   
   // Also check if the decoded version contains dangerous content
   const decodedContent = decodeHtmlEntities(fileContent);
   if (containsDangerousSvgContent(decodedContent)) {
-    // If the decoded version is dangerous, we must be extra careful.
-    // The sanitizeSvg call above already stripped many things, 
-    // but let's ensure we didn't miss anything that was hidden by entities.
+    // If the decoded version is dangerous, we use the doubly sanitized version
+    // but we return it as is, which is now safe from the perspective of SVG structure
+    // Callers should be aware that the output contains raw < > characters.
     const doublySanitized = sanitizeSvg(decodedContent);
     return { isValid: true, sanitized: doublySanitized };
   }

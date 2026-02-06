@@ -13,7 +13,11 @@ describe('CompareContext Security Logic', () => {
       const validConf = {
         id: '123',
         name: 'JSConf',
-        url: 'https://jsconf.com'
+        url: 'https://jsconf.com',
+        location: { city: 'Berlin', country: 'Germany' },
+        online: false,
+        domain: 'web',
+        source: 'manual'
       };
       expect(isValidConference(validConf)).toBe(true);
     });

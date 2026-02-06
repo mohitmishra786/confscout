@@ -175,7 +175,7 @@ describe('Code Injection Prevention', () => {
       // Check for child_process.exec with dynamic strings
       try {
         const result = execSync(
-          'git grep -n "child_process\\|exec\\s*(" -- "*.ts" "*.tsx" 2>/dev/null || true',
+          'git grep -n "child_process\\|exec\\s*(" -- "*.ts" "*.tsx" "*.js" "*.jsx" 2>/dev/null || true',
           { encoding: 'utf-8', cwd: process.cwd() }
         );
 
@@ -191,6 +191,8 @@ describe('Code Injection Prevention', () => {
         expect(lines).toHaveLength(0);
       } catch (error) {
         if (error instanceof Error && error.message.includes('expect')) throw error;
+        // Other errors (like missing git) should be reported as failures unless explicitly skipped
+        throw new Error(`Grep command failed in shell injection test: ${error}`);
       }
     });
   });

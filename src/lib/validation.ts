@@ -11,9 +11,30 @@ export function isValidConference(conf: unknown): conf is Conference {
 
   const c = conf as Record<string, unknown>;
 
-  // Ensure required fields are present and of correct type
-  if (typeof c.id !== 'string' || typeof c.name !== 'string') {
-    return false;
+  // Ensure all required fields are present and of correct type
+  const requiredFields: Array<{ name: string; type: string; optional?: boolean }> = [
+    { name: 'id', type: 'string' },
+    { name: 'name', type: 'string' },
+    { name: 'url', type: 'string' },
+    { name: 'startDate', type: 'string', optional: true },
+    { name: 'endDate', type: 'string', optional: true },
+    { name: 'location', type: 'object' },
+    { name: 'online', type: 'boolean' },
+    { name: 'domain', type: 'string' },
+    { name: 'source', type: 'string' },
+  ];
+
+  for (const field of requiredFields) {
+    const value = c[field.name];
+    if (!field.optional && value === undefined) return false;
+    if (value !== undefined && typeof value !== field.type && value !== null) return false;
+  }
+
+  // Validate nested objects
+  if (c.location && typeof c.location === 'object') {
+    const loc = c.location as Record<string, unknown>;
+    if (typeof loc.city !== 'string' && loc.city !== null) return false;
+    if (typeof loc.country !== 'string' && loc.country !== null) return false;
   }
 
   // Prevent prototype pollution
@@ -75,8 +96,11 @@ export function sanitizeJsonLdValue(value: unknown): unknown {
   }
 
   if (value !== null && typeof value === 'object') {
-    const sanitized: Record<string, unknown> = {};
+    // SECURITY: Use Object.create(null) to prevent prototype pollution
+    const sanitized: Record<string, unknown> = Object.create(null);
     for (const [key, val] of Object.entries(value)) {
+      // Skip prototype keys
+      if (key === '__proto__' || key === 'constructor' || key === 'prototype') continue;
       sanitized[key] = sanitizeJsonLdValue(val);
     }
     return sanitized;

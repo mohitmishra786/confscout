@@ -11,11 +11,13 @@ const intlMiddleware = createMiddleware({
 const rateLimitMap = new Map<string, { count: number, reset: number }>();
 
 export default function middleware(request: NextRequest) {
-  const ip = request.headers.get('x-forwarded-for')?.split(',')[0] || '127.0.0.1';
+  // Use a trusted source for IP (platform-provided header or request.ip)
+  // Vercel and most providers provide x-real-ip or request.ip
+  const ip = request.headers.get('x-real-ip') || request.headers.get('x-forwarded-for')?.split(',')[0] || '127.0.0.1';
   const now = Date.now();
   
   // Basic rate limiting for API routes
-  if (request.nextUrl.pathname.startsWith('/api/')) {
+  if (request.nextUrl.pathname.startsWith('/api/') && !request.nextUrl.pathname.startsWith('/api/auth/')) {
     const limit = rateLimitMap.get(ip);
     if (limit && now < limit.reset) {
       if (limit.count > 100) { // 100 requests per minute
@@ -34,22 +36,27 @@ export default function middleware(request: NextRequest) {
     }
   }
 
-  const response = intlMiddleware(request);
+  // Only run intl middleware for non-API routes
+  if (!request.nextUrl.pathname.startsWith('/api/')) {
+    const response = intlMiddleware(request);
 
-  // Set CSRF token cookie if not present
-  if (!request.cookies.has(CSRF_COOKIE)) {
-    const token = generateCsrfToken();
-    response.cookies.set(CSRF_COOKIE, token, {
-      httpOnly: false, // Client needs to read this to send X-CSRF-Token header
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
-      path: '/'
-    });
+    // Set CSRF token cookie if not present
+    if (!request.cookies.has(CSRF_COOKIE)) {
+      const token = generateCsrfToken();
+      response.cookies.set(CSRF_COOKIE, token, {
+        httpOnly: false, // Client needs to read this to send X-CSRF-Token header
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
+        path: '/'
+      });
+    }
+
+    return response;
   }
 
-  return response;
+  return NextResponse.next();
 }
  
 export const config = {
-  matcher: ['/((?!api|_next|.*\\..*).*)']
+  matcher: ['/((?!_next|.*\\..*).*)'] // Removed (?!api) to allow rate limiting API routes
 };

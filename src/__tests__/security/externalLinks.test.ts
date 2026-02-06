@@ -13,7 +13,7 @@ describe('External Link Security', () => {
   it('should include rel="noopener noreferrer" for all target="_blank" links', () => {
     // Find all files with target="_blank"
     const result = execSync(
-      'git grep -l "target=\\"_blank\\"" -- "*.ts" "*.tsx" "*.html" 2>/dev/null || true',
+      'git grep -l "target=\\"_blank\\"" -- "*.ts" "*.tsx" "*.html" ":(exclude)src/__tests__/security/externalLinks.test.ts" 2>/dev/null || true',
       { encoding: 'utf-8', cwd: process.cwd() }
     );
 
@@ -65,8 +65,6 @@ describe('External Link Security', () => {
       violations.forEach(v => console.warn(`  ${v}`));
     }
 
-    // We don't fail here because the heuristic might have false positives, 
-    // but in a real CI it should be strict.
-    expect(true).toBe(true);
+    expect(violations).toHaveLength(0);
   });
 });

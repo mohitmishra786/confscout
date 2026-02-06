@@ -12,67 +12,77 @@ import { join } from 'path';
 describe('Resource Enumeration Prevention', () => {
   it('should use non-sequential IDs for User model', () => {
     const schemaPath = join(process.cwd(), 'prisma/schema.prisma');
+    let content = '';
     try {
-      const content = readFileSync(schemaPath, 'utf-8');
-      const userModel = content.split('model User')[1].split('}')[0];
-      
-      // Should use cuid() or uuid()
-      expect(userModel).toMatch(/id\s+String\s+@id\s+@default\((cuid|uuid)\(\)\)/);
+      content = readFileSync(schemaPath, 'utf-8');
     } catch {
-      // Skip if file not found
+      return;
     }
+    const match = content.match(/model\s+User\s*{([\s\S]*?)}/);
+    if (!match) throw new Error('User model not found in schema.prisma');
+    const userModel = match[1];
+    
+    // Should use cuid() or uuid()
+    expect(userModel).toMatch(/id\s+String\s+@id\s+@default\((cuid|uuid)\(\)\)/);
   });
 
   it('should use non-sequential IDs for Bookmark model', () => {
     const schemaPath = join(process.cwd(), 'prisma/schema.prisma');
+    let content = '';
     try {
-      const content = readFileSync(schemaPath, 'utf-8');
-      const model = content.split('model Bookmark')[1].split('}')[0];
-      expect(model).toMatch(/id\s+String\s+@id\s+@default\((cuid|uuid)\(\)\)/);
+      content = readFileSync(schemaPath, 'utf-8');
     } catch {
-      // Ok
+      return;
     }
+    const match = content.match(/model\s+Bookmark\s*{([\s\S]*?)}/);
+    if (!match) throw new Error('Bookmark model not found in schema.prisma');
+    const model = match[1];
+    expect(model).toMatch(/id\s+String\s+@id\s+@default\((cuid|uuid)\(\)\)/);
   });
 
   it('should not expose Subscriber sequential IDs in API', () => {
     // Subscriber uses Int autoincrement, so we must ensure it's not in API responses
     const apiPath = join(process.cwd(), 'src/app/api/subscribe/route.ts');
+    let content = '';
     try {
-      const content = readFileSync(apiPath, 'utf-8');
-      // Should not return id in json
-      const returnMatch = content.match(/return NextResponse\.json\(([^)]+)\)/);
-      if (returnMatch) {
-        expect(returnMatch[1]).not.toContain('id');
-      }
+      content = readFileSync(apiPath, 'utf-8');
     } catch {
-      // Ok
+      return;
+    }
+    // Should not return id in json (look for "id:" in the successful response)
+    const successResponseMatch = content.match(/return NextResponse\.json\(\{\s*message:.*\}\)/);
+    if (successResponseMatch) {
+      expect(successResponseMatch[0]).not.toContain('"id":');
+      expect(successResponseMatch[0]).not.toContain('id:');
     }
   });
 
   it('should use generic error messages for auth to prevent user enumeration', () => {
     const registerPath = join(process.cwd(), 'src/app/api/auth/register/route.ts');
+    let content = '';
     try {
-      const content = readFileSync(registerPath, 'utf-8');
-      // Should not distinguish between "email taken" and other failures if possible,
-      // but usually "Registration failed" is the generic way.
-      expect(content).toMatch(/Registration failed/);
+      content = readFileSync(registerPath, 'utf-8');
     } catch {
-      // Ok
+      return;
     }
+    // Should not distinguish between "email taken" and other failures if possible,
+    // but usually "Registration failed" is the generic way.
+    expect(content).toMatch(/Registration failed/);
   });
 
   it('should not have predictable sequential paths for sensitive resources', () => {
     // Check for patterns like /api/users/1, /api/users/2
+    const PREDICTABLE_PATH_THRESHOLD = 0;
     try {
       const result = execSync(
-        'git grep "/api/[a-z]*/[0-9]" -- "src/**/*.ts" "src/**/*.tsx" 2>/dev/null || true',
+        'git grep -E "/api/[a-z]*/[0-9]+" -- "src/**/*.ts" "src/**/*.tsx" 2>/dev/null || true',
         { encoding: 'utf-8' }
       );
       // Filter out static data or known safe paths
       const matches = result.split('\n').filter(line => line && !line.includes('test'));
-      expect(matches.length).toBeLessThan(5); // Allow some false positives or legitimate cases
-    } catch {
-      expect(true).toBe(true);
+      expect(matches.length).toBe(PREDICTABLE_PATH_THRESHOLD);
+    } catch (error) {
+      if (error instanceof Error && error.message.includes('expect')) throw error;
     }
   });
 });

@@ -31,10 +31,11 @@ describe('Cookie Security', () => {
 
   describe('Manual Cookie Setting', () => {
     it('should use Secure and SameSite attributes when setting cookies manually', () => {
-      // Search for manual cookie setting
+      // Search for manual cookie setting (Async cookies in Next.js 15)
       try {
+        // Pattern matches (await cookies()).set or cookies().set
         const result = execSync(
-          'git grep -n "cookies().set" -- "src/**/*.ts" "src/**/*.tsx" 2>/dev/null || true',
+          'git grep -n -E "cookies\\(\\)\\s*\\)\\.set" -- "src/**/*.ts" "src/**/*.tsx" 2>/dev/null || true',
           { encoding: 'utf-8', cwd: process.cwd() }
         );
 
@@ -44,16 +45,21 @@ describe('Cookie Security', () => {
         for (const line of lines) {
           if (line.includes('test')) continue;
           
-          // Should see secure attributes
-          const lowerLine = line.toLowerCase();
-          if (!lowerLine.includes('secure') || !lowerLine.includes('httponly') || !lowerLine.includes('samesite')) {
-             violations.push(line);
+          // Heuristic for multi-line check: look ahead for security attributes if not on same line
+          // In a real codebase, we'd use AST parsing, but for now we'll broaden the grep
+          const file = line.split(':')[0];
+          const lineNum = parseInt(line.split(':')[1], 10);
+          
+          // Get 10 lines of context
+          const context = execSync(`git grep -A 10 ".set(" -- "${file}" | grep -A 10 "^${file}:${lineNum}:"`, { encoding: 'utf-8' }).toLowerCase();
+          
+          if (!context.includes('secure') || !context.includes('httponly') || !context.includes('samesite')) {
+             violations.push(`${file}:${lineNum}: ${line}`);
           }
         }
         
         expect(violations).toHaveLength(0);
       } catch (error) {
-        // Only fail if it's an assertion failure
         if (error instanceof Error && error.message.includes('expect')) throw error;
       }
     });

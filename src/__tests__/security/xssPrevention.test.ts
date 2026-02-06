@@ -198,11 +198,11 @@ describe('XSS Prevention Tests', () => {
       it(`should neutralize payload: ${payload.substring(0, 30)}...`, () => {
         const sanitized = sanitizeJsonLdValue(payload) as string;
 
-        // Should not contain unescaped event handlers
-        expect(sanitized).not.toMatch(/\s+on\w+\s*=/i);
+        // Should not contain unescaped event handlers (catch both bare and whitespace-prefixed)
+        expect(sanitized).not.toMatch(/(?:^|\s)on\w+\s*=/i);
         // Should not contain script tags
-        expect(sanitized).not.toContain('<script>');
-        expect(sanitized).not.toContain('</script>');
+        expect(sanitized).not.toContain('<script');
+        expect(sanitized).not.toContain('</script');
       });
     });
   });
