@@ -23,10 +23,10 @@ describe('Code Injection Prevention', () => {
         // Filter out comments and test file references
         const lines = result.split('\n').filter(line => {
           if (!line) return false;
-          const trimmed = line.trim();
-          // Skip comments (heuristic but safer)
-          if (trimmed.includes('//') && trimmed.indexOf('//') < trimmed.indexOf('eval')) return false;
-          if (trimmed.startsWith('*')) return false; // JSDoc
+          // Extract the code content after "file:line:" prefix
+          const contentPart = line.replace(/^[^:]*:\d+:/, '').trim();
+          // Skip comments (heuristic)
+          if (contentPart.startsWith('//') || contentPart.startsWith('*') || contentPart.startsWith('/*')) return false;
           // Skip test files that are checking for eval
           if (line.includes('.test.') || line.includes('.spec.')) return false;
           // Skip node_modules
@@ -49,9 +49,8 @@ describe('Code Injection Prevention', () => {
 
         const lines = result.split('\n').filter(line => {
           if (!line) return false;
-          const trimmed = line.trim();
-          if (trimmed.includes('//') && trimmed.indexOf('//') < trimmed.indexOf('Function')) return false;
-          if (trimmed.startsWith('*')) return false;
+          const contentPart = line.replace(/^[^:]*:\d+:/, '').trim();
+          if (contentPart.startsWith('//') || contentPart.startsWith('*') || contentPart.startsWith('/*')) return false;
           if (line.includes('.test.') || line.includes('.spec.')) return false;
           if (line.includes('node_modules')) return false;
           return true;

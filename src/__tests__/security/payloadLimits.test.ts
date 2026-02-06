@@ -68,16 +68,15 @@ describe('Payload Size Limits', () => {
   });
 
   describe('DoS Prevention', () => {
-    it('should use streaming for large responses', () => {
-      // Check for streaming responses in API (NextResponse.json is fine for small ones)
+    it('should use appropriate response types for large data', () => {
+      // Check for calendar or CSV routes that handle potentially large data
       try {
         const result = execSync(
-          'git grep -E "ReadableStream|Stream" -- "src/app/api" 2>/dev/null || true',
+          'git grep -E "new NextResponse\\(|ReadableStream" -- "src/app/api" 2>/dev/null || true',
           { encoding: 'utf-8' }
         );
-        // Verify we have some streaming usage if we have large data routes
-        // For now, let's just assert the command runs
-        expect(result).toBeDefined();
+        // Verify we have some large data handling patterns
+        expect(result.length).toBeGreaterThan(0);
       } catch (error) {
         if (error instanceof Error && error.message.includes('expect')) throw error;
       }

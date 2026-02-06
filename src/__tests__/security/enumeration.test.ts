@@ -49,11 +49,17 @@ describe('Resource Enumeration Prevention', () => {
     } catch {
       return;
     }
-    // Should not return id in json (look for "id:" in the successful response)
-    const successResponseMatch = content.match(/return NextResponse\.json\(\{\s*message:.*\}\)/);
-    if (successResponseMatch) {
-      expect(successResponseMatch[0]).not.toContain('"id":');
-      expect(successResponseMatch[0]).not.toContain('id:');
+    
+    // Check for NextResponse.json calls and ensure they don't include raw IDs
+    // We search for the pattern where the success message is returned
+    const jsonCalls = content.match(/NextResponse\.json\([\s\S]*?\)/g) || [];
+    
+    for (const call of jsonCalls) {
+      if (call.includes('message:')) {
+        // Should not contain "id:" or "id :" but can contain "conferenceId"
+        // Use negative lookbehind/lookahead if supported, or simpler regex
+        expect(call).not.toMatch(/\bid\s*:/i);
+      }
     }
   });
 

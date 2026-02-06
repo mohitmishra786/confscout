@@ -46,16 +46,26 @@ describe('Cache Poisoning Prevention', () => {
     // (It shouldn't be)
     const lines = content.split('\n');
     let inCacheBlock = false;
+    let braceCount = 0;
     for (const line of lines) {
       if (line.includes('if (!session?.user') && line.includes('getCachedConferences')) {
         inCacheBlock = true;
+        braceCount = 0;
       }
+      
       if (inCacheBlock) {
+        // Count braces to handle nested blocks
+        const openers = (line.match(/{/g) || []).length;
+        const closers = (line.match(/}/g) || []).length;
+        braceCount += openers - closers;
+
         expect(line).not.toMatch(/headers\.get\(['"]host['"]\)/i);
         expect(line).not.toMatch(/headers\.get\(['"]x-forwarded-host['"]\)/i);
-      }
-      if (inCacheBlock && line.includes('}')) {
-        inCacheBlock = false;
+        
+        // If brace count returns to 0 (or goes negative if we started mid-line), we exited the block
+        if (braceCount <= 0 && line.includes('}')) {
+          inCacheBlock = false;
+        }
       }
     }
   });

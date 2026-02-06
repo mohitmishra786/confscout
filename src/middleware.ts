@@ -20,7 +20,7 @@ export default function middleware(request: NextRequest) {
   if (request.nextUrl.pathname.startsWith('/api/') && !request.nextUrl.pathname.startsWith('/api/auth/')) {
     const limit = rateLimitMap.get(ip);
     if (limit && now < limit.reset) {
-      if (limit.count > 100) { // 100 requests per minute
+      if (limit.count >= 100) { // 100 requests per minute
         return new NextResponse('Too Many Requests', { status: 429 });
       }
       limit.count++;

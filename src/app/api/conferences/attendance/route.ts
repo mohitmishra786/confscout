@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     }
 
     const session = await getServerSession(authOptions);
-    if (!session?.user) {
+    if (!session?.user?.id) {
       securityLogger.info('Unauthorized attendance toggle attempt');
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }

@@ -36,7 +36,9 @@ describe('Gitignore Security Configuration', () => {
       } catch {
         return; // Skip if not in git repo
       }
-      const envFiles = trackedFiles.split('\n').filter(f => f.startsWith('.env'));
+      const envFiles = trackedFiles.split('\n').filter(f =>
+        /(?:^|\/)\.env(?:\.|$)/.test(f)
+      );
       expect(envFiles).toHaveLength(0);
     });
 
@@ -52,7 +54,7 @@ describe('Gitignore Security Configuration', () => {
         return (upper.includes('SECRET') || upper.includes('PRIVATE_KEY') ||
                 upper.includes('PASSWORD') || upper.includes('CREDENTIAL')) &&
                 !f.includes('.example') && !f.includes('.template') &&
-                !f.includes('test') && !f.includes('spec');
+                !/(^|[\\/])(test|spec|__tests__|__mocks__)s?([\\/]|$)/.test(f);
       });
       expect(sensitiveFiles).toHaveLength(0);
     });
@@ -152,8 +154,8 @@ describe('Secret Scanning', () => {
         const content = readFileSync(join(process.cwd(), file), 'utf-8');
         for (const pattern of secretPatterns) {
           // Exclude test files and examples
-          if (!file.includes('test') && !file.includes('spec') &&
-              !file.includes('example') && !file.includes('mock') &&
+          if (!file.includes('.example') && !file.includes('.template') &&
+              !/(^|[\\/])(test|spec|__tests__|__mocks__)s?([\\/]|$)/.test(file) &&
               !file.includes('package-lock.json')) {
             expect(content).not.toMatch(pattern);
           }

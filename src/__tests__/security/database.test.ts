@@ -21,7 +21,8 @@ describe('Database Security', () => {
       const violations: string[] = [];
       
       for (const line of lines) {
-        if (line.includes('test')) continue;
+        const filePath = line.split(':')[0] ?? '';
+        if (filePath.includes('__tests__') || filePath.includes('.test.') || filePath.includes('.spec.')) continue;
         
         // If it uses template literals with variables directly, it might be unsafe
         // e.g. .query(`SELECT * FROM users WHERE id = ${id}`)

@@ -85,8 +85,8 @@ export function sanitizeJsonLdValue(value: unknown): unknown {
       .replace(/\s*on\w+\s*=\s*(?:"[^"]*"|'[^']*'|`[^`]*`|[^\s>]*)?/gi, '')
       // Remove javascript: protocol
       .replace(/javascript:/gi, '')
-      // Remove data: URLs that could execute scripts
-      .replace(/data:text\/html[^,]*/gi, '')
+      // Remove all data: URLs that could execute scripts or contain malicious content
+      .replace(/data:[^\s;,]*/gi, '')
       // Strip null bytes
       .replace(/\0/g, '');
   }

@@ -32,12 +32,23 @@ describe('External Link Security', () => {
       for (let i = 0; i < lines.length; i++) {
         const line = lines[i];
         
-        // This is a heuristic to handle multi-line tags
-        if (line.includes('<a')) {
+        // Match only <a elements
+        if (/<a[\s>]/i.test(line)) {
           inTag = true;
           currentTag = line;
         } else if (inTag) {
           currentTag += ' ' + line;
+        }
+
+        if (currentTag.includes('>') && inTag) {
+          if (currentTag.includes('target="_blank"') || currentTag.includes("target='_blank'")) {
+            // Validate that rel actually contains noopener or noreferrer
+            if (!currentTag.match(/rel=["'][^"']*no(opener|referrer)/i)) {
+              violations.push(`${file}:${i + 1}: ${currentTag.trim().substring(0, 100)}`);
+            }
+          }
+          inTag = false;
+          currentTag = '';
         }
 
         if (currentTag.includes('>') && inTag) {
