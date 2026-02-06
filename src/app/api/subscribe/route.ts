@@ -19,25 +19,20 @@ export async function POST(request: Request) {
 
         const body = await request.json();
         const { email, preferences, frequency } = subscribeSchema.parse(body);
-        const token = crypto.randomBytes(32).toString('hex');
-
-        // Check if email exists
+        
         const client = await pool.connect();
         try {
-            // Upsert user - Verified by default
-            const query = `
-        INSERT INTO subscribers (email, preferences, frequency, verification_token, verified)
-        VALUES ($1, $2, $3, $4, TRUE)
-        ON CONFLICT (email) 
-        DO UPDATE SET verification_token = $4, preferences = $2, frequency = $3, verified = TRUE, updated_at = CURRENT_TIMESTAMP
-        RETURNING id, verified;
-      `;
-            await client.query(query, [email, preferences || {}, frequency, token]);
+            const token = crypto.randomBytes(32).toString('hex');
+            
+            await client.query(
+                `INSERT INTO subscribers (email, preferences, frequency, verification_token)
+                 VALUES ($1, $2, $3, $4)
+                 ON CONFLICT (email) DO UPDATE 
+                 SET preferences = $2, frequency = $3, verification_token = $4`,
+                [email, JSON.stringify(preferences), frequency, token]
+            );
 
-            // Send Confirmation/Welcome email
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const domain = (preferences as any)?.domain || 'all';
-            await sendWelcomeEmail(email, token, frequency, domain);
+            await sendWelcomeEmail(email, token);
 
             return NextResponse.json({ message: 'Subscribed successfully!' }, { status: 200 });
         } finally {

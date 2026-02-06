@@ -1,9 +1,4 @@
-/**
- * Security Tests for XSS Prevention
- *
- * Tests for SafeHighlightedText and SafeJsonLd components
- * Ensures protection against XSS attacks
- */
+import { sanitizeXSS, sanitizeJsonLdValue } from '@/lib/validation';
 
 /**
  * Escape special regex characters to prevent ReDoS attacks
@@ -11,8 +6,6 @@
 function escapeRegExp(string: string): string {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
-
-import { sanitizeXSS, sanitizeJsonLdValue } from '@/lib/validation';
 
 /**
  * Safely serialize JSON-LD data
@@ -199,7 +192,8 @@ describe('XSS Prevention Tests', () => {
         const sanitized = sanitizeJsonLdValue(payload) as string;
 
         // Should not contain unescaped event handlers (catch both bare and whitespace-prefixed)
-        expect(sanitized).not.toMatch(/(?:^|\s)on\w+\s*=/i);
+        // Anchor on \b or start/whitespace to ensure we catch 'onclick=' as well as ' onclick='
+        expect(sanitized).not.toMatch(/(?:^|\s|\b)on\w+\s*=/i);
         // Should not contain script tags
         expect(sanitized).not.toContain('<script');
         expect(sanitized).not.toContain('</script');

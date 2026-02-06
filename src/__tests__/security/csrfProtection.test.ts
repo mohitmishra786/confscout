@@ -24,7 +24,13 @@ jest.mock('next/headers', () => ({
 }));
 
 // Mock global fetch
-global.fetch = jest.fn();
+const originalFetch = global.fetch;
+beforeAll(() => {
+  global.fetch = jest.fn();
+});
+afterAll(() => {
+  global.fetch = originalFetch;
+});
 
 // Setup document mock for Node environment
 if (typeof document === 'undefined') {
@@ -102,28 +108,22 @@ describe('CSRF Protection', () => {
   });
 
   describe('Client-side Secure Fetch', () => {
-    it('should attach CSRF header to POST requests', async () => {
-      const token = 'test-csrf-token';
-      document.cookie = `${CSRF_COOKIE}=${token}`;
+    const methods = ['POST', 'PUT', 'PATCH', 'DELETE'];
+    
+    methods.forEach(method => {
+      it(`should attach CSRF header to ${method} requests`, async () => {
+        const token = 'test-csrf-token';
+        document.cookie = `${CSRF_COOKIE}=${token}`;
 
-      await secureFetch('/api/test', { method: 'POST' });
+        await secureFetch('/api/test', { method });
 
-      expect(fetch).toHaveBeenCalled();
-      const call = (fetch as jest.Mock).mock.calls[0];
-      const headers = call[1].headers as Headers;
-      expect(headers.get(CSRF_HEADER)).toBe(token);
-    });
-
-    it('should attach CSRF header to PUT/PATCH/DELETE requests', async () => {
-      const token = 'test-csrf-token';
-      document.cookie = `${CSRF_COOKIE}=${token}`;
-
-      await secureFetch('/api/test', { method: 'DELETE' });
-
-      expect(fetch).toHaveBeenCalled();
-      const call = (fetch as jest.Mock).mock.calls[0];
-      const headers = call[1].headers as Headers;
-      expect(headers.get(CSRF_HEADER)).toBe(token);
+        expect(fetch).toHaveBeenCalled();
+        const call = (fetch as jest.Mock).mock.calls[0];
+        const headers = call[1].headers as Headers;
+        expect(headers.get(CSRF_HEADER)).toBe(token);
+        
+        jest.clearAllMocks();
+      });
     });
 
     it('should NOT attach CSRF header to GET requests by default', async () => {
@@ -132,14 +132,9 @@ describe('CSRF Protection', () => {
 
       await secureFetch('/api/test'); // Default GET
 
-      // Headers might be Headers object or simple object. 
-      // secureFetch creates Headers object.
-      // fetch mock receives what secureFetch passes.
-      const calls = (fetch as jest.Mock).mock.calls;
-      const options = calls[0][1];
-      const headers = options.headers as Headers;
+      const call = (fetch as jest.Mock).mock.calls[0];
+      const headers = call[1].headers as Headers;
       
-      // Headers object check
       expect(headers.get(CSRF_HEADER)).toBeNull();
     });
 
@@ -148,8 +143,8 @@ describe('CSRF Protection', () => {
 
       await secureFetch('/api/test', { method: 'POST' });
 
-      const calls = (fetch as jest.Mock).mock.calls;
-      const headers = calls[0][1].headers as Headers;
+      const call = (fetch as jest.Mock).mock.calls[0];
+      const headers = call[1].headers as Headers;
       
       expect(headers.get(CSRF_HEADER)).toBeNull();
     });

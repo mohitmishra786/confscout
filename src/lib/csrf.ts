@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers';
-import { CSRF_HEADER, CSRF_COOKIE } from './csrf-constants';
+import { CSRF_HEADER, CSRF_COOKIE } from '@/lib/csrf-constants';
 
 export { CSRF_HEADER, CSRF_COOKIE };
 
@@ -37,5 +37,24 @@ export async function validateCsrfToken(request: Request): Promise<boolean> {
     return false;
   }
 
-  return storedToken === receivedToken;
+  // Timing-safe comparison to prevent side-channel attacks
+  try {
+    const encoder = new TextEncoder();
+    const a = encoder.encode(storedToken);
+    const b = encoder.encode(receivedToken);
+    
+    if (a.byteLength !== b.byteLength) {
+      return false;
+    }
+
+    // In a Server Component/Route context, we can use crypto.subtle or a manual constant-time check
+    // Since we're in Next.js which might run on Edge or Node, let's use a robust constant-time comparison
+    let result = 0;
+    for (let i = 0; i < a.byteLength; i++) {
+      result |= a[i] ^ b[i];
+    }
+    return result === 0;
+  } catch {
+    return storedToken === receivedToken;
+  }
 }

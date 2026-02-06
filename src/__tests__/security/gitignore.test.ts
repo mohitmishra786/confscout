@@ -7,17 +7,26 @@
 
 import { execSync } from 'child_process';
 import { readFileSync, existsSync } from 'fs';
+import { globSync } from 'glob';
 import { join } from 'path';
 
 describe('Gitignore Security Configuration', () => {
   const gitignorePath = join(process.cwd(), '.gitignore');
-  let gitignoreContent: string;
+  let gitignoreContent = '';
+  let trackedFiles: string[] = [];
+  let isGitRepo = true;
 
   beforeAll(() => {
     if (existsSync(gitignorePath)) {
       gitignoreContent = readFileSync(gitignorePath, 'utf-8');
-    } else {
-      gitignoreContent = '';
+    }
+    try {
+      trackedFiles = execSync('git ls-files', { encoding: 'utf-8' })
+        .split('\n')
+        .filter(Boolean);
+    } catch (e) {
+      console.warn('Skipping: git ls-files failed', e);
+      isGitRepo = false;
     }
   });
 
@@ -30,26 +39,16 @@ describe('Gitignore Security Configuration', () => {
     });
 
     it('should not track any .env files', () => {
-      let trackedFiles = '';
-      try {
-        trackedFiles = execSync('git ls-files', { encoding: 'utf-8' });
-      } catch {
-        return; // Skip if not in git repo
-      }
-      const envFiles = trackedFiles.split('\n').filter(f =>
+      if (!isGitRepo) return;
+      const envFiles = trackedFiles.filter(f =>
         /(?:^|\/)\.env(?:\.|$)/.test(f)
       );
       expect(envFiles).toHaveLength(0);
     });
 
     it('should not track files with SECRET, KEY, or PASSWORD in name', () => {
-      let trackedFiles = '';
-      try {
-        trackedFiles = execSync('git ls-files', { encoding: 'utf-8' });
-      } catch {
-        return;
-      }
-      const sensitiveFiles = trackedFiles.split('\n').filter(f => {
+      if (!isGitRepo) return;
+      const sensitiveFiles = trackedFiles.filter(f => {
         const upper = f.toUpperCase();
         return (upper.includes('SECRET') || upper.includes('PRIVATE_KEY') ||
                 upper.includes('PASSWORD') || upper.includes('CREDENTIAL')) &&
@@ -111,13 +110,8 @@ describe('Gitignore Security Configuration', () => {
     });
 
     it('should not track .DS_Store files', () => {
-      let trackedFiles = '';
-      try {
-        trackedFiles = execSync('git ls-files', { encoding: 'utf-8' });
-      } catch {
-        return;
-      }
-      const dsStoreFiles = trackedFiles.split('\n').filter(f =>
+      if (!isGitRepo) return;
+      const dsStoreFiles = trackedFiles.filter(f =>
         f.includes('.DS_Store')
       );
       expect(dsStoreFiles).toHaveLength(0);
@@ -127,19 +121,9 @@ describe('Gitignore Security Configuration', () => {
 
 describe('Secret Scanning', () => {
   it('should not commit files containing hardcoded secrets', () => {
-    // This is a basic check - in production, use tools like git-secrets or truffleHog
-    let trackedFiles = '';
-    try {
-      trackedFiles = execSync('git ls-files', { encoding: 'utf-8' });
-    } catch {
-      return;
-    }
-    const files = trackedFiles.split('\n').filter(f =>
-      f.endsWith('.ts') || f.endsWith('.tsx') || f.endsWith('.js') || f.endsWith('.json')
-    );
+    // Check the first 100 files (sequential sample)
+    const files = globSync('src/**/*.{ts,tsx,js,jsx,json}', { cwd: process.cwd() });
 
-    // Check a representative sample of files for obvious secrets
-    // Sampling 100 files randomly or sequentially
     const checkedFiles = files.slice(0, 100);
     const secretPatterns = [
       /password\s*[:=]\s*["'][^"']{8,}["']/i,
@@ -150,15 +134,15 @@ describe('Secret Scanning', () => {
 
     for (const file of checkedFiles) {
       if (!file) continue;
+      // Skip test/mock files explicitly
+      if (file.includes('.example') || file.includes('.template') ||
+          /(^|[\\/])(test|spec|__tests__|__mocks__)s?([\\/]|$)/.test(file) ||
+          file.includes('package-lock.json')) continue;
+
       try {
         const content = readFileSync(join(process.cwd(), file), 'utf-8');
         for (const pattern of secretPatterns) {
-          // Exclude test files and examples
-          if (!file.includes('.example') && !file.includes('.template') &&
-              !/(^|[\\/])(test|spec|__tests__|__mocks__)s?([\\/]|$)/.test(file) &&
-              !file.includes('package-lock.json')) {
-            expect(content).not.toMatch(pattern);
-          }
+          expect(content).not.toMatch(pattern);
         }
       } catch {
         // Skip files that can't be read

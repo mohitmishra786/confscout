@@ -34,20 +34,22 @@ describe('Database Security', () => {
       expect(violations).toHaveLength(0);
     } catch (error) {
       if (error instanceof Error && error.message.includes('expect')) throw error;
-      // Skip if git/grep fails for other reasons
+      // Skip if git/grep fails for other reasons (like no git repo)
+      console.warn('Skipping SQL injection check: git grep failed');
     }
   });
 
   it('should not use dangerous Prisma methods like $queryRawUnsafe without careful audit', () => {
     try {
       const result = execSync(
-        'git grep -n "\\$queryRawUnsafe" -- "src/**/*.ts" 2>/dev/null || true',
+        'git grep -n "\\\\$queryRawUnsafe" -- "src/**/*.ts" 2>/dev/null || true',
         { encoding: 'utf-8' }
       );
       const lines = result.split('\n').filter(line => line && !line.includes('database.test.ts'));
       expect(lines).toHaveLength(0);
     } catch (error) {
       if (error instanceof Error && error.message.includes('expect')) throw error;
+      console.warn('Skipping Prisma unsafe query check: git grep failed');
     }
   });
 
@@ -55,7 +57,8 @@ describe('Database Security', () => {
     let apiRoutes: string[] = [];
     try {
       apiRoutes = execSync('find src/app/api -name "route.ts" 2>/dev/null || true', { encoding: 'utf-8' }).split('\n');
-    } catch {
+    } catch (error) {
+      console.warn('Skipping DB error leakage check: find failed', error);
       return;
     }
     
@@ -64,9 +67,10 @@ describe('Database Security', () => {
       try {
         const content = readFileSync(route, 'utf-8');
         // Catch blocks should not return error.message directly if it's a DB error
+        // Catch common patterns: any variable name, any response helper
         if (content.includes('catch') && content.includes('prisma')) {
            // Basic check for error leakage
-           expect(content).not.toMatch(/return NextResponse\.json\(\{\s*error:\s*error\.message\s*\}\)/);
+           expect(content).not.toMatch(/(?:error|err|e)\.message\b/);
         }
       } catch (error) {
         if (error instanceof Error && error.message.includes('expect')) throw error;

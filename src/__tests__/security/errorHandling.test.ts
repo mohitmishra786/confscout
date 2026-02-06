@@ -37,8 +37,8 @@ describe('Error Handling Security', () => {
       let apiRoutes: string[] = [];
       try {
         apiRoutes = execSync('find src/app/api -name "route.ts" 2>/dev/null', { encoding: 'utf-8' }).split('\n');
-      } catch {
-        // If find fails, maybe the directory structure is different or it's not a git repo
+      } catch (error) {
+        console.warn('Skipping API error handling check: could not locate API routes', error);
         return;
       }
       
@@ -83,10 +83,12 @@ describe('Error Handling Security', () => {
       // Instead should see { error: 'message' } or { error: error.message }
       const dangerousLeak = result.split('\n').filter(line => {
         if (!line) return false;
-        // Check for { error } or { error: err } where err is an error object
-        const isDangerous = line.includes('NextResponse.json(error)') || 
-                           (line.match(/NextResponse\.json\(\{\s*error\s*\}\)/) && !line.includes('error: "') && !line.includes("error: '"));
-        return isDangerous;
+        // Detects passing a raw error object: NextResponse.json(error)
+        // or shorthand: NextResponse.json({ error })
+        return (
+          line.includes('NextResponse.json(error)') || 
+          !!line.match(/NextResponse\.json\(\{\s*error\s*\}\)/)
+        );
       });
 
       expect(dangerousLeak).toHaveLength(0);

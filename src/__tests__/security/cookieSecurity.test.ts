@@ -33,9 +33,9 @@ describe('Cookie Security', () => {
     it('should use Secure and SameSite attributes when setting cookies manually', () => {
       // Search for manual cookie setting (Async cookies in Next.js 15)
       try {
-        // Pattern matches (await cookies()).set or cookies().set
+        // Broaden pattern to match (await cookies()).set, cookies().set, etc.
         const result = execSync(
-          'git grep -n -E "cookies\\(\\)\\s*\\)\\.set" -- "src/**/*.ts" "src/**/*.tsx" 2>/dev/null || true',
+          'git grep -n -E "cookies\\\\(\\\\).*\\\\.set\\\\(" -- "src/**/*.ts" "src/**/*.tsx" 2>/dev/null || true',
           { encoding: 'utf-8', cwd: process.cwd() }
         );
 
@@ -43,15 +43,14 @@ describe('Cookie Security', () => {
         const violations: string[] = [];
 
         for (const line of lines) {
-          if (line.includes('test')) continue;
+          if (line.includes('test') || line.includes('spec')) continue;
           
           // Heuristic for multi-line check: look ahead for security attributes if not on same line
-          // In a real codebase, we'd use AST parsing, but for now we'll broaden the grep
           const file = line.split(':')[0];
           const lineNum = parseInt(line.split(':')[1], 10);
           
-          // Get 10 lines of context
-          const context = execSync(`git grep -A 10 ".set(" -- "${file}" | grep -A 10 "^${file}:${lineNum}:"`, { encoding: 'utf-8' }).toLowerCase();
+          // Get 15 lines of context to handle multi-line options
+          const context = execSync(`git grep -A 15 "\\.set\\\\(" -- "${file}" | grep -A 15 "^${file}:${lineNum}:"`, { encoding: 'utf-8' }).toLowerCase();
           
           if (!context.includes('secure') || !context.includes('httponly') || !context.includes('samesite')) {
              violations.push(`${file}:${lineNum}: ${line}`);

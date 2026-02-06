@@ -14,6 +14,10 @@ function getCookie(name: string): string | undefined {
   return undefined;
 }
 
+/**
+ * Fetch wrapper that automatically injects a CSRF token
+ * header for state-changing HTTP methods.
+ */
 export async function secureFetch(url: string, options: RequestInit = {}): Promise<Response> {
   const headers = new Headers(options.headers || {});
   

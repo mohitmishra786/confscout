@@ -6,9 +6,44 @@
  */
 
 import { execSync } from 'child_process';
-import { readFileSync } from 'fs';
+import { readFileSync, existsSync } from 'fs';
 import { globSync } from 'glob';
 import { join } from 'path';
+
+/**
+ * Shared helper to filter grep results consistently across all tests
+ */
+function filterGrepResults(
+  result: string,
+  opts?: { allowlist?: string[]; skipCommentFor?: string }
+): string[] {
+  return result.split('\n').filter(line => {
+    if (!line) return false;
+    if (line.includes('node_modules')) return false;
+    if (line.includes('.test.') || line.includes('.spec.') || line.includes('__tests__')) return false;
+    
+    // Check allowlist (ensure files exist)
+    if (opts?.allowlist) {
+      for (const f of opts.allowlist) {
+        if (line.includes(f)) {
+          if (!existsSync(join(process.cwd(), f))) {
+            console.warn(`Allowlisted file ${f} no longer exists. Please update the allowlist.`);
+            continue; 
+          }
+          return false;
+        }
+      }
+    }
+
+    if (opts?.skipCommentFor) {
+      // Extract the code content after "file:line:" prefix
+      const contentPart = line.replace(/^[^:]*:\d+:/, '').trim();
+      if (contentPart.startsWith('//') || contentPart.startsWith('*') || contentPart.startsWith('/*')) return false;
+    }
+    
+    return true;
+  });
+}
 
 describe('Code Injection Prevention', () => {
   describe('No eval() Usage', () => {
@@ -16,49 +51,30 @@ describe('Code Injection Prevention', () => {
       // Search for eval usage in source files
       try {
         const result = execSync(
-          'git grep -n "eval\\s*(" -- "*.ts" "*.tsx" "*.js" "*.jsx" 2>/dev/null || true',
+          'git grep -n "eval\\\\s*(" -- "*.ts" "*.tsx" "*.js" "*.jsx" 2>/dev/null || true',
           { encoding: 'utf-8', cwd: process.cwd() }
         );
 
-        // Filter out comments and test file references
-        const lines = result.split('\n').filter(line => {
-          if (!line) return false;
-          // Extract the code content after "file:line:" prefix
-          const contentPart = line.replace(/^[^:]*:\d+:/, '').trim();
-          // Skip comments (heuristic)
-          if (contentPart.startsWith('//') || contentPart.startsWith('*') || contentPart.startsWith('/*')) return false;
-          // Skip test files that are checking for eval
-          if (line.includes('.test.') || line.includes('.spec.')) return false;
-          // Skip node_modules
-          if (line.includes('node_modules')) return false;
-          return true;
-        });
-
+        const lines = filterGrepResults(result, { skipCommentFor: 'eval' });
         expect(lines).toHaveLength(0);
       } catch (error) {
         if (error instanceof Error && error.message.includes('expect')) throw error;
+        throw new Error(`Grep command failed in eval test: ${error}`);
       }
     });
 
     it('should not use new Function() constructor', () => {
       try {
         const result = execSync(
-          'git grep -n "new\\s*Function\\s*(" -- "*.ts" "*.tsx" "*.js" "*.jsx" 2>/dev/null || true',
+          'git grep -n "new\\\\s*Function\\\\s*(" -- "*.ts" "*.tsx" "*.js" "*.jsx" 2>/dev/null || true',
           { encoding: 'utf-8', cwd: process.cwd() }
         );
 
-        const lines = result.split('\n').filter(line => {
-          if (!line) return false;
-          const contentPart = line.replace(/^[^:]*:\d+:/, '').trim();
-          if (contentPart.startsWith('//') || contentPart.startsWith('*') || contentPart.startsWith('/*')) return false;
-          if (line.includes('.test.') || line.includes('.spec.')) return false;
-          if (line.includes('node_modules')) return false;
-          return true;
-        });
-
+        const lines = filterGrepResults(result, { skipCommentFor: 'Function' });
         expect(lines).toHaveLength(0);
       } catch (error) {
         if (error instanceof Error && error.message.includes('expect')) throw error;
+        throw new Error(`Grep command failed in new Function test: ${error}`);
       }
     });
   });
@@ -68,20 +84,15 @@ describe('Code Injection Prevention', () => {
       // setTimeout("code", delay) is equivalent to eval()
       try {
         const result = execSync(
-          'git grep -E "setTimeout\\s*\\([^,]*[\"\']" -- "*.ts" "*.tsx" "*.js" "*.jsx" 2>/dev/null || true',
+          'git grep -E "setTimeout\\\\s*\\\\(\\\\s*[\\"\\\']" -- "*.ts" "*.tsx" "*.js" "*.jsx" 2>/dev/null || true',
           { encoding: 'utf-8', cwd: process.cwd() }
         );
 
-        const lines = result.split('\n').filter(line => {
-          if (!line) return false;
-          if (line.includes('node_modules')) return false;
-          if (line.includes('.test.') || line.includes('.spec.')) return false;
-          return true;
-        });
-
+        const lines = filterGrepResults(result);
         expect(lines).toHaveLength(0);
       } catch (error) {
         if (error instanceof Error && error.message.includes('expect')) throw error;
+        throw new Error(`Grep command failed in setTimeout test: ${error}`);
       }
     });
 
@@ -89,20 +100,15 @@ describe('Code Injection Prevention', () => {
       // setInterval("code", delay) is equivalent to eval()
       try {
         const result = execSync(
-          'git grep -E "setInterval\\s*\\([^,]*[\"\']" -- "*.ts" "*.tsx" "*.js" "*.jsx" 2>/dev/null || true',
+          'git grep -E "setInterval\\\\s*\\\\(\\\\s*[\\"\\\']" -- "*.ts" "*.tsx" "*.js" "*.jsx" 2>/dev/null || true',
           { encoding: 'utf-8', cwd: process.cwd() }
         );
 
-        const lines = result.split('\n').filter(line => {
-          if (!line) return false;
-          if (line.includes('node_modules')) return false;
-          if (line.includes('.test.') || line.includes('.spec.')) return false;
-          return true;
-        });
-
+        const lines = filterGrepResults(result);
         expect(lines).toHaveLength(0);
       } catch (error) {
         if (error instanceof Error && error.message.includes('expect')) throw error;
+        throw new Error(`Grep command failed in setInterval test: ${error}`);
       }
     });
   });
@@ -115,7 +121,7 @@ describe('Code Injection Prevention', () => {
           { encoding: 'utf-8', cwd: process.cwd() }
         );
 
-        const allowedInnerHTMLFiles = [
+        const allowlist = [
           'src/app/global-error.tsx',
           'src/components/SafeJsonLd.tsx',
           'src/lib/email.ts',
@@ -123,17 +129,11 @@ describe('Code Injection Prevention', () => {
           'src/lib/groqEmail.ts'
         ];
 
-        const lines = result.split('\n').filter(line => {
-          if (!line) return false;
-          if (line.includes('node_modules')) return false;
-          if (line.includes('.test.')) return false;
-          // Check if file is in allowlist
-          return !allowedInnerHTMLFiles.some(f => line.includes(f));
-        });
-
+        const lines = filterGrepResults(result, { allowlist });
         expect(lines).toHaveLength(0);
       } catch (error) {
         if (error instanceof Error && error.message.includes('expect')) throw error;
+        throw new Error(`Grep command failed in innerHTML test: ${error}`);
       }
     });
   });
@@ -151,20 +151,22 @@ describe('Code Injection Prevention', () => {
         expect(result.length).toBeGreaterThan(0);
       } catch (error) {
         if (error instanceof Error && error.message.includes('expect')) throw error;
+        throw new Error(`Grep command failed in JSON.parse test: ${error}`);
       }
     });
 
     it('should not use eval() for JSON parsing', () => {
       try {
         const result = execSync(
-          'git grep -E "eval\\s*\\(\\s*[^)]*JSON" -- "*.ts" "*.tsx" "*.js" "*.jsx" 2>/dev/null || true',
+          'git grep -E "eval\\\\s*\\\\(\\\\s*[^)]*JSON" -- "*.ts" "*.tsx" "*.js" "*.jsx" 2>/dev/null || true',
           { encoding: 'utf-8', cwd: process.cwd() }
         );
 
-        const lines = result.split('\n').filter(line => line && !line.includes('node_modules') && !line.includes('.test.'));
+        const lines = filterGrepResults(result);
         expect(lines).toHaveLength(0);
       } catch (error) {
         if (error instanceof Error && error.message.includes('expect')) throw error;
+        throw new Error(`Grep command failed in eval JSON test: ${error}`);
       }
     });
   });
@@ -174,23 +176,14 @@ describe('Code Injection Prevention', () => {
       // Check for child_process.exec with dynamic strings
       try {
         const result = execSync(
-          'git grep -n "child_process\\|exec\\s*(" -- "*.ts" "*.tsx" "*.js" "*.jsx" 2>/dev/null || true',
+          'git grep -n "child_process\\\\|exec\\\\s*(" -- "*.ts" "*.tsx" "*.js" "*.jsx" 2>/dev/null || true',
           { encoding: 'utf-8', cwd: process.cwd() }
         );
 
-        const lines = result.split('\n').filter(line => {
-          if (!line) return false;
-          if (line.includes('node_modules')) return false;
-          if (line.includes('.test.')) return false;
-          // Allow execSync for grep commands in tests
-          if (line.includes('execSync') && line.includes('git grep')) return false;
-          return true;
-        });
-
+        const lines = filterGrepResults(result);
         expect(lines).toHaveLength(0);
       } catch (error) {
         if (error instanceof Error && error.message.includes('expect')) throw error;
-        // Other errors (like missing git) should be reported as failures unless explicitly skipped
         throw new Error(`Grep command failed in shell injection test: ${error}`);
       }
     });
