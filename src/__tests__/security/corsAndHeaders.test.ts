@@ -5,17 +5,8 @@
  * and CORS configuration.
  */
 
-import { execSync } from 'child_process';
 import { readFileSync } from 'fs';
 import { join } from 'path';
-
-// Mock NextConfig type
-interface NextConfig {
-  headers?: () => Promise<Array<{
-    source: string;
-    headers: Array<{ key: string; value: string }>;
-  }>>;
-}
 
 describe('Security Headers Configuration', () => {
   let nextConfigContent: string;
@@ -39,7 +30,7 @@ describe('Security Headers Configuration', () => {
     it('should define allowed methods', () => {
       expect(nextConfigContent).toMatch(/Access-Control-Allow-Methods/);
       // Verify limited methods
-      expect(nextConfigContent).toMatch(/GET,DELETE,PATCH,POST,PUT/);
+      expect(nextConfigContent).toMatch(/GET,DELETE,PATCH,POST,PUT,OPTIONS/);
     });
 
     it('should allow credentials', () => {

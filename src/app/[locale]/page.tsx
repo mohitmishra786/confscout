@@ -59,7 +59,7 @@ export default function Home() {
         if (!response.ok) throw new Error('Failed to fetch conferences');
         const jsonData = await response.json();
         setData(jsonData);
-      } catch (err) {
+      } catch {
         setError('Failed to load conference data.');
       } finally {
         setLoading(false);

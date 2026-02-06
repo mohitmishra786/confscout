@@ -7,7 +7,6 @@
 
 import { execSync } from 'child_process';
 import { readFileSync } from 'fs';
-import { join } from 'path';
 
 describe('Database Security', () => {
   it('should use parameterized queries for all raw SQL', () => {

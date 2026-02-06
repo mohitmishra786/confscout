@@ -13,11 +13,6 @@ import { join } from 'path';
 describe('Code Injection Prevention', () => {
   describe('No eval() Usage', () => {
     it('should not contain eval() calls in TypeScript/JavaScript files', () => {
-      const dangerousPatterns = [
-        /\beval\s*\(/,
-        /\beval\s*\`/,
-      ];
-
       // Search for eval usage in source files
       try {
         const result = execSync(
@@ -28,9 +23,10 @@ describe('Code Injection Prevention', () => {
         // Filter out comments and test file references
         const lines = result.split('\n').filter(line => {
           if (!line) return false;
-          // Skip comments
-          if (line.includes('//') && line.indexOf('//') < line.indexOf('eval')) return false;
-          if (line.includes('*') && line.includes('eval')) return false; // JSDoc comments
+          const trimmed = line.trim();
+          // Skip comments (heuristic but safer)
+          if (trimmed.includes('//') && trimmed.indexOf('//') < trimmed.indexOf('eval')) return false;
+          if (trimmed.startsWith('*')) return false; // JSDoc
           // Skip test files that are checking for eval
           if (line.includes('.test.') || line.includes('.spec.')) return false;
           // Skip node_modules
@@ -39,9 +35,8 @@ describe('Code Injection Prevention', () => {
         });
 
         expect(lines).toHaveLength(0);
-      } catch {
-        // If grep fails, assume no eval found
-        expect(true).toBe(true);
+      } catch (error) {
+        if (error instanceof Error && error.message.includes('expect')) throw error;
       }
     });
 
@@ -54,15 +49,17 @@ describe('Code Injection Prevention', () => {
 
         const lines = result.split('\n').filter(line => {
           if (!line) return false;
-          if (line.includes('//') && line.indexOf('//') < line.indexOf('Function')) return false;
+          const trimmed = line.trim();
+          if (trimmed.includes('//') && trimmed.indexOf('//') < trimmed.indexOf('Function')) return false;
+          if (trimmed.startsWith('*')) return false;
           if (line.includes('.test.') || line.includes('.spec.')) return false;
           if (line.includes('node_modules')) return false;
           return true;
         });
 
         expect(lines).toHaveLength(0);
-      } catch {
-        expect(true).toBe(true);
+      } catch (error) {
+        if (error instanceof Error && error.message.includes('expect')) throw error;
       }
     });
   });
@@ -79,12 +76,13 @@ describe('Code Injection Prevention', () => {
         const lines = result.split('\n').filter(line => {
           if (!line) return false;
           if (line.includes('node_modules')) return false;
+          if (line.includes('.test.') || line.includes('.spec.')) return false;
           return true;
         });
 
         expect(lines).toHaveLength(0);
-      } catch {
-        expect(true).toBe(true);
+      } catch (error) {
+        if (error instanceof Error && error.message.includes('expect')) throw error;
       }
     });
 
@@ -99,42 +97,44 @@ describe('Code Injection Prevention', () => {
         const lines = result.split('\n').filter(line => {
           if (!line) return false;
           if (line.includes('node_modules')) return false;
+          if (line.includes('.test.') || line.includes('.spec.')) return false;
           return true;
         });
 
         expect(lines).toHaveLength(0);
-      } catch {
-        expect(true).toBe(true);
+      } catch (error) {
+        if (error instanceof Error && error.message.includes('expect')) throw error;
       }
     });
   });
 
   describe('No Dangerous DOM Manipulation', () => {
     it('should minimize usage of innerHTML', () => {
-      // innerHTML is checked but allowed in controlled contexts
-      // This test documents where innerHTML is used
       try {
         const result = execSync(
           'git grep -n "innerHTML" -- "*.ts" "*.tsx" "*.js" "*.jsx" 2>/dev/null || true',
           { encoding: 'utf-8', cwd: process.cwd() }
         );
 
+        const allowedInnerHTMLFiles = [
+          'src/app/global-error.tsx',
+          'src/components/SafeJsonLd.tsx',
+          'src/lib/email.ts',
+          'src/lib/emailTemplates.ts',
+          'src/lib/groqEmail.ts'
+        ];
+
         const lines = result.split('\n').filter(line => {
           if (!line) return false;
           if (line.includes('node_modules')) return false;
           if (line.includes('.test.')) return false;
-          return true;
+          // Check if file is in allowlist
+          return !allowedInnerHTMLFiles.some(f => line.includes(f));
         });
 
-        // Log innerHTML usage for review (but don't fail)
-        if (lines.length > 0) {
-          console.log('innerHTML usage found (review recommended):');
-          lines.forEach(line => console.log(`  ${line}`));
-        }
-
-        expect(true).toBe(true);
-      } catch {
-        expect(true).toBe(true);
+        expect(lines).toHaveLength(0);
+      } catch (error) {
+        if (error instanceof Error && error.message.includes('expect')) throw error;
       }
     });
   });
@@ -148,11 +148,10 @@ describe('Code Injection Prevention', () => {
           { encoding: 'utf-8', cwd: process.cwd() }
         );
 
-        // If JSON.parse is found, that's good - it's the safe way
-        // If not found, that's also okay if no JSON parsing is needed
-        expect(true).toBe(true);
-      } catch {
-        expect(true).toBe(true);
+        // Informational check
+        expect(result.length).toBeGreaterThan(0);
+      } catch (error) {
+        if (error instanceof Error && error.message.includes('expect')) throw error;
       }
     });
 
@@ -163,10 +162,10 @@ describe('Code Injection Prevention', () => {
           { encoding: 'utf-8', cwd: process.cwd() }
         );
 
-        const lines = result.split('\n').filter(line => line && !line.includes('node_modules'));
+        const lines = result.split('\n').filter(line => line && !line.includes('node_modules') && !line.includes('.test.'));
         expect(lines).toHaveLength(0);
-      } catch {
-        expect(true).toBe(true);
+      } catch (error) {
+        if (error instanceof Error && error.message.includes('expect')) throw error;
       }
     });
   });
@@ -189,15 +188,9 @@ describe('Code Injection Prevention', () => {
           return true;
         });
 
-        // Log for review - child_process usage should be minimal and safe
-        if (lines.length > 0) {
-          console.log('child_process/exec usage found (ensure safe):');
-          lines.forEach(line => console.log(`  ${line}`));
-        }
-
-        expect(true).toBe(true);
-      } catch {
-        expect(true).toBe(true);
+        expect(lines).toHaveLength(0);
+      } catch (error) {
+        if (error instanceof Error && error.message.includes('expect')) throw error;
       }
     });
   });

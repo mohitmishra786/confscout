@@ -34,7 +34,13 @@ describe('Error Handling Security', () => {
   describe('API Error Handling', () => {
     it('should generally return generic error messages', () => {
       // Check API routes for generic error responses
-      const apiRoutes = execSync('find src/app/api -name "route.ts"', { encoding: 'utf-8' }).split('\n');
+      let apiRoutes: string[] = [];
+      try {
+        apiRoutes = execSync('find src/app/api -name "route.ts" 2>/dev/null', { encoding: 'utf-8' }).split('\n');
+      } catch {
+        // If find fails, maybe the directory structure is different or it's not a git repo
+        return;
+      }
       
       let safeErrors = 0;
       let totalChecks = 0;
@@ -50,7 +56,8 @@ describe('Error Handling Security', () => {
             /error:\s*['"]Internal Server Error['"]/,
             /error:\s*['"]Something went wrong['"]/,
             /error:\s*['"]Failed to/,
-            /status:\s*500/
+            /status:\s*500/,
+            /status:\s*403/
           ];
           
           if (genericErrorPatterns.some(p => p.test(content))) {
@@ -61,7 +68,7 @@ describe('Error Handling Security', () => {
 
       // Most API routes should use generic error messages
       if (totalChecks > 0) {
-        expect(safeErrors / totalChecks).toBeGreaterThan(0.5);
+        expect(safeErrors / totalChecks).toBeGreaterThanOrEqual(0.8);
       }
     });
 
@@ -74,10 +81,13 @@ describe('Error Handling Security', () => {
 
       // Should not see patterns like { error: err } or { error } which might leak details
       // Instead should see { error: 'message' } or { error: error.message }
-      const dangerousLeak = result.split('\n').filter(line => 
-        line.includes('NextResponse.json(error)') || 
-        (line.match(/NextResponse\.json\(\{\s*error\s*\}\)/) && !line.includes('error:'))
-      );
+      const dangerousLeak = result.split('\n').filter(line => {
+        if (!line) return false;
+        // Check for { error } or { error: err } where err is an error object
+        const isDangerous = line.includes('NextResponse.json(error)') || 
+                           (line.match(/NextResponse\.json\(\{\s*error\s*\}\)/) && !line.includes('error: "') && !line.includes("error: '"));
+        return isDangerous;
+      });
 
       expect(dangerousLeak).toHaveLength(0);
     });

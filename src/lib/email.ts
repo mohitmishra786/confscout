@@ -7,16 +7,11 @@ import nodemailer from 'nodemailer';
 import { Conference } from '@/types/conference';
 import {
   generateEmailSubject,
+  EmailTemplateParams,
   generateEnhancedEmailHTML,
   generatePlainTextEmail,
-  EmailTemplateParams,
 } from '@/lib/emailTemplates';
-import {
-  generateEmailContent,
-  categorizeConferencesForEmail,
-  generateFallbackEmailContent,
-  EmailSection,
-} from '@/lib/groqEmail';
+import { generateEmailContent, categorizeConferencesForEmail } from '@/lib/groqEmail';
 
 const transporter = nodemailer.createTransport({
   host: process.env.ZOHO_SMTP_HOST || 'smtppro.zoho.in',

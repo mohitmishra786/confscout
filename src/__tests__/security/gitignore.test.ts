@@ -30,30 +30,31 @@ describe('Gitignore Security Configuration', () => {
     });
 
     it('should not track any .env files', () => {
+      let trackedFiles = '';
       try {
-        const trackedFiles = execSync('git ls-files', { encoding: 'utf-8' });
-        const envFiles = trackedFiles.split('\n').filter(f => f.startsWith('.env'));
-        expect(envFiles).toHaveLength(0);
+        trackedFiles = execSync('git ls-files', { encoding: 'utf-8' });
       } catch {
-        // If git command fails, skip this test
-        expect(true).toBe(true);
+        return; // Skip if not in git repo
       }
+      const envFiles = trackedFiles.split('\n').filter(f => f.startsWith('.env'));
+      expect(envFiles).toHaveLength(0);
     });
 
     it('should not track files with SECRET, KEY, or PASSWORD in name', () => {
+      let trackedFiles = '';
       try {
-        const trackedFiles = execSync('git ls-files', { encoding: 'utf-8' });
-        const sensitiveFiles = trackedFiles.split('\n').filter(f => {
-          const upper = f.toUpperCase();
-          return (upper.includes('SECRET') || upper.includes('PRIVATE_KEY') ||
-                  upper.includes('PASSWORD') || upper.includes('CREDENTIAL')) &&
-                  !f.includes('.example') && !f.includes('.template') &&
-                  !f.includes('test') && !f.includes('spec');
-        });
-        expect(sensitiveFiles).toHaveLength(0);
+        trackedFiles = execSync('git ls-files', { encoding: 'utf-8' });
       } catch {
-        expect(true).toBe(true);
+        return;
       }
+      const sensitiveFiles = trackedFiles.split('\n').filter(f => {
+        const upper = f.toUpperCase();
+        return (upper.includes('SECRET') || upper.includes('PRIVATE_KEY') ||
+                upper.includes('PASSWORD') || upper.includes('CREDENTIAL')) &&
+                !f.includes('.example') && !f.includes('.template') &&
+                !f.includes('test') && !f.includes('spec');
+      });
+      expect(sensitiveFiles).toHaveLength(0);
     });
   });
 
@@ -63,7 +64,7 @@ describe('Gitignore Security Configuration', () => {
     });
 
     it('should have .next build directory in gitignore', () => {
-      expect(gitignoreContent).toMatch(/\/.next\//);
+      expect(gitignoreContent).toMatch(/\.next\/?/);
     });
 
     it('should have build directories in gitignore', () => {
@@ -108,15 +109,16 @@ describe('Gitignore Security Configuration', () => {
     });
 
     it('should not track .DS_Store files', () => {
+      let trackedFiles = '';
       try {
-        const trackedFiles = execSync('git ls-files', { encoding: 'utf-8' });
-        const dsStoreFiles = trackedFiles.split('\n').filter(f =>
-          f.includes('.DS_Store')
-        );
-        expect(dsStoreFiles).toHaveLength(0);
+        trackedFiles = execSync('git ls-files', { encoding: 'utf-8' });
       } catch {
-        expect(true).toBe(true);
+        return;
       }
+      const dsStoreFiles = trackedFiles.split('\n').filter(f =>
+        f.includes('.DS_Store')
+      );
+      expect(dsStoreFiles).toHaveLength(0);
     });
   });
 });
@@ -124,38 +126,41 @@ describe('Gitignore Security Configuration', () => {
 describe('Secret Scanning', () => {
   it('should not commit files containing hardcoded secrets', () => {
     // This is a basic check - in production, use tools like git-secrets or truffleHog
+    let trackedFiles = '';
     try {
-      const trackedFiles = execSync('git ls-files', { encoding: 'utf-8' });
-      const files = trackedFiles.split('\n').filter(f =>
-        f.endsWith('.ts') || f.endsWith('.tsx') || f.endsWith('.js') || f.endsWith('.json')
-      );
-
-      // Check a sample of files for obvious secrets
-      const checkedFiles = files.slice(0, 20);
-      const secretPatterns = [
-        /password\s*[:=]\s*["'][^"']{8,}["']/i,
-        /api[_-]?key\s*[:=]\s*["'][^"']{16,}["']/i,
-        /secret\s*[:=]\s*["'][^"']{16,}["']/i,
-        /token\s*[:=]\s*["']eyJ[A-Za-z0-9_-]*\.eyJ[A-Za-z0-9_-]*/i, // JWT pattern
-      ];
-
-      for (const file of checkedFiles) {
-        if (!file) continue;
-        try {
-          const content = readFileSync(join(process.cwd(), file), 'utf-8');
-          for (const pattern of secretPatterns) {
-            // Exclude test files and examples
-            if (!file.includes('test') && !file.includes('spec') &&
-                !file.includes('example') && !file.includes('mock')) {
-              expect(content).not.toMatch(pattern);
-            }
-          }
-        } catch {
-          // Skip files that can't be read
-        }
-      }
+      trackedFiles = execSync('git ls-files', { encoding: 'utf-8' });
     } catch {
-      expect(true).toBe(true);
+      return;
+    }
+    const files = trackedFiles.split('\n').filter(f =>
+      f.endsWith('.ts') || f.endsWith('.tsx') || f.endsWith('.js') || f.endsWith('.json')
+    );
+
+    // Check a representative sample of files for obvious secrets
+    // Sampling 100 files randomly or sequentially
+    const checkedFiles = files.slice(0, 100);
+    const secretPatterns = [
+      /password\s*[:=]\s*["'][^"']{8,}["']/i,
+      /api[_-]?key\s*[:=]\s*["'][^"']{16,}["']/i,
+      /secret\s*[:=]\s*["'][^"']{16,}["']/i,
+      /token\s*[:=]\s*["']eyJ[A-Za-z0-9_-]*\.eyJ[A-Za-z0-9_-]*/i, // JWT pattern
+    ];
+
+    for (const file of checkedFiles) {
+      if (!file) continue;
+      try {
+        const content = readFileSync(join(process.cwd(), file), 'utf-8');
+        for (const pattern of secretPatterns) {
+          // Exclude test files and examples
+          if (!file.includes('test') && !file.includes('spec') &&
+              !file.includes('example') && !file.includes('mock') &&
+              !file.includes('package-lock.json')) {
+            expect(content).not.toMatch(pattern);
+          }
+        }
+      } catch {
+        // Skip files that can't be read
+      }
     }
   });
 

@@ -1,7 +1,7 @@
-import { headers, cookies } from 'next/headers';
+import { cookies } from 'next/headers';
+import { CSRF_HEADER, CSRF_COOKIE } from './csrf-constants';
 
-export const CSRF_HEADER = 'X-CSRF-Token';
-export const CSRF_COOKIE = 'csrf_token';
+export { CSRF_HEADER, CSRF_COOKIE };
 
 /**
  * Generates a random CSRF token (Edge compatible)
@@ -10,7 +10,7 @@ export function generateCsrfToken(): string {
   if (typeof crypto !== 'undefined' && crypto.randomUUID) {
     return crypto.randomUUID().replace(/-/g, '');
   }
-  // Fallback for older environments (unlikely in Next.js)
+  // Fallback for older environments
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 }
 

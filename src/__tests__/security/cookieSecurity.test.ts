@@ -39,19 +39,22 @@ describe('Cookie Security', () => {
         );
 
         const lines = result.split('\n').filter(Boolean);
+        const violations: string[] = [];
 
         for (const line of lines) {
           if (line.includes('test')) continue;
           
           // Should see secure attributes
-          // This is a heuristic - actual object might be passed
-          if (!line.includes('secure') && !line.includes('httpOnly') && !line.includes('sameSite')) {
-             // Just a warning for manual review
-             // console.warn(`Potential insecure cookie setting: ${line}`);
+          const lowerLine = line.toLowerCase();
+          if (!lowerLine.includes('secure') || !lowerLine.includes('httponly') || !lowerLine.includes('samesite')) {
+             violations.push(line);
           }
         }
-      } catch {
-        // Ok
+        
+        expect(violations).toHaveLength(0);
+      } catch (error) {
+        // Only fail if it's an assertion failure
+        if (error instanceof Error && error.message.includes('expect')) throw error;
       }
     });
   });
@@ -61,7 +64,7 @@ describe('Cookie Security', () => {
       // Ensure no global config disables secure cookies
       try {
         const result = execSync(
-          'git grep "secure:\s*false" -- "src/**/*.ts" "src/**/*.tsx" 2>/dev/null || true',
+          "git grep 'secure:\\s*false' -- 'src/**/*.ts' 'src/**/*.tsx' 2>/dev/null || true",
           { encoding: 'utf-8', cwd: process.cwd() }
         );
         // Only allow in development/test context
@@ -69,8 +72,8 @@ describe('Cookie Security', () => {
           line && !line.includes('NODE_ENV') && !line.includes('development') && !line.includes('test')
         );
         expect(lines).toHaveLength(0);
-      } catch {
-        expect(true).toBe(true);
+      } catch (error) {
+        if (error instanceof Error && error.message.includes('expect')) throw error;
       }
     });
   });

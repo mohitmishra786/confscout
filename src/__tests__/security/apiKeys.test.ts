@@ -15,7 +15,8 @@ describe('API Key and Secret Security', () => {
       'git grep "gsk_" -- "*.ts" "*.tsx" "*.js" "*.json" 2>/dev/null || true',
       { encoding: 'utf-8' }
     );
-    expect(result).toBe('');
+    const filtered = result.split('\n').filter(line => line && !line.includes('apiKeys.test.ts'));
+    expect(filtered).toHaveLength(0);
   });
 
   it('should not contain hardcoded OpenAI API keys', () => {
@@ -24,7 +25,8 @@ describe('API Key and Secret Security', () => {
       'git grep "sk-[a-zA-Z0-9]\{20,\}" -- "*.ts" "*.tsx" "*.js" "*.json" 2>/dev/null || true',
       { encoding: 'utf-8' }
     );
-    expect(result).toBe('');
+    const filtered = result.split('\n').filter(line => line && !line.includes('apiKeys.test.ts'));
+    expect(filtered).toHaveLength(0);
   });
 
   it('should not contain hardcoded Google API keys', () => {
@@ -33,7 +35,8 @@ describe('API Key and Secret Security', () => {
       'git grep "AIza[0-9A-Za-z-_]\{35\}" -- "*.ts" "*.tsx" "*.js" "*.json" 2>/dev/null || true',
       { encoding: 'utf-8' }
     );
-    expect(result).toBe('');
+    const filtered = result.split('\n').filter(line => line && !line.includes('apiKeys.test.ts'));
+    expect(filtered).toHaveLength(0);
   });
 
   it('should not contain hardcoded GitHub tokens', () => {
@@ -42,7 +45,8 @@ describe('API Key and Secret Security', () => {
       'git grep -E "ghp_|github_pat_" -- "*.ts" "*.tsx" "*.js" "*.json" 2>/dev/null || true',
       { encoding: 'utf-8' }
     );
-    expect(result).toBe('');
+    const filtered = result.split('\n').filter(line => line && !line.includes('apiKeys.test.ts'));
+    expect(filtered).toHaveLength(0);
   });
 
   it('should use process.env for all sensitive configuration', () => {

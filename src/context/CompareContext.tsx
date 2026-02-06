@@ -28,7 +28,7 @@ export function CompareProvider({ children }: { children: ReactNode }) {
           setSelectedConferences(validated);
         }
       }
-    } catch (e) {
+    } catch {
       console.warn('Failed to load compare data from storage');
     }
   }, []);
@@ -37,7 +37,7 @@ export function CompareProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     try {
       sessionStorage.setItem('compare_conferences', JSON.stringify(selectedConferences));
-    } catch (e) {
+    } catch {
       console.warn('Failed to save compare data to storage');
     }
   }, [selectedConferences]);

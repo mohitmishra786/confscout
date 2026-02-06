@@ -15,82 +15,92 @@
  */
 export function isSafeRedirectUrl(
   url: string,
-  allowedHosts: string[] = ['confscout.site', 'localhost', '127.0.0.1', '']
+  allowedHosts: string[] = ['confscout.site', 'localhost', '127.0.0.1']
 ): boolean {
   if (!url) return false;
 
-  // Reject null bytes which can be used to bypass filters
-  if (url.includes('\x00') || url.includes('\u0000')) {
-    return false;
-  }
+  const trimmedUrl = url.trim();
 
-  // Check for dangerous protocols before parsing
-  if (containsDangerousProtocol(url)) {
+  // Reject null bytes which can be used to bypass filters
+  if (trimmedUrl.includes('\x00') || trimmedUrl.includes('\u0000')) {
     return false;
   }
 
   // Reject protocol-relative URLs
-  if (url.trim().startsWith('//')) {
+  if (trimmedUrl.startsWith('//')) {
     return false;
   }
 
-  // Reject URLs that look like protocol confusion attempts
-  if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(url) && !url.startsWith('http:') && !url.startsWith('https:')) {
+  // Check for dangerous protocols before parsing
+  if (containsDangerousProtocol(trimmedUrl)) {
     return false;
+  }
+
+  // Reject URLs that look like protocol confusion attempts or malformed absolute URLs
+  if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(trimmedUrl)) {
+    if (!trimmedUrl.startsWith('http:') && !trimmedUrl.startsWith('https:')) {
+      return false;
+    }
+    // If it starts with http: or https:, it must be a valid absolute URL
+    try {
+      new URL(trimmedUrl);
+    } catch {
+      return false;
+    }
   }
 
   try {
-    // Try to parse as absolute URL first
-    let parsedUrl: URL;
-    let isAbsolute = false;
-
-    try {
-      parsedUrl = new URL(url);
-      isAbsolute = true;
-    } catch {
-      // If absolute parsing fails, treat as relative
-      parsedUrl = new URL(url, 'http://localhost');
-    }
-
-    // Reject URLs with credentials
-    if (parsedUrl.username || parsedUrl.password) {
+    // Single decode-and-validate to prevent double-encoding bypass
+    const decodedUrl = decodeURIComponent(trimmedUrl);
+    
+    // Re-check for protocol-relative redirects after decoding
+    if (decodedUrl.startsWith('//') || /^\/{2,}/.test(decodedUrl)) {
       return false;
     }
 
-    // For absolute URLs, check against allowed hosts
-    if (isAbsolute) {
-      // Reject non-HTTP(S) protocols
-      if (parsedUrl.protocol !== 'http:' && parsedUrl.protocol !== 'https:') {
-        return false;
-      }
-
-      const hostname = parsedUrl.hostname.toLowerCase();
-
-      // Check against allowed hosts
-      const isAllowed = allowedHosts.some(host => {
-        if (!host) return false;
-        // Exact match
-        if (hostname === host.toLowerCase()) return true;
-        // Subdomain match (e.g., www.example.com matches example.com)
-        if (hostname.endsWith(`.${host.toLowerCase()}`)) return true;
-        return false;
-      });
-
-      return isAllowed;
-    }
-
-    // For relative URLs, ensure they don't contain encoded protocol markers
-    const decodedUrl = decodeURIComponent(url);
     if (containsDangerousProtocol(decodedUrl)) {
       return false;
     }
 
-    // Reject path traversal attempts
+    // Try to parse both raw and decoded URLs
+    const urlsToTest = [trimmedUrl, decodedUrl];
+    
+    for (const testUrl of urlsToTest) {
+      let parsedUrl: URL | null = null;
+      try {
+        parsedUrl = new URL(testUrl);
+      } catch {
+        // Not an absolute URL, fine
+      }
+
+      if (parsedUrl) {
+        // If it's an absolute URL, it MUST be allowed
+        if (parsedUrl.protocol !== 'http:' && parsedUrl.protocol !== 'https:') {
+          return false;
+        }
+
+        const hostname = parsedUrl.hostname.toLowerCase();
+        const isAllowed = allowedHosts.some(host => {
+          if (!host) return false;
+          if (hostname === host.toLowerCase()) return true;
+          if (hostname.endsWith(`.${host.toLowerCase()}`)) return true;
+          return false;
+        });
+
+        if (!isAllowed) return false;
+        
+        // Also check for credentials in absolute URLs
+        if (parsedUrl.username || parsedUrl.password) {
+          return false;
+        }
+      }
+    }
+
+    // If it reaches here, it's either a safe absolute URL or a relative URL
+    // Reject path traversal attempts in the decoded version
     if (decodedUrl.includes('..')) {
-      // Allow safe relative paths but block traversal outside root
       const normalizedPath = decodedUrl.replace(/\/+/g, '/');
       if (normalizedPath.includes('../') || normalizedPath.startsWith('..')) {
-        // Check if it's actually trying to escape
         const segments = normalizedPath.split('/');
         let depth = 0;
         for (const segment of segments) {
@@ -99,16 +109,13 @@ export function isSafeRedirectUrl(
           } else if (segment && segment !== '.') {
             depth++;
           }
-          if (depth < 0) {
-            return false;
-          }
+          if (depth < 0) return false;
         }
       }
     }
 
     return true;
   } catch {
-    // Invalid URL format
     return false;
   }
 }
@@ -128,11 +135,15 @@ export function sanitizeRedirectUrl(
 ): string {
   if (!url) return defaultUrl;
 
-  // Decode the URL in case it's encoded
-  const decodedUrl = decodeURIComponent(url);
-
-  if (isSafeRedirectUrl(decodedUrl, allowedHosts)) {
-    return decodedUrl;
+  try {
+    const trimmedUrl = url.trim();
+    // Pass raw input to isSafeRedirectUrl which handles decoding safely
+    if (isSafeRedirectUrl(trimmedUrl, allowedHosts)) {
+      // Return decoded version for consistency with expectations and clarity
+      return decodeURIComponent(trimmedUrl);
+    }
+  } catch {
+    // Fall through to default
   }
 
   return defaultUrl;

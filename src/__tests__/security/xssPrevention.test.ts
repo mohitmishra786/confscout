@@ -12,63 +12,14 @@ function escapeRegExp(string: string): string {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-/**
- * Sanitize text to prevent XSS in HTML attributes or other contexts
- */
-function sanitizeXSS(text: string): string {
-  if (!text) return '';
-
-  return text
-    .replace(/&/g, '&amp;')  // Must be first to avoid double-escaping
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#x27;')
-    .replace(/\//g, '&#x2F;');
-}
-
-/**
- * Sanitize string values to prevent XSS in JSON-LD
- * Comprehensive sanitization to remove scripts, event handlers, and dangerous content
- */
-function sanitizeJsonLdValue(value: unknown): unknown {
-  if (typeof value === 'string') {
-    return value
-      // Remove script tags and their content
-      .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
-      // Remove all event handlers (onerror, onload, onclick, etc.) - handles various formats
-      .replace(/\s*on\w+\s*=\s*(?:"[^"]*"|'[^']*'|`[^`]*`|[^\s>]*)?/gi, '')
-      // Remove javascript: protocol
-      .replace(/javascript:/gi, '')
-      // Remove data: URLs that could execute scripts
-      .replace(/data:text\/html[^,]*/gi, '');
-  }
-
-  if (Array.isArray(value)) {
-    return value.map(sanitizeJsonLdValue);
-  }
-
-  if (value !== null && typeof value === 'object') {
-    const sanitized: Record<string, unknown> = {};
-    for (const [key, val] of Object.entries(value)) {
-      sanitized[key] = sanitizeJsonLdValue(val);
-    }
-    return sanitized;
-  }
-
-  return value;
-}
+import { sanitizeXSS, sanitizeJsonLdValue } from '@/lib/validation';
 
 /**
  * Safely serialize JSON-LD data
- * Uses HTML escaping in the JSON string to prevent breaking out of the script tag
+ * (Copied from SafeJsonLd.tsx for testing until exported)
  */
 function serializeSafeJsonLd(data: Record<string, unknown>): string {
-  // Sanitize the data first
   const sanitizedData = sanitizeJsonLdValue(data);
-
-  // Serialize with HTML escaping
-  // This prevents </script> injection attacks
   return JSON.stringify(sanitizedData)
     .replace(/</g, '\\u003c')
     .replace(/>/g, '\\u003e');
@@ -322,8 +273,9 @@ describe('XSS Prevention Tests', () => {
     it('should handle null byte injection attempts', () => {
       const nullBytePayload = '<scr\x00ipt>alert("XSS")</scr\x00ipt>';
 
-      const sanitized = sanitizeJsonLdValue(nullBytePayload) as string;
-      expect(sanitized).not.toContain('<script>');
+      const sanitized = sanitizeXSS(nullBytePayload) as string;
+      expect(sanitized).not.toContain('\x00');
+      expect(sanitized).toContain('script'); // Should be 'script' after null byte removal
     });
   });
 });

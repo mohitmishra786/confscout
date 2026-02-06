@@ -3,7 +3,7 @@
  * Automatically adds CSRF token to requests
  */
 
-import { CSRF_HEADER, CSRF_COOKIE } from '@/lib/csrf';
+import { CSRF_HEADER, CSRF_COOKIE } from '@/lib/csrf-constants';
 
 // Helper to get cookie value
 function getCookie(name: string): string | undefined {

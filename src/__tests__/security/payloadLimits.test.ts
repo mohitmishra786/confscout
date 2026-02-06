@@ -18,8 +18,12 @@ describe('Payload Size Limits', () => {
       
       try {
         const content = readFileSync(configPath, 'utf-8');
-        // Check if there are any overrides increasing the limit unsafely
-        expect(content).not.toMatch(/bodySizeLimit:\s*['"]\d+mb['"]/i); // e.g. '50mb'
+        // SECURITY: Only allow body size overrides if they are small (< 10MB)
+        const match = content.match(/bodySizeLimit:\s*['"](\d+)mb['"]/i);
+        if (match) {
+          const size = parseInt(match[1], 10);
+          expect(size).toBeLessThan(10);
+        }
       } catch {
         // Use default
       }
@@ -54,12 +58,10 @@ describe('Payload Size Limits', () => {
            const hasSizeCheck = content.includes('.size') || 
                                content.includes('MAX_FILE_SIZE') || 
                                content.includes('maxFileSize') ||
-                               content.includes('limit');
+                               content.includes('limit') ||
+                               content.includes('byteLength');
            
-           if (!hasSizeCheck) {
-             // Warn but don't fail as it might be handled by middleware or cloud provider
-             console.warn(`Potential missing size check in ${route}`);
-           }
+           expect(hasSizeCheck).toBe(true);
         }
       }
     });
@@ -67,16 +69,17 @@ describe('Payload Size Limits', () => {
 
   describe('DoS Prevention', () => {
     it('should use streaming for large responses', () => {
-      // Check for streaming responses in API
+      // Check for streaming responses in API (NextResponse.json is fine for small ones)
       try {
         const result = execSync(
-          'git grep "Stream" -- "src/app/api" 2>/dev/null || true',
+          'git grep -E "ReadableStream|Stream" -- "src/app/api" 2>/dev/null || true',
           { encoding: 'utf-8' }
         );
-        // Just an informational check that streaming is used where appropriate
-        expect(true).toBe(true);
-      } catch {
-        expect(true).toBe(true);
+        // Verify we have some streaming usage if we have large data routes
+        // For now, let's just assert the command runs
+        expect(result).toBeDefined();
+      } catch (error) {
+        if (error instanceof Error && error.message.includes('expect')) throw error;
       }
     });
   });

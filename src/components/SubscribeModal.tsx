@@ -43,7 +43,7 @@ export default function SubscribeModal({ isOpen, onClose }: SubscribeModalProps)
                 setStatus('error');
                 setMessage(data.error || 'Something went wrong');
             }
-        } catch (err) {
+        } catch {
             setStatus('error');
             setMessage('Network error. Please try again.');
         }

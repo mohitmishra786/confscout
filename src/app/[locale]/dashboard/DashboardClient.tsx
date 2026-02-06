@@ -41,7 +41,7 @@ export default function DashboardClient({ initialEvents }: DashboardClientProps)
       setEvents(prev => 
         prev.map(e => e.id === bookmarkId ? { ...e, status: newStatus } : e)
       );
-    } catch (err) {
+    } catch {
       alert('Failed to update status');
     } finally {
       setUpdatingId(null);

@@ -104,7 +104,39 @@ describe('SVG Sanitization Security Tests', () => {
 
       const sanitized = sanitizeSvg(maliciousSvg);
 
-      expect(sanitized.match(/<script/g)).toBeNull();
+      expect(sanitized).not.toContain('<script');
+    });
+
+    it('should remove self-closing script tags', () => {
+      const maliciousSvg = '<svg><script src="https://evil.com/xss.js"/><rect/></svg>';
+      const sanitized = sanitizeSvg(maliciousSvg);
+      expect(sanitized).not.toContain('<script');
+    });
+
+    it('should remove animate and set elements', () => {
+      const maliciousSvg = `
+        <svg>
+          <rect width="100" height="100">
+            <animate attributeName="onmouseover" to="alert(1)"/>
+            <set attributeName="onmouseover" to="alert(1)"/>
+          </rect>
+        </svg>
+      `;
+      const sanitized = sanitizeSvg(maliciousSvg);
+      expect(sanitized).not.toContain('<animate');
+      expect(sanitized).not.toContain('<set');
+    });
+
+    it('should handle case-mixed or whitespace-injected tags', () => {
+      const maliciousSvg = '<svg><ScRiPt \n>alert(1)</sCrIpT><rect/></svg>';
+      const sanitized = sanitizeSvg(maliciousSvg);
+      expect(sanitized.toLowerCase()).not.toContain('<script');
+    });
+
+    it('should remove data: URLs from style attributes', () => {
+      const maliciousSvg = '<svg><rect style="background: url(\'data:text/html,<script>alert(1)</script>\')"/></svg>';
+      const sanitized = sanitizeSvg(maliciousSvg);
+      expect(sanitized).not.toContain('data:');
     });
 
     it('should handle empty SVG content', () => {
