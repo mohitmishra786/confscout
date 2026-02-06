@@ -5,7 +5,7 @@ import { Conference, ConferenceData } from '@/types/conference';
 import { prisma } from '@/lib/prisma';
 import { cacheLogger } from '@/lib/logger';
 
-const CACHE_KEY = 'conferences';
+const CACHE_KEY = 'confscout:v1:conferences:en'; // Versioned and locale-specific cache key
 const CACHE_TTL = 3600; // 1 hour
 
 // Initialize Redis client lazily
