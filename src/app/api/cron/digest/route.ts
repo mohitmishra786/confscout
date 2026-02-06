@@ -7,9 +7,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import pool from '@/lib/db';
 import { sendDigestEmail } from '@/lib/email';
-import conferenceData from '../../../../public/data/conferences.json';
 import { Conference } from '@/types/conference';
 import { invalidateCache } from '@/lib/cache';
+import { readFileSync } from 'fs';
+import { join } from 'path';
 
 /**
  * Interface for subscriber preferences
@@ -107,8 +108,10 @@ export async function GET(request: NextRequest) {
   const triggerFrequency = parseResult.data;
 
   try {
-    // Load conference data from static import
-    const data = conferenceData as { months?: Record<string, Conference[]>; conferences?: Conference[] };
+    // Load conference data using fs (works in serverless)
+    const dataPath = join(process.cwd(), 'public', 'data', 'conferences.json');
+    const fileContents = readFileSync(dataPath, 'utf8');
+    const data = JSON.parse(fileContents) as { months?: Record<string, Conference[]>; conferences?: Conference[] };
     const conferences: Conference[] = data.months 
       ? Object.values(data.months).flat() as Conference[] 
       : (data.conferences || []);

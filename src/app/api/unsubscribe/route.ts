@@ -26,7 +26,7 @@ export async function GET(request: Request) {
             const email = result.rows[0].email;
 
             // Send confirmation email
-            await sendUnsubscribeEmail(email);
+            await sendUnsubscribeEmail(email, token);
 
             // Redirect to success page
             return NextResponse.redirect(new URL('/unsubscribe/success', request.url));
