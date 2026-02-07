@@ -21,7 +21,7 @@ function getRedisClient(): Redis | null {
     }
     cacheLogger.warn('Upstash Redis environment variables missing');
     return null;
-  } catch (error) {
+  } catch (error: unknown) {
     cacheLogger.error('Failed to initialize Redis client', error);
     return null;
   }
@@ -172,7 +172,7 @@ export async function getCachedConferences(): Promise<ConferenceData> {
           financialAid: c.financialAid ? JSON.parse(JSON.stringify(c.financialAid)) : undefined
         })) as Conference[];
       }
-    } catch (dbError) {
+    } catch (dbError: unknown) {
       cacheLogger.error('Database fetch failed, falling back to file', dbError);
       conferences = [];
     }
@@ -202,7 +202,7 @@ export async function getCachedConferences(): Promise<ConferenceData> {
           timestamp: Date.now()
         }, { ex: CACHE_TTL });
         cacheLogger.info('Updated Redis cache');
-      } catch (redisError) {
+      } catch (redisError: unknown) {
         cacheLogger.error('Failed to update Redis cache', redisError);
       }
     }
@@ -212,7 +212,7 @@ export async function getCachedConferences(): Promise<ConferenceData> {
       total: formattedData.stats.total 
     });
     return formattedData;
-  } catch (error) {
+  } catch (error: unknown) {
     cacheLogger.error('Critical cache error, using file fallback', error);
     // Ultimate fallback
     const filePath = join(process.cwd(), 'public/data/conferences.json');
@@ -231,7 +231,7 @@ export async function invalidateCache(): Promise<void> {
   try {
     await redisClient.del(CACHE_KEY);
     cacheLogger.info('Cache invalidated');
-  } catch (error) {
+  } catch (error: unknown) {
     cacheLogger.error('Failed to invalidate cache', error);
   }
 }
@@ -241,7 +241,7 @@ export async function warmCache(): Promise<void> {
     cacheLogger.info('Warming cache...');
     await getCachedConferences();
     cacheLogger.info('Cache warmed successfully');
-  } catch (error) {
+  } catch (error: unknown) {
     cacheLogger.error('Failed to warm cache', error);
   }
 }
@@ -314,7 +314,7 @@ async function revalidateCache(): Promise<void> {
     }, { ex: CACHE_TTL });
     
     cacheLogger.info('Background revalidation completed');
-  } catch (error) {
+  } catch (error: unknown) {
     cacheLogger.error('Background revalidation error', error);
   }
 }
