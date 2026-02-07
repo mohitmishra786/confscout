@@ -21,6 +21,7 @@ try:
     from sources import wikicfp
     HAS_WIKICFP = True
 except ImportError:
+    wikicfp = None
     HAS_WIKICFP = False
 
 from utils.deduplication import deduplicate
@@ -56,7 +57,11 @@ def main():
     
     # Add WikiCFP if beautifulsoup4 is available
     if HAS_WIKICFP:
-        sources.append(("WikiCFP", wikicfp.fetch))
+        try:
+            from sources import wikicfp
+            sources.append(("WikiCFP", wikicfp.fetch))
+        except ImportError:
+            pass
     
     for name, fetch_fn in sources:
         try:
@@ -197,10 +202,18 @@ def _days_remaining(date_str: str):
 
 
 def _generate_id(conf: dict) -> str:
-    """Generate a unique ID for a conference."""
+    """
+    Generate a unique ID for a conference.
+    Includes more fields to ensure absolute uniqueness and stability.
+    """
     import hashlib
-    data = f"{conf.get('name', '')}-{conf.get('startDate', '')}-{conf.get('url', '')}"
-    return hashlib.md5(data.encode()).hexdigest()[:12]
+    # Normalize fields for stable hashing
+    name = str(conf.get('name', '')).lower().strip()
+    date = str(conf.get('startDate', '')).strip()
+    url = str(conf.get('url', '')).lower().strip()
+    
+    data = f"{name}|{date}|{url}"
+    return hashlib.md5(data.encode('utf-8')).hexdigest()[:12]
 
 
 def _group_by_month(conferences: list[dict]) -> dict:
@@ -254,12 +267,14 @@ def _send_notifications(conferences: list[dict]):
     previous_ids = set()
     if PREVIOUS_DATA_PATH.exists():
         try:
-            with open(PREVIOUS_DATA_PATH) as f:
+            with open(PREVIOUS_DATA_PATH, encoding='utf-8') as f:
                 prev = json.load(f)
             for month_confs in prev.get("months", {}).values():
                 for c in month_confs:
-                    previous_ids.add(c.get("id"))
-        except:
+                    if isinstance(c, dict) and c.get("id"):
+                        previous_ids.add(c.get("id"))
+        except (json.JSONDecodeError, IOError) as e:
+            print(f"  ! Warning: Failed to load previous data for notifications: {e}")
             pass
     
     # Find new CFPs

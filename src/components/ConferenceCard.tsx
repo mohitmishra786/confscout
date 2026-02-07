@@ -9,10 +9,10 @@
  */
 
 import { useState, memo } from 'react';
-import Image from 'next/image';
 import { type Conference, DOMAIN_INFO } from '@/types/conference';
 import { useCompare } from '@/context/CompareContext';
 import { SafeHighlightedText } from '@/components/SafeHighlightedText';
+import { SafeImage } from '@/components/SafeImage';
 import VisaModal from './VisaModal';
 import TravelModal from './TravelModal';
 import { secureFetch } from '@/lib/api';
@@ -226,7 +226,7 @@ const ConferenceCard = memo(function ConferenceCard({ conference, searchTerm }: 
                   {conference.attendees?.map((a, i) => (
                     <div key={i} className="w-5 h-5 rounded-full border border-zinc-900 overflow-hidden bg-zinc-800">
                       {a.image ? (
-                        <Image 
+                        <SafeImage 
                           src={a.image} 
                           alt={a.name || ''} 
                           width={20} 

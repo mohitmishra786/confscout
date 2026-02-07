@@ -210,11 +210,27 @@ export default function HomeClient({ initialData }: HomeClientProps) {
     }))
   };
 
-  // Data is now always available from server - no loading state needed!
+  // Stale data detection
+  const isStale = useMemo(() => {
+    if (!data?.lastUpdated) return false;
+    const lastUpdate = new Date(data.lastUpdated);
+    const now = new Date();
+    // More than 24 hours old
+    return (now.getTime() - lastUpdate.getTime()) > 24 * 60 * 60 * 1000;
+  }, [data?.lastUpdated]);
 
   return (
     <div className="min-h-screen bg-black">
       <Header />
+
+      {isStale && (
+        <div className="bg-amber-900/20 border-b border-amber-500/20 py-2 px-4 text-center">
+          <p className="text-amber-200/80 text-xs">
+            ⚠️ Data might be stale. Last updated {new Date(data.lastUpdated).toLocaleDateString()}. 
+            <button onClick={() => window.location.reload()} className="ml-2 underline hover:text-white">Refresh</button>
+          </p>
+        </div>
+      )}
 
       {/* Subscribe Button (Fixed or top) */}
       <div className="fixed bottom-6 right-6 z-40">
