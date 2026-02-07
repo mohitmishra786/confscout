@@ -1,17 +1,21 @@
 /**
  * Error Handler Module Tests
- * 
+ *
  * Tests the secure error handling module.
  * Issue #300 - Fix Verbose Error Messages
  */
 
-import { APIError, ErrorCodes, Errors, getErrorMessage, handleAPIError } from '@/lib/errorHandler';
+import { APIError, ErrorCodes, Errors, getErrorMessage, handleAPIError, withErrorHandling, sanitizeValidationError } from '@/lib/errorHandler';
+import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
+
+type ErrorCode = typeof ErrorCodes[keyof typeof ErrorCodes];
 
 describe('Error Handler Module (Issue #300)', () => {
   describe('APIError class', () => {
     it('should create error with status code and message', () => {
       const error = new APIError(400, 'Bad Request', 'INVALID_INPUT');
-      
+
       expect(error.statusCode).toBe(400);
       expect(error.message).toBe('Bad Request');
       expect(error.code).toBe('INVALID_INPUT');
@@ -97,42 +101,42 @@ describe('Error Handler Module (Issue #300)', () => {
     it('should return user-friendly message for validation error', () => {
       const error = { code: 'VALIDATION_ERROR' };
       const message = getErrorMessage(error);
-      
+
       expect(message).toContain('invalid');
     });
 
     it('should return user-friendly message for unauthorized', () => {
       const error = { code: 'UNAUTHORIZED' };
       const message = getErrorMessage(error);
-      
+
       expect(message).toContain('log in');
     });
 
     it('should return user-friendly message for rate limited', () => {
       const error = { code: 'RATE_LIMITED' };
       const message = getErrorMessage(error);
-      
+
       expect(message).toContain('slow down');
     });
 
     it('should return error.error if available', () => {
       const error = { error: 'Custom error message' };
       const message = getErrorMessage(error);
-      
+
       expect(message).toBe('Custom error message');
     });
 
     it('should return error.message if available', () => {
       const error = { message: 'Another message' };
       const message = getErrorMessage(error);
-      
+
       expect(message).toBe('Another message');
     });
 
     it('should return fallback message for unknown errors', () => {
       const error = {};
       const message = getErrorMessage(error);
-      
+
       expect(message).toContain('unexpected');
     });
   });
@@ -170,6 +174,183 @@ describe('Error Handler Module (Issue #300)', () => {
       expect(body.error).toContain('unexpected');
       // Original error with path is preserved in the error object but not exposed
       expect(internalError.message).toContain('/usr/src');
+    });
+  });
+
+  describe('handleAPIError production sanitization', () => {
+    let originalEnv: string | undefined;
+
+    beforeEach(() => {
+      originalEnv = process.env.NODE_ENV;
+    });
+
+    afterEach(() => {
+      process.env.NODE_ENV = originalEnv;
+    });
+
+    it('should return generic message for generic errors in production', async () => {
+      process.env.NODE_ENV = 'production';
+      const error = new Error('secret database password is xyz123');
+
+      const response = handleAPIError(error);
+      const body = await response.json();
+
+      expect(body.error).not.toContain('xyz123');
+      expect(body.error).not.toContain('password');
+      expect(body.error).toContain('unexpected');
+      expect(body.code).toBe('INTERNAL_ERROR');
+    });
+
+    it('should return user-friendly message for ZodError in production', async () => {
+      process.env.NODE_ENV = 'production';
+      const schema = z.object({ email: z.string().email() });
+      let zodError: z.ZodError;
+
+      try {
+        schema.parse({ email: 'invalid' });
+      } catch (e) {
+        zodError = e as z.ZodError;
+      }
+
+      const response = handleAPIError(zodError!);
+      const body = await response.json();
+
+      expect(body.code).toBe('VALIDATION_ERROR');
+      expect(body.error).toBe('Validation failed');
+      // Field paths should be sanitized but present
+      expect(body.fields).toContain('email');
+    });
+
+    it('should sanitizeValidationError remove detailed messages', () => {
+      const schema = z.object({
+        email: z.string().email(),
+        password: z.string().min(8)
+      });
+      let zodError: z.ZodError;
+
+      try {
+        schema.parse({ email: 'invalid', password: 'short' });
+      } catch (e) {
+        zodError = e as z.ZodError;
+      }
+
+      const result = sanitizeValidationError(zodError!);
+
+      expect(result.code).toBe('VALIDATION_ERROR');
+      expect(result.error).toBe('Validation failed');
+      expect(result.fields).toContain('email');
+      expect(result.fields).toContain('password');
+      // Should not expose detailed validation messages
+      expect(result).not.toHaveProperty('details');
+    });
+
+    it('should handle Prisma P2002 error as DUPLICATE_ENTRY', async () => {
+      process.env.NODE_ENV = 'production';
+      const prismaError = { code: 'P2002', message: 'Unique constraint failed on email' };
+
+      const response = handleAPIError(prismaError);
+      const body = await response.json();
+
+      expect(body.code).toBe('DUPLICATE_ENTRY');
+      expect(body.error).toContain('already exists');
+      expect(body.error).not.toContain('Unique constraint');
+    });
+
+    it('should handle Prisma P2025 error as NOT_FOUND', async () => {
+      process.env.NODE_ENV = 'production';
+      const prismaError = { code: 'P2025', message: 'Record not found' };
+
+      const response = handleAPIError(prismaError);
+      const body = await response.json();
+
+      expect(body.code).toBe('NOT_FOUND');
+      expect(body.error).toContain('not found');
+    });
+
+    it('should handle unknown Prisma errors as INTERNAL_ERROR', async () => {
+      process.env.NODE_ENV = 'production';
+      const prismaError = { code: 'P9999', message: 'Some internal db error' };
+
+      const response = handleAPIError(prismaError);
+      const body = await response.json();
+
+      expect(body.code).toBe('INTERNAL_ERROR');
+      expect(body.error).not.toContain('internal db error');
+    });
+
+    it('should expose error details in development mode', async () => {
+      process.env.NODE_ENV = 'development';
+      const error = new Error('Detailed error message');
+
+      const response = handleAPIError(error);
+      const body = await response.json();
+
+      expect(body.error).toBe('Detailed error message');
+      expect(body.stack).toBeDefined();
+    });
+
+    it('should not expose stack traces in production', async () => {
+      process.env.NODE_ENV = 'production';
+      const error = new Error('Detailed error message');
+
+      const response = handleAPIError(error);
+      const body = await response.json();
+
+      expect(body).not.toHaveProperty('stack');
+    });
+  });
+
+  describe('withErrorHandling wrapper', () => {
+    let originalEnv: string | undefined;
+
+    beforeEach(() => {
+      originalEnv = process.env.NODE_ENV;
+      process.env.NODE_ENV = 'production';
+    });
+
+    afterEach(() => {
+      process.env.NODE_ENV = originalEnv;
+    });
+
+    it('should catch errors and return sanitized response', async () => {
+      const handler = withErrorHandling(async (_req: NextRequest) => {
+        throw new Error('Secret internal error details');
+      });
+
+      const request = new NextRequest('http://localhost/api/test');
+      const response = await handler(request);
+      const body = await response.json();
+
+      expect(response.status).toBe(500);
+      expect(body.error).not.toContain('Secret internal error');
+      expect(body.error).toContain('unexpected');
+    });
+
+    it('should return successful response when no error', async () => {
+      const handler = withErrorHandling(async (_req: NextRequest) => {
+        return NextResponse.json({ success: true }, { status: 200 });
+      });
+
+      const request = new NextRequest('http://localhost/api/test');
+      const response = await handler(request);
+      const body = await response.json();
+
+      expect(response.status).toBe(200);
+      expect(body.success).toBe(true);
+    });
+
+    it('should sanitize APIError with unknown code', async () => {
+      const handler = withErrorHandling(async (_req: NextRequest) => {
+        throw new APIError(500, 'Internal secret: password=xyz', 'UNKNOWN_CODE' as ErrorCode);
+      });
+
+      const request = new NextRequest('http://localhost/api/test');
+      const response = await handler(request);
+      const body = await response.json();
+
+      expect(response.status).toBe(500);
+      expect(body.error).not.toContain('password=xyz');
+      expect(body.code).toBe('INTERNAL_ERROR');
     });
   });
 });

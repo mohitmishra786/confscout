@@ -12,6 +12,7 @@ import {
   fixedWindow,
   slidingWindow,
   cleanupRateLimitStore,
+  clearRateLimitStore,
   getRateLimitHeaders,
   createRateLimitResponse,
   rateLimitConfigs,
@@ -19,9 +20,9 @@ import {
 } from '@/lib/rateLimit';
 
 describe('Rate Limiting (Issue #265)', () => {
-  // Mock cleanup before each test
+  // Clear rate limit store before each test to prevent state leakage
   beforeEach(() => {
-    cleanupRateLimitStore(0);
+    clearRateLimitStore();
   });
 
   describe('getClientIP', () => {

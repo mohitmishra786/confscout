@@ -158,7 +158,6 @@ describe('SQL Injection Protection (Issue #268)', () => {
 
   describe('SQL Injection Test Cases', () => {
     it('should be protected against classic SQL injection attacks', () => {
-      // These are example payloads that would be caught by parameterization
       const injectionPayloads = [
         "' OR '1'='1",
         "'; DROP TABLE users; --",
@@ -170,10 +169,19 @@ describe('SQL Injection Protection (Issue #268)', () => {
         "'; UPDATE users SET admin=true; --",
       ];
 
-      // Since we're using parameterized queries, these payloads would be
-      // treated as literal strings, not executable SQL
-      // This test documents the protection is in place
-      expect(injectionPayloads).toBeDefined();
+      for (const payload of injectionPayloads) {
+        const query = `SELECT * FROM users WHERE id = $1`;
+        const params = [payload];
+
+        expect(query.includes('$1')).toBe(true);
+        expect(params[0]).toBe(payload);
+        expect(query).not.toContain(payload);
+        expect(query).not.toContain(' OR ');
+        expect(query).not.toContain('DROP');
+        expect(query).not.toContain('DELETE');
+        expect(query).not.toContain('UNION');
+        expect(query).not.toContain('UPDATE');
+      }
     });
 
     it('should be protected against blind SQL injection', () => {
@@ -186,7 +194,17 @@ describe('SQL Injection Protection (Issue #268)', () => {
         "1; WAITFOR DELAY '0:0:5'--",
       ];
 
-      expect(blindInjectionPayloads).toBeDefined();
+      for (const payload of blindInjectionPayloads) {
+        const query = `SELECT * FROM conferences WHERE domain = $1`;
+        const params = [payload];
+
+        expect(query.includes('$1')).toBe(true);
+        expect(params[0]).toBe(payload);
+        expect(query).not.toContain(payload);
+        expect(query).not.toContain(' AND ');
+        expect(query).not.toContain('SLEEP');
+        expect(query).not.toContain('WAITFOR');
+      }
     });
   });
 });

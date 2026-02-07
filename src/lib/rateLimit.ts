@@ -40,34 +40,85 @@ interface RateLimitEntry {
   count: number;
   reset: number;
   windowStart: number;
+  lastAccessed: number;
 }
 
-// In-memory store for development/edge runtime
+const MAX_STORE_SIZE = 10000;
+
+// LRU-style in-memory store for development/edge runtime
 const memoryStore = new Map<string, RateLimitEntry>();
+
+function evictOldestEntry(): void {
+  const firstKey = memoryStore.keys().next().value;
+  if (firstKey) {
+    memoryStore.delete(firstKey);
+  }
+}
+
+/**
+ * Validate and sanitize an IP address string
+ * Returns null if invalid, otherwise returns the trimmed, validated IP
+ */
+function validateIP(ip: string): string | null {
+  const trimmed = ip.trim();
+
+  if (trimmed.length === 0 || trimmed.length > 45) {
+    return null;
+  }
+
+  const ipv4Pattern = /^(\d{1,3}\.){3}\d{1,3}$/;
+  const ipv6Pattern = /^([0-9a-fA-F]{0,4}:){2,7}[0-9a-fA-F]{0,4}$/;
+
+  if (ipv4Pattern.test(trimmed)) {
+    const parts = trimmed.split('.');
+    for (const part of parts) {
+      const num = parseInt(part, 10);
+      if (num < 0 || num > 255) {
+        return null;
+      }
+    }
+    return trimmed;
+  }
+
+  if (ipv6Pattern.test(trimmed)) {
+    return trimmed;
+  }
+
+  return null;
+}
 
 /**
  * Get client IP from request headers
  * Tries multiple headers to support different deployment platforms
+ * Validates and sanitizes IP addresses to prevent header spoofing
  */
 export function getClientIP(request: NextRequest): string {
-  // Try platform-specific headers first
   const forwarded = request.headers.get('x-forwarded-for');
   if (forwarded) {
-    // Get the first IP in the chain (client IP)
-    return forwarded.split(',')[0].trim();
+    const ips = forwarded.split(',').map(ip => ip.trim());
+    const firstIP = ips[0];
+    const validated = validateIP(firstIP);
+    if (validated) {
+      return validated;
+    }
   }
-  
+
   const realIP = request.headers.get('x-real-ip');
   if (realIP) {
-    return realIP;
+    const validated = validateIP(realIP);
+    if (validated) {
+      return validated;
+    }
   }
-  
+
   const cfConnectingIP = request.headers.get('cf-connecting-ip');
   if (cfConnectingIP) {
-    return cfConnectingIP;
+    const validated = validateIP(cfConnectingIP);
+    if (validated) {
+      return validated;
+    }
   }
-  
-  // Fallback
+
   return '127.0.0.1';
 }
 
@@ -106,11 +157,17 @@ export function fixedWindow(
   const entry = memoryStore.get(fullKey);
   
   if (!entry || entry.windowStart !== windowStart) {
+    // Enforce store capacity limit
+    if (memoryStore.size >= MAX_STORE_SIZE) {
+      evictOldestEntry();
+    }
+
     // New window
     const newEntry: RateLimitEntry = {
       count: 1,
       reset,
-      windowStart
+      windowStart,
+      lastAccessed: Date.now()
     };
     memoryStore.set(fullKey, newEntry);
     
@@ -167,11 +224,17 @@ export function slidingWindow(
   const entry = memoryStore.get(fullKey);
   
   if (!entry || now > entry.reset) {
+    // Enforce store capacity limit
+    if (memoryStore.size >= MAX_STORE_SIZE) {
+      evictOldestEntry();
+    }
+
     // No entry or expired
     const newEntry: RateLimitEntry = {
       count: 1,
       reset,
-      windowStart: now
+      windowStart: now,
+      lastAccessed: Date.now()
     };
     memoryStore.set(fullKey, newEntry);
     
@@ -214,6 +277,13 @@ export function cleanupRateLimitStore(maxAgeMs: number = 3600000): void {
       memoryStore.delete(key);
     }
   }
+}
+
+/**
+ * Clear all rate limit entries - useful for testing
+ */
+export function clearRateLimitStore(): void {
+  memoryStore.clear();
 }
 
 /**
