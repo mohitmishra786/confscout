@@ -18,21 +18,22 @@ interface WorldMapProps {
     onMarkerClick?: (conference: Conference) => void;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/consistent-type-imports */
+type LeafletModule = typeof import('react-leaflet');
+type LeafletClusterModule = typeof import('react-leaflet-cluster');
+
 type LeafletComponents = {
-    MapContainer: any;
-    TileLayer: any;
-    CircleMarker: any;
-    Popup: any;
-    Marker: any;
-    useMap: any;
+    MapContainer: LeafletModule['MapContainer'];
+    TileLayer: LeafletModule['TileLayer'];
+    CircleMarker: LeafletModule['CircleMarker'];
+    Popup: LeafletModule['Popup'];
+    Marker: LeafletModule['Marker'];
+    useMap: LeafletModule['useMap'];
 };
-/* eslint-enable @typescript-eslint/no-explicit-any */
 
 function MapContainerComponent({ conferences, center, zoom, onMarkerClick }: WorldMapProps) {
     const [components, setComponents] = useState<LeafletComponents | null>(null);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const [MarkerClusterGroup, setMarkerClusterGroup] = useState<any>(null);
+    const [MarkerClusterGroup, setMarkerClusterGroup] = useState<LeafletClusterModule['default'] | null>(null);
 
     useEffect(() => {
         Promise.all([
