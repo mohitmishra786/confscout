@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useMemo, Suspense } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams, useRouter, useParams } from 'next/navigation';
 import { ConferenceData, SortOption, DOMAIN_INFO } from '@/types/conference';
 
 import Header from '@/components/Header';
@@ -11,6 +11,7 @@ import Footer from '@/components/Footer';
 function SearchContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const params = useParams();
 
   const [data, setData] = useState<ConferenceData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -54,14 +55,15 @@ function SearchContent() {
 
   // Update URL when filters change
   useEffect(() => {
-    const params = new URLSearchParams();
-    if (searchTerm) params.set('q', searchTerm);
-    if (selectedDomain !== 'all') params.set('domain', selectedDomain);
-    if (showCfpOnly) params.set('cfp', 'true');
+    const urlParams = new URLSearchParams();
+    if (searchTerm) urlParams.set('q', searchTerm);
+    if (selectedDomain !== 'all') urlParams.set('domain', selectedDomain);
+    if (showCfpOnly) urlParams.set('cfp', 'true');
 
-    const newURL = params.toString() ? `/search?${params.toString()}` : '/search';
+    const locale = params.locale as string;
+    const newURL = urlParams.toString() ? `/${locale}/search?${urlParams.toString()}` : `/${locale}/search`;
     router.replace(newURL, { scroll: false });
-  }, [searchTerm, selectedDomain, showCfpOnly, router]);
+  }, [searchTerm, selectedDomain, showCfpOnly, router, params.locale]);
 
   // Get unique domains
   const domains = useMemo(() => {

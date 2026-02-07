@@ -35,15 +35,17 @@ export async function GET(
     }
 
     if (!conference) {
+        console.log(`Calendar API: Conference not found for ID: ${id}`);
         return NextResponse.json(
-            { error: 'Conference not found' },
+            { error: 'Conference not found', requestedId: id },
             { status: 404 }
         );
     }
 
     if (!conference.startDate) {
+        console.log(`Calendar API: Conference ${id} has no start date`);
         return NextResponse.json(
-            { error: 'Conference has no date set' },
+            { error: 'Conference has no date set', conferenceId: id },
             { status: 400 }
         );
     }

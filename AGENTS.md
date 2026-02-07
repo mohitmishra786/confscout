@@ -7,72 +7,98 @@ This document provides essential information for AI agents operating in the Conf
 ### Frontend (Next.js)
 - **Dev Server:** `npm run dev` (uses Turbopack)
 - **Production Build:** `npm run build`
+- **Start:** `npm run start`
 - **Linting:** `npm run lint`
 - **Type Checking:** `npx tsc --noEmit`
-- **Start:** `npm run start`
-
-### Data Processing (Python)
-- **Fetch Data:** `npm run fetch-data` or `python3 scripts/fetch_confs.py`
-- **Install Dependencies:** `pip install -r requirements.txt`
-- **Update DB:** `node scripts/init_db.js` (if using Vercel Postgres)
 
 ### Testing
-- No automated test suite is currently implemented. When adding logic, verify manually or add a temporary script in `scripts/`.
+- **Run All Tests:** `npm test`
+- **Run Security Tests:** `npm run test:security`
+- **Watch Mode:** `npm run test:watch`
+- **Single Test File:** `npx jest src/__tests__/email.test.ts`
+- **Single Test Pattern:** `npx jest --testNamePattern="should validate email format"`
+- **Coverage:** `npx jest --coverage`
+
+### Data Processing (Python)
+- **Fetch Data:** `npm run fetch-data` or `./scripts/ingest.sh`
+- **Install Dependencies:** `pip install -r requirements.txt`
+- **Update DB:** `node scripts/init_db.js` (if using Vercel Postgres)
 
 ---
 
 ## 🛠 Code Style & Conventions
 
 ### General
-- **Indentation:** 2 spaces for JS/TS, 4 spaces for Python.
-- **Line Length:** Prefer keeping lines under 100 characters where possible.
+- **Indentation:** 2 spaces for JS/TS, 4 spaces for Python
+- **Line Length:** Prefer keeping lines under 100 characters
 - **Naming:**
   - **Components:** PascalCase (e.g., `ConferenceCard.tsx`)
   - **Functions/Variables (JS):** camelCase (e.g., `filteredConferences`)
   - **Python Functions/Variables:** snake_case (e.g., `fetch_confs_tech_data`)
-  - **Files:** PascalCase for React components, camelCase for TS logic/types.
-- **Documentation:** Use JSDoc (`/** */`) for JS/TS, triple-quoted strings (`""" """`) for Python.
+  - **Files:** PascalCase for React components, camelCase for TS logic/types
+- **Documentation:** Use JSDoc (`/** */`) for JS/TS, docstrings (`""" """`) for Python
 
 ### TypeScript / React
-- **Framework:** Next.js 15 (App Router).
-- **Styling:** Tailwind CSS 4. Use utility classes directly in components.
-- **Imports:** Use the `@/` alias for absolute imports from the `src/` directory.
-  - *Order:* React/Next -> External Libraries -> @/types -> @/components -> @/lib -> Styles.
-- **Types:** Always define interfaces for props and data structures. Prefer `interface` over `type` for objects.
-- **Components:** Use functional components with arrow functions or standard `function` keyword.
-- **Directives:** Use `'use client';` at the top of files that use React hooks or browser APIs.
-- **Date Formatting:** Use `Intl.DateTimeFormatOptions` for locale-aware date strings (e.g., `{ month: 'short', day: 'numeric' }`).
-- **API Routes:** Use Zod schemas for request validation. Handle errors with try-catch and return `NextResponse`.
-- **Async Patterns:** Always use async/await for database operations, external API calls, and data fetching.
+- **Framework:** Next.js 15 (App Router)
+- **Styling:** Tailwind CSS 4 utility classes
+- **Imports:** Use `@/` alias for absolute imports. Order: React/Next → External Libraries → @/types → @/components → @/lib → Styles
+- **Types:** Define interfaces for props/data. Prefer `interface` over `type` for objects
+- **Components:** Functional components with explicit JSDoc comments
+- **Client Components:** Use `'use client';` directive for browser APIs/hooks
+- **Security:** Use `SafeHighlightedText` component instead of `dangerouslySetInnerHTML`
+- **API Security:** Use `secureFetch()` from `@/lib/api` for CSRF-protected requests
+- **Error Handling:** Wrap async operations in try-catch, return `NextResponse` from API routes
+- **Dates:** Use `Intl.DateTimeFormatOptions` for locale-aware formatting
 
 ### Python
-- **Version:** Python 3.x.
-- **Library:** Use `requests` for fetching and `BeautifulSoup` for scraping.
-- **Typing:** Use type hints for function signatures (e.g., `def fetch(url: str) -> List[Dict]:`).
-- **Docstrings:** Use triple-quoted strings for module and function descriptions.
-- **Error Handling:** Use `try...except` blocks with clear logging (e.g., `print(f"[FAIL] {url}: {e}")`).
-- **Paths:** Use `pathlib.Path` for filesystem operations instead of `os.path`.
+- **Version:** Python 3.x
+- **Libraries:** `requests` for HTTP, `BeautifulSoup` for scraping
+- **Typing:** Use type hints (`def fetch(url: str) -> List[Dict]:`)
+- **Error Handling:** Use try-except with clear logging (`print(f"[FAIL] {url}: {e}")`)
+- **Paths:** Use `pathlib.Path` instead of `os.path`
+
+---
+
+## 🔒 Security Guidelines
+
+- **XSS Prevention:** Never use `dangerouslySetInnerHTML`. Use `SafeHighlightedText` for highlights
+- **CSRF Protection:** Use `secureFetch()` for state-changing API calls
+- **Input Validation:** Use Zod schemas for API route validation
+- **SQL Injection:** Use parameterized queries, never string concatenation
+- **Secret Management:** Use environment variables, never commit `.env` files
+- **URL Validation:** Validate and sanitize external URLs before use
 
 ---
 
 ## 📂 Project Structure
 
-- `src/app/`: Next.js App Router pages and API routes.
-- `src/components/`: Reusable React components.
-- `src/types/`: TypeScript interfaces (see `conference.ts` for the core model).
-- `src/lib/`: Shared utility logic and database clients.
-- `scripts/`: Python scripts for data aggregation and fetching.
-- `scripts/sources/`: Individual scrapers for different conference sources (e.g., `wikicfp.py`).
-- `public/data/`: Generated JSON data files (e.g., `conferences.json`).
+- `src/app/`: Next.js App Router pages and API routes
+- `src/components/`: Reusable React components
+- `src/types/`: TypeScript interfaces (`conference.ts` is the core model)
+- `src/lib/`: Shared utilities, database clients, security helpers
+- `src/__tests__/`: Test files organized by feature/security
+- `scripts/`: Python data processing and scraping scripts
+- `public/data/`: Generated JSON data files
 
 ---
 
-## 🤖 Agent Advice
+## 🧪 Testing Conventions
 
-1. **Data Model:** When modifying the conference scraper, refer to `src/types/conference.ts` to ensure the JSON output matches the expected frontend interface.
-2. **Geocoding:** Use `scripts/city_cache.json` and the `geocoder.py` utility to avoid unnecessary API calls to Nominatim.
-3. **Scraping:** Be mindful of rate limits. Use headers (User-Agent) and add small delays (`time.sleep(1)`) between requests if fetching multiple pages.
-4. **Tailwind:** This project uses **Tailwind CSS 4**. Be aware of the latest syntax if modifying global CSS or complex animations.
-5. **No Secrets:** Ensure `.env` files are never committed. Use environment variables for sensitive data like DB URLs or API keys.
-6. **Database Transactions:** Always use `try-finally` to release database connections after operations.
-7. **Constants:** Define configuration constants at module level (e.g., `DOMAIN_INFO` in types) rather than magic values.
+- **File Naming:** `*.test.ts` in `src/__tests__/` directory
+- **Setup:** Use `src/__tests__/setup.ts` for test configuration
+- **Security Tests:** Comprehensive security test suite in `src/__tests__/security/`
+- **Mock Data:** Mock environment variables in setup file
+- **Coverage:** Maintain 50% minimum coverage threshold
+
+---
+
+## 🤖 Agent Best Practices
+
+1. **Data Model:** Reference `src/types/conference.ts` for schema compliance
+2. **Security First:** Always use security utilities (`secureFetch`, `SafeHighlightedText`)
+3. **Error Handling:** Implement proper try-catch blocks with user-friendly messages
+4. **Performance:** Use lazy loading, pagination, and caching where appropriate
+5. **Accessibility:** Include proper ARIA labels and semantic HTML
+6. **Testing:** Write tests for new features, especially security-critical code
+7. **Database:** Use connection pooling, parameterized queries, proper transaction handling
+8. **Constants:** Define domain info and configuration at module level
