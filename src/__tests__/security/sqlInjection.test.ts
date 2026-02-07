@@ -123,7 +123,7 @@ describe('SQL Injection Protection (Issue #268)', () => {
         const content = readFileSync(route, 'utf-8');
         
         // Check catch blocks for database error exposure
-        const catchPattern = /catch\s*\([^)]*\)\s*\{[^}]*\}/gs;
+        const catchPattern = /catch\s*\([^)]*\)\s*\{[\s\S]*?\}/g;
         const matches = content.match(catchPattern) || [];
         
         for (const catchBlock of matches) {

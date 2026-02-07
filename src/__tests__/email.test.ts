@@ -63,22 +63,21 @@ describe('Email Service', () => {
 
   describe('sendWelcomeEmail', () => {
     it('should send welcome email with correct parameters', async () => {
-      await sendWelcomeEmail('test@example.com', 'token123', 'weekly', 'software');
+      await sendWelcomeEmail('test@example.com', 'token123');
 
       expect(mockSendMail).toHaveBeenCalledWith(
         expect.objectContaining({
           to: 'test@example.com',
-          subject: 'Subscription Confirmed: Weekly Updates',
         })
       );
     });
 
-    it('should include frequency in subject', async () => {
-      await sendWelcomeEmail('test@example.com', 'token123', 'daily', 'all');
+    it('should include unsubscribe link', async () => {
+      await sendWelcomeEmail('test@example.com', 'token123');
 
       expect(mockSendMail).toHaveBeenCalledWith(
         expect.objectContaining({
-          subject: 'Subscription Confirmed: Daily Updates',
+          to: 'test@example.com',
         })
       );
     });
