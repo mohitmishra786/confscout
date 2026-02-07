@@ -155,13 +155,15 @@ describe('Error Handler Module (Issue #300)', () => {
     });
 
     it('should not expose system paths or internals', () => {
-      const error = new APIError(500, 'Error at /usr/src/app/src/db.ts:42');
+      // Create an error with sensitive path information
+      const internalError = new APIError(500, 'Error at /usr/src/app/src/db.ts:42');
       
       // The error message should not be directly exposed to users
       // It should be mapped to a user-friendly message
       const message = getErrorMessage({ code: 'INTERNAL_ERROR' });
       expect(message).not.toContain('/usr/src');
       expect(message).not.toContain('db.ts');
+      expect(internalError.message).toContain('/usr/src');
     });
   });
 });

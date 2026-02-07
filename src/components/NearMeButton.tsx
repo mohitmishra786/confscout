@@ -21,7 +21,7 @@ export default function NearMeButton({ onLocationFound }: NearMeButtonProps) {
                 onLocationFound(position.coords.latitude, position.coords.longitude);
                 setLoading(false);
             },
-            (_error) => {
+            () => {
                 setLoading(false);
             }
         );
