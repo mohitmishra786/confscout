@@ -6,70 +6,70 @@
 
 // Location with coordinates for world map
 export interface ConferenceLocation {
-  city: string;
-  country: string;
-  raw: string;
-  lat?: number;
-  lng?: number;
+  readonly city: string;
+  readonly country: string;
+  readonly raw: string;
+  readonly lat?: number;
+  readonly lng?: number;
 }
 
 // Call for Proposals status
 export interface CFPInfo {
-  url: string;
-  endDate: string | null;
-  daysRemaining?: number;
-  status?: 'open' | 'closed';
+  readonly url: string;
+  readonly endDate: string | null;
+  readonly daysRemaining?: number;
+  readonly status?: 'open' | 'closed';
 }
 
 // Financial Aid info
 export interface FinancialAidInfo {
-  available: boolean;
-  types?: string[];
-  url?: string;
-  notes?: string;
+  readonly available: boolean;
+  readonly types?: string[];
+  readonly url?: string;
+  readonly notes?: string;
 }
 
 // Main conference type
 export interface Conference {
   // Core identification  
-  id: string;
-  name: string;
-  url: string;
+  readonly id: string;
+  readonly name: string;
+  readonly url: string;
 
   // Dates (ISO 8601 format: YYYY-MM-DD)
-  startDate: string | null;
-  endDate: string | null;
+  readonly startDate: string | null;
+  readonly endDate: string | null;
 
   // Location with geocoding
-  location: ConferenceLocation;
-  online: boolean;
+  readonly location: ConferenceLocation;
+  readonly online: boolean;
 
   // Call for Proposals (CFP)
-  cfp: CFPInfo | null;
+  readonly cfp: CFPInfo | null;
 
   // Financial Aid
-  financialAid?: FinancialAidInfo;
+  readonly financialAid?: FinancialAidInfo;
 
   // Domain classification
-  domain: string;
-  subDomains?: string[];
-  tags?: string[];
+  readonly domain: string;
+  readonly subDomains?: string[];
+  readonly tags?: string[];
 
   // Metadata
-  description?: string;
-  twitter?: string;
+  readonly description?: string;
+  readonly twitter?: string;
 
   // Source tracking
-  source: string;
-  sources?: string[]; // When merged from multiple sources
+  readonly source: string;
+  readonly sources?: string[]; // When merged from multiple sources
 
   // AI Enrichment
-  recommendationReason?: string;
+  readonly recommendationReason?: string;
 
   // Community
-  attendeeCount?: number;
-  isAttending?: boolean;
-  attendees?: { image: string | null; name: string | null }[];
+  readonly attendeeCount?: number;
+  readonly isAttending?: boolean;
+  readonly attendees?: { readonly image: string | null; readonly name: string | null }[];
 }
 
 // Month-grouped conference data structure (matches JSON output)
