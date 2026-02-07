@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getCachedConferences } from '@/lib/cache';
+import { querySchemas } from '@/lib/apiSchemas';
+import { z } from 'zod';
 
 function escapeCsvCell(value: string | null | undefined): string {
   if (!value) return '""';
@@ -20,9 +22,17 @@ function escapeCsvCell(value: string | null | undefined): string {
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const domain = searchParams.get('domain');
-    const cfpOnly = searchParams.get('cfp_open') === 'true';
-    const format = searchParams.get('format') || 'json';
+    
+    // Validate query parameters using Zod
+    const validated = querySchemas.v1Conferences.parse({
+      domain: searchParams.get('domain') || undefined,
+      cfp_open: searchParams.get('cfp_open') || undefined,
+      format: searchParams.get('format') || 'json',
+    });
+    
+    const domain = validated.domain;
+    const cfpOnly = validated.cfp_open === 'true';
+    const format = validated.format;
 
     const data = await getCachedConferences();
 
@@ -72,6 +82,12 @@ export async function GET(request: Request) {
     });
 
   } catch (error) {
+    if (error instanceof z.ZodError) {
+      return NextResponse.json(
+        { error: 'Invalid query parameters', details: error.issues.map(i => i.message) },
+        { status: 400 }
+      );
+    }
     console.error('V1 API error:', error);
     return NextResponse.json(
       { error: 'API Error', message: 'Internal server error' },

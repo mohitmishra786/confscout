@@ -1,16 +1,21 @@
 import { NextResponse } from 'next/server';
 import pool from '@/lib/db';
 import { sendUnsubscribeEmail } from '@/lib/email';
+import { querySchemas } from '@/lib/apiSchemas';
+import { z } from 'zod';
 
 export async function GET(request: Request) {
-    const { searchParams } = new URL(request.url);
-    const token = searchParams.get('token');
-
-    if (!token) {
-        return NextResponse.json({ error: 'Missing token' }, { status: 400 });
-    }
-
     try {
+        const { searchParams } = new URL(request.url);
+        const rawToken = searchParams.get('token');
+
+        if (!rawToken) {
+            return NextResponse.json({ error: 'Missing token' }, { status: 400 });
+        }
+
+        // Validate token format using Zod
+        const { token } = querySchemas.unsubscribe.parse({ token: rawToken });
+
         const client = await pool.connect();
         try {
             // Find and delete the subscriber
@@ -34,6 +39,12 @@ export async function GET(request: Request) {
             client.release();
         }
     } catch (error) {
+        if (error instanceof z.ZodError) {
+            return NextResponse.json(
+                { error: 'Invalid token format' },
+                { status: 400 }
+            );
+        }
         console.error('Unsubscribe Error:', error);
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }

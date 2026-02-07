@@ -5,6 +5,8 @@ import { getCachedConferences } from '@/lib/cache';
 import { Conference, ConferenceData } from '@/types/conference';
 import { prisma } from '@/lib/prisma';
 import { apiLogger } from '@/lib/logger';
+import { querySchemas } from '@/lib/apiSchemas';
+import { z } from 'zod';
 
 /**
  * GET /api/conferences
@@ -18,9 +20,17 @@ export async function GET(request: Request) {
   try {
     const session = await getServerSession(authOptions);
     const { searchParams } = new URL(request.url);
-    const domain = searchParams.get('domain');
-    const cfpOnly = searchParams.get('cfpOpen') === 'true';
-    const search = searchParams.get('search');
+    
+    // Validate query parameters using Zod
+    const validated = querySchemas.conferences.parse({
+      domain: searchParams.get('domain') || undefined,
+      cfpOpen: searchParams.get('cfpOpen') || undefined,
+      search: searchParams.get('search') || undefined,
+    });
+    
+    const domain = validated.domain;
+    const cfpOnly = validated.cfpOpen === 'true';
+    const search = validated.search;
 
     apiLogger.info('Request params', { domain, cfpOnly, search, hasSession: !!session?.user });
 
@@ -144,6 +154,13 @@ export async function GET(request: Request) {
     });
 
   } catch (error) {
+    if (error instanceof z.ZodError) {
+      apiLogger.warn('Invalid query parameters', { issues: error.issues });
+      return NextResponse.json(
+        { error: 'Invalid query parameters', details: error.issues.map(i => i.message) },
+        { status: 400 }
+      );
+    }
     apiLogger.error('Error fetching conferences', error);
     return NextResponse.json(
       { error: 'Failed to fetch conferences' },
