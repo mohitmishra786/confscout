@@ -3,11 +3,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useSession, signOut } from 'next-auth/react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 
 export default function Header() {
   const { data: session, status } = useSession();
   const t = useTranslations('Header');
+  const locale = useLocale();
 
   return (
     <header className="sticky top-0 z-50 backdrop-blur-xl bg-black/80 border-b border-zinc-800/50">
@@ -15,7 +16,7 @@ export default function Header() {
         <div className="flex justify-between items-center h-16">
           {/* Logo and Title */}
           <div className="flex items-center">
-            <Link href="/" className="flex items-center gap-3 group">
+            <Link href={`/${locale}`} className="flex items-center gap-3 group">
               <div className="relative w-9 h-9 transition-transform group-hover:scale-105">
                 <Image
                   src="/logo.png"
@@ -34,25 +35,25 @@ export default function Header() {
           {/* Navigation */}
           <nav className="flex items-center space-x-1" aria-label="Main navigation">
             <Link
-              href="/"
+              href={`/${locale}`}
               className="text-zinc-400 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-zinc-800/50 min-h-[2.75rem] flex items-center"
             >
               {t('explore')}
             </Link>
             <Link
-              href="/search?cfp=true"
+              href={`/${locale}/search?cfp=true`}
               className="text-zinc-400 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-zinc-800/50 min-h-[2.75rem] flex items-center"
             >
               {t('openCfps')}
             </Link>
             <Link
-              href="/recommendations"
+              href={`/${locale}/recommendations`}
               className="text-zinc-400 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-zinc-800/50 min-h-[2.75rem] flex items-center"
             >
               <span className="mr-1" aria-hidden="true">✨</span> {t('aiMatch')}
             </Link>
             <Link
-              href="/about"
+              href={`/${locale}/about`}
               className="text-zinc-400 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-zinc-800/50 min-h-[2.75rem] flex items-center"
             >
               {t('about')}
@@ -67,7 +68,7 @@ export default function Header() {
             ) : session?.user ? (
               <div className="flex items-center gap-2">
                 <Link
-                  href="/submit"
+                  href={`/${locale}/submit`}
                   className="text-zinc-400 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-zinc-800/50"
                 >
                   {t('submit')}
@@ -91,25 +92,25 @@ export default function Header() {
                   </button>
                   <div className="absolute right-0 mt-2 w-48 bg-zinc-900 border border-zinc-800 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
                     <Link
-                      href={`/u/${session.user.id}`}
+                      href={`/${locale}/u/${session.user.id}`}
                       className="block px-4 py-2 text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
                     >
                       {t('myProfile')}
                     </Link>
                     <Link
-                      href="/dashboard"
+                      href={`/${locale}/dashboard`}
                       className="block px-4 py-2 text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
                     >
                       {t('dashboard')}
                     </Link>
                     <Link
-                      href="/bookmarks"
+                      href={`/${locale}/bookmarks`}
                       className="block px-4 py-2 text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
                     >
                       {t('bookmarks')}
                     </Link>
                     <button
-                      onClick={() => signOut({ callbackUrl: '/' })}
+                      onClick={() => signOut({ callbackUrl: `/${locale}` })}
                       className="w-full text-left px-4 py-2 text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
                     >
                       {t('signOut')}
@@ -119,7 +120,7 @@ export default function Header() {
               </div>
             ) : (
               <Link
-                href="/auth/signin"
+                href={`/${locale}/auth/signin`}
                 className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
               >
                 {t('signIn')}
