@@ -18,7 +18,7 @@ import TravelModal from './TravelModal';
 import { secureFetch } from '@/lib/api';
 
 interface ConferenceCardProps {
-  conference: Conference;
+  conference: Omit<Conference, 'description'>;
   searchTerm?: string;
 }
 

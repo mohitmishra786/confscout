@@ -129,7 +129,7 @@ export default function HomeClient({ initialData }: HomeClientProps) {
     setShowMap(true); // Ensure map is visible
   };
 
-  const handleConfClick = (conf: Conference) => {
+  const handleConfClick = (conf: Pick<Conference, 'location'>) => {
     if (conf.location.lat && conf.location.lng) {
       setMapCenter([conf.location.lat, conf.location.lng]);
       setMapZoom(10);

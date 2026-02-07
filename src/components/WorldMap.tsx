@@ -11,11 +11,13 @@ import { useEffect, useState } from 'react';
 import type { Conference } from '@/types/conference';
 import 'leaflet/dist/leaflet.css';
 
+type MappableConference = Pick<Conference, 'id' | 'name' | 'location' | 'domain' | 'startDate' | 'endDate' | 'cfp' | 'url'>;
+
 interface WorldMapProps {
-    conferences: Conference[];
+    conferences: MappableConference[];
     center?: [number, number];
     zoom?: number;
-    onMarkerClick?: (conference: Conference) => void;
+    onMarkerClick?: (conference: MappableConference) => void;
 }
 
 /* eslint-disable @typescript-eslint/consistent-type-imports */
