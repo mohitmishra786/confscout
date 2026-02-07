@@ -58,8 +58,7 @@ def create_session(
         headers.update(additional_headers)
     
     session.headers.update(headers)
-    session.timeout = timeout
-    
+
     return session
 
 
@@ -72,25 +71,29 @@ def get_with_retry(
 ) -> requests.Response:
     """
     Make a GET request with retry logic.
-    
+
     Args:
         url: URL to fetch
         session: Optional pre-configured session
         max_retries: Maximum number of retries
         backoff_factor: Backoff factor for retries
         **kwargs: Additional arguments for requests.get()
-    
+
     Returns:
         Response object
-    
+
     Raises:
+        ValueError: If max_retries is less than 1
         requests.RequestException: If all retries fail
     """
+    if max_retries < 1:
+        raise ValueError("max_retries must be at least 1")
+
     if session is None:
         session = create_session()
-    
-    last_exception = None
-    
+
+    last_exception: Optional[requests.RequestException] = None
+
     for attempt in range(max_retries):
         try:
             response = session.get(url, **kwargs)
@@ -104,7 +107,10 @@ def get_with_retry(
                 print(f"[HTTP] Retry {attempt + 1}/{max_retries} for {url} after {sleep_time}s")
                 time.sleep(sleep_time)
             continue
-    
+
+    # This should never happen due to the max_retries check above, but keeps LSP happy
+    if last_exception is None:
+        raise RuntimeError("Unexpected error: last_exception is None")
     raise last_exception
 
 

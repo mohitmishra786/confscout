@@ -25,6 +25,9 @@ from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut
 
 # Import ConfScout HTTP client for proper User-Agent headers
+# Note: sys.path manipulation is used here to allow importing from utils/ subdirectory
+# without making scripts/ a proper Python package. This is a pragmatic approach for
+# standalone scripts. For production use, consider making scripts/ a package with __init__.py
 sys.path.insert(0, str(Path(__file__).parent))
 from utils.http_client import (
     ConfScoutHTTPClient,
@@ -421,35 +424,32 @@ def fetch_sessionize_cfps() -> list:
         return []
     
     print(f"[INFO] Sessionize: Scraping {len(SESSIONIZE_CFPS)} known CFP pages...")
-    
-    headers = {
-        "User-Agent": "Mozilla/5.0 (compatible; conf-finder/2.0; +https://github.com/mohitmishra786/conf-finder)"
-    }
-    
-    for url in SESSIONIZE_CFPS:
-        try:
-            conf = scrape_sessionize_cfp_page(url, headers)
-            if conf:
-                conferences.append(conf)
-                print(f"  [OK] Scraped: {conf['name']}")
-        except Exception as e:
-            print(f"  [FAIL] Failed to scrape {url}: {e}")
+
+    with ConfScoutHTTPClient() as client:
+        for url in SESSIONIZE_CFPS:
+            try:
+                conf = scrape_sessionize_cfp_page(url, client)
+                if conf:
+                    conferences.append(conf)
+                    print(f"  [OK] Scraped: {conf['name']}")
+            except Exception as e:
+                print(f"  [FAIL] Failed to scrape {url}: {e}")
     
     print(f"[OK] Fetched {len(conferences)} CFPs from Sessionize")
     return conferences
 
 
-def scrape_sessionize_cfp_page(url: str, headers: dict) -> Optional[dict]:
+def scrape_sessionize_cfp_page(url: str, client: ConfScoutHTTPClient) -> Optional[dict]:
     """
     Scrape a single Sessionize CFP page.
-    
+
     Based on Scrapionize approach:
     - Event name from h4 in ibox-title
     - Dates from h2 tags in ibox-content sections
     - Left column (2nd ibox-content): Event dates, location, website
     - Right column (3rd ibox-content): CFP dates, travel/accommodation info
     """
-    response = requests.get(url, headers=headers, timeout=15)
+    response = client.get(url, timeout=15)
     if response.status_code != 200:
         return None
     

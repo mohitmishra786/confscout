@@ -5,7 +5,7 @@
  * Issue #300 - Fix Verbose Error Messages
  */
 
-import { APIError, ErrorCodes, Errors, getErrorMessage } from '@/lib/errorHandler';
+import { APIError, ErrorCodes, Errors, getErrorMessage, handleAPIError } from '@/lib/errorHandler';
 
 describe('Error Handler Module (Issue #300)', () => {
   describe('APIError class', () => {
@@ -154,15 +154,21 @@ describe('Error Handler Module (Issue #300)', () => {
       }
     });
 
-    it('should not expose system paths or internals', () => {
+    it('should not expose system paths or internals', async () => {
       // Create an error with sensitive path information
-      const internalError = new APIError(500, 'Error at /usr/src/app/src/db.ts:42');
-      
-      // The error message should not be directly exposed to users
+      const internalError = new APIError(500, 'Error at /usr/src/app/src/db.ts:42', 'INTERNAL_ERROR');
+
+      // Pass through handleAPIError to test actual production sanitization
+      const response = handleAPIError(internalError);
+      const body = await response.json();
+
+      // The error message should not be directly exposed to users in production
       // It should be mapped to a user-friendly message
-      const message = getErrorMessage({ code: 'INTERNAL_ERROR' });
-      expect(message).not.toContain('/usr/src');
-      expect(message).not.toContain('db.ts');
+      expect(body.error).not.toContain('/usr/src');
+      expect(body.error).not.toContain('db.ts');
+      // Should have user-friendly message instead
+      expect(body.error).toContain('unexpected');
+      // Original error with path is preserved in the error object but not exposed
       expect(internalError.message).toContain('/usr/src');
     });
   });

@@ -1,12 +1,14 @@
 /**
  * Rate Limiting Module
- * 
+ *
  * Provides robust rate limiting for API routes with multiple strategies:
  * - Fixed window rate limiting (simple and fast)
  * - Sliding window rate limiting (more accurate)
- * - Redis-backed rate limiting (for production)
- * - In-memory fallback (for development/edge)
- * 
+ * - In-memory store (for development/edge environments)
+ *
+ * TODO: Add Redis-backed rate limiting for production use at scale
+ *       See: https://github.com/anomalyco/confscout/issues/XXX
+ *
  * Issue #265 - Add Rate Limiting
  */
 
@@ -142,9 +144,16 @@ export function fixedWindow(
 }
 
 /**
- * Sliding window rate limiting
- * More accurate, prevents burst at window boundaries
- * Uses a simplified approximation for in-memory store
+ * Rolling window rate limiting (simplified sliding window approximation)
+ *
+ * NOTE: This is a simplified approximation of a sliding window algorithm.
+ * It functions as a fixed window that starts on the first request rather than
+ * on a clock-aligned boundary. For true sliding window behavior with smooth
+ * rate limiting at boundaries, consider implementing weighted interpolation
+ * between current and previous windows, or use a per-request timestamp queue.
+ *
+ * This implementation is suitable for most use cases but may allow bursts
+ * at window boundaries under high load.
  */
 export function slidingWindow(
   key: string,
@@ -226,7 +235,7 @@ export function createRateLimitResponse(
   message?: string
 ): NextResponse {
   const headers = getRateLimitHeaders(result);
-  headers['Retry-After'] = (result.reset - Math.floor(Date.now() / 1000)).toString();
+  headers['Retry-After'] = Math.max(0, result.reset - Math.floor(Date.now() / 1000)).toString();
   
   return NextResponse.json(
     {

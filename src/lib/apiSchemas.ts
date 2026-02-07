@@ -38,11 +38,10 @@ export const querySchemas = {
    * Conference list query parameters
    */
   conferences: z.object({
-    domain: z.string()
-      .regex(patterns.domain, 'Invalid domain format')
-      .max(50, 'Domain too long')
-      .optional()
-      .or(z.literal('all')),
+    domain: z.union([
+      z.string().regex(patterns.domain, 'Invalid domain format').max(50, 'Domain too long'),
+      z.literal('all'),
+    ]).optional(),
     cfpOpen: z.enum(['true', 'false']).optional(),
     search: z.string()
       .max(200, 'Search query too long')
@@ -73,11 +72,10 @@ export const querySchemas = {
    * API v1 conference list query parameters
    */
   v1Conferences: z.object({
-    domain: z.string()
-      .regex(patterns.domain, 'Invalid domain format')
-      .max(50, 'Domain too long')
-      .optional()
-      .or(z.literal('all')),
+    domain: z.union([
+      z.string().regex(patterns.domain, 'Invalid domain format').max(50, 'Domain too long'),
+      z.literal('all'),
+    ]).optional(),
     cfp_open: z.enum(['true', 'false']).optional(),
     format: z.enum(['json', 'csv']).default('json'),
   }),

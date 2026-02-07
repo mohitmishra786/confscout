@@ -175,8 +175,7 @@ describe('Query Schema Validation', () => {
 
     it('should reject non-hex token', () => {
       const result = querySchemas.unsubscribe.safeParse({
-        token: 'ghijklmnopqrstuvwxyzabcdefghijklmnopq' +
-               'rstuvwxyzabcdefghijklmnopqr',
+        token: 'g'.repeat(64),
       });
       expect(result.success).toBe(false);
     });

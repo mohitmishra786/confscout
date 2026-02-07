@@ -121,14 +121,27 @@ describe('SQL Injection Protection (Issue #268)', () => {
 
       for (const route of apiRoutes) {
         const content = readFileSync(route, 'utf-8');
-        
-        // Check catch blocks for database error exposure
-        const catchPattern = /catch\s*\([^)]*\)\s*\{[\s\S]*?\}/g;
-        const matches = content.match(catchPattern) || [];
-        
-        for (const catchBlock of matches) {
+
+        // Find all catch blocks by tracking brace depth
+        const catchRegex = /catch\s*\([^)]*\)\s*\{/g;
+        let match;
+
+        while ((match = catchRegex.exec(content)) !== null) {
+          const startIndex = match.index + match[0].length - 1; // Position at opening brace
+          let braceDepth = 1;
+          let endIndex = startIndex + 1;
+
+          // Track nested braces to find the matching closing brace
+          while (braceDepth > 0 && endIndex < content.length) {
+            if (content[endIndex] === '{') braceDepth++;
+            if (content[endIndex] === '}') braceDepth--;
+            endIndex++;
+          }
+
+          const catchBlock = content.slice(startIndex, endIndex);
+
           // Should not return error.message directly in production
-          if (catchBlock.includes('error.message') || 
+          if (catchBlock.includes('error.message') ||
               catchBlock.includes('err.message') ||
               catchBlock.includes('e.message')) {
             // Check if it's wrapped in ZodError check (which is OK for validation)

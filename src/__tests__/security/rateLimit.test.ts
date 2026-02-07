@@ -248,6 +248,7 @@ describe('Rate Limiting (Issue #265)', () => {
 
   describe('createRateLimitResponse', () => {
     it('should create 429 response with headers', () => {
+      jest.useFakeTimers();
       const now = Math.floor(Date.now() / 1000);
       const result = {
         success: false,
@@ -255,12 +256,13 @@ describe('Rate Limiting (Issue #265)', () => {
         reset: now + 60,
         limit: 100
       };
-      
+
       const response = createRateLimitResponse(result);
-      
+
       expect(response.status).toBe(429);
       expect(response.headers.get('X-RateLimit-Limit')).toBe('100');
       expect(response.headers.get('Retry-After')).toBe('60');
+      jest.useRealTimers();
     });
 
     it('should include custom message', async () => {

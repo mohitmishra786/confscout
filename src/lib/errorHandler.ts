@@ -7,9 +7,9 @@
  * Issue #300 - Fix Verbose Error Messages
  */
 
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { securityLogger } from './logger';
+import { securityLogger } from '@/lib/logger';
 
 /**
  * API Error class for structured error responses
@@ -23,7 +23,9 @@ export class APIError extends Error {
   ) {
     super(message);
     this.name = 'APIError';
-    Error.captureStackTrace(this, this.constructor);
+    if (typeof Error.captureStackTrace === 'function') {
+      Error.captureStackTrace(this, this.constructor);
+    }
   }
 }
 
@@ -236,9 +238,9 @@ export function handleAPIError(error: unknown, requestId?: string): NextResponse
  * Wrap async API route handlers with error handling
  */
 export function withErrorHandling(
-  handler: (request: Request) => Promise<NextResponse>
+  handler: (request: NextRequest) => Promise<NextResponse>
 ) {
-  return async (request: Request): Promise<NextResponse> => {
+  return async (request: NextRequest): Promise<NextResponse> => {
     try {
       return await handler(request);
     } catch (error) {

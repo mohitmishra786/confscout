@@ -14,6 +14,9 @@ const intlMiddleware = createMiddleware({
 });
 
 // Track middleware execution count for periodic cleanup
+// NOTE: In serverless/edge environments, this counter resets on each cold start.
+// Each instance gets its own requestCount, so cleanup frequency is non-deterministic
+// across instances. This is acceptable for a best-effort cleanup.
 let requestCount = 0;
 const CLEANUP_INTERVAL = 1000;
 
@@ -39,6 +42,10 @@ export default function middleware(request: NextRequest) {
     }
     
     // Continue with request but add rate limit headers
+    // NOTE: Headers set on the middleware response via NextResponse.next() can be
+    // overwritten if the route handler creates its own NextResponse. This is a known
+    // Next.js middleware limitation. If rate limit headers must always be present,
+    // they'd need to be set in the route handlers as well.
     const nextResponse = NextResponse.next();
     if (result) {
       const headers = getRateLimitHeaders(result);
