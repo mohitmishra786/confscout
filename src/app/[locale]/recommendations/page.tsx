@@ -4,7 +4,7 @@ import { useState, FormEvent } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ConferenceCard from '@/components/ConferenceCard';
-import { Conference } from '@/types/conference';
+import type { Conference } from '@/types/conference';
 
 /**
  * Renders the AI-powered conference recommendation page.

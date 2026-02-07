@@ -6,9 +6,10 @@
  */
 
 import { useState, useEffect, useMemo } from 'react';
-import { ConferenceData, DOMAIN_INFO } from '@/types/conference';
+import { type ConferenceData, DOMAIN_INFO } from '@/types/conference';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { Loader } from '@/components/Loader';
 
 export default function AdminPage() {
   const [data, setData] = useState<ConferenceData | null>(null);
@@ -60,22 +61,9 @@ export default function AdminPage() {
       byDomain: Object.entries(byDomain).sort((a, b) => b[1] - a[1]),
       bySource: Object.entries(bySource).sort((a, b) => b[1] - a[1]),
       months: Object.keys(data.months).length,
+      lastUpdated: data.lastUpdated // Pass this through
     };
   }, [data, allConferences]);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-black">
-        <Header />
-        <main className="max-w-7xl mx-auto px-4 py-8">
-          <div className="flex justify-center items-center h-64">
-            <div className="w-12 h-12 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
-          </div>
-        </main>
-        <Footer />
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-black">
@@ -83,66 +71,72 @@ export default function AdminPage() {
       <main className="max-w-7xl mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold text-white mb-8">Data Dashboard</h1>
 
-        {error ? (
-          <div className="bg-red-500/20 border border-red-500/50 p-4 rounded-lg text-red-400">
-            {error}
-          </div>
-        ) : stats ? (
-          <>
-            {/* Overview Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-              <div className="card p-5 text-center">
-                <div className="text-3xl font-bold text-white">{stats.total.toLocaleString()}</div>
-                <div className="text-sm text-zinc-500">Total Conferences</div>
-              </div>
-              <div className="card p-5 text-center">
-                <div className="text-3xl font-bold text-green-400">{stats.withCfp}</div>
-                <div className="text-sm text-zinc-500">Open CFPs</div>
-              </div>
-              <div className="card p-5 text-center">
-                <div className="text-3xl font-bold text-blue-400">{stats.withLocation.toLocaleString()}</div>
-                <div className="text-sm text-zinc-500">With Coordinates</div>
-              </div>
-              <div className="card p-5 text-center">
-                <div className="text-3xl font-bold text-purple-400">{stats.months}</div>
-                <div className="text-sm text-zinc-500">Months</div>
-              </div>
+        <Loader
+          data={stats}
+          isLoading={loading}
+          error={error}
+          fallback={
+            <div className="flex justify-center items-center h-64">
+              <div className="w-12 h-12 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
             </div>
-
-            {/* By Domain */}
-            <div className="card p-6 mb-8">
-              <h2 className="text-xl font-semibold text-white mb-4">By Domain</h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                {stats.byDomain.map(([domain, count]) => (
-                  <div key={domain} className="flex justify-between items-center p-3 bg-gray-800 rounded">
-                    <span className="text-zinc-400 capitalize">{DOMAIN_INFO[domain]?.name || domain}</span>
-                    <span className="text-white font-medium">{count}</span>
-                  </div>
-                ))}
+          }
+          render={(statsData) => (
+            <>
+              {/* Overview Stats */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <div className="card p-5 text-center">
+                  <div className="text-3xl font-bold text-white">{statsData.total.toLocaleString()}</div>
+                  <div className="text-sm text-zinc-500">Total Conferences</div>
+                </div>
+                <div className="card p-5 text-center">
+                  <div className="text-3xl font-bold text-green-400">{statsData.withCfp}</div>
+                  <div className="text-sm text-zinc-500">Open CFPs</div>
+                </div>
+                <div className="card p-5 text-center">
+                  <div className="text-3xl font-bold text-blue-400">{statsData.withLocation.toLocaleString()}</div>
+                  <div className="text-sm text-zinc-500">With Coordinates</div>
+                </div>
+                <div className="card p-5 text-center">
+                  <div className="text-3xl font-bold text-purple-400">{statsData.months}</div>
+                  <div className="text-sm text-zinc-500">Months</div>
+                </div>
               </div>
-            </div>
 
-            {/* By Source */}
-            <div className="card p-6 mb-8">
-              <h2 className="text-xl font-semibold text-white mb-4">By Source</h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                {stats.bySource.map(([source, count]) => (
-                  <div key={source} className="flex justify-between items-center p-3 bg-gray-800 rounded">
-                    <span className="text-zinc-400">{source}</span>
-                    <span className="text-white font-medium">{count}</span>
-                  </div>
-                ))}
+              {/* By Domain */}
+              <div className="card p-6 mb-8">
+                <h2 className="text-xl font-semibold text-white mb-4">By Domain</h2>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  {statsData.byDomain.map(([domain, count]) => (
+                    <div key={domain} className="flex justify-between items-center p-3 bg-gray-800 rounded">
+                      <span className="text-zinc-400 capitalize">{DOMAIN_INFO[domain]?.name || domain}</span>
+                      <span className="text-white font-medium">{count}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
 
-            {/* Last Updated */}
-            {data?.lastUpdated && (
-              <div className="text-center text-sm text-zinc-600">
-                Last updated: {new Date(data.lastUpdated).toLocaleString()}
+              {/* By Source */}
+              <div className="card p-6 mb-8">
+                <h2 className="text-xl font-semibold text-white mb-4">By Source</h2>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  {statsData.bySource.map(([source, count]) => (
+                    <div key={source} className="flex justify-between items-center p-3 bg-gray-800 rounded">
+                      <span className="text-zinc-400">{source}</span>
+                      <span className="text-white font-medium">{count}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            )}
-          </>
-        ) : null}
+
+              {/* Last Updated */}
+              {statsData.lastUpdated && (
+                <div className="text-center text-sm text-zinc-600">
+                  Last updated: {new Date(statsData.lastUpdated).toLocaleString()}
+                </div>
+              )}
+            </>
+          )}
+        />
       </main>
       <Footer />
     </div>

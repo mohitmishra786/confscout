@@ -70,6 +70,24 @@ describe('Security Headers Configuration', () => {
       expect(nextConfigContent).toMatch(/Referrer-Policy/);
       expect(nextConfigContent).toMatch(/strict-origin-when-cross-origin/);
     });
+
+    it('should implement X-XSS-Protection', () => {
+      if (!nextConfigContent) return;
+      expect(nextConfigContent).toMatch(/X-XSS-Protection/);
+      expect(nextConfigContent).toMatch(/1; mode=block/);
+    });
+
+    it('should implement Permissions-Policy', () => {
+      if (!nextConfigContent) return;
+      expect(nextConfigContent).toMatch(/Permissions-Policy/);
+      expect(nextConfigContent).toMatch(/camera=\(\)/);
+    });
+
+    it('should implement X-DNS-Prefetch-Control', () => {
+      if (!nextConfigContent) return;
+      expect(nextConfigContent).toMatch(/X-DNS-Prefetch-Control/);
+      expect(nextConfigContent).toMatch(/on/);
+    });
   });
 
   describe('Middleware Security', () => {

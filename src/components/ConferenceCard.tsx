@@ -10,7 +10,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { Conference, DOMAIN_INFO } from '@/types/conference';
+import { type Conference, DOMAIN_INFO } from '@/types/conference';
 import { useCompare } from '@/context/CompareContext';
 import { SafeHighlightedText } from '@/components/SafeHighlightedText';
 import VisaModal from './VisaModal';
@@ -18,7 +18,7 @@ import TravelModal from './TravelModal';
 import { secureFetch } from '@/lib/api';
 
 interface ConferenceCardProps {
-  conference: Conference;
+  conference: Omit<Conference, 'description'>;
   searchTerm?: string;
 }
 

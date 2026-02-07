@@ -5,7 +5,7 @@
  */
 
 import Fuse from 'fuse.js';
-import { Conference, Domain } from '@/types/conference';
+import type { Conference, Domain } from '@/types/conference';
 
 // Define SearchResult locally since it's not exported from types
 interface SearchResult {
@@ -56,10 +56,13 @@ export function searchConferencesByDomain(
   const domainMap = new Map<string, Conference[]>();
 
   for (const conf of filteredConferences) {
-    if (!domainMap.has(conf.domain)) {
-      domainMap.set(conf.domain, []);
+    const domainList = domainMap.get(conf.domain);
+    if (domainList) {
+      domainList.push(conf);
+    } else {
+      // Should not happen if logic above is correct
+      domainMap.set(conf.domain, [conf]);
     }
-    domainMap.get(conf.domain)!.push(conf);
   }
 
   // Create search results

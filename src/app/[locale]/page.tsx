@@ -11,7 +11,9 @@ import HomeClient from './page.client';
 export const dynamic = 'force-dynamic';
 export const revalidate = 3600; // Revalidate every hour
 
-export default async function Home() {
+import { JSX } from 'react';
+
+export default async function Home(): Promise<JSX.Element> {
   // Server-side data fetching - runs in parallel with component rendering
   const data = await getCachedConferences();
   

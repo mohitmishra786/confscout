@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Conference } from '@/types/conference';
+import type { Conference } from '@/types/conference';
 
 interface TravelModalProps {
   isOpen: boolean;

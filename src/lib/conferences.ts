@@ -4,7 +4,7 @@
  * Provides formatting and helper functions for conferences.
  */
 
-import { Conference } from '@/types/conference';
+import type { Conference } from '@/types/conference';
 
 /**
  * Format a single date for display

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo, Suspense } from 'react';
 import { useSearchParams, useRouter, useParams } from 'next/navigation';
-import { ConferenceData, SortOption, DOMAIN_INFO } from '@/types/conference';
+import { type ConferenceData, type SortOption, DOMAIN_INFO } from '@/types/conference';
 
 import Header from '@/components/Header';
 import ConferenceCard from '@/components/ConferenceCard';

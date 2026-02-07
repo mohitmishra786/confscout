@@ -349,7 +349,7 @@ export const rateLimitConfigs = {
     windowSeconds: 60,
     keyPrefix: 'strict'
   }
-};
+} as const;
 
 /**
  * Middleware-compatible rate limiter

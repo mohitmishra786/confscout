@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { z } from 'zod';
 import { authOptions } from '@/lib/auth';
@@ -10,7 +10,7 @@ const attendanceSchema = z.object({
   conferenceId: z.string(),
 });
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     if (!await validateCsrfToken(request)) {
       securityLogger.warn('Invalid CSRF token on attendance toggle');

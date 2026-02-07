@@ -2,7 +2,7 @@
  * Unit tests for groqEmail.ts
  */
 
-import { Conference } from '@/types/conference';
+import type { Conference } from '@/types/conference';
 import {
   generateEmailContent,
   categorizeConferencesForEmail,

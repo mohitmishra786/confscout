@@ -46,7 +46,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
     if (user) {
       bookmarks = (user.bookmarks ?? []).map(b => b.conferenceId);
     }
-  } catch (e) {
+  } catch (e: unknown) {
     console.error('Failed to fetch user profile:', e);
     // Fallback for demo/dev without DB
     if (id === DEMO_USER_ID) {
