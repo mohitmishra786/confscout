@@ -51,7 +51,7 @@ export async function GET(
     }
 
     // Generate ICS content
-    const ics = generateICS(conference);
+    const ics = generateICS({ ...conference, startDate: conference.startDate });
 
     return new NextResponse(ics, {
         headers: {
@@ -65,14 +65,14 @@ function generateICS(conference: {
     id: string;
     name: string;
     url: string;
-    startDate: string | null;
+    startDate: string;
     endDate?: string | null;
     location?: { raw?: string };
 }): string {
     const now = new Date();
     const dtstamp = formatDateToICS(now);
 
-    const startDate = new Date(conference.startDate!);
+    const startDate = new Date(conference.startDate);
     const endDate = conference.endDate
         ? new Date(conference.endDate)
         : new Date(startDate.getTime() + 24 * 60 * 60 * 1000); // Default to 1 day

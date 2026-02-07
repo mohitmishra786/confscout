@@ -130,7 +130,7 @@ function generateConferenceRow(conference: Conference): string {
             ${safeName}
           </a>
         </strong>
-        ${safeDescription ? `<p style="margin:4px 0 0 0;color:#6b7280;font-size:13px;">${safeDescription}${conference.description!.length > 100 ? '...' : ''}</p>` : ''}
+        ${safeDescription ? `<p style="margin:4px 0 0 0;color:#6b7280;font-size:13px;">${safeDescription}${(conference.description?.length ?? 0) > 100 ? '...' : ''}</p>` : ''}
       </td>
       <td style="padding:16px 12px;vertical-align:top;white-space:nowrap;color:#374151;font-size:14px;">
         ${formatDate(conference.startDate)}
