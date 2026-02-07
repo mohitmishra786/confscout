@@ -15,7 +15,8 @@ export const patterns = {
   uuid: /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i,
   
   // Safe string pattern (no dangerous characters or javascript protocol)
-  safeString: /^(?!javascript:)(?!on\w+=)[^<>\"'`]*$/i,
+  // Allows: single quotes, ampersands, parentheses - blocks: < > " ` and javascript: / on* handlers
+  safeString: /^(?!javascript:)(?!on\w+=)[^<>\"`]*$/i,
   
   // Conference ID pattern (alphanumeric with hyphens)
   conferenceId: /^[a-zA-Z0-9-_]+$/,

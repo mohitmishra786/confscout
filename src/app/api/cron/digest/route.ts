@@ -11,6 +11,18 @@ import { Conference } from '@/types/conference';
 import { invalidateCache } from '@/lib/cache';
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import { timingSafeEqual } from 'crypto';
+
+/**
+ * Perform constant-time comparison to prevent timing attacks
+ * @param a - First string to compare
+ * @param b - Second string to compare
+ * @returns True if strings are equal, false otherwise
+ */
+function safeCompare(a: string, b: string): boolean {
+  if (a.length !== b.length) return false;
+  return timingSafeEqual(Buffer.from(a), Buffer.from(b));
+}
 
 /**
  * Interface for subscriber preferences
@@ -86,7 +98,7 @@ export async function GET(request: NextRequest) {
     );
   }
   
-  if (!authHeader || !authHeader.startsWith('Bearer ') || authHeader.slice(7) !== expectedToken) {
+  if (!authHeader || !authHeader.startsWith('Bearer ') || !safeCompare(authHeader.slice(7), expectedToken)) {
     return NextResponse.json(
       { error: 'Unauthorized' },
       { status: 401 }

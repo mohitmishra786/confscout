@@ -158,19 +158,21 @@ class TestNominatimHTTPClient(unittest.TestCase):
     @patch('time.sleep')
     def test_rate_limiting(self, mock_sleep, mock_time):
         """Nominatim client should enforce 1 second delay between requests."""
-        mock_time.side_effect = [0, 0.5, 1.5]  # Simulate time passing
-        
+        # Provide four time values: first call (init), second call (after first get), 
+        # third call (before second get), fourth call (after second get)
+        mock_time.side_effect = [1.0, 1.0, 1.5, 2.5]
+
         client = NominatimHTTPClient()
         client.session.get = Mock(return_value=Mock(status_code=200))
-        
-        # First request
+
+        # First request - no sleep needed
         client.get("http://example.com")
         mock_sleep.assert_not_called()
-        
-        # Second request (should sleep)
+
+        # Second request - should sleep for remaining time (0.5s)
         client.get("http://example.com")
         mock_sleep.assert_called_once_with(0.5)
-        
+
         client.close()
 
 

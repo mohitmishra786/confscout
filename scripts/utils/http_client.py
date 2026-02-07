@@ -118,27 +118,34 @@ class ConfScoutHTTPClient:
     """
     HTTP client for ConfScout scrapers with proper User-Agent headers.
     """
-    
-    def __init__(self, user_agent: str = DEFAULT_USER_AGENT):
+
+    def __init__(self, user_agent: str = DEFAULT_USER_AGENT, timeout: int = 30):
         self.session = create_session(user_agent)
         self.request_count = 0
-    
+        self._default_timeout = timeout
+
     def get(self, url: str, **kwargs) -> requests.Response:
         """Make a GET request."""
         self.request_count += 1
+        # Apply default timeout if not provided
+        if 'timeout' not in kwargs:
+            kwargs['timeout'] = self._default_timeout
         return self.session.get(url, **kwargs)
-    
+
     def get_with_retry(self, url: str, **kwargs) -> requests.Response:
         """Make a GET request with retry logic."""
+        # Apply default timeout if not provided
+        if 'timeout' not in kwargs:
+            kwargs['timeout'] = self._default_timeout
         return get_with_retry(url, self.session, **kwargs)
-    
+
     def close(self):
         """Close the session."""
         self.session.close()
-    
+
     def __enter__(self):
         return self
-    
+
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.close()
 

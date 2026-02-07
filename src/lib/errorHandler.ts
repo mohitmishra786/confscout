@@ -175,14 +175,20 @@ export function handleAPIError(error: unknown, requestId?: string): NextResponse
   
   // Handle custom API errors
   if (error instanceof APIError) {
-    const message = isDevelopment 
-      ? error.message 
-      : (userFriendlyMessages[error.code as ErrorCode] || error.message);
-    
+    const errorCode = error.code as ErrorCode;
+    // In production, always use user-friendly message if code is known
+    // Otherwise fall back to INTERNAL_ERROR message, never expose raw error.message
+    const message = isDevelopment
+      ? error.message
+      : (userFriendlyMessages[errorCode] || userFriendlyMessages[ErrorCodes.INTERNAL_ERROR]);
+
+    // Use the error's code only if it's a known error code, otherwise use INTERNAL_ERROR
+    const responseCode = (errorCode && userFriendlyMessages[errorCode]) ? errorCode : ErrorCodes.INTERNAL_ERROR;
+
     return NextResponse.json(
       {
         error: message,
-        code: error.code || ErrorCodes.INTERNAL_ERROR,
+        code: responseCode,
         ...(isDevelopment && { stack: error.stack }),
       },
       { status: error.statusCode }
