@@ -6,18 +6,20 @@ Uses a static mapping for common cities to avoid API dependencies.
 Enhanced with rate limiting and retry logic for external API calls.
 """
 
-from typing import Optional, Tuple
+from typing import Optional, Tuple, List, Dict, Any
 import json
 from pathlib import Path
-import requests
-from geopy.geocoders import Nominatim
-from geopy.exc import GeocoderTimedOut, GeocoderServiceError
 import time
 import asyncio
-from .rate_limiter import rate_limit
-from .retry import retry_sync
 
-# Static city coordinates (expand as needed)
+try:
+    from geopy.geocoders import Nominatim
+    from geopy.exc import GeocoderTimedOut, GeocoderServiceError
+    HAS_GEOPY = True
+except ImportError:
+    HAS_GEOPY = False
+
+# Static city coordinates
 CITY_COORDS = {
     # Europe
     "paris": (48.8566, 2.3522),
@@ -126,9 +128,6 @@ COUNTRY_COORDS = {
 def geocode(city: str, country: str) -> Optional[Tuple[float, float]]:
     """
     Get lat/lng coordinates for a location.
-    
-    Returns:
-        (lat, lng) tuple or None if not found
     """
     city_lower = city.lower().strip() if city else ""
     country_lower = country.lower().strip() if country else ""
@@ -154,41 +153,51 @@ def geocode(city: str, country: str) -> Optional[Tuple[float, float]]:
     return None
 
 
-@retry_sync(max_attempts=3, base_delay=2.0, exceptions=(GeocoderTimedOut, GeocoderServiceError, Exception))
 def geocode_with_nominatim(city: str, country: str) -> Optional[Tuple[float, float]]:
     """
-    Get coordinates using Nominatim API with rate limiting and retry logic.
-    
-    Args:
-        city: City name
-        country: Country name
-        
-    Returns:
-        (lat, lng) tuple or None if not found
+    Get coordinates using Nominatim API (Synchronous).
     """
-    if not city or not country:
+    if not HAS_GEOPY or not city or not country:
         return None
     
-    # Rate limit: 1 request per second for Nominatim
+    # Rate limit
     time.sleep(1)
     
     try:
-        geolocator = Nominatim(user_agent="conf_scout_geocoder_v2")
+        geolocator = Nominatim(user_agent="conf_scout_geocoder_v3")
         query = f"{city}, {country}"
         location = geolocator.geocode(query)
         
         if location:
             return (location.latitude, location.longitude)
-        else:
-            print(f"[GEO] Not found: {query}")
-            return None
-            
-    except (GeocoderTimedOut, GeocoderServiceError) as e:
-        print(f"[GEO] API error for {city}, {country}: {str(e)}")
-        raise
+        return None
     except Exception as e:
-        print(f"[GEO] Unexpected error for {city}, {country}: {str(e)}")
-        raise
+        print(f"[GEO] API error: {e}")
+        return None
+
+
+async def geocode_with_nominatim_async(city: str, country: str) -> Optional[Tuple[float, float]]:
+    """
+    Get coordinates using Nominatim API asynchronously.
+    """
+    if not HAS_GEOPY or not city or not country:
+        return None
+    
+    await asyncio.sleep(1)
+    
+    try:
+        loop = asyncio.get_event_loop()
+        geolocator = Nominatim(user_agent="conf_scout_geocoder_v3")
+        query = f"{city}, {country}"
+        
+        location = await loop.run_in_executor(None, lambda: geolocator.geocode(query))
+        
+        if location:
+            return (location.latitude, location.longitude)
+        return None
+    except Exception as e:
+        print(f"[GEO] Async API error: {e}")
+        return None
 
 
 class GeocodeCache:
@@ -199,99 +208,84 @@ class GeocodeCache:
         self.cache = self._load_cache()
     
     def _load_cache(self) -> dict:
-        """Load cache from file"""
         if self.cache_file.exists():
             try:
                 with open(self.cache_file, 'r', encoding='utf-8') as f:
                     return json.load(f)
-            except (json.JSONDecodeError, IOError) as e:
-                print(f"[CACHE] Failed to load cache: {e}")
+            except (json.JSONDecodeError, IOError):
                 return {}
         return {}
     
     def _save_cache(self) -> bool:
-        """Save cache to file"""
         try:
             self.cache_file.parent.mkdir(parents=True, exist_ok=True)
             with open(self.cache_file, 'w', encoding='utf-8') as f:
                 json.dump(self.cache, f, indent=2, ensure_ascii=False)
             return True
-        except IOError as e:
-            print(f"[CACHE] Failed to save cache: {e}")
+        except IOError:
             return False
     
     def get(self, key: str) -> Optional[Tuple[float, float]]:
-        """Get coordinates from cache"""
-        return self.cache.get(key)
+        val = self.cache.get(key)
+        if val:
+            return (float(val[0]), float(val[1]))
+        return None
     
     def set(self, key: str, coords: Tuple[float, float]) -> bool:
-        """Store coordinates in cache"""
         self.cache[key] = list(coords)
         return self._save_cache()
-    
-    def has(self, key: str) -> bool:
-        """Check if key exists in cache"""
-        return key in self.cache
 
 
-# Global cache instance
 _geocode_cache = GeocodeCache()
 
 
 def geocode_with_cache(city: str, country: str, use_api: bool = True) -> Optional[Tuple[float, float]]:
-    """
-    Get coordinates with caching and optional API fallback.
-    
-    Args:
-        city: City name
-        country: Country name
-        use_api: Whether to use Nominatim API as fallback
-        
-    Returns:
-        (lat, lng) tuple or None if not found
-    """
+    """Get coordinates with caching (Synchronous)."""
     if not city or not country:
         return None
     
-    # Create cache key
     cache_key = f"{city.lower().strip()},{country.lower().strip()}"
-    
-    # Check cache first
     cached = _geocode_cache.get(cache_key)
-    if cached:
-        return tuple(cached)
     
-    # Try static database
+    if cached:
+        return None if cached == (0.0, 0.0) else cached
+    
     static_result = geocode(city, country)
     if static_result:
         _geocode_cache.set(cache_key, static_result)
         return static_result
     
-    # Fall back to API if enabled
     if use_api:
-        try:
-            api_result = geocode_with_nominatim(city, country)
-            if api_result:
-                _geocode_cache.set(cache_key, api_result)
-                return api_result
-        except Exception as e:
-            print(f"[GEO] API fallback failed for {city}, {country}: {str(e)}")
+        api_result = geocode_with_nominatim(city, country)
+        if api_result:
+            _geocode_cache.set(cache_key, api_result)
+            return api_result
+        _geocode_cache.set(cache_key, (0.0, 0.0))
     
-    # Cache miss as well to avoid repeated API calls
-    _geocode_cache.set(cache_key, (0, 0))
     return None
 
 
-if __name__ == "__main__":
-    # Test geocoding
-    tests = [
-        ("Paris", "France"),
-        ("San Francisco, CA", "USA"),
-        ("Grenoble", "France"),
-        ("Unknown City", "Germany"),
-        ("", "Japan"),
-    ]
+async def geocode_with_cache_async(city: str, country: str, use_api: bool = True) -> Optional[Tuple[float, float]]:
+    """Get coordinates with caching (Async)."""
+    if not city or not country:
+        return None
     
-    for city, country in tests:
-        coords = geocode(city, country)
-        print(f"{city}, {country} -> {coords}")
+    cache_key = f"{city.lower().strip()},{country.lower().strip()}"
+    cached = _geocode_cache.get(cache_key)
+    
+    if cached:
+        return None if cached == (0.0, 0.0) else cached
+    
+    static_result = geocode(city, country)
+    if static_result:
+        _geocode_cache.set(cache_key, static_result)
+        return static_result
+    
+    if use_api:
+        api_result = await geocode_with_nominatim_async(city, country)
+        if api_result:
+            _geocode_cache.set(cache_key, api_result)
+            return api_result
+        _geocode_cache.set(cache_key, (0.0, 0.0))
+    
+    return None

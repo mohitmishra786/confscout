@@ -10,7 +10,7 @@
  * - Domain and filter controls
  */
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 import { type Conference, type ConferenceData, DOMAIN_INFO } from '@/types/conference';
@@ -53,6 +53,33 @@ export default function HomeClient({ initialData }: HomeClientProps) {
   const [isSubscribeOpen, setIsSubscribeOpen] = useState(false);
   const [mapCenter, setMapCenter] = useState<[number, number] | undefined>(undefined);
   const [mapZoom, setMapZoom] = useState<number | undefined>(undefined);
+
+  // Lazy loading state for performance
+  const [visibleCount, setVisibleCount] = useState(20);
+  const loadMoreRef = useRef<HTMLDivElement>(null);
+
+  // Reset lazy load when filters change
+  useEffect(() => {
+    setVisibleCount(20);
+  }, [selectedDomain, speakerMode, searchTerm]);
+
+  // Intersection observer for infinite scroll/lazy loading
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setVisibleCount(prev => prev + 20);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (loadMoreRef.current) {
+      observer.observe(loadMoreRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [loadMoreRef]);
 
   // Flatten conferences for filtering
   const allConferences = useMemo(() => {
@@ -100,12 +127,22 @@ export default function HomeClient({ initialData }: HomeClientProps) {
       grouped[monthKey].push(conf);
     }
 
-    // Sort by date within each month
-    for (const confs of Object.values(grouped)) {
-      confs.sort((a, b) => (a.startDate || '').localeCompare(b.startDate || ''));
+    // Sort months correctly (TBD at the end)
+    const sortedGrouped: Record<string, Conference[]> = {};
+    const sortedKeys = Object.keys(grouped).sort((a, b) => {
+      if (a === 'TBD') return 1;
+      if (b === 'TBD') return -1;
+      return new Date(a).getTime() - new Date(b).getTime();
+    });
+
+    for (const key of sortedKeys) {
+      // Sort conferences within month by startDate
+      sortedGrouped[key] = grouped[key].sort((a, b) => 
+        (a.startDate || '').localeCompare(b.startDate || '')
+      );
     }
 
-    return grouped;
+    return sortedGrouped;
   }, [filteredConferences]);
 
   // Get unique domains for filter
@@ -343,13 +380,23 @@ export default function HomeClient({ initialData }: HomeClientProps) {
           viewMode === 'timeline' ? (
             <TimelineView months={filteredMonths} speakerMode={speakerMode} />
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {filteredConferences.slice(0, 50).map((conf, idx) => (
-                <ConferenceCard key={`${conf.id}-${idx}`} conference={conf} searchTerm={searchTerm} />
-              ))}
-              {filteredConferences.length > 50 && (
+            <div className="space-y-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {filteredConferences.slice(0, visibleCount).map((conf, idx) => (
+                  <ConferenceCard key={`${conf.id}-${idx}`} conference={conf} searchTerm={searchTerm} />
+                ))}
+              </div>
+              
+              {/* Sentinel element for intersection observer */}
+              {visibleCount < filteredConferences.length && (
+                <div ref={loadMoreRef} className="h-20 flex items-center justify-center">
+                  <div className="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                </div>
+              )}
+
+              {filteredConferences.length > 50 && visibleCount >= filteredConferences.length && (
                 <div className="col-span-full text-center py-4 text-zinc-500">
-                  Showing 50 of {filteredConferences.length}. Use filters to narrow results.
+                  Showing all {filteredConferences.length} results.
                 </div>
               )}
             </div>

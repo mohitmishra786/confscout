@@ -134,16 +134,41 @@ def main():
     }
     
     # 7. Output
-    print("\n[7/7] Writing output...")
-    output = {
-        "lastUpdated": datetime.utcnow().isoformat() + "Z",
-        "stats": stats,
-        "months": grouped,
-    }
+    print("\n[7/7] Writing output (streaming)...")
     
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    with open(OUTPUT_PATH, "w") as f:
-        json.dump(output, f, indent=2, default=str)
+    
+    # We use a semi-streaming approach to avoid keeping the final huge dict in memory
+    # thoughconferences list is already in memory from previous steps.
+    # To truly stream, we'd need to stream from deduplication/enrichment.
+    # But for now, let's optimize the final write.
+    
+    try:
+        with open(OUTPUT_PATH, "w", encoding='utf-8') as f:
+            f.write('{\n')
+            f.write(f'  "lastUpdated": "{datetime.utcnow().isoformat()}Z",\n')
+            f.write('  "stats": ' + json.dumps(stats, indent=4) + ',\n')
+            f.write('  "months": {\n')
+            
+            month_keys = list(grouped.keys())
+            for i, month in enumerate(month_keys):
+                f.write(f'    "{month}": ' + json.dumps(grouped[month], indent=4))
+                if i < len(month_keys) - 1:
+                    f.write(',\n')
+                else:
+                    f.write('\n')
+            
+            f.write('  }\n')
+            f.write('}\n')
+    except Exception as e:
+        print(f"  ✗ Failed to write output: {e}")
+        # Fallback to simple dump if streaming fails
+        with open(OUTPUT_PATH, "w") as f:
+            json.dump({
+                "lastUpdated": datetime.utcnow().isoformat() + "Z",
+                "stats": stats,
+                "months": grouped
+            }, f, indent=2, default=str)
     
     print(f"\n✓ Written to {OUTPUT_PATH}")
     print(f"  Total conferences: {stats['total']}")

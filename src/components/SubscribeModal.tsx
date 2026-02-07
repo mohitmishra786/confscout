@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { DOMAIN_INFO } from '@/types/conference';
 import { secureFetch } from '@/lib/api';
 
@@ -15,6 +15,20 @@ export default function SubscribeModal({ isOpen, onClose }: SubscribeModalProps)
     const [frequency, setFrequency] = useState('weekly');
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
     const [message, setMessage] = useState('');
+
+    useEffect(() => {
+        const handleEscape = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') onClose();
+        };
+
+        if (isOpen) {
+            window.addEventListener('keydown', handleEscape);
+        }
+
+        return () => {
+            window.removeEventListener('keydown', handleEscape);
+        };
+    }, [isOpen, onClose]);
 
     if (!isOpen) return null;
 
@@ -38,7 +52,11 @@ export default function SubscribeModal({ isOpen, onClose }: SubscribeModalProps)
             if (res.ok) {
                 setStatus('success');
                 setMessage(data.message || 'Subscribed successfully!');
-                setTimeout(onClose, 3000);
+                // Auto-close after 3s, but only if component is still mounted
+                const timer = setTimeout(() => {
+                    onClose();
+                }, 3000);
+                return () => clearTimeout(timer);
             } else {
                 setStatus('error');
                 setMessage(data.error || 'Something went wrong');

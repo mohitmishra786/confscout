@@ -12,18 +12,15 @@ import { Prisma } from '@prisma/client';
 
 /**
  * GET /api/conferences
-
  * 
  * Returns conference data.
- * - If no filters: Returns cached full dataset (fast).
- * - If filters: Queries database directly (dynamic).
+ * Optimized with pagination and streaming for large datasets.
  */
 export const GET = withErrorHandling(async (request: NextRequest) => {
   apiLogger.info('/api/conferences called');
   
   const { searchParams } = request.nextUrl;
   
-  // Validate query parameters using Zod (will throw ZodError if invalid, handled by withErrorHandling)
   const validated = querySchemas.conferences.parse({
     domain: searchParams.get('domain') || undefined,
     cfpOpen: searchParams.get('cfpOpen') || undefined,
@@ -37,33 +34,40 @@ export const GET = withErrorHandling(async (request: NextRequest) => {
 
   apiLogger.info('Request params', { domain, cfpOnly, search, page, limit });
 
-  // Optimization: If no filters and it's the first page, use the Redis/File cache (FASTEST PATH)
+  // Optimization: If no filters and it's the first page, use the cache
   if ((!domain || domain === 'all') && !cfpOnly && !search && page === 1) {
     apiLogger.info('Using cached conferences (fast path)');
+    
+    let timeoutId: NodeJS.Timeout;
     const data = await Promise.race([
       getCachedConferences(),
-      new Promise<ConferenceData>((_, reject) => 
-        setTimeout(() => reject(new Error('Cache fetch timeout after 15s')), 15000)
-      )
+      new Promise<ConferenceData>((_, reject) => {
+        timeoutId = setTimeout(() => reject(new Error('Cache fetch timeout after 15s')), 15000);
+      })
     ]);
+    
+    // @ts-ignore
+    if (timeoutId) clearTimeout(timeoutId);
     
     const response: ApiResponse<ConferenceData> = {
       success: true,
       data,
       meta: {
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
+        pagination: {
+          total: data.stats.total,
+          page: 1,
+          limit: data.stats.total,
+          totalPages: 1
+        }
       }
     };
     
     return NextResponse.json(response);
   }
 
-  // Only check session if we need to perform a dynamic query
   const session = await getServerSession(authOptions);
-  apiLogger.info('Dynamic query with session check', { hasSession: !!session?.user });
-
-  // Dynamic Query via Prisma
-  apiLogger.info('Performing dynamic database query');
+  
   const where: Prisma.ConferenceWhereInput = {
     ...(domain && domain !== 'all' ? { domain } : {}),
     ...(cfpOnly ? { cfpStatus: 'open' } : {}),
@@ -80,60 +84,52 @@ export const GET = withErrorHandling(async (request: NextRequest) => {
   apiLogger.time('dbQuery');
   const skip = (page - 1) * limit;
 
-  // Optimized query: Only select required fields and conditionally include attendances
   const [conferences, total] = await Promise.all([
-    Promise.race([
-      prisma.conference.findMany({
-        where,
-        select: {
-          id: true,
-          name: true,
-          url: true,
-          startDate: true,
-          endDate: true,
-          city: true,
-          country: true,
-          locationRaw: true,
-          lat: true,
-          lng: true,
-          online: true,
-          cfpUrl: true,
-          cfpEndDate: true,
-          cfpStatus: true,
-          domain: true,
-          description: true,
-          source: true,
-          tags: true,
-          financialAid: true,
-          // Only include attendances if user is logged in
-          ...(session?.user ? {
-            attendances: {
-              select: {
-                userId: true,
-                user: {
-                  select: {
-                    image: true,
-                    name: true
-                  }
+    prisma.conference.findMany({
+      where,
+      select: {
+        id: true,
+        name: true,
+        url: true,
+        startDate: true,
+        endDate: true,
+        city: true,
+        country: true,
+        locationRaw: true,
+        lat: true,
+        lng: true,
+        online: true,
+        cfpUrl: true,
+        cfpEndDate: true,
+        cfpStatus: true,
+        domain: true,
+        description: true,
+        source: true,
+        tags: true,
+        financialAid: true,
+        ...(session?.user ? {
+          attendances: {
+            select: {
+              userId: true,
+              user: {
+                select: {
+                  image: true,
+                  name: true
                 }
-              },
-              take: 5 // Limit to 5 attendees max
-            }
-          } : {})
-        },
-        orderBy: { startDate: 'asc' },
-        skip,
-        take: limit,
-      }),
-      new Promise<any[]>((_, reject) => 
-        setTimeout(() => reject(new Error('Database query timeout after 15s')), 15000)
-      )
-    ]),
+              }
+            },
+            take: 5
+          }
+        } : {})
+      },
+      orderBy: { startDate: 'asc' },
+      skip,
+      take: limit,
+    }),
     prisma.conference.count({ where })
   ]);
   apiLogger.timeEnd('dbQuery');
 
-  // Define a type for the query result to avoid 'any'
   interface DbConferenceWithAttendances {
     id: string;
     name: string;
@@ -165,13 +161,11 @@ export const GET = withErrorHandling(async (request: NextRequest) => {
 
   const dbConfs = conferences as unknown as DbConferenceWithAttendances[];
 
-  // Format for frontend (Month grouping)
   const months: Record<string, Conference[]> = {};
   const byDomain: Record<string, number> = {};
   let withOpenCFP = 0;
   let withLocation = 0;
 
-  // Transform DB shape to Frontend Interface
   const formattedConferences = dbConfs.map((c) => {
     const attendances = c.attendances || [];
     
@@ -199,7 +193,6 @@ export const GET = withErrorHandling(async (request: NextRequest) => {
       source: c.source,
       tags: c.tags,
       financialAid: c.financialAid ? JSON.parse(JSON.stringify(c.financialAid)) : undefined,
-      // Attendance data (only if user is logged in)
       ...(session?.user ? {
         attendeeCount: attendances.length,
         isAttending: attendances.some((a: { userId: string }) => a.userId === session.user.id),

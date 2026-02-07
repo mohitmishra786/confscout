@@ -8,7 +8,7 @@
  * Now uses SafeHighlightedText component for search term highlighting.
  */
 
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import Image from 'next/image';
 import { type Conference, DOMAIN_INFO } from '@/types/conference';
 import { useCompare } from '@/context/CompareContext';
@@ -23,10 +23,17 @@ interface ConferenceCardProps {
   searchTerm?: string;
 }
 
-export default function ConferenceCard({ conference, searchTerm }: ConferenceCardProps) {
+/**
+ * ConferenceCard Component
+ *
+ * Displays a single conference with CFP status, domain badge, location, and tags.
+ * Wrapped in memo to prevent unnecessary re-renders in large lists.
+ */
+const ConferenceCard = memo(function ConferenceCard({ conference, searchTerm }: ConferenceCardProps) {
   const [isVisaOpen, setIsVisaOpen] = useState(false);
   const [isTravelOpen, setIsTravelOpen] = useState(false);
   const [isAttending, setIsAttending] = useState(conference.isAttending || false);
+  const [isBookmarked, setIsBookmarked] = useState(false); // Should be fetched/passed from parent
   const [attendeeCount, setAttendeeCount] = useState(conference.attendeeCount || 0);
   const { isInCompare, addToCompare, removeFromCompare } = useCompare();
   const isCompared = isInCompare(conference.id);
@@ -55,6 +62,31 @@ export default function ConferenceCard({ conference, searchTerm }: ConferenceCar
     }
   };
 
+  const toggleBookmark = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    const prevBookmarked = isBookmarked;
+    setIsBookmarked(!prevBookmarked);
+
+    try {
+      const method = prevBookmarked ? 'DELETE' : 'POST';
+      const url = prevBookmarked 
+        ? `/api/user/bookmarks?conferenceId=${conference.id}`
+        : '/api/user/bookmarks';
+      
+      const res = await secureFetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        ...(!prevBookmarked && { body: JSON.stringify({ conferenceId: conference.id }) })
+      });
+      if (!res.ok) throw new Error();
+    } catch {
+      setIsBookmarked(prevBookmarked);
+      alert('Failed to update bookmark');
+    }
+  };
+
   const toggleCompare = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -66,10 +98,6 @@ export default function ConferenceCard({ conference, searchTerm }: ConferenceCar
   const cfp = conference.cfp;
   const cfpIsOpen = cfp?.status === 'open';
   const daysRemaining = cfp?.daysRemaining ?? -1;
-
-  // SECURITY FIX: Removed highlightText function that used dangerouslySetInnerHTML
-  // Now using SafeHighlightedText component which safely renders highlighted text
-  // This prevents XSS attacks from malicious search terms or conference data
 
   // CFP badge styling based on urgency
   const getCfpBadgeStyle = () => {
@@ -131,11 +159,16 @@ export default function ConferenceCard({ conference, searchTerm }: ConferenceCar
         {/* Top Row: Domain & CFP */}
         <div className="flex items-center justify-between mb-3 text-xs font-medium">
           <div className="flex items-center gap-2">
-            <span
-              className="w-2 h-2 rounded-full shadow-[0_0_8px_currentColor]"
-              style={{ color: domainColor, backgroundColor: domainColor }}
-            />
-            <span className="text-zinc-400 uppercase tracking-wider">{conference.domain}</span>
+            <div className="relative w-6 h-6 bg-zinc-800 rounded-md flex items-center justify-center overflow-hidden border border-zinc-700">
+              <span className="text-[10px] text-zinc-500 font-bold">{conference.domain[0].toUpperCase()}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span
+                className="w-2 h-2 rounded-full shadow-[0_0_8px_currentColor]"
+                style={{ color: domainColor, backgroundColor: domainColor }}
+              />
+              <span className="text-zinc-400 uppercase tracking-wider">{conference.domain}</span>
+            </div>
           </div>
 
           {cfp?.url ? (
@@ -193,7 +226,15 @@ export default function ConferenceCard({ conference, searchTerm }: ConferenceCar
                   {conference.attendees?.map((a, i) => (
                     <div key={i} className="w-5 h-5 rounded-full border border-zinc-900 overflow-hidden bg-zinc-800">
                       {a.image ? (
-                        <Image src={a.image} alt={a.name || ''} width={20} height={20} />
+                        <Image 
+                          src={a.image} 
+                          alt={a.name || ''} 
+                          width={20} 
+                          height={20} 
+                          decoding="async"
+                          loading="lazy"
+                          className="object-cover"
+                        />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center text-[8px] text-zinc-500">
                           {a.name?.[0]}
@@ -230,6 +271,17 @@ export default function ConferenceCard({ conference, searchTerm }: ConferenceCar
 
           {/* Action Buttons */}
           <div className="flex items-center gap-2 whitespace-nowrap">
+            {/* Bookmark Toggle */}
+            <button
+              onClick={toggleBookmark}
+              className={`p-1.5 rounded-lg transition-all border ${isBookmarked ? 'text-yellow-400 bg-yellow-400/10 border-yellow-400/20' : 'text-zinc-500 hover:text-zinc-300 border-transparent hover:bg-zinc-800'}`}
+              title={isBookmarked ? "Remove bookmark" : "Add bookmark"}
+            >
+              <svg className="w-4 h-4" fill={isBookmarked ? "currentColor" : "none"} stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.382-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+              </svg>
+            </button>
+
             {/* Attendance Toggle */}
             <button
               onClick={toggleAttendance}
@@ -323,4 +375,6 @@ export default function ConferenceCard({ conference, searchTerm }: ConferenceCar
       />
     </article>
   );
-}
+});
+
+export default ConferenceCard;
