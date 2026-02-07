@@ -18,7 +18,6 @@ import { z } from 'zod';
 export async function GET(request: Request) {
   apiLogger.info('/api/conferences called');
   try {
-    const session = await getServerSession(authOptions);
     const { searchParams } = new URL(request.url);
     
     // Validate query parameters using Zod
@@ -32,12 +31,12 @@ export async function GET(request: Request) {
     const cfpOnly = validated.cfpOpen === 'true';
     const search = validated.search;
 
-    apiLogger.info('Request params', { domain, cfpOnly, search, hasSession: !!session?.user });
+    apiLogger.info('Request params', { domain, cfpOnly, search });
 
-    // Optimization: If no filters AND not logged in, use the Redis/File cache
-    // (If logged in, we want to show 'isAttending' status correctly, so we might need a dynamic query or merge)
-    if (!session?.user && (!domain || domain === 'all') && !cfpOnly && !search) {
-      apiLogger.info('Using cached conferences');
+    // Optimization: If no filters, use the Redis/File cache (FASTEST PATH)
+    // Session check is deferred until needed for attendance data
+    if ((!domain || domain === 'all') && !cfpOnly && !search) {
+      apiLogger.info('Using cached conferences (fast path)');
       const data = await Promise.race([
         getCachedConferences(),
         new Promise<ConferenceData>((_, reject) => 
@@ -47,6 +46,10 @@ export async function GET(request: Request) {
       apiLogger.info('Returning cached data', { months: Object.keys(data.months).length });
       return NextResponse.json(data);
     }
+
+    // Only check session if we need to perform a dynamic query
+    const session = await getServerSession(authOptions);
+    apiLogger.info('Dynamic query with session check', { hasSession: !!session?.user });
 
     // Dynamic Query via Prisma
     apiLogger.info('Performing dynamic database query');
@@ -65,21 +68,45 @@ export async function GET(request: Request) {
     };
 
     apiLogger.time('dbQuery');
+    // Optimized query: Only select required fields and conditionally include attendances
     const conferences = await Promise.race([
       prisma.conference.findMany({
         where,
-        include: {
-          attendances: {
-            select: {
-              userId: true,
-              user: {
-                select: {
-                  image: true,
-                  name: true
+        select: {
+          id: true,
+          name: true,
+          url: true,
+          startDate: true,
+          endDate: true,
+          city: true,
+          country: true,
+          locationRaw: true,
+          lat: true,
+          lng: true,
+          online: true,
+          cfpUrl: true,
+          cfpEndDate: true,
+          cfpStatus: true,
+          domain: true,
+          description: true,
+          source: true,
+          tags: true,
+          financialAid: true,
+          // Only include attendances if user is logged in
+          ...(session?.user ? {
+            attendances: {
+              select: {
+                userId: true,
+                user: {
+                  select: {
+                    image: true,
+                    name: true
+                  }
                 }
-              }
+              },
+              take: 5 // Limit to 5 attendees max
             }
-          }
+          } : {})
         },
         orderBy: { startDate: 'asc' }
       }),
@@ -96,38 +123,45 @@ export async function GET(request: Request) {
     let withLocation = 0;
 
     // Transform DB shape to Frontend Interface
-    const formattedConferences = conferences.map((c) => ({
-      id: c.id,
-      name: c.name,
-      url: c.url,
-      startDate: c.startDate ? c.startDate.toISOString().split('T')[0] : null,
-      endDate: c.endDate ? c.endDate.toISOString().split('T')[0] : null,
-      location: {
-        city: c.city || '',
-        country: c.country || '',
-        raw: c.locationRaw || '',
-        lat: c.lat || undefined,
-        lng: c.lng || undefined
-      },
-      online: c.online,
-      cfp: {
-        url: c.cfpUrl || '',
-        endDate: c.cfpEndDate ? c.cfpEndDate.toISOString().split('T')[0] : null,
-        status: (c.cfpStatus as 'open' | 'closed' | undefined)
-      },
-      domain: c.domain,
-      description: c.description || undefined,
-      source: c.source,
-      tags: c.tags,
-      financialAid: c.financialAid ? JSON.parse(JSON.stringify(c.financialAid)) : undefined,
-      // Attendance data
-      attendeeCount: c.attendances.length,
-      isAttending: session?.user ? c.attendances.some((a) => a.userId === session.user.id) : false,
-      attendees: c.attendances.slice(0, 5).map((a) => ({
-        image: a.user.image,
-        name: a.user.name
-      }))
-    }));
+    const formattedConferences = conferences.map((c) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const attendances = (c as any).attendances || [];
+      
+      return {
+        id: c.id,
+        name: c.name,
+        url: c.url,
+        startDate: c.startDate ? c.startDate.toISOString().split('T')[0] : null,
+        endDate: c.endDate ? c.endDate.toISOString().split('T')[0] : null,
+        location: {
+          city: c.city || '',
+          country: c.country || '',
+          raw: c.locationRaw || '',
+          lat: c.lat || undefined,
+          lng: c.lng || undefined
+        },
+        online: c.online,
+        cfp: {
+          url: c.cfpUrl || '',
+          endDate: c.cfpEndDate ? c.cfpEndDate.toISOString().split('T')[0] : null,
+          status: (c.cfpStatus as 'open' | 'closed' | undefined)
+        },
+        domain: c.domain,
+        description: c.description || undefined,
+        source: c.source,
+        tags: c.tags,
+        financialAid: c.financialAid ? JSON.parse(JSON.stringify(c.financialAid)) : undefined,
+        // Attendance data (only if user is logged in)
+        ...(session?.user ? {
+          attendeeCount: attendances.length,
+          isAttending: attendances.some((a: { userId: string }) => a.userId === session.user.id),
+          attendees: attendances.slice(0, 5).map((a: { user: { image: string | null; name: string | null } }) => ({
+            image: a.user.image,
+            name: a.user.name
+          }))
+        } : {})
+      };
+    });
 
     for (const conf of formattedConferences) {
       byDomain[conf.domain] = (byDomain[conf.domain] || 0) + 1;

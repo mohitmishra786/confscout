@@ -86,5 +86,10 @@ export default function middleware(request: NextRequest) {
 }
  
 export const config = {
-  matcher: ['/((?!_next|.*\\..*).*)'] // Removed (?!api) to allow rate limiting API routes
+  // Optimized matcher: Only run on API routes and locale routes
+  // Excludes static assets, Next.js internals, and other files
+  matcher: [
+    '/api/:path*',
+    '/(en|es|fr|de)/:path*',
+  ]
 };

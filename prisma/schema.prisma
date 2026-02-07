@@ -132,6 +132,8 @@ model Conference {
   @@index([domain])
   @@index([startDate])
   @@index([cfpEndDate])
+  @@index([cfpStatus])
+  @@index([domain, startDate])
   @@map("conferences")
 }
 
