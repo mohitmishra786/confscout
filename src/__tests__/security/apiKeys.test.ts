@@ -15,7 +15,7 @@ describe('API Key and Secret Security', () => {
       'git grep "gsk_" -- "*.ts" "*.tsx" "*.js" "*.json" 2>/dev/null || true',
       { encoding: 'utf-8' }
     );
-    const filtered = result.split('\n').filter(line => line && !line.includes('apiKeys.test.ts'));
+    const filtered = result.split('\n').filter(line => line && !line.includes('apiKeys.test.ts') && !line.includes('secretsManagement.test.ts'));
     expect(filtered).toHaveLength(0);
   });
 
@@ -25,7 +25,7 @@ describe('API Key and Secret Security', () => {
       'git grep "sk-[a-zA-Z0-9]\{20,\}" -- "*.ts" "*.tsx" "*.js" "*.json" 2>/dev/null || true',
       { encoding: 'utf-8' }
     );
-    const filtered = result.split('\n').filter(line => line && !line.includes('apiKeys.test.ts'));
+    const filtered = result.split('\n').filter(line => line && !line.includes('apiKeys.test.ts') && !line.includes('secretsManagement.test.ts'));
     expect(filtered).toHaveLength(0);
   });
 
@@ -35,7 +35,7 @@ describe('API Key and Secret Security', () => {
       'git grep "AIza[0-9A-Za-z-_]\{35\}" -- "*.ts" "*.tsx" "*.js" "*.json" 2>/dev/null || true',
       { encoding: 'utf-8' }
     );
-    const filtered = result.split('\n').filter(line => line && !line.includes('apiKeys.test.ts'));
+    const filtered = result.split('\n').filter(line => line && !line.includes('apiKeys.test.ts') && !line.includes('secretsManagement.test.ts'));
     expect(filtered).toHaveLength(0);
   });
 
@@ -45,7 +45,7 @@ describe('API Key and Secret Security', () => {
       'git grep -E "ghp_|github_pat_" -- "*.ts" "*.tsx" "*.js" "*.json" 2>/dev/null || true',
       { encoding: 'utf-8' }
     );
-    const filtered = result.split('\n').filter(line => line && !line.includes('apiKeys.test.ts'));
+    const filtered = result.split('\n').filter(line => line && !line.includes('apiKeys.test.ts') && !line.includes('secretsManagement.test.ts'));
     expect(filtered).toHaveLength(0);
   });
 

@@ -36,24 +36,28 @@ export default function Header() {
           <nav className="flex items-center space-x-1" aria-label="Main navigation">
             <Link
               href={`/${locale}`}
+              prefetch={true}
               className="text-zinc-400 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-zinc-800/50 min-h-[2.75rem] flex items-center"
             >
               {t('explore')}
             </Link>
             <Link
               href={`/${locale}/search?cfp=true`}
+              prefetch={true}
               className="text-zinc-400 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-zinc-800/50 min-h-[2.75rem] flex items-center"
             >
               {t('openCfps')}
             </Link>
             <Link
               href={`/${locale}/recommendations`}
+              prefetch={true}
               className="text-zinc-400 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-zinc-800/50 min-h-[2.75rem] flex items-center"
             >
               <span className="mr-1" aria-hidden="true">✨</span> {t('aiMatch')}
             </Link>
             <Link
               href={`/${locale}/about`}
+              prefetch={true}
               className="text-zinc-400 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-zinc-800/50 min-h-[2.75rem] flex items-center"
             >
               {t('about')}
@@ -69,6 +73,7 @@ export default function Header() {
               <div className="flex items-center gap-2">
                 <Link
                   href={`/${locale}/submit`}
+                  prefetch={true}
                   className="text-zinc-400 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-zinc-800/50"
                 >
                   {t('submit')}

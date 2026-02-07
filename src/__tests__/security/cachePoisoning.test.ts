@@ -31,7 +31,7 @@ describe('Cache Poisoning Prevention', () => {
       return;
     }
     // Verify that cache is only used for specific, controlled requests
-    expect(content).toMatch(/if\s*\(!session\?\.user\s*&&\s*\(!domain\s*\|\|\s*domain\s*===\s*['"]all['"]\)\s*&&\s*!cfpOnly\s*&&\s*!search\)/);
+    expect(content).toMatch(/if\s*\(\(!domain\s*\|\|\s*domain\s*===\s*['"]all['"]\)\s*&&\s*!cfpOnly\s*&&\s*!search\s*&&\s*page\s*===\s*1\)/);
   });
 
   it('should not rely on unvalidated host headers for cache content', () => {

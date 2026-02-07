@@ -40,20 +40,6 @@ const nextConfig: NextConfig = {
         source: '/(.*)',
         headers: [
           {
-            key: 'Content-Security-Policy',
-            value: [
-              "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' *.sentry.io", // Note: unsafe-eval removed for production hardening
-              "style-src 'self' 'unsafe-inline' *.googleapis.com",
-              "img-src 'self' data: blob: avatars.githubusercontent.com lh3.googleusercontent.com res.cloudinary.com *.tile.openstreetmap.org *.basemaps.cartocdn.com",
-              "font-src 'self' *.gstatic.com",
-              "connect-src 'self' *.sentry.io *.google-analytics.com",
-              "object-src 'none'", // Hardening: block plugins
-              "frame-ancestors 'self'",
-              "upgrade-insecure-requests"
-            ].join('; ')
-          },
-          {
             key: 'X-DNS-Prefetch-Control',
             value: 'on'
           },

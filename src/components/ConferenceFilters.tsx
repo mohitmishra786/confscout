@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
 import type { ConferenceFilters } from '@/types/conference';
 import { SlidersHorizontal, Calendar, MapPin, DollarSign, Shield, X } from 'lucide-react';
 
@@ -15,6 +15,15 @@ export default function ConferenceFilters({ filters, onFiltersChange, totalResul
 
   const handleFilterChange = (key: keyof ConferenceFilters, value: string | boolean | number | string[] | Record<string, unknown>) => {
     onFiltersChange({ ...filters, [key]: value });
+  };
+
+  const handleSelectChange = (key: keyof ConferenceFilters, e: ChangeEvent<HTMLSelectElement>) => {
+    handleFilterChange(key, e.target.value);
+  };
+
+  const handleInputChange = (key: keyof ConferenceFilters, e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+    handleFilterChange(key, value);
   };
 
   const clearFilters = () => {
@@ -70,7 +79,7 @@ export default function ConferenceFilters({ filters, onFiltersChange, totalResul
           <label className="text-xs font-medium text-zinc-500 mb-1 block">Domain</label>
           <select
             value={filters.domain || 'all'}
-            onChange={(e) => handleFilterChange('domain', e.target.value)}
+            onChange={(e) => handleSelectChange('domain', e)}
             className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-blue-500"
           >
             <option value="all">All Domains</option>
@@ -130,7 +139,7 @@ export default function ConferenceFilters({ filters, onFiltersChange, totalResul
           type="text"
           placeholder="Search conferences by name, location, or tags..."
           value={filters.searchTerm || ''}
-          onChange={(e) => handleFilterChange('searchTerm', e.target.value)}
+          onChange={(e) => handleInputChange('searchTerm', e)}
           className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2 text-white placeholder-zinc-500 focus:outline-none focus:border-blue-500"
         />
       </div>
@@ -151,7 +160,7 @@ export default function ConferenceFilters({ filters, onFiltersChange, totalResul
                   placeholder="Start date"
                   value={filters.dateRange?.start || ''}
                   onChange={(e) => handleFilterChange('dateRange', {
-                    ...(filters.dateRange || {}),
+                    ...(filters.dateRange || { start: '', end: '' }),
                     start: e.target.value
                   })}
                   className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-blue-500"
@@ -163,7 +172,7 @@ export default function ConferenceFilters({ filters, onFiltersChange, totalResul
                   placeholder="End date"
                   value={filters.dateRange?.end || ''}
                   onChange={(e) => handleFilterChange('dateRange', {
-                    ...(filters.dateRange || {}),
+                    ...(filters.dateRange || { start: '', end: '' }),
                     end: e.target.value
                   })}
                   className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-blue-500"
@@ -182,7 +191,7 @@ export default function ConferenceFilters({ filters, onFiltersChange, totalResul
               <select
                 value={filters.location?.type || 'all'}
                 onChange={(e) => handleFilterChange('location', {
-                  ...(filters.location || {}),
+                  ...(filters.location || { type: 'all' }),
                   type: e.target.value as 'all' | 'online' | 'country' | 'nearby'
                 })}
                 className="bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-blue-500"

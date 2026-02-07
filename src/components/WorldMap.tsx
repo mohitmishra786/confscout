@@ -36,6 +36,7 @@ type LeafletComponents = {
 function MapContainerComponent({ conferences, center, zoom, onMarkerClick }: WorldMapProps) {
     const [components, setComponents] = useState<LeafletComponents | null>(null);
     const [MarkerClusterGroup, setMarkerClusterGroup] = useState<LeafletClusterModule['default'] | null>(null);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         Promise.all([
@@ -51,8 +52,26 @@ function MapContainerComponent({ conferences, center, zoom, onMarkerClick }: Wor
                 useMap: m.useMap,
             });
             setMarkerClusterGroup(() => c.default);
+        }).catch(err => {
+            console.error('Failed to load map components:', err);
+            setError('Failed to load map. Please check your internet connection.');
         });
     }, []);
+
+    if (error) {
+        return (
+            <div className="w-full h-[600px] bg-gray-900 rounded-lg flex flex-col items-center justify-center p-4 text-center">
+                <div className="text-red-400 text-4xl mb-4">⚠️</div>
+                <div className="text-gray-300 font-medium mb-2">{error}</div>
+                <button 
+                    onClick={() => window.location.reload()}
+                    className="text-blue-400 text-sm underline hover:text-blue-300"
+                >
+                    Retry
+                </button>
+            </div>
+        );
+    }
 
     if (!components || !MarkerClusterGroup) {
         return (
