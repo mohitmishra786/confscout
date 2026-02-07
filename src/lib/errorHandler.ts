@@ -10,6 +10,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { securityLogger } from '@/lib/logger';
+import { ApiResponse } from '@/types/api';
 
 /**
  * API Error class for structured error responses
@@ -139,10 +140,11 @@ export function sanitizeValidationError(error: z.ZodError): {
  */
 export function handleAPIError(error: unknown, requestId?: string): NextResponse {
   const isDevelopment = process.env.NODE_ENV === 'development';
+  const timestamp = new Date().toISOString();
   
   // Log detailed error internally
   const errorLog = {
-    timestamp: new Date().toISOString(),
+    timestamp,
     requestId,
     error: error instanceof Error ? {
       name: error.name,
@@ -153,50 +155,54 @@ export function handleAPIError(error: unknown, requestId?: string): NextResponse
   
   securityLogger.error('API Error', errorLog);
   
+  // Helper to create a standard error response
+  const createErrorResponse = (
+    message: string, 
+    code: string, 
+    status: number, 
+    details?: any, 
+    stack?: string
+  ) => {
+    const response: ApiResponse = {
+      success: false,
+      error: {
+        message,
+        code,
+        ...(details && { details }),
+        ...(isDevelopment && stack && { stack }),
+      },
+      meta: {
+        requestId,
+        timestamp,
+      }
+    };
+    return NextResponse.json(response, { status });
+  };
+  
   // Handle Zod validation errors
   if (error instanceof z.ZodError) {
-    if (isDevelopment) {
-      return NextResponse.json(
-        {
-          error: 'Validation failed',
-          code: ErrorCodes.VALIDATION_ERROR,
-          details: error.issues,
-        },
-        { status: 400 }
-      );
-    }
-    
-    // In production, sanitize validation errors
-    return NextResponse.json(
-      sanitizeValidationError(error),
-      { status: 400 }
+    const sanitized = sanitizeValidationError(error);
+    return createErrorResponse(
+      sanitized.error,
+      sanitized.code,
+      400,
+      isDevelopment ? error.issues : sanitized.fields
     );
   }
   
   // Handle custom API errors
   if (error instanceof APIError) {
     const errorCode = error.code as ErrorCode;
-    // In production, always use user-friendly message if code is known
-    // Otherwise fall back to INTERNAL_ERROR message, never expose raw error.message
     const message = isDevelopment
       ? error.message
       : (userFriendlyMessages[errorCode] || userFriendlyMessages[ErrorCodes.INTERNAL_ERROR]);
 
-    // Use the error's code only if it's a known error code, otherwise use INTERNAL_ERROR
     const responseCode = (errorCode && userFriendlyMessages[errorCode]) ? errorCode : ErrorCodes.INTERNAL_ERROR;
-
     const statusCode = (errorCode && userFriendlyMessages[errorCode])
       ? error.statusCode
       : errorCodeToStatus[ErrorCodes.INTERNAL_ERROR];
 
-    return NextResponse.json(
-      {
-        error: message,
-        code: responseCode,
-        ...(isDevelopment && { stack: error.stack }),
-      },
-      { status: statusCode }
-    );
+    return createErrorResponse(message, responseCode, statusCode, null, error.stack);
   }
   
   // Handle Prisma errors (don't expose database details)
@@ -205,7 +211,6 @@ export function handleAPIError(error: unknown, requestId?: string): NextResponse
       (error as { code: string }).code.startsWith('P')) {
     const prismaError = error as { code: string; message?: string };
     
-    // Map common Prisma errors to safe messages
     const prismaErrorMap: Record<string, ErrorCode> = {
       'P2002': ErrorCodes.DUPLICATE_ENTRY,
       'P2025': ErrorCodes.NOT_FOUND,
@@ -214,35 +219,21 @@ export function handleAPIError(error: unknown, requestId?: string): NextResponse
     
     const errorCode = prismaErrorMap[prismaError.code];
     if (errorCode) {
-      return NextResponse.json(
-        {
-          error: userFriendlyMessages[errorCode],
-          code: errorCode,
-        },
-        { status: errorCodeToStatus[errorCode] }
+      return createErrorResponse(
+        userFriendlyMessages[errorCode],
+        errorCode,
+        errorCodeToStatus[errorCode]
       );
     }
   }
   
-  // Generic error for production
-  if (isDevelopment) {
-    return NextResponse.json(
-      {
-        error: error instanceof Error ? error.message : 'Unknown error',
-        code: ErrorCodes.INTERNAL_ERROR,
-        stack: error instanceof Error ? error.stack : undefined,
-      },
-      { status: 500 }
-    );
-  }
-  
-  // Production: Generic error only
-  return NextResponse.json(
-    {
-      error: userFriendlyMessages[ErrorCodes.INTERNAL_ERROR],
-      code: ErrorCodes.INTERNAL_ERROR,
-    },
-    { status: 500 }
+  // Generic error
+  return createErrorResponse(
+    userFriendlyMessages[ErrorCodes.INTERNAL_ERROR],
+    ErrorCodes.INTERNAL_ERROR,
+    500,
+    null,
+    error instanceof Error ? error.stack : undefined
   );
 }
 
