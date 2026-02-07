@@ -239,10 +239,10 @@ export async function GET(request: NextRequest) {
     }
   } catch (error) {
     console.error('Digest Error:', error);
+    // SECURITY: Only return generic error message, log details internally
     return NextResponse.json(
       {
         error: 'Internal Server Error',
-        message: error instanceof Error ? error.message : 'Unknown error',
         frequency: triggerFrequency,
       },
       { status: 500 }
