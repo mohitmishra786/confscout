@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { ConferenceData } from '@/types/conference';
+import type { ConferenceData } from '@/types/conference';
 import { apiLogger } from '@/lib/logger';
 
 /**

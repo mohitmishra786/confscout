@@ -7,7 +7,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import pool from '@/lib/db';
 import { sendDigestEmail } from '@/lib/email';
-import { Conference } from '@/types/conference';
+import type { Conference } from '@/types/conference';
 import { invalidateCache } from '@/lib/cache';
 import { readFileSync } from 'fs';
 import { join } from 'path';

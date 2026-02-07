@@ -5,7 +5,7 @@
  */
 
 import Fuse from 'fuse.js';
-import { Conference, Domain } from '@/types/conference';
+import type { Conference, Domain } from '@/types/conference';
 
 // Define SearchResult locally since it's not exported from types
 interface SearchResult {

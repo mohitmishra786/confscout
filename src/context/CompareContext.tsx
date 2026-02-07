@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
-import { Conference } from '@/types/conference';
+import type { Conference } from '@/types/conference';
 import { isValidConference } from '@/lib/validation';
 
 interface CompareContextType {

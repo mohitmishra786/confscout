@@ -3,7 +3,7 @@
  * No emojis, clean table layouts, dynamic titles
  */
 
-import { Conference } from '@/types/conference';
+import type { Conference } from '@/types/conference';
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://confscouting.com';
 

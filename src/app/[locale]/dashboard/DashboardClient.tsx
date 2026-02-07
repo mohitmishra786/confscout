@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Conference } from '@/types/conference';
+import type { Conference } from '@/types/conference';
 import ConferenceCard from '@/components/ConferenceCard';
 import { secureFetch } from '@/lib/api';
 

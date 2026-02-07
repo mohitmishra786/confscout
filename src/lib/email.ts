@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import { Conference } from '@/types/conference';
+import type { Conference } from '@/types/conference';
 import {
   generateEmailSubject,
   generatePlainTextEmail,

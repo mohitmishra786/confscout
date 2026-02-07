@@ -6,7 +6,7 @@
  * Month-grouped timeline display of conferences with sticky headers.
  */
 
-import { Conference } from '@/types/conference';
+import type { Conference } from '@/types/conference';
 import ConferenceCard from './ConferenceCard';
 
 interface TimelineViewProps {

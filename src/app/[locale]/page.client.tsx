@@ -13,7 +13,7 @@
 import { useState, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
-import { Conference, ConferenceData, DOMAIN_INFO } from '@/types/conference';
+import { type Conference, type ConferenceData, DOMAIN_INFO } from '@/types/conference';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import TimelineView from '@/components/TimelineView';

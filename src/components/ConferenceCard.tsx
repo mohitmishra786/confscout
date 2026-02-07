@@ -10,7 +10,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { Conference, DOMAIN_INFO } from '@/types/conference';
+import { type Conference, DOMAIN_INFO } from '@/types/conference';
 import { useCompare } from '@/context/CompareContext';
 import { SafeHighlightedText } from '@/components/SafeHighlightedText';
 import VisaModal from './VisaModal';

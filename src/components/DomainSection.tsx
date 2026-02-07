@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Conference, Domain } from '@/types/conference';
+import type { Conference, Domain } from '@/types/conference';
 import ConferenceCard from './ConferenceCard';
 import Link from 'next/link';
 

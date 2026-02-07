@@ -1,4 +1,4 @@
-import { Conference } from '@/types/conference';
+import type { Conference } from '@/types/conference';
 
 export function generateICalEvent(conference: Conference): string {
   const startDate = conference.startDate ? conference.startDate.replace(/-/g, '') : '';

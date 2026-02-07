@@ -6,7 +6,7 @@
  */
 
 import { useState, useEffect, useMemo } from 'react';
-import { ConferenceData, DOMAIN_INFO } from '@/types/conference';
+import { type ConferenceData, DOMAIN_INFO } from '@/types/conference';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 

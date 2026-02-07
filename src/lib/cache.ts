@@ -1,7 +1,7 @@
 import { Redis } from '@upstash/redis';
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { Conference, ConferenceData } from '@/types/conference';
+import type { Conference, ConferenceData } from '@/types/conference';
 import { prisma } from '@/lib/prisma';
 import { cacheLogger } from '@/lib/logger';
 

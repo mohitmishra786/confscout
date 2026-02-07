@@ -4,7 +4,7 @@
  */
 
 import Groq from 'groq-sdk';
-import { Conference } from '@/types/conference';
+import type { Conference } from '@/types/conference';
 import { formatDate } from '@/lib/emailTemplates';
 import { sanitizeXSS } from '@/lib/validation';
 

@@ -2,7 +2,7 @@
  * Unit tests for email.ts
  */
 
-import { Conference } from '@/types/conference';
+import type { Conference } from '@/types/conference';
 
 // Mock functions must be created before jest.mock calls
 const mockSendMail = jest.fn();

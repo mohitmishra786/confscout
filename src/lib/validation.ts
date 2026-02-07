@@ -1,4 +1,4 @@
-import { Conference } from '@/types/conference';
+import type { Conference } from '@/types/conference';
 
 /**
  * Validate that an object is a valid Conference

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { getCachedConferences } from '@/lib/cache';
-import { Conference, ConferenceData } from '@/types/conference';
+import type { Conference, ConferenceData } from '@/types/conference';
 import { prisma } from '@/lib/prisma';
 import { apiLogger } from '@/lib/logger';
 import { querySchemas } from '@/lib/apiSchemas';
