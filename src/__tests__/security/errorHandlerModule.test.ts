@@ -180,16 +180,22 @@ describe('Error Handler Module (Issue #300)', () => {
   describe('handleAPIError production sanitization', () => {
     let originalEnv: string | undefined;
 
+    function setNodeEnv(env: string): void {
+      Object.defineProperty(process.env, 'NODE_ENV', { value: env, writable: true });
+    }
+
     beforeEach(() => {
       originalEnv = process.env.NODE_ENV;
     });
 
     afterEach(() => {
-      process.env.NODE_ENV = originalEnv;
+      if (originalEnv !== undefined) {
+        Object.defineProperty(process.env, 'NODE_ENV', { value: originalEnv, writable: true });
+      }
     });
 
     it('should return generic message for generic errors in production', async () => {
-      process.env.NODE_ENV = 'production';
+      setNodeEnv('production');
       const error = new Error('secret database password is xyz123');
 
       const response = handleAPIError(error);
@@ -202,7 +208,7 @@ describe('Error Handler Module (Issue #300)', () => {
     });
 
     it('should return user-friendly message for ZodError in production', async () => {
-      process.env.NODE_ENV = 'production';
+      setNodeEnv('production');
       const schema = z.object({ email: z.string().email() });
       let zodError: z.ZodError;
 
@@ -217,7 +223,6 @@ describe('Error Handler Module (Issue #300)', () => {
 
       expect(body.code).toBe('VALIDATION_ERROR');
       expect(body.error).toBe('Validation failed');
-      // Field paths should be sanitized but present
       expect(body.fields).toContain('email');
     });
 
@@ -240,12 +245,11 @@ describe('Error Handler Module (Issue #300)', () => {
       expect(result.error).toBe('Validation failed');
       expect(result.fields).toContain('email');
       expect(result.fields).toContain('password');
-      // Should not expose detailed validation messages
       expect(result).not.toHaveProperty('details');
     });
 
     it('should handle Prisma P2002 error as DUPLICATE_ENTRY', async () => {
-      process.env.NODE_ENV = 'production';
+      setNodeEnv('production');
       const prismaError = { code: 'P2002', message: 'Unique constraint failed on email' };
 
       const response = handleAPIError(prismaError);
@@ -257,7 +261,7 @@ describe('Error Handler Module (Issue #300)', () => {
     });
 
     it('should handle Prisma P2025 error as NOT_FOUND', async () => {
-      process.env.NODE_ENV = 'production';
+      setNodeEnv('production');
       const prismaError = { code: 'P2025', message: 'Record not found' };
 
       const response = handleAPIError(prismaError);
@@ -268,7 +272,7 @@ describe('Error Handler Module (Issue #300)', () => {
     });
 
     it('should handle unknown Prisma errors as INTERNAL_ERROR', async () => {
-      process.env.NODE_ENV = 'production';
+      setNodeEnv('production');
       const prismaError = { code: 'P9999', message: 'Some internal db error' };
 
       const response = handleAPIError(prismaError);
@@ -279,7 +283,7 @@ describe('Error Handler Module (Issue #300)', () => {
     });
 
     it('should expose error details in development mode', async () => {
-      process.env.NODE_ENV = 'development';
+      setNodeEnv('development');
       const error = new Error('Detailed error message');
 
       const response = handleAPIError(error);
@@ -290,7 +294,7 @@ describe('Error Handler Module (Issue #300)', () => {
     });
 
     it('should not expose stack traces in production', async () => {
-      process.env.NODE_ENV = 'production';
+      setNodeEnv('production');
       const error = new Error('Detailed error message');
 
       const response = handleAPIError(error);
@@ -303,13 +307,19 @@ describe('Error Handler Module (Issue #300)', () => {
   describe('withErrorHandling wrapper', () => {
     let originalEnv: string | undefined;
 
+    function setNodeEnv(env: string): void {
+      Object.defineProperty(process.env, 'NODE_ENV', { value: env, writable: true });
+    }
+
     beforeEach(() => {
       originalEnv = process.env.NODE_ENV;
-      process.env.NODE_ENV = 'production';
+      setNodeEnv('production');
     });
 
     afterEach(() => {
-      process.env.NODE_ENV = originalEnv;
+      if (originalEnv !== undefined) {
+        Object.defineProperty(process.env, 'NODE_ENV', { value: originalEnv, writable: true });
+      }
     });
 
     it('should catch errors and return sanitized response', async () => {

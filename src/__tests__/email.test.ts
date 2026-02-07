@@ -68,16 +68,7 @@ describe('Email Service', () => {
       expect(mockSendMail).toHaveBeenCalledWith(
         expect.objectContaining({
           to: 'test@example.com',
-        })
-      );
-    });
-
-    it('should include unsubscribe link', async () => {
-      await sendWelcomeEmail('test@example.com', 'token123');
-
-      expect(mockSendMail).toHaveBeenCalledWith(
-        expect.objectContaining({
-          to: 'test@example.com',
+          subject: 'Welcome to ConfScout!',
         })
       );
     });

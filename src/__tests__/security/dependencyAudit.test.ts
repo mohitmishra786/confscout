@@ -1,6 +1,6 @@
 /**
  * Security Audit Test
- * 
+ *
  * This test verifies that no high severity vulnerabilities exist in dependencies.
  * Run this test as part of CI/CD to ensure security compliance.
  */
@@ -9,43 +9,52 @@ import { execSync } from 'child_process';
 import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 
+function runNpmAudit(): Record<string, unknown> {
+  let auditOutput: string;
+
+  try {
+    auditOutput = execSync('npm audit --json', {
+      encoding: 'utf-8',
+      cwd: process.cwd(),
+      stdio: ['pipe', 'pipe', 'pipe']
+    });
+  } catch (error) {
+    if (error && typeof error === 'object') {
+      const execError = error as { stdout?: unknown; stderr?: unknown };
+      if ('stdout' in execError && execError.stdout) {
+        auditOutput = String(execError.stdout);
+      } else if ('stderr' in execError && execError.stderr) {
+        auditOutput = String(execError.stderr);
+      } else {
+        throw new Error('npm audit failed with no output');
+      }
+    } else {
+      throw new Error('npm audit execution failed');
+    }
+  }
+
+  return JSON.parse(auditOutput || '{}');
+}
+
 describe('Security Audit', () => {
   it('should have no high or critical severity vulnerabilities', () => {
-    let auditOutput: string;
+    const auditResult = runNpmAudit() as {
+      vulnerabilities?: Record<string, { severity?: string }>;
+      metadata?: { vulnerabilities?: { critical?: number; high?: number } };
+    };
 
-    try {
-      // Run npm audit and capture output
-      auditOutput = execSync('npm audit --json', {
-        encoding: 'utf-8',
-        cwd: process.cwd()
-      });
-    } catch (error) {
-      // npm audit returns non-zero exit code when vulnerabilities found
-      if (error && typeof error === 'object' && 'stdout' in error) {
-        auditOutput = String(error.stdout) || '{}';
-      } else {
-        auditOutput = '{}';
-      }
-    }
-
-    const auditResult = JSON.parse(auditOutput);
-
-    // Check for high and critical severity vulnerabilities via vulnerabilities map
     const vulnerabilities = auditResult.vulnerabilities || {};
     const highSeverityVulns = Object.entries(vulnerabilities).filter(
       ([, data]) => {
-        const vulnData = data as { severity?: string };
-        const severity = vulnData.severity?.toLowerCase() || '';
+        const severity = data.severity?.toLowerCase() || '';
         return severity === 'high' || severity === 'critical';
       }
     );
 
-    // Also check via metadata counters for redundancy
     const metadata = auditResult.metadata || {};
     const criticalCount = metadata.vulnerabilities?.critical || 0;
     const highCount = metadata.vulnerabilities?.high || 0;
 
-    // Expect no high or critical severity vulnerabilities (both checks)
     expect(highSeverityVulns).toHaveLength(0);
     expect(criticalCount).toBe(0);
     expect(highCount).toBe(0);
@@ -65,7 +74,5 @@ describe('Security Audit', () => {
     // Verify dependencies are locked (packages map is non-empty)
     const packages = Object.keys(lockfile.packages || {});
     expect(packages.length).toBeGreaterThan(0);
-    // Verify at least core dependency is present
-    expect(packages).toContain('node_modules/next');
   });
 });

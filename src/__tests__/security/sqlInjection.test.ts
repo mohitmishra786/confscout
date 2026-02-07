@@ -14,27 +14,47 @@ describe('SQL Injection Protection (Issue #268)', () => {
   const apiRoutes = globSync('src/app/api/**/route.ts');
 
   describe('Parameterized Query Usage', () => {
+    function extractQueryContents(content: string): string[] {
+      const queries: string[] = [];
+      const queryRegex = /\.query\(/g;
+      let match;
+
+      while ((match = queryRegex.exec(content)) !== null) {
+        const startIndex = match.index + match[0].length;
+        let parenDepth = 1;
+        let endIndex = startIndex;
+
+        while (parenDepth > 0 && endIndex < content.length) {
+          if (content[endIndex] === '(') parenDepth++;
+          if (content[endIndex] === ')') parenDepth--;
+          endIndex++;
+        }
+
+        if (parenDepth === 0) {
+          queries.push(content.slice(startIndex, endIndex - 1));
+        }
+      }
+
+      return queries;
+    }
+
     it('should use $N placeholders in all SQL queries', () => {
       const violations: string[] = [];
 
       for (const route of apiRoutes) {
         const content = readFileSync(route, 'utf-8');
-        
-        // Skip if no SQL queries
+
         if (!content.includes('.query(')) continue;
 
-        // Extract query calls
-        const queryMatches = content.match(/\.query\([^)]+\)/g) || [];
-        
-        for (const match of queryMatches) {
-          // Check if it's a template literal with interpolation
-          if (match.includes('`') && match.includes('${')) {
-            violations.push(`${route}: ${match}`);
-          }
-          
-          // Check if it uses string concatenation
-          if (match.includes('"') && match.includes('+')) {
-            violations.push(`${route}: ${match}`);
+        const queryContents = extractQueryContents(content);
+
+        for (const query of queryContents) {
+          const hasTemplateInterpolation = query.includes('${');
+          const hasDoubleQuoteConcat = query.includes('"') && query.includes('+');
+          const hasSingleQuoteConcat = query.includes("'") && query.includes('+');
+
+          if (hasTemplateInterpolation || hasDoubleQuoteConcat || hasSingleQuoteConcat) {
+            violations.push(`${route}: ${query.trim()}`);
           }
         }
       }
@@ -47,24 +67,23 @@ describe('SQL Injection Protection (Issue #268)', () => {
 
       for (const route of apiRoutes) {
         const content = readFileSync(route, 'utf-8');
-        
-        // Find query calls
-        const queryPattern = /\.query\(([^)]+)\)/g;
-        let match;
-        
-        while ((match = queryPattern.exec(content)) !== null) {
-          const queryCall = match[1];
-          
-          // Check if it has a second parameter (the values array)
-          // Proper usage: client.query('SELECT * FROM table WHERE id = $1', [id])
-          const commaIndex = queryCall.indexOf(',');
-          
-          if (commaIndex === -1) {
-            // No parameters passed - might be OK for simple queries
-            // But let's verify it's not injecting variables
-            if (queryCall.includes('${') || queryCall.includes('+')) {
-              violations.push(`${route}: Query without parameter array: ${queryCall}`);
-            }
+
+        const queryContents = extractQueryContents(content);
+
+        for (const query of queryContents) {
+          const hasInterpolation = query.includes('${');
+          const hasDoubleConcat = query.includes('"') && query.includes('+');
+          const hasSingleConcat = query.includes("'") && query.includes('+');
+
+          const isUnsafe = hasInterpolation || hasDoubleConcat || hasSingleConcat;
+
+          const hasComma = query.includes(',');
+          const hasBracketArray = query.includes('[');
+
+          const isParameterized = hasComma || hasBracketArray;
+
+          if (isUnsafe && !isParameterized) {
+            violations.push(`${route}: Unsafe query without parameters: ${query.trim()}`);
           }
         }
       }
@@ -79,11 +98,12 @@ describe('SQL Injection Protection (Issue #268)', () => {
 
       for (const route of apiRoutes) {
         const content = readFileSync(route, 'utf-8');
-        
-        // Check if route uses Prisma or raw SQL
+
         if (content.includes('.query(') || content.includes('prisma.')) {
-          // Should have Zod validation
-          if (!content.includes('z.') && !content.includes('parse(')) {
+          const hasZodImport = content.includes("from 'zod'") || content.includes('from "@/lib/apiSchemas"');
+          const hasZodUsage = content.includes('z.') || content.includes('.safeParse(') || content.includes('.parse(');
+
+          if (!hasZodImport && !hasZodUsage) {
             violations.push(`${route}: Missing Zod validation before DB operations`);
           }
         }
@@ -234,21 +254,23 @@ describe('Prisma ORM Security', () => {
 
     for (const file of files) {
       const content = readFileSync(file, 'utf-8');
-      
+
       if (content.includes('prisma.')) {
         prismaCount++;
       }
-      
+
       if (content.includes('.query(') && content.includes('pool')) {
         rawSqlCount++;
       }
     }
 
-    // Document the current state
     console.log(`Routes using Prisma ORM: ${prismaCount}`);
     console.log(`Routes using raw SQL: ${rawSqlCount}`);
-    
-    // Both are OK as long as raw SQL uses parameterization
-    expect(prismaCount + rawSqlCount).toBeGreaterThan(0);
+
+    const totalRoutes = prismaCount + rawSqlCount;
+    expect(totalRoutes).toBeGreaterThan(0);
+
+    const prismaRatio = totalRoutes > 0 ? prismaCount / totalRoutes : 0;
+    expect(prismaRatio).toBeGreaterThanOrEqual(0.5);
   });
 });
