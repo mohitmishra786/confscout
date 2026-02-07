@@ -87,9 +87,11 @@ export default function middleware(request: NextRequest) {
  
 export const config = {
   // Optimized matcher: Only run on API routes and locale routes
-  // Excludes static assets, Next.js internals, and other files
+  // Includes root path (/) for locale redirection to default locale
+  // Excludes static assets (_next, files with extensions)
   matcher: [
-    '/api/:path*',
-    '/(en|es|fr|de)/:path*',
+    '/',                        // Root path for locale redirection
+    '/api/:path*',              // API routes for rate limiting
+    '/(en|es|fr|de)/:path*',    // Localized routes
   ]
 };
