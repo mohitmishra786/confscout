@@ -48,6 +48,8 @@ export const querySchemas = {
       .max(200, 'Search query too long')
       .regex(patterns.safeString, 'Invalid characters in search')
       .optional(),
+    page: z.preprocess((val) => (val === null ? undefined : val), z.coerce.number().int().positive().default(1)),
+    limit: z.preprocess((val) => (val === null ? undefined : val), z.coerce.number().int().positive().max(100).default(50)),
   }),
 
   /**

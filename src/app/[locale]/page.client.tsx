@@ -355,8 +355,22 @@ export default function HomeClient({ initialData }: HomeClientProps) {
             </div>
           )
         ) : (
-          <div className="text-center py-12 text-zinc-500">
-            No conferences found matching your criteria.
+          <div className="text-center py-20 px-4 card border-dashed border-zinc-800">
+            <div className="text-4xl mb-4">🔍</div>
+            <h3 className="text-xl font-bold text-white mb-2">No conferences found</h3>
+            <p className="text-zinc-500 max-w-md mx-auto mb-8">
+              We couldn't find any conferences matching your current filters. Try adjusting your search term or clearing the filters to see more results.
+            </p>
+            <button
+              onClick={() => {
+                setSelectedDomain('all');
+                setSpeakerMode(false);
+                setSearchTerm('');
+              }}
+              className="btn-primary"
+            >
+              Clear all filters
+            </button>
           </div>
         )}
 

@@ -28,16 +28,17 @@ export const GET = withErrorHandling(async (request: NextRequest) => {
     domain: searchParams.get('domain') || undefined,
     cfpOpen: searchParams.get('cfpOpen') || undefined,
     search: searchParams.get('search') || undefined,
+    page: searchParams.get('page'),
+    limit: searchParams.get('limit'),
   });
   
-  const domain = validated.domain;
+  const { domain, search, page, limit } = validated;
   const cfpOnly = validated.cfpOpen === 'true';
-  const search = validated.search;
 
-  apiLogger.info('Request params', { domain, cfpOnly, search });
+  apiLogger.info('Request params', { domain, cfpOnly, search, page, limit });
 
-  // Optimization: If no filters, use the Redis/File cache (FASTEST PATH)
-  if ((!domain || domain === 'all') && !cfpOnly && !search) {
+  // Optimization: If no filters and it's the first page, use the Redis/File cache (FASTEST PATH)
+  if ((!domain || domain === 'all') && !cfpOnly && !search && page === 1) {
     apiLogger.info('Using cached conferences (fast path)');
     const data = await Promise.race([
       getCachedConferences(),
@@ -77,51 +78,58 @@ export const GET = withErrorHandling(async (request: NextRequest) => {
   };
 
   apiLogger.time('dbQuery');
+  const skip = (page - 1) * limit;
+
   // Optimized query: Only select required fields and conditionally include attendances
-  const conferences = await Promise.race([
-    prisma.conference.findMany({
-      where,
-      select: {
-        id: true,
-        name: true,
-        url: true,
-        startDate: true,
-        endDate: true,
-        city: true,
-        country: true,
-        locationRaw: true,
-        lat: true,
-        lng: true,
-        online: true,
-        cfpUrl: true,
-        cfpEndDate: true,
-        cfpStatus: true,
-        domain: true,
-        description: true,
-        source: true,
-        tags: true,
-        financialAid: true,
-        // Only include attendances if user is logged in
-        ...(session?.user ? {
-          attendances: {
-            select: {
-              userId: true,
-              user: {
-                select: {
-                  image: true,
-                  name: true
+  const [conferences, total] = await Promise.all([
+    Promise.race([
+      prisma.conference.findMany({
+        where,
+        select: {
+          id: true,
+          name: true,
+          url: true,
+          startDate: true,
+          endDate: true,
+          city: true,
+          country: true,
+          locationRaw: true,
+          lat: true,
+          lng: true,
+          online: true,
+          cfpUrl: true,
+          cfpEndDate: true,
+          cfpStatus: true,
+          domain: true,
+          description: true,
+          source: true,
+          tags: true,
+          financialAid: true,
+          // Only include attendances if user is logged in
+          ...(session?.user ? {
+            attendances: {
+              select: {
+                userId: true,
+                user: {
+                  select: {
+                    image: true,
+                    name: true
+                  }
                 }
-              }
-            },
-            take: 5 // Limit to 5 attendees max
-          }
-        } : {})
-      },
-      orderBy: { startDate: 'asc' }
-    }),
-    new Promise<never>((_, reject) => 
-      setTimeout(() => reject(new Error('Database query timeout after 15s')), 15000)
-    )
+              },
+              take: 5 // Limit to 5 attendees max
+            }
+          } : {})
+        },
+        orderBy: { startDate: 'asc' },
+        skip,
+        take: limit,
+      }),
+      new Promise<any[]>((_, reject) => 
+        setTimeout(() => reject(new Error('Database query timeout after 15s')), 15000)
+      )
+    ]),
+    prisma.conference.count({ where })
   ]);
   apiLogger.timeEnd('dbQuery');
 
@@ -229,7 +237,13 @@ export const GET = withErrorHandling(async (request: NextRequest) => {
       months,
     },
     meta: {
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
+      pagination: {
+        total,
+        page,
+        limit,
+        totalPages: Math.ceil(total / limit)
+      }
     }
   };
 

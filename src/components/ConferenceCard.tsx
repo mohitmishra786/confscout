@@ -16,6 +16,7 @@ import { SafeHighlightedText } from '@/components/SafeHighlightedText';
 import VisaModal from './VisaModal';
 import TravelModal from './TravelModal';
 import { secureFetch } from '@/lib/api';
+import { formatLocalDate, parseLocalDate } from '@/lib/date';
 
 interface ConferenceCardProps {
   conference: Omit<Conference, 'description'>;
@@ -92,10 +93,12 @@ export default function ConferenceCard({ conference, searchTerm }: ConferenceCar
   const domainColor = domainInfo.color;
 
   // Format date range
-  const formatDate = (start: string | null, end: string | null) => {
+  const formatDateRange = (start: string | null, end: string | null) => {
     if (!start) return 'TBD';
-    const s = new Date(start);
-    const e = end ? new Date(end) : null;
+    const s = parseLocalDate(start);
+    const e = end ? parseLocalDate(end) : null;
+
+    if (!s) return 'TBD';
 
     const options: Intl.DateTimeFormatOptions = { month: 'short', day: 'numeric' };
     const startStr = s.toLocaleDateString('en-US', options);
@@ -169,7 +172,7 @@ export default function ConferenceCard({ conference, searchTerm }: ConferenceCar
             <svg className="w-4 h-4 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
-            <span>{formatDate(conference.startDate, conference.endDate)}</span>
+            <span>{formatDateRange(conference.startDate, conference.endDate)}</span>
           </div>
           <div className="flex items-center gap-1.5">
             <svg className="w-4 h-4 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">

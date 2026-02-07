@@ -1,123 +1,92 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
-import { z } from 'zod';
-import { Prisma } from '@prisma/client';
 import { validateCsrfToken } from '@/lib/csrf';
+import { withErrorHandling, Errors } from '@/lib/errorHandler';
+import { querySchemas, bodySchemas } from '@/lib/apiSchemas';
+import { ApiResponse } from '@/types/api';
 
-const bookmarkSchema = z.object({
-  conferenceId: z.string()
+export const GET = withErrorHandling(async (request: NextRequest) => {
+  const session = await getServerSession(authOptions);
+  
+  if (!session?.user?.id) {
+    throw Errors.unauthorized();
+  }
+
+  const bookmarks = await prisma.bookmark.findMany({
+    where: { userId: session.user.id },
+    orderBy: { createdAt: 'desc' }
+  });
+
+  const response: ApiResponse = {
+    success: true,
+    data: bookmarks,
+    meta: { timestamp: new Date().toISOString() }
+  };
+
+  return NextResponse.json(response);
 });
 
-export async function GET() {
-  try {
-    const session = await getServerSession(authOptions);
-    
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
-    const bookmarks = await prisma.bookmark.findMany({
-      where: { userId: session.user.id },
-      orderBy: { createdAt: 'desc' }
-    });
-
-    return NextResponse.json(bookmarks);
-
-  } catch (error) {
-    console.error('Bookmark fetch error:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+export const POST = withErrorHandling(async (request: NextRequest) => {
+  if (!await validateCsrfToken(request)) {
+    throw Errors.forbidden('Invalid CSRF token');
   }
-}
 
-export async function POST(request: Request) {
-  try {
-    if (!await validateCsrfToken(request)) {
-      return NextResponse.json({ error: 'Invalid CSRF token' }, { status: 403 });
-    }
-
-    const session = await getServerSession(authOptions);
-    
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
-    const body = await request.json();
-    const { conferenceId } = bookmarkSchema.parse(body);
-
-    const bookmark = await prisma.bookmark.create({
-      data: {
-        userId: session.user.id,
-        conferenceId
-      }
-    });
-
-    return NextResponse.json(bookmark, { status: 201 });
-
-  } catch (error) {
-    console.error('Bookmark creation error:', error);
-    
-    if (error instanceof z.ZodError) {
-      return NextResponse.json(
-        { error: 'Validation failed', details: error.issues },
-        { status: 400 }
-      );
-    }
-
-    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
-      return NextResponse.json(
-        { error: 'Conference already bookmarked' },
-        { status: 409 }
-      );
-    }
-
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+  const session = await getServerSession(authOptions);
+  
+  if (!session?.user?.id) {
+    throw Errors.unauthorized();
   }
-}
 
-export async function DELETE(request: Request) {
-  try {
-    if (!await validateCsrfToken(request)) {
-      return NextResponse.json({ error: 'Invalid CSRF token' }, { status: 403 });
+  const body = await request.json();
+  const { conferenceId } = bodySchemas.bookmark.parse(body);
+
+  const bookmark = await prisma.bookmark.create({
+    data: {
+      userId: session.user.id,
+      conferenceId
     }
+  });
 
-    const session = await getServerSession(authOptions);
-    
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+  const response: ApiResponse = {
+    success: true,
+    data: bookmark,
+    meta: { timestamp: new Date().toISOString() }
+  };
 
-    const { searchParams } = new URL(request.url);
-    const conferenceId = searchParams.get('conferenceId');
+  return NextResponse.json(response, { status: 201 });
+});
 
-    if (!conferenceId) {
-      return NextResponse.json(
-        { error: 'Conference ID required' },
-        { status: 400 }
-      );
-    }
-
-    await prisma.bookmark.deleteMany({
-      where: {
-        userId: session.user.id,
-        conferenceId
-      }
-    });
-
-    return NextResponse.json({ success: true });
-
-  } catch (error) {
-    console.error('Bookmark deletion error:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+export const DELETE = withErrorHandling(async (request: NextRequest) => {
+  if (!await validateCsrfToken(request)) {
+    throw Errors.forbidden('Invalid CSRF token');
   }
-}
+
+  const session = await getServerSession(authOptions);
+  
+  if (!session?.user?.id) {
+    throw Errors.unauthorized();
+  }
+
+  const { searchParams } = new URL(request.url);
+  const conferenceId = searchParams.get('conferenceId');
+
+  if (!conferenceId) {
+    throw Errors.validation('Conference ID required');
+  }
+
+  await prisma.bookmark.deleteMany({
+    where: {
+      userId: session.user.id,
+      conferenceId
+    }
+  });
+
+  const response: ApiResponse = {
+    success: true,
+    meta: { timestamp: new Date().toISOString() }
+  };
+
+  return NextResponse.json(response);
+});

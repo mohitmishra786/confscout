@@ -228,8 +228,12 @@ export function handleAPIError(error: unknown, requestId?: string): NextResponse
   }
   
   // Generic error
+  const message = isDevelopment && error instanceof Error 
+    ? error.message 
+    : userFriendlyMessages[ErrorCodes.INTERNAL_ERROR];
+
   return createErrorResponse(
-    userFriendlyMessages[ErrorCodes.INTERNAL_ERROR],
+    message,
     ErrorCodes.INTERNAL_ERROR,
     500,
     null,

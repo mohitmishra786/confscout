@@ -46,6 +46,7 @@ describe('CSRF Protection', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     document.cookie = '';
+    (global.fetch as jest.Mock).mockResolvedValue(new Response(JSON.stringify({ success: true }), { status: 200 }));
   });
 
   describe('Token Generation', () => {
