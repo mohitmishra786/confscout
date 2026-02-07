@@ -27,8 +27,7 @@ GITHUB_USER_AGENT = "ConfScout-Data-Fetcher/2.0"
 
 def create_session(
     user_agent: str = DEFAULT_USER_AGENT,
-    additional_headers: Optional[Dict[str, str]] = None,
-    timeout: int = 30
+    additional_headers: Optional[Dict[str, str]] = None
 ) -> requests.Session:
     """
     Create a configured requests session with proper headers.
@@ -36,7 +35,6 @@ def create_session(
     Args:
         user_agent: User-Agent string to use
         additional_headers: Additional headers to include
-        timeout: Default timeout for requests
     
     Returns:
         Configured requests.Session
@@ -77,7 +75,8 @@ def get_with_retry(
         session: Optional pre-configured session
         max_retries: Maximum number of retries
         backoff_factor: Backoff factor for retries
-        **kwargs: Additional arguments for requests.get()
+        **kwargs: Additional arguments for requests.get(). 
+                 A default timeout of 10s is applied if not provided.
 
     Returns:
         Response object
@@ -88,6 +87,10 @@ def get_with_retry(
     """
     if max_retries < 1:
         raise ValueError("max_retries must be at least 1")
+
+    # Apply default timeout if not provided
+    if 'timeout' not in kwargs:
+        kwargs['timeout'] = 10
 
     if session is None:
         session = create_session()

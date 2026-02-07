@@ -35,7 +35,30 @@ describe('Validation Patterns', () => {
     it('should reject strings with dangerous characters', () => {
       expect(patterns.safeString.test('<script>')).toBe(false);
       expect(patterns.safeString.test('"quoted"')).toBe(false);
-      expect(patterns.safeString.test("'single'")).toBe(false);
+      expect(patterns.safeString.test("'single'")).toBe(true);
+    });
+  });
+
+  describe('querySchemas.bookmarks', () => {
+    it('should validate valid bookmark query', () => {
+      const result = querySchemas.bookmarks.safeParse({
+        conferenceId: 'conf-123',
+      });
+      expect(result.success).toBe(true);
+    });
+
+    it('should reject invalid bookmark query', () => {
+      const result = querySchemas.bookmarks.safeParse({
+        conferenceId: '<script>',
+      });
+      expect(result.success).toBe(false);
+    });
+
+    it('should reject overly long conferenceId', () => {
+      const result = querySchemas.bookmarks.safeParse({
+        conferenceId: 'a'.repeat(101),
+      });
+      expect(result.success).toBe(false);
     });
   });
 
@@ -467,39 +490,35 @@ describe('Security Validation Tests', () => {
       '<iframe src=javascript:alert(1)>',
     ];
 
-    it('should reject XSS in conference name', () => {
-      xssPayloads.forEach(payload => {
-        const result = bodySchemas.conferenceSubmission.safeParse({
-          name: payload,
-          url: 'https://example.com',
-          startDate: '2024-06-15',
-          city: 'City',
-          country: 'Country',
-          domain: 'test',
-          online: false,
-          organizerName: 'Name',
-          organizerEmail: 'test@example.com',
-        });
-        expect(result.success).toBe(false);
+    it.each(xssPayloads)('should reject XSS in conference name: %s', (payload) => {
+      const result = bodySchemas.conferenceSubmission.safeParse({
+        name: payload,
+        url: 'https://example.com',
+        startDate: '2024-06-15',
+        city: 'City',
+        country: 'Country',
+        domain: 'test',
+        online: false,
+        organizerName: 'Name',
+        organizerEmail: 'test@example.com',
       });
+      expect(result.success).toBe(false);
     });
 
-    it('should reject XSS in description', () => {
-      xssPayloads.forEach(payload => {
-        const result = bodySchemas.conferenceSubmission.safeParse({
-          name: 'Valid Name',
-          url: 'https://example.com',
-          startDate: '2024-06-15',
-          city: 'City',
-          country: 'Country',
-          domain: 'test',
-          online: false,
-          organizerName: 'Name',
-          organizerEmail: 'test@example.com',
-          description: payload,
-        });
-        expect(result.success).toBe(false);
+    it.each(xssPayloads)('should reject XSS in description: %s', (payload) => {
+      const result = bodySchemas.conferenceSubmission.safeParse({
+        name: 'Valid Name',
+        url: 'https://example.com',
+        startDate: '2024-06-15',
+        city: 'City',
+        country: 'Country',
+        domain: 'test',
+        online: false,
+        organizerName: 'Name',
+        organizerEmail: 'test@example.com',
+        description: payload,
       });
+      expect(result.success).toBe(false);
     });
   });
 

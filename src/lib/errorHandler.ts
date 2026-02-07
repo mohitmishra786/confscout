@@ -185,18 +185,24 @@ export function handleAPIError(error: unknown, requestId?: string): NextResponse
     // Use the error's code only if it's a known error code, otherwise use INTERNAL_ERROR
     const responseCode = (errorCode && userFriendlyMessages[errorCode]) ? errorCode : ErrorCodes.INTERNAL_ERROR;
 
+    const statusCode = (errorCode && userFriendlyMessages[errorCode])
+      ? error.statusCode
+      : errorCodeToStatus[ErrorCodes.INTERNAL_ERROR];
+
     return NextResponse.json(
       {
         error: message,
         code: responseCode,
         ...(isDevelopment && { stack: error.stack }),
       },
-      { status: error.statusCode }
+      { status: statusCode }
     );
   }
   
   // Handle Prisma errors (don't expose database details)
-  if (error && typeof error === 'object' && 'code' in error) {
+  if (error && typeof error === 'object' && 'code' in error && 
+      typeof (error as { code: unknown }).code === 'string' &&
+      (error as { code: string }).code.startsWith('P')) {
     const prismaError = error as { code: string; message?: string };
     
     // Map common Prisma errors to safe messages

@@ -432,7 +432,7 @@ def fetch_sessionize_cfps() -> list:
                 if conf:
                     conferences.append(conf)
                     print(f"  [OK] Scraped: {conf['name']}")
-            except Exception as e:
+            except (requests.RequestException, ValueError) as e:
                 print(f"  [FAIL] Failed to scrape {url}: {e}")
     
     print(f"[OK] Fetched {len(conferences)} CFPs from Sessionize")

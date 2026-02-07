@@ -70,20 +70,44 @@ describe('SQL Injection Protection (Issue #268)', () => {
 
         const queryContents = extractQueryContents(content);
 
-        for (const query of queryContents) {
-          const hasInterpolation = query.includes('${');
-          const hasDoubleConcat = query.includes('"') && query.includes('+');
-          const hasSingleConcat = query.includes("'") && query.includes('+');
+        for (const queryArgs of queryContents) {
+          // Parse queryArgs to find if there's a second argument at depth 0
+          let parenDepth = 0;
+          let bracketDepth = 0;
+          let braceDepth = 0;
+          let quoteChar: string | null = null;
+          let commaIndex = -1;
 
-          const isUnsafe = hasInterpolation || hasDoubleConcat || hasSingleConcat;
+          for (let i = 0; i < queryArgs.length; i++) {
+            const char = queryArgs[i];
+            if (quoteChar) {
+              if (char === quoteChar && queryArgs[i - 1] !== '\\') quoteChar = null;
+              continue;
+            }
+            if (char === "'" || char === '"' || char === '`') {
+              quoteChar = char;
+              continue;
+            }
+            if (char === '(') parenDepth++;
+            else if (char === ')') parenDepth--;
+            else if (char === '[') bracketDepth++;
+            else if (char === ']') bracketDepth--;
+            else if (char === '{') braceDepth++;
+            else if (char === '}') braceDepth--;
+            else if (char === ',' && parenDepth === 0 && bracketDepth === 0 && braceDepth === 0) {
+              commaIndex = i;
+              break;
+            }
+          }
 
-          const hasComma = query.includes(',');
-          const hasBracketArray = query.includes('[');
+          const hasSecondArg = commaIndex !== -1;
+          const sqlQuery = hasSecondArg ? queryArgs.slice(0, commaIndex).trim() : queryArgs.trim();
 
-          const isParameterized = hasComma || hasBracketArray;
+          const hasInterpolation = sqlQuery.includes('${');
+          const hasConcat = (sqlQuery.includes('"') || sqlQuery.includes("'")) && sqlQuery.includes('+');
 
-          if (isUnsafe && !isParameterized) {
-            violations.push(`${route}: Unsafe query without parameters: ${query.trim()}`);
+          if ((hasInterpolation || hasConcat) && !hasSecondArg) {
+            violations.push(`${route}: Unsafe query without parameters: ${queryArgs.trim()}`);
           }
         }
       }
@@ -100,7 +124,7 @@ describe('SQL Injection Protection (Issue #268)', () => {
         const content = readFileSync(route, 'utf-8');
 
         if (content.includes('.query(') || content.includes('prisma.')) {
-          const hasZodImport = content.includes("from 'zod'") || content.includes('from "@/lib/apiSchemas"');
+          const hasZodImport = /from ['"]zod['"]/.test(content) || /from ['"]@\/lib\/apiSchemas['"]/.test(content);
           const hasZodUsage = content.includes('z.') || content.includes('.safeParse(') || content.includes('.parse(');
 
           if (!hasZodImport && !hasZodUsage) {
@@ -116,17 +140,41 @@ describe('SQL Injection Protection (Issue #268)', () => {
   describe('Safe Query Patterns', () => {
     it('should not use string concatenation in SQL', () => {
       const violations: string[] = [];
-      const dangerousPatterns = [
-        /query\([`'"].*\+.*\)/,
-        /query\([`'"].*\$\{.*\}/,
-      ];
 
       for (const route of apiRoutes) {
         const content = readFileSync(route, 'utf-8');
         
-        for (const pattern of dangerousPatterns) {
-          if (pattern.test(content)) {
-            violations.push(`${route}: Potential SQL injection pattern detected`);
+        // Use extracted queries to handle multi-line and avoid regex pitfalls
+        // We'll search for .query(...) calls manually
+        const queryRegex = /\.query\(/g;
+        let match;
+
+        while ((match = queryRegex.exec(content)) !== null) {
+          const startIndex = match.index + match[0].length;
+          let parenDepth = 1;
+          let endIndex = startIndex;
+
+          while (parenDepth > 0 && endIndex < content.length) {
+            if (content[endIndex] === '(') parenDepth++;
+            if (content[endIndex] === ')') parenDepth--;
+            endIndex++;
+          }
+
+          if (parenDepth === 0) {
+            const queryArgs = content.slice(startIndex, endIndex - 1);
+            // Only check the first argument (the SQL string)
+            let firstArg = queryArgs;
+            const firstComma = queryArgs.indexOf(','); // Simple check, fine for detecting concat in the first arg
+            if (firstComma !== -1) {
+              firstArg = queryArgs.slice(0, firstComma);
+            }
+
+            if (firstArg.includes('+') || firstArg.includes('${')) {
+               // Verify it's not just template literal without interpolation
+               if (firstArg.includes('${') || (firstArg.includes('+') && (firstArg.includes('"') || firstArg.includes("'")))) {
+                 violations.push(`${route}: Potential SQL injection pattern detected: ${firstArg.trim()}`);
+               }
+            }
           }
         }
       }
@@ -254,18 +302,15 @@ describe('Prisma ORM Security', () => {
 
     for (const file of files) {
       const content = readFileSync(file, 'utf-8');
+      const hasPrisma = content.includes('prisma.');
+      const hasRawSql = content.includes('.query(') && content.includes('pool');
 
-      if (content.includes('prisma.')) {
+      if (hasPrisma) {
         prismaCount++;
-      }
-
-      if (content.includes('.query(') && content.includes('pool')) {
+      } else if (hasRawSql) {
         rawSqlCount++;
       }
     }
-
-    console.log(`Routes using Prisma ORM: ${prismaCount}`);
-    console.log(`Routes using raw SQL: ${rawSqlCount}`);
 
     const totalRoutes = prismaCount + rawSqlCount;
     expect(totalRoutes).toBeGreaterThan(0);
