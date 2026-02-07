@@ -13,6 +13,7 @@ import json
 import re
 import hashlib
 import time
+import sys
 from datetime import datetime, date
 from typing import Optional, Dict
 from pathlib import Path
@@ -23,14 +24,22 @@ from dateutil.parser import parse as parse_date
 from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut
 
+# Import ConfScout HTTP client for proper User-Agent headers
+sys.path.insert(0, str(Path(__file__).parent))
+from utils.http_client import (
+    ConfScoutHTTPClient,
+    GitHubHTTPClient,
+    NOMINATIM_USER_AGENT
+)
+
 # Configuration
 GITHUB_BASE_URL = "https://raw.githubusercontent.com/tech-conferences/conference-data/main/conferences"
 SESSIONIZE_EXPLORE_URL = "https://sessionize.com/app/speaker/opportunities"
 OUTPUT_PATH = Path("public/data/conferences.json")
 CACHE_PATH = Path("scripts/city_cache.json")
 
-# Initialize Geocoder
-geolocator = Nominatim(user_agent="conf_scout_fetcher_v2")
+# Initialize Geocoder with proper descriptive User-Agent
+geolocator = Nominatim(user_agent=NOMINATIM_USER_AGENT)
 city_cache = {}
 
 # Domain classification keywords with priority scoring
@@ -295,20 +304,22 @@ def fetch_confs_tech_data() -> list:
         "networking", "performance", "testing", "opensource", "leadership", "product"
     ]
 
-    for year in years:
-        for topic in topics:
-            url = f"{GITHUB_BASE_URL}/{year}/{topic}.json"
-            try:
-                response = requests.get(url, timeout=10)
-                if response.status_code == 200:
+    # Use GitHub-optimized HTTP client with proper User-Agent
+    with GitHubHTTPClient() as client:
+        for year in years:
+            for topic in topics:
+                url = f"{GITHUB_BASE_URL}/{year}/{topic}.json"
+                try:
+                    # Use client with retry logic and proper User-Agent
+                    response = client.get_with_retry(url, max_retries=3, timeout=10)
                     data = response.json()
                     for conf in data:
                         conferences.append(parse_confs_tech_entry(conf, topic))
                     print(f"[OK] Fetched {len(data)} conferences from {year}/{topic}.json")
-            except requests.RequestException as e:
-                print(f"[FAIL] Failed to fetch {url}: {e}")
-            except json.JSONDecodeError:
-                print(f"[FAIL] Invalid JSON in {url}")
+                except requests.RequestException as e:
+                    print(f"[FAIL] Failed to fetch {url}: {e}")
+                except json.JSONDecodeError:
+                    print(f"[FAIL] Invalid JSON in {url}")
 
     return conferences
 

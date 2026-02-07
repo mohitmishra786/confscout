@@ -8,9 +8,15 @@ Data: XML response with conference metadata
 This replaces direct IEEE/ACM scraping as dblp aggregates both.
 """
 
+import sys
+from pathlib import Path
 import requests
 import xml.etree.ElementTree as ET
 from typing import Optional
+
+# Import ConfScout HTTP client for proper User-Agent headers
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from utils.http_client import ConfScoutHTTPClient, DEFAULT_USER_AGENT
 
 
 DBLP_SEARCH_URL = "https://dblp.org/search/venue/api"
@@ -46,18 +52,23 @@ def _search_venues(query: str, max_results: int = 50) -> list[dict]:
     """Search dblp venues API."""
     conferences = []
     
+    # Use ConfScout HTTP client with proper User-Agent
+    client = ConfScoutHTTPClient(user_agent=DEFAULT_USER_AGENT)
+    
     try:
         params = {
             "q": query,
             "format": "xml",
             "h": max_results,
         }
-        response = requests.get(DBLP_SEARCH_URL, params=params, timeout=15)
+        # Use client session for proper User-Agent header
+        response = client.get(DBLP_SEARCH_URL, params=params, timeout=15)
         response.raise_for_status()
         
         root = ET.fromstring(response.content)
         hits = root.find("hits")
         if hits is None:
+            client.close()
             return []
         
         for hit in hits.findall("hit"):
@@ -90,9 +101,12 @@ def _search_venues(query: str, max_results: int = 50) -> list[dict]:
             }
             
             conferences.append(conference)
+        
+        client.close()
     
     except Exception as e:
         print(f"[dblp] Error searching '{query}': {e}")
+        client.close()
     
     return conferences
 
