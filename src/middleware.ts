@@ -1,6 +1,7 @@
 import createMiddleware from 'next-intl/middleware';
 import { NextRequest, NextResponse } from 'next/server';
 import { generateCsrfToken, CSRF_COOKIE } from '@/lib/csrf';
+import { applyCSP } from '@/lib/csp';
 import {
   rateLimitMiddleware,
   rateLimitConfigs,
@@ -23,6 +24,7 @@ const CLEANUP_INTERVAL = 1000;
 
 export default function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
+  let response: NextResponse;
   
   // Rate limiting for API routes
   if (path.startsWith('/api/') && !path.startsWith('/api/cron/')) {
@@ -36,23 +38,19 @@ export default function middleware(request: NextRequest) {
     }
     
     // Apply rate limiting
-    const { allowed, result, response } = rateLimitMiddleware(request, config);
+    const { allowed, result, response: rlResponse } = rateLimitMiddleware(request, config);
     
-    if (!allowed && response) {
-      return response;
-    }
-    
-    // Continue with request but add rate limit headers
-    // NOTE: Headers set on the middleware response via NextResponse.next() can be
-    // overwritten if the route handler creates its own NextResponse. This is a known
-    // Next.js middleware limitation. If rate limit headers must always be present,
-    // they'd need to be set in the route handlers as well.
-    const nextResponse = NextResponse.next();
-    if (result) {
-      const headers = getRateLimitHeaders(result);
-      Object.entries(headers).forEach(([key, value]) => {
-        nextResponse.headers.set(key, value);
-      });
+    if (!allowed && rlResponse) {
+      response = rlResponse;
+    } else {
+      // Continue with request but add rate limit headers
+      response = NextResponse.next();
+      if (result) {
+        const headers = getRateLimitHeaders(result);
+        Object.entries(headers).forEach(([key, value]) => {
+          response.headers.set(key, value);
+        });
+      }
     }
     
     // Periodic cleanup of rate limit store
@@ -60,13 +58,9 @@ export default function middleware(request: NextRequest) {
     if (requestCount % CLEANUP_INTERVAL === 0) {
       cleanupRateLimitStore();
     }
-    
-    return nextResponse;
-  }
-
-  // Only run intl middleware for non-API routes
-  if (!path.startsWith('/api/')) {
-    const response = intlMiddleware(request);
+  } else if (!path.startsWith('/api/')) {
+    // Only run intl middleware for non-API routes
+    response = intlMiddleware(request);
 
     // Set CSRF token cookie if not present
     if (!request.cookies.has(CSRF_COOKIE)) {
@@ -79,11 +73,14 @@ export default function middleware(request: NextRequest) {
         maxAge: 86400 // 24 hours
       });
     }
-
-    return response;
+  } else {
+    response = NextResponse.next();
   }
 
-  return NextResponse.next();
+  // Apply Security Headers (CSP)
+  applyCSP(request, response.headers);
+
+  return response;
 }
  
 export const config = {

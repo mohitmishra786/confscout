@@ -105,6 +105,14 @@ describe('Security Headers Configuration', () => {
       expect(middlewareContent).toBeTruthy();
     });
 
+    it('should implement Content-Security-Policy (CSP)', () => {
+      expect(middlewareContent).toMatch(/applyCSP/);
+      
+      const cspLibContent = readFileSync(join(process.cwd(), 'src/lib/csp.ts'), 'utf-8');
+      expect(cspLibContent).toMatch(/Content-Security-Policy/);
+      expect(cspLibContent).toMatch(/nonce/);
+    });
+
     it('should not interfere with API CORS headers', () => {
       // Middleware typically shouldn't overwrite API headers unless explicitly designed
       // This is a check to ensure middleware doesn't have "bad" CORS logic
