@@ -5,9 +5,7 @@
 
 type LogLevel = 'info' | 'warn' | 'error' | 'debug';
 
-interface LogContext {
-  [key: string]: unknown;
-}
+type LogContext = Record<string, unknown>;
 
 class Logger {
   private prefix: string;
