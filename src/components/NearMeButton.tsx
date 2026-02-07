@@ -21,8 +21,14 @@ export default function NearMeButton({ onLocationFound }: NearMeButtonProps) {
                 onLocationFound(position.coords.latitude, position.coords.longitude);
                 setLoading(false);
             },
-            (_error) => {
+            (error) => {
                 setLoading(false);
+                const errorMessages: Record<number, string> = {
+                    1: 'Location access denied. Please enable location permissions.',
+                    2: 'Location unavailable. Please try again.',
+                    3: 'Location request timed out. Please try again.',
+                };
+                alert(`GEO_ERROR_${error.code}: ${errorMessages[error.code] || 'Unknown error'}`);
             }
         );
     };

@@ -13,6 +13,7 @@ import json
 import re
 import hashlib
 import time
+import sys
 from datetime import datetime, date
 from typing import Optional, Dict
 from pathlib import Path
@@ -23,14 +24,25 @@ from dateutil.parser import parse as parse_date
 from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut
 
+# Import ConfScout HTTP client for proper User-Agent headers
+# Note: sys.path manipulation is used here to allow importing from utils/ subdirectory
+# without making scripts/ a proper Python package. This is a pragmatic approach for
+# standalone scripts. For production use, consider making scripts/ a package with __init__.py
+sys.path.insert(0, str(Path(__file__).parent))
+from utils.http_client import (
+    ConfScoutHTTPClient,
+    GitHubHTTPClient,
+    NOMINATIM_USER_AGENT
+)
+
 # Configuration
 GITHUB_BASE_URL = "https://raw.githubusercontent.com/tech-conferences/conference-data/main/conferences"
 SESSIONIZE_EXPLORE_URL = "https://sessionize.com/app/speaker/opportunities"
 OUTPUT_PATH = Path("public/data/conferences.json")
 CACHE_PATH = Path("scripts/city_cache.json")
 
-# Initialize Geocoder
-geolocator = Nominatim(user_agent="conf_scout_fetcher_v2")
+# Initialize Geocoder with proper descriptive User-Agent
+geolocator = Nominatim(user_agent=NOMINATIM_USER_AGENT)
 city_cache = {}
 
 # Domain classification keywords with priority scoring
@@ -295,20 +307,22 @@ def fetch_confs_tech_data() -> list:
         "networking", "performance", "testing", "opensource", "leadership", "product"
     ]
 
-    for year in years:
-        for topic in topics:
-            url = f"{GITHUB_BASE_URL}/{year}/{topic}.json"
-            try:
-                response = requests.get(url, timeout=10)
-                if response.status_code == 200:
+    # Use GitHub-optimized HTTP client with proper User-Agent
+    with GitHubHTTPClient() as client:
+        for year in years:
+            for topic in topics:
+                url = f"{GITHUB_BASE_URL}/{year}/{topic}.json"
+                try:
+                    # Use client with retry logic and proper User-Agent
+                    response = client.get_with_retry(url, max_retries=3, timeout=10)
                     data = response.json()
                     for conf in data:
                         conferences.append(parse_confs_tech_entry(conf, topic))
                     print(f"[OK] Fetched {len(data)} conferences from {year}/{topic}.json")
-            except requests.RequestException as e:
-                print(f"[FAIL] Failed to fetch {url}: {e}")
-            except json.JSONDecodeError:
-                print(f"[FAIL] Invalid JSON in {url}")
+                except requests.RequestException as e:
+                    print(f"[FAIL] Failed to fetch {url}: {e}")
+                except json.JSONDecodeError:
+                    print(f"[FAIL] Invalid JSON in {url}")
 
     return conferences
 
@@ -410,35 +424,32 @@ def fetch_sessionize_cfps() -> list:
         return []
     
     print(f"[INFO] Sessionize: Scraping {len(SESSIONIZE_CFPS)} known CFP pages...")
-    
-    headers = {
-        "User-Agent": "Mozilla/5.0 (compatible; conf-finder/2.0; +https://github.com/mohitmishra786/conf-finder)"
-    }
-    
-    for url in SESSIONIZE_CFPS:
-        try:
-            conf = scrape_sessionize_cfp_page(url, headers)
-            if conf:
-                conferences.append(conf)
-                print(f"  [OK] Scraped: {conf['name']}")
-        except Exception as e:
-            print(f"  [FAIL] Failed to scrape {url}: {e}")
+
+    with ConfScoutHTTPClient() as client:
+        for url in SESSIONIZE_CFPS:
+            try:
+                conf = scrape_sessionize_cfp_page(url, client)
+                if conf:
+                    conferences.append(conf)
+                    print(f"  [OK] Scraped: {conf['name']}")
+            except (requests.RequestException, ValueError) as e:
+                print(f"  [FAIL] Failed to scrape {url}: {e}")
     
     print(f"[OK] Fetched {len(conferences)} CFPs from Sessionize")
     return conferences
 
 
-def scrape_sessionize_cfp_page(url: str, headers: dict) -> Optional[dict]:
+def scrape_sessionize_cfp_page(url: str, client: ConfScoutHTTPClient) -> Optional[dict]:
     """
     Scrape a single Sessionize CFP page.
-    
+
     Based on Scrapionize approach:
     - Event name from h4 in ibox-title
     - Dates from h2 tags in ibox-content sections
     - Left column (2nd ibox-content): Event dates, location, website
     - Right column (3rd ibox-content): CFP dates, travel/accommodation info
     """
-    response = requests.get(url, headers=headers, timeout=15)
+    response = client.get(url, timeout=15)
     if response.status_code != 200:
         return None
     

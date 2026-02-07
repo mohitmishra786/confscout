@@ -1,47 +1,70 @@
 import createMiddleware from 'next-intl/middleware';
 import { NextRequest, NextResponse } from 'next/server';
 import { generateCsrfToken, CSRF_COOKIE } from '@/lib/csrf';
+import {
+  rateLimitMiddleware,
+  rateLimitConfigs,
+  getRateLimitHeaders,
+  cleanupRateLimitStore
+} from '@/lib/rateLimit';
 
 const intlMiddleware = createMiddleware({
   locales: ['en'],
   defaultLocale: 'en'
 });
 
-// Simple in-memory rate limit for the edge (this resets on every function cold start but is a basic protection)
-const rateLimitMap = new Map<string, { count: number, reset: number }>();
+// Track middleware execution count for periodic cleanup
+// NOTE: In serverless/edge environments, this counter resets on each cold start.
+// Each instance gets its own requestCount, so cleanup frequency is non-deterministic
+// across instances. This is acceptable for a best-effort cleanup.
+let requestCount = 0;
+const CLEANUP_INTERVAL = 1000;
 
 export default function middleware(request: NextRequest) {
-  // Use a trusted source for IP (platform-provided header or request.ip)
-  const ip = request.headers.get('x-real-ip') || request.headers.get('x-forwarded-for')?.split(',')[0] || '127.0.0.1';
-  const now = Date.now();
   const path = request.nextUrl.pathname;
   
-  // Basic rate limiting for API routes
+  // Rate limiting for API routes
   if (path.startsWith('/api/') && !path.startsWith('/api/cron/')) {
-    const isAuth = path.startsWith('/api/auth/');
-    const rateLimitKey = isAuth ? `${ip}:auth` : `${ip}:api`;
-    const limitMax = isAuth ? 10 : 100; // 10 requests/min for auth, 100 for others
+    // Choose rate limit config based on path
+    let config = rateLimitConfigs.api;
     
-    const limit = rateLimitMap.get(rateLimitKey);
-    if (limit && now < limit.reset) {
-      if (limit.count >= limitMax) {
-        return new NextResponse('Too Many Requests', { status: 429 });
-      }
-      limit.count++;
-    } else {
-      rateLimitMap.set(rateLimitKey, { count: 1, reset: now + 60000 });
+    if (path.startsWith('/api/auth/')) {
+      config = rateLimitConfigs.auth;
+    } else if (path.includes('/public/') || path === '/api/conferences/static') {
+      config = rateLimitConfigs.public;
     }
-  }
-
-  // Cleanup old rate limit entries occasionally
-  if (rateLimitMap.size > 1000) {
-    for (const [key, value] of rateLimitMap.entries()) {
-      if (now > value.reset) rateLimitMap.delete(key);
+    
+    // Apply rate limiting
+    const { allowed, result, response } = rateLimitMiddleware(request, config);
+    
+    if (!allowed && response) {
+      return response;
     }
+    
+    // Continue with request but add rate limit headers
+    // NOTE: Headers set on the middleware response via NextResponse.next() can be
+    // overwritten if the route handler creates its own NextResponse. This is a known
+    // Next.js middleware limitation. If rate limit headers must always be present,
+    // they'd need to be set in the route handlers as well.
+    const nextResponse = NextResponse.next();
+    if (result) {
+      const headers = getRateLimitHeaders(result);
+      Object.entries(headers).forEach(([key, value]) => {
+        nextResponse.headers.set(key, value);
+      });
+    }
+    
+    // Periodic cleanup of rate limit store
+    requestCount++;
+    if (requestCount % CLEANUP_INTERVAL === 0) {
+      cleanupRateLimitStore();
+    }
+    
+    return nextResponse;
   }
 
   // Only run intl middleware for non-API routes
-  if (!request.nextUrl.pathname.startsWith('/api/')) {
+  if (!path.startsWith('/api/')) {
     const response = intlMiddleware(request);
 
     // Set CSRF token cookie if not present

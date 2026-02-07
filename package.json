@@ -7,6 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "test": "jest",
+    "test:security": "jest src/__tests__/security",
+    "test:watch": "jest --watch",
     "fetch-data": "./scripts/ingest.sh",
     "postinstall": "prisma generate"
   },

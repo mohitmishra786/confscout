@@ -22,8 +22,9 @@ export default class ErrorBoundary extends Component<Props, State> {
     return { hasError: true, error };
   }
 
-  componentDidCatch(_error: Error, _errorInfo: unknown) {
+  componentDidCatch() {
     // Error logged to Vercel via Sentry instrumentation
+    // Parameters available if needed for custom error reporting
   }
 
   render() {

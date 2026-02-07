@@ -63,22 +63,12 @@ describe('Email Service', () => {
 
   describe('sendWelcomeEmail', () => {
     it('should send welcome email with correct parameters', async () => {
-      await sendWelcomeEmail('test@example.com', 'token123', 'weekly', 'software');
+      await sendWelcomeEmail('test@example.com', 'token123');
 
       expect(mockSendMail).toHaveBeenCalledWith(
         expect.objectContaining({
           to: 'test@example.com',
-          subject: 'Subscription Confirmed: Weekly Updates',
-        })
-      );
-    });
-
-    it('should include frequency in subject', async () => {
-      await sendWelcomeEmail('test@example.com', 'token123', 'daily', 'all');
-
-      expect(mockSendMail).toHaveBeenCalledWith(
-        expect.objectContaining({
-          subject: 'Subscription Confirmed: Daily Updates',
+          subject: 'Welcome to ConfScout!',
         })
       );
     });
@@ -168,7 +158,14 @@ describe('Email Service', () => {
     });
 
     it('should include unsubscribe header', async () => {
-      await sendDigestEmail('test@example.com', 'token123', [mockConference], 'weekly', undefined, false);
+      await sendDigestEmail(
+        'test@example.com',
+        'token123',
+        [mockConference],
+        'weekly',
+        undefined,
+        false
+      );
 
       expect(mockSendMail).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -180,7 +177,14 @@ describe('Email Service', () => {
     });
 
     it('should include both HTML and text versions', async () => {
-      await sendDigestEmail('test@example.com', 'token123', [mockConference], 'weekly', undefined, false);
+      await sendDigestEmail(
+        'test@example.com',
+        'token123',
+        [mockConference],
+        'weekly',
+        undefined,
+        false
+      );
 
       expect(mockSendMail).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -213,7 +217,14 @@ describe('Email Service', () => {
       const { generateEmailContent } = jest.requireMock('@/lib/groqEmail');
       generateEmailContent.mockRejectedValueOnce(new Error('API Error'));
 
-      await sendDigestEmail('test@example.com', 'token123', [mockConference], 'weekly', undefined, true);
+      await sendDigestEmail(
+        'test@example.com',
+        'token123',
+        [mockConference],
+        'weekly',
+        undefined,
+        true
+      );
 
       // Should still send email using fallback
       expect(mockSendMail).toHaveBeenCalled();
@@ -228,7 +239,14 @@ describe('Email Service', () => {
         process.env.GROQ_API_KEY = '';
         generateEmailContent.mockClear();
 
-        await sendDigestEmail('test@example.com', 'token123', [mockConference], 'weekly', undefined, true);
+        await sendDigestEmail(
+          'test@example.com',
+          'token123',
+          [mockConference],
+          'weekly',
+          undefined,
+          true
+        );
 
         // Groq should not have been called when API key is missing
         expect(generateEmailContent).not.toHaveBeenCalled();
@@ -241,7 +259,14 @@ describe('Email Service', () => {
 
     it('should include conference count in subject', async () => {
       const secondConf = { ...mockConference, id: 'test-2' };
-      await sendDigestEmail('test@example.com', 'token123', [mockConference, secondConf], 'weekly', undefined, false);
+      await sendDigestEmail(
+        'test@example.com',
+        'token123',
+        [mockConference, secondConf],
+        'weekly',
+        undefined,
+        false
+      );
 
       const callArgs = mockSendMail.mock.calls[0][0];
       expect(callArgs.subject).toContain('2');

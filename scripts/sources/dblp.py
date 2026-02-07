@@ -8,9 +8,15 @@ Data: XML response with conference metadata
 This replaces direct IEEE/ACM scraping as dblp aggregates both.
 """
 
-import requests
-import xml.etree.ElementTree as ET
+import sys
+from pathlib import Path
+import time
+import defusedxml.ElementTree as ET
 from typing import Optional
+
+# Import ConfScout HTTP client for proper User-Agent headers
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from utils.http_client import ConfScoutHTTPClient
 
 
 DBLP_SEARCH_URL = "https://dblp.org/search/venue/api"
@@ -25,19 +31,20 @@ SEARCH_TERMS = [
     "ACM conference 2026",
 ]
 
-
 def fetch() -> list[dict]:
     """Fetch conferences from dblp.org API."""
     conferences = []
     seen_urls = set()
-    
-    for term in SEARCH_TERMS:
+
+    for i, term in enumerate(SEARCH_TERMS):
+        if i > 0:
+            time.sleep(1)
         results = _search_venues(term)
         for conf in results:
             if conf["url"] not in seen_urls:
                 seen_urls.add(conf["url"])
                 conferences.append(conf)
-    
+
     print(f"[dblp] Fetched {len(conferences)} conferences")
     return conferences
 
@@ -45,55 +52,58 @@ def fetch() -> list[dict]:
 def _search_venues(query: str, max_results: int = 50) -> list[dict]:
     """Search dblp venues API."""
     conferences = []
-    
-    try:
-        params = {
-            "q": query,
-            "format": "xml",
-            "h": max_results,
-        }
-        response = requests.get(DBLP_SEARCH_URL, params=params, timeout=15)
-        response.raise_for_status()
-        
-        root = ET.fromstring(response.content)
-        hits = root.find("hits")
-        if hits is None:
-            return []
-        
-        for hit in hits.findall("hit"):
-            info = hit.find("info")
-            if info is None:
-                continue
-            
-            venue = info.find("venue")
-            url_elem = info.find("url")
-            
-            if venue is None or venue.text is None:
-                continue
-            
-            name = venue.text.strip()
-            url = url_elem.text if url_elem is not None else ""
-            
-            # Determine domain from name
-            domain = _classify_academic_domain(name)
-            
-            conference = {
-                "name": name,
-                "url": url,
-                "startDate": None,  # dblp doesn't provide exact dates
-                "endDate": None,
-                "location": {"city": "", "country": "", "raw": ""},
-                "online": False,
-                "cfp": None,
-                "domain": domain,
-                "source": "dblp",
+
+    # Use ConfScout HTTP client with proper User-Agent as context manager
+    with ConfScoutHTTPClient() as client:
+        try:
+            params = {
+                "q": query,
+                "format": "xml",
+                "h": max_results,
             }
-            
-            conferences.append(conference)
-    
-    except Exception as e:
-        print(f"[dblp] Error searching '{query}': {e}")
-    
+            # Use client session for proper User-Agent header
+            response = client.get(DBLP_SEARCH_URL, params=params, timeout=15)
+            response.raise_for_status()
+
+            root = ET.fromstring(response.content)
+            hits = root.find("hits")
+            if hits is None:
+                return []
+
+            for hit in hits.findall("hit"):
+                info = hit.find("info")
+                if info is None:
+                    continue
+
+                venue = info.find("venue")
+                url_elem = info.find("url")
+
+                if venue is None or venue.text is None:
+                    continue
+
+                name = venue.text.strip()
+                url = url_elem.text if url_elem is not None else ""
+
+                # Determine domain from name
+                domain = _classify_academic_domain(name)
+
+                conference = {
+                    "name": name,
+                    "url": url,
+                    "startDate": None,  # dblp doesn't provide exact dates
+                    "endDate": None,
+                    "location": {"city": "", "country": "", "raw": ""},
+                    "online": False,
+                    "cfp": None,
+                    "domain": domain,
+                    "source": "dblp",
+                }
+
+                conferences.append(conference)
+
+        except Exception as e:
+            print(f"[dblp] Error searching '{query}': {e}")
+
     return conferences
 
 
