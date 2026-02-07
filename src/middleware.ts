@@ -5,7 +5,8 @@ import {
   rateLimitMiddleware,
   rateLimitConfigs,
   getRateLimitHeaders,
-  cleanupRateLimitStore
+  cleanupRateLimitStore,
+  type RateLimitConfig
 } from '@/lib/rateLimit';
 
 const intlMiddleware = createMiddleware({
@@ -26,7 +27,7 @@ export default function middleware(request: NextRequest) {
   // Rate limiting for API routes
   if (path.startsWith('/api/') && !path.startsWith('/api/cron/')) {
     // Choose rate limit config based on path
-    let config = rateLimitConfigs.api;
+    let config: RateLimitConfig = rateLimitConfigs.api;
     
     if (path.startsWith('/api/auth/')) {
       config = rateLimitConfigs.auth;
