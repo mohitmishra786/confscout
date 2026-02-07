@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { generateCsrfToken, CSRF_COOKIE } from '@/lib/csrf';
 import { applyCSP } from '@/lib/csp';
 import {
-  rateLimitMiddleware,
+  rateLimitMiddlewareAsync,
   rateLimitConfigs,
   getRateLimitHeaders,
   cleanupRateLimitStore,
@@ -22,7 +22,7 @@ const intlMiddleware = createMiddleware({
 let requestCount = 0;
 const CLEANUP_INTERVAL = 1000;
 
-export default function middleware(request: NextRequest) {
+export default async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
   let response: NextResponse;
   
@@ -38,7 +38,7 @@ export default function middleware(request: NextRequest) {
     }
     
     // Apply rate limiting
-    const { allowed, result, response: rlResponse } = rateLimitMiddleware(request, config);
+    const { allowed, result, response: rlResponse } = await rateLimitMiddlewareAsync(request, config);
     
     if (!allowed && rlResponse) {
       response = rlResponse;
