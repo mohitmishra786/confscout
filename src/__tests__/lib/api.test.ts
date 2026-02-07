@@ -6,7 +6,7 @@ describe('secureFetch', () => {
   beforeEach(() => {
     global.fetch = jest.fn();
     jest.useFakeTimers();
-    // @ts-ignore
+    // @ts-expect-error - global.document may not exist in Node environment
     global.document = {
       cookie: ''
     };

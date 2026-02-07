@@ -38,15 +38,14 @@ export const GET = withErrorHandling(async (request: NextRequest) => {
   if ((!domain || domain === 'all') && !cfpOnly && !search && page === 1) {
     apiLogger.info('Using cached conferences (fast path)');
     
-    let timeoutId: NodeJS.Timeout;
+    let timeoutId: NodeJS.Timeout | undefined;
     const data = await Promise.race([
       getCachedConferences(),
       new Promise<ConferenceData>((_, reject) => {
         timeoutId = setTimeout(() => reject(new Error('Cache fetch timeout after 15s')), 15000);
       })
     ]);
-    
-    // @ts-ignore
+
     if (timeoutId) clearTimeout(timeoutId);
     
     const response: ApiResponse<ConferenceData> = {
@@ -149,7 +148,7 @@ export const GET = withErrorHandling(async (request: NextRequest) => {
     description: string | null;
     source: string;
     tags: string[];
-    financialAid: any;
+    financialAid: unknown;
     attendances?: {
       userId: string;
       user: {

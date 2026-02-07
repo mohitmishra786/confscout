@@ -422,7 +422,7 @@ export default function HomeClient({ initialData }: HomeClientProps) {
             <div className="text-4xl mb-4">🔍</div>
             <h3 className="text-xl font-bold text-white mb-2">No conferences found</h3>
             <p className="text-zinc-500 max-w-md mx-auto mb-8">
-              We couldn't find any conferences matching your current filters. Try adjusting your search term or clearing the filters to see more results.
+              We couldn&apos;t find any conferences matching your current filters. Try adjusting your search term or clearing filters to see more results.
             </p>
             <button
               onClick={() => {

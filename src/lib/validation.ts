@@ -140,14 +140,17 @@ export function safeJsonParse<T>(json: string | null | undefined, fallback: T): 
 /**
  * Validates if the data matches the ConferenceData structure
  */
-export function isValidConferenceData(data: any): data is ConferenceData {
+export function isValidConferenceData(data: unknown): data is ConferenceData {
+  if (!data || typeof data !== 'object') {
+    return false;
+  }
+  const obj = data as Record<string, unknown>;
   return (
-    data &&
-    typeof data === 'object' &&
-    typeof data.lastUpdated === 'string' &&
-    data.stats &&
-    typeof data.stats.total === 'number' &&
-    data.months &&
-    typeof data.months === 'object'
+    typeof obj.lastUpdated === 'string' &&
+    obj.stats != null &&
+    typeof obj.stats === 'object' &&
+    typeof (obj.stats as Record<string, unknown>).total === 'number' &&
+    obj.months != null &&
+    typeof obj.months === 'object'
   );
 }

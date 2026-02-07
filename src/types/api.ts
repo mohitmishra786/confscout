@@ -2,14 +2,14 @@
  * Standard API Response Type
  */
 
-export interface ApiResponse<T = any> {
+export interface ApiResponse<T = unknown> {
   success: boolean;
   data?: T;
   message?: string;
   error?: {
     message: string;
     code?: string;
-    details?: any;
+    details?: unknown;
     stack?: string;
   };
   meta?: {

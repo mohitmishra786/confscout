@@ -160,7 +160,7 @@ export function handleAPIError(error: unknown, requestId?: string): NextResponse
     message: string, 
     code: string, 
     status: number, 
-    details?: any, 
+    details?: unknown, 
     stack?: string
   ) => {
     const response: ApiResponse = {
@@ -168,7 +168,7 @@ export function handleAPIError(error: unknown, requestId?: string): NextResponse
       error: {
         message,
         code,
-        ...(details && { details }),
+        ...(details != null && { details }),
         ...(isDevelopment && stack && { stack }),
       },
       meta: {

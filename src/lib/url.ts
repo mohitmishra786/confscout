@@ -23,11 +23,9 @@ export function isValidUrl(url: string): boolean {
  */
 export function sanitizeUrl(url: string): string {
   if (!url) return '';
-  
-  // Remove leading/trailing whitespace
-  let sanitized = url.trim();
-  
-  // Basic validation
+
+  const sanitized = url.trim();
+
   if (!isValidUrl(sanitized)) {
     return '';
   }
