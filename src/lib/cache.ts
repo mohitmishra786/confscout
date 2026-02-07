@@ -75,29 +75,69 @@ export async function getCachedConferences(): Promise<ConferenceData> {
   try {
     cacheLogger.info('Starting getCachedConferences');
     
-    // 1. Try Redis
+    // 1. Try Redis with Stale-While-Revalidate pattern
     if (redisClient) {
       cacheLogger.info('Checking Redis cache');
       const cached = await redisClient.get<CachedData>(CACHE_KEY);
-      if (cached && Date.now() - cached.timestamp < CACHE_TTL * 1000) {
-        cacheLogger.info('Returning cached data from Redis', { 
-          months: Object.keys(cached.data.months).length,
-          total: cached.data.stats.total 
-        });
-        return cached.data;
+      
+      if (cached) {
+        const age = Date.now() - cached.timestamp;
+        const isStale = age > CACHE_TTL * 1000;
+        
+        if (!isStale) {
+          // Fresh cache - return immediately
+          cacheLogger.info('Returning fresh cached data from Redis', { 
+            months: Object.keys(cached.data.months).length,
+            total: cached.data.stats.total 
+          });
+          return cached.data;
+        } else if (age < CACHE_TTL * 2000) {
+          // Stale but acceptable - return cached data and revalidate in background
+          cacheLogger.info('Returning stale cached data, revalidating in background');
+          
+          // Background revalidation (fire and forget)
+          revalidateCache().catch((err: unknown) => 
+            cacheLogger.error('Background revalidation failed', err)
+          );
+          
+          return cached.data;
+        }
       }
-      cacheLogger.info('Redis cache miss or expired');
+      cacheLogger.info('Redis cache miss or too stale');
     } else {
       cacheLogger.info('Redis not available, skipping');
     }
     
-    // 2. Try Database
+    // 2. Try Database with optimized query
     cacheLogger.info('Attempting database fetch');
     let conferences: Conference[] = [];
     try {
       cacheLogger.time('dbFetch');
       const dbConfs = await Promise.race([
-        prisma.conference.findMany(),
+        prisma.conference.findMany({
+          select: {
+            id: true,
+            name: true,
+            url: true,
+            startDate: true,
+            endDate: true,
+            city: true,
+            country: true,
+            locationRaw: true,
+            lat: true,
+            lng: true,
+            online: true,
+            cfpUrl: true,
+            cfpEndDate: true,
+            cfpStatus: true,
+            domain: true,
+            description: true,
+            source: true,
+            tags: true,
+            financialAid: true
+          },
+          orderBy: { startDate: 'asc' }
+        }),
         new Promise<never>((_, reject) => 
           setTimeout(() => reject(new Error('Database query timeout after 10s')), 10000)
         )
@@ -203,5 +243,78 @@ export async function warmCache(): Promise<void> {
     cacheLogger.info('Cache warmed successfully');
   } catch (error) {
     cacheLogger.error('Failed to warm cache', error);
+  }
+}
+
+/**
+ * Background revalidation for stale-while-revalidate pattern
+ */
+async function revalidateCache(): Promise<void> {
+  const redisClient = getRedisClient();
+  if (!redisClient) return;
+
+  try {
+    cacheLogger.info('Background revalidation started');
+    const dbConfs = await prisma.conference.findMany({
+      select: {
+        id: true,
+        name: true,
+        url: true,
+        startDate: true,
+        endDate: true,
+        city: true,
+        country: true,
+        locationRaw: true,
+        lat: true,
+        lng: true,
+        online: true,
+        cfpUrl: true,
+        cfpEndDate: true,
+        cfpStatus: true,
+        domain: true,
+        description: true,
+        source: true,
+        tags: true,
+        financialAid: true
+      },
+      orderBy: { startDate: 'asc' }
+    });
+
+    const conferences = dbConfs.map((c) => ({
+      id: c.id,
+      name: c.name,
+      url: c.url,
+      startDate: c.startDate ? c.startDate.toISOString().split('T')[0] : null,
+      endDate: c.endDate ? c.endDate.toISOString().split('T')[0] : null,
+      location: {
+        city: c.city || '',
+        country: c.country || '',
+        raw: c.locationRaw || '',
+        lat: c.lat || undefined,
+        lng: c.lng || undefined
+      },
+      online: c.online,
+      cfp: {
+        url: c.cfpUrl || '',
+        endDate: c.cfpEndDate ? c.cfpEndDate.toISOString().split('T')[0] : null,
+        status: (c.cfpStatus as 'open' | 'closed' | undefined)
+      },
+      domain: c.domain,
+      description: c.description || undefined,
+      source: c.source,
+      tags: c.tags,
+      financialAid: c.financialAid ? JSON.parse(JSON.stringify(c.financialAid)) : undefined
+    })) as Conference[];
+
+    const formattedData = formatConferenceData(conferences);
+    
+    await redisClient.set(CACHE_KEY, {
+      data: formattedData,
+      timestamp: Date.now()
+    }, { ex: CACHE_TTL });
+    
+    cacheLogger.info('Background revalidation completed');
+  } catch (error) {
+    cacheLogger.error('Background revalidation error', error);
   }
 }
