@@ -9,12 +9,16 @@ import { generateEmailContent, categorizeConferencesForEmail, generateFallbackEm
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://confscouting.com';
 
 const transporter = nodemailer.createTransport({
-  host: process.env.ZOHO_HOST || 'smtp.zoho.com',
-  port: Number(process.env.ZOHO_PORT) || 465,
-  secure: true,
+  host: process.env.ZOHO_HOST || 'smtppro.zoho.in',
+  port: Number(process.env.ZOHO_PORT) || 587,
+  secure: false, // Use STARTTLS for port 587
+  requireTLS: true, // Force TLS upgrade
   auth: {
     user: process.env.ZOHO_USER,
     pass: process.env.ZOHO_PASSWORD,
+  },
+  tls: {
+    rejectUnauthorized: process.env.NODE_ENV === 'production',
   },
 });
 
