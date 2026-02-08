@@ -1,31 +1,12 @@
-import { Redis } from '@upstash/redis';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import type { Conference, ConferenceData } from '@/types/conference';
 import { prisma } from '@/lib/prisma';
 import { cacheLogger } from '@/lib/logger';
+import { getRedisClient } from '@/lib/redis';
 
 const CACHE_KEY = 'confscout:v1:conferences:en'; // Versioned and locale-specific cache key
 const CACHE_TTL = 3600; // 1 hour
-
-// Initialize Redis client lazily
-let redis: Redis | null = null;
-
-function getRedisClient(): Redis | null {
-  if (redis) return redis;
-  try {
-    if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
-      redis = Redis.fromEnv();
-      cacheLogger.info('Redis client initialized');
-      return redis;
-    }
-    cacheLogger.warn('Upstash Redis environment variables missing');
-    return null;
-  } catch (error: unknown) {
-    cacheLogger.error('Failed to initialize Redis client', error);
-    return null;
-  }
-}
 
 export interface CachedData {
   data: ConferenceData;

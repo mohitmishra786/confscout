@@ -1,4 +1,4 @@
-import type { Conference } from '@/types/conference';
+import { ConferenceData, Conference } from '@/types/conference';
 
 /**
  * Validate that an object is a valid Conference
@@ -12,7 +12,6 @@ export function isValidConference(conf: unknown): conf is Conference {
   const c = conf as Record<string, unknown>;
 
   // Ensure all required fields are present and of correct type
-  // FieldDescriptor definition: { name: string; type: string; optional?: boolean; nullable?: boolean }
   const requiredFields: Array<{ name: string; type: string; optional?: boolean; nullable?: boolean }> = [
     { name: 'id', type: 'string', optional: false, nullable: false },
     { name: 'name', type: 'string', optional: false, nullable: false },
@@ -56,15 +55,11 @@ export function isValidConference(conf: unknown): conf is Conference {
   }
 
   // Prevent prototype pollution
-  // Check if the object contains dangerous keys
   const dangerousKeys = ['__proto__', 'constructor', 'prototype'];
-  
-  // Check own properties
   if (Object.keys(c).some(key => dangerousKeys.includes(key))) {
     return false;
   }
 
-  // Check if it's a plain object (no custom prototype)
   const proto = Object.getPrototypeOf(c);
   if (proto !== null && proto !== Object.prototype) {
     return false;
@@ -81,13 +76,13 @@ export function sanitizeXSS(text: string): string {
   if (!text) return '';
   
   return text
-    .replace(/&/g, '&amp;') // SECURITY FIX: Escape ampersands first to prevent entity-decode bypass
+    .replace(/&/g, '&amp;') 
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#x27;')
     .replace(/\//g, '&#x2F;')
-    .replace(/\0/g, ''); // SECURITY FIX: Strip null bytes
+    .replace(/\0/g, ''); 
 }
 
 /**
@@ -97,15 +92,10 @@ export function sanitizeXSS(text: string): string {
 export function sanitizeJsonLdValue(value: unknown): unknown {
   if (typeof value === 'string') {
     return value
-      // Remove script tags and their content
       .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
-      // Remove all event handlers (onerror, onload, onclick, etc.) - only in HTML-tag-like context
       .replace(/(<[^>]*)\s+on\w+\s*=\s*(?:"[^"]*"|'[^']*'|`[^`]*`|[^\s>]*)/gi, '$1')
-      // Remove javascript: protocol
       .replace(/javascript:/gi, '')
-      // Remove all data: URLs that could execute scripts or contain malicious content
       .replace(/data:[^\s;,]*/gi, '')
-      // Strip null bytes
       .replace(/\0/g, '');
   }
 
@@ -114,10 +104,8 @@ export function sanitizeJsonLdValue(value: unknown): unknown {
   }
 
   if (value !== null && typeof value === 'object') {
-    // SECURITY: Use Object.create(null) to prevent prototype pollution
     const sanitized: Record<string, unknown> = Object.create(null);
     for (const [key, val] of Object.entries(value)) {
-      // Skip prototype keys
       if (key === '__proto__' || key === 'constructor' || key === 'prototype') continue;
       sanitized[key] = sanitizeJsonLdValue(val);
     }
@@ -129,11 +117,40 @@ export function sanitizeJsonLdValue(value: unknown): unknown {
 
 /**
  * Safely serialize JSON-LD data
- * Uses HTML escaping in the JSON string to prevent breaking out of the script tag
  */
 export function serializeSafeJsonLd(data: Record<string, unknown>): string {
   const sanitizedData = sanitizeJsonLdValue(data);
   return JSON.stringify(sanitizedData)
     .replace(/</g, '\\u003c')
     .replace(/>/g, '\\u003e');
+}
+
+/**
+ * Safely parses a JSON string
+ */
+export function safeJsonParse<T>(json: string | null | undefined, fallback: T): T {
+  if (!json) return fallback;
+  try {
+    return JSON.parse(json) as T;
+  } catch {
+    return fallback;
+  }
+}
+
+/**
+ * Validates if the data matches the ConferenceData structure
+ */
+export function isValidConferenceData(data: unknown): data is ConferenceData {
+  if (!data || typeof data !== 'object') {
+    return false;
+  }
+  const obj = data as Record<string, unknown>;
+  return (
+    typeof obj.lastUpdated === 'string' &&
+    obj.stats != null &&
+    typeof obj.stats === 'object' &&
+    typeof (obj.stats as Record<string, unknown>).total === 'number' &&
+    obj.months != null &&
+    typeof obj.months === 'object'
+  );
 }

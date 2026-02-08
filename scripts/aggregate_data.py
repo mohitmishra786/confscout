@@ -21,6 +21,7 @@ try:
     from sources import wikicfp
     HAS_WIKICFP = True
 except ImportError:
+    wikicfp = None
     HAS_WIKICFP = False
 
 from utils.deduplication import deduplicate
@@ -56,7 +57,11 @@ def main():
     
     # Add WikiCFP if beautifulsoup4 is available
     if HAS_WIKICFP:
-        sources.append(("WikiCFP", wikicfp.fetch))
+        try:
+            from sources import wikicfp
+            sources.append(("WikiCFP", wikicfp.fetch))
+        except ImportError:
+            pass
     
     for name, fetch_fn in sources:
         try:
@@ -134,16 +139,41 @@ def main():
     }
     
     # 7. Output
-    print("\n[7/7] Writing output...")
-    output = {
-        "lastUpdated": datetime.utcnow().isoformat() + "Z",
-        "stats": stats,
-        "months": grouped,
-    }
+    print("\n[7/7] Writing output (streaming)...")
     
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    with open(OUTPUT_PATH, "w") as f:
-        json.dump(output, f, indent=2, default=str)
+    
+    # We use a semi-streaming approach to avoid keeping the final huge dict in memory
+    # thoughconferences list is already in memory from previous steps.
+    # To truly stream, we'd need to stream from deduplication/enrichment.
+    # But for now, let's optimize the final write.
+    
+    try:
+        with open(OUTPUT_PATH, "w", encoding='utf-8') as f:
+            f.write('{\n')
+            f.write(f'  "lastUpdated": "{datetime.utcnow().isoformat()}Z",\n')
+            f.write('  "stats": ' + json.dumps(stats, indent=4) + ',\n')
+            f.write('  "months": {\n')
+            
+            month_keys = list(grouped.keys())
+            for i, month in enumerate(month_keys):
+                f.write(f'    "{month}": ' + json.dumps(grouped[month], indent=4))
+                if i < len(month_keys) - 1:
+                    f.write(',\n')
+                else:
+                    f.write('\n')
+            
+            f.write('  }\n')
+            f.write('}\n')
+    except Exception as e:
+        print(f"  ✗ Failed to write output: {e}")
+        # Fallback to simple dump if streaming fails
+        with open(OUTPUT_PATH, "w") as f:
+            json.dump({
+                "lastUpdated": datetime.utcnow().isoformat() + "Z",
+                "stats": stats,
+                "months": grouped
+            }, f, indent=2, default=str)
     
     print(f"\n✓ Written to {OUTPUT_PATH}")
     print(f"  Total conferences: {stats['total']}")
@@ -172,10 +202,18 @@ def _days_remaining(date_str: str):
 
 
 def _generate_id(conf: dict) -> str:
-    """Generate a unique ID for a conference."""
+    """
+    Generate a unique ID for a conference.
+    Includes more fields to ensure absolute uniqueness and stability.
+    """
     import hashlib
-    data = f"{conf.get('name', '')}-{conf.get('startDate', '')}-{conf.get('url', '')}"
-    return hashlib.md5(data.encode()).hexdigest()[:12]
+    # Normalize fields for stable hashing
+    name = str(conf.get('name', '')).lower().strip()
+    date = str(conf.get('startDate', '')).strip()
+    url = str(conf.get('url', '')).lower().strip()
+    
+    data = f"{name}|{date}|{url}"
+    return hashlib.md5(data.encode('utf-8')).hexdigest()[:12]
 
 
 def _group_by_month(conferences: list[dict]) -> dict:
@@ -229,12 +267,14 @@ def _send_notifications(conferences: list[dict]):
     previous_ids = set()
     if PREVIOUS_DATA_PATH.exists():
         try:
-            with open(PREVIOUS_DATA_PATH) as f:
+            with open(PREVIOUS_DATA_PATH, encoding='utf-8') as f:
                 prev = json.load(f)
             for month_confs in prev.get("months", {}).values():
                 for c in month_confs:
-                    previous_ids.add(c.get("id"))
-        except:
+                    if isinstance(c, dict) and c.get("id"):
+                        previous_ids.add(c.get("id"))
+        except (json.JSONDecodeError, IOError) as e:
+            print(f"  ! Warning: Failed to load previous data for notifications: {e}")
             pass
     
     # Find new CFPs

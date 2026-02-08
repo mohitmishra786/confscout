@@ -13,6 +13,8 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import { getRedisClient } from '@/lib/redis';
+import { securityLogger } from '@/lib/logger';
 
 export interface RateLimitConfig {
   /** Maximum number of requests allowed in the window */
@@ -350,6 +352,86 @@ export const rateLimitConfigs = {
     keyPrefix: 'strict'
   }
 } as const;
+
+/**
+ * Redis-backed rate limiting (Sliding window)
+ * Suitable for production at scale.
+ */
+export async function redisRateLimit(
+  key: string,
+  config: RateLimitConfig
+): Promise<RateLimitResult> {
+  const redis = getRedisClient();
+  if (!redis) {
+    // Fallback to in-memory if Redis is not available
+    return slidingWindow(key, config);
+  }
+
+  const now = Date.now();
+  const windowMs = config.windowSeconds * 1000;
+  const fullKey = config.keyPrefix ? `ratelimit:${config.keyPrefix}:${key}` : `ratelimit:${key}`;
+  
+  try {
+    // Use Redis sorted set to implement a true sliding window
+    const multi = redis.pipeline();
+    
+    // Remove old entries
+    multi.zremrangebyscore(fullKey, 0, now - windowMs);
+    // Add current entry
+    multi.zadd(fullKey, { score: now, member: `${now}-${Math.random()}` });
+    // Count entries in current window
+    multi.zcard(fullKey);
+    // Set expiry for the whole set
+    multi.expire(fullKey, config.windowSeconds);
+    
+    const results = await multi.exec();
+    const count = results[2] as number;
+    
+    const success = count <= config.maxRequests;
+    const remaining = Math.max(0, config.maxRequests - count);
+    const reset = Math.ceil((now + windowMs) / 1000);
+
+    return {
+      success,
+      remaining,
+      reset,
+      limit: config.maxRequests
+    };
+  } catch (error: unknown) {
+    securityLogger.error('Redis rate limit error', error);
+    // Fallback to in-memory on error
+    return slidingWindow(key, config);
+  }
+}
+
+/**
+ * Middleware-compatible rate limiter
+ * Can be used in Next.js middleware
+ */
+export async function rateLimitMiddlewareAsync(
+  request: NextRequest,
+  config: RateLimitConfig
+): Promise<{ allowed: boolean; result?: RateLimitResult; response?: NextResponse }> {
+  // Skip if configured to skip
+  if (config.skip && config.skip(request)) {
+    return { allowed: true };
+  }
+  
+  const key = createRateLimitKey(request);
+  
+  // Use Redis if available, otherwise sliding window
+  const result = await redisRateLimit(key, config);
+  
+  if (!result.success) {
+    return {
+      allowed: false,
+      result,
+      response: createRateLimitResponse(result)
+    };
+  }
+  
+  return { allowed: true, result };
+}
 
 /**
  * Middleware-compatible rate limiter

@@ -10,7 +10,7 @@
  * - Domain and filter controls
  */
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 import { type Conference, type ConferenceData, DOMAIN_INFO } from '@/types/conference';
@@ -53,6 +53,33 @@ export default function HomeClient({ initialData }: HomeClientProps) {
   const [isSubscribeOpen, setIsSubscribeOpen] = useState(false);
   const [mapCenter, setMapCenter] = useState<[number, number] | undefined>(undefined);
   const [mapZoom, setMapZoom] = useState<number | undefined>(undefined);
+
+  // Lazy loading state for performance
+  const [visibleCount, setVisibleCount] = useState(20);
+  const loadMoreRef = useRef<HTMLDivElement>(null);
+
+  // Reset lazy load when filters change
+  useEffect(() => {
+    setVisibleCount(20);
+  }, [selectedDomain, speakerMode, searchTerm]);
+
+  // Intersection observer for infinite scroll/lazy loading
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setVisibleCount(prev => prev + 20);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (loadMoreRef.current) {
+      observer.observe(loadMoreRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [loadMoreRef]);
 
   // Flatten conferences for filtering
   const allConferences = useMemo(() => {
@@ -100,12 +127,22 @@ export default function HomeClient({ initialData }: HomeClientProps) {
       grouped[monthKey].push(conf);
     }
 
-    // Sort by date within each month
-    for (const confs of Object.values(grouped)) {
-      confs.sort((a, b) => (a.startDate || '').localeCompare(b.startDate || ''));
+    // Sort months correctly (TBD at the end)
+    const sortedGrouped: Record<string, Conference[]> = {};
+    const sortedKeys = Object.keys(grouped).sort((a, b) => {
+      if (a === 'TBD') return 1;
+      if (b === 'TBD') return -1;
+      return new Date(a).getTime() - new Date(b).getTime();
+    });
+
+    for (const key of sortedKeys) {
+      // Sort conferences within month by startDate
+      sortedGrouped[key] = grouped[key].sort((a, b) => 
+        (a.startDate || '').localeCompare(b.startDate || '')
+      );
     }
 
-    return grouped;
+    return sortedGrouped;
   }, [filteredConferences]);
 
   // Get unique domains for filter
@@ -173,11 +210,27 @@ export default function HomeClient({ initialData }: HomeClientProps) {
     }))
   };
 
-  // Data is now always available from server - no loading state needed!
+  // Stale data detection
+  const isStale = useMemo(() => {
+    if (!data?.lastUpdated) return false;
+    const lastUpdate = new Date(data.lastUpdated);
+    const now = new Date();
+    // More than 24 hours old
+    return (now.getTime() - lastUpdate.getTime()) > 24 * 60 * 60 * 1000;
+  }, [data?.lastUpdated]);
 
   return (
     <div className="min-h-screen bg-black">
       <Header />
+
+      {isStale && (
+        <div className="bg-amber-900/20 border-b border-amber-500/20 py-2 px-4 text-center">
+          <p className="text-amber-200/80 text-xs">
+            ⚠️ Data might be stale. Last updated {new Date(data.lastUpdated).toLocaleDateString()}. 
+            <button onClick={() => window.location.reload()} className="ml-2 underline hover:text-white">Refresh</button>
+          </p>
+        </div>
+      )}
 
       {/* Subscribe Button (Fixed or top) */}
       <div className="fixed bottom-6 right-6 z-40">
@@ -343,20 +396,44 @@ export default function HomeClient({ initialData }: HomeClientProps) {
           viewMode === 'timeline' ? (
             <TimelineView months={filteredMonths} speakerMode={speakerMode} />
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {filteredConferences.slice(0, 50).map((conf, idx) => (
-                <ConferenceCard key={`${conf.id}-${idx}`} conference={conf} searchTerm={searchTerm} />
-              ))}
-              {filteredConferences.length > 50 && (
+            <div className="space-y-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {filteredConferences.slice(0, visibleCount).map((conf, idx) => (
+                  <ConferenceCard key={`${conf.id}-${idx}`} conference={conf} searchTerm={searchTerm} />
+                ))}
+              </div>
+              
+              {/* Sentinel element for intersection observer */}
+              {visibleCount < filteredConferences.length && (
+                <div ref={loadMoreRef} className="h-20 flex items-center justify-center">
+                  <div className="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                </div>
+              )}
+
+              {filteredConferences.length > 50 && visibleCount >= filteredConferences.length && (
                 <div className="col-span-full text-center py-4 text-zinc-500">
-                  Showing 50 of {filteredConferences.length}. Use filters to narrow results.
+                  Showing all {filteredConferences.length} results.
                 </div>
               )}
             </div>
           )
         ) : (
-          <div className="text-center py-12 text-zinc-500">
-            No conferences found matching your criteria.
+          <div className="text-center py-20 px-4 card border-dashed border-zinc-800">
+            <div className="text-4xl mb-4">🔍</div>
+            <h3 className="text-xl font-bold text-white mb-2">No conferences found</h3>
+            <p className="text-zinc-500 max-w-md mx-auto mb-8">
+              We couldn&apos;t find any conferences matching your current filters. Try adjusting your search term or clearing filters to see more results.
+            </p>
+            <button
+              onClick={() => {
+                setSelectedDomain('all');
+                setSpeakerMode(false);
+                setSearchTerm('');
+              }}
+              className="btn-primary"
+            >
+              Clear all filters
+            </button>
           </div>
         )}
 

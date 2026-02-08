@@ -159,7 +159,8 @@ describe('Secrets Management (Issue #267)', () => {
         { encoding: 'utf-8' }
       );
       
-      expect(result.trim()).toBe('');
+      const filtered = result.split('\n').filter(line => line && !line.includes('secretsManagement.test.ts'));
+      expect(filtered).toHaveLength(0);
     });
 
     it('should not contain RSA keys', () => {
@@ -168,7 +169,8 @@ describe('Secrets Management (Issue #267)', () => {
         { encoding: 'utf-8' }
       );
       
-      expect(result.trim()).toBe('');
+      const filtered = result.split('\n').filter(line => line && !line.includes('secretsManagement.test.ts'));
+      expect(filtered).toHaveLength(0);
     });
 
     it('should not contain password literals in source', () => {

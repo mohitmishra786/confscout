@@ -53,15 +53,16 @@ describe('Error Handling Security', () => {
         if (!route) continue;
         const content = readFileSync(route, 'utf-8');
         
-        // Check for try-catch blocks returning generic errors
-        if (content.includes('NextResponse.json') && content.includes('catch')) {
+        // Check for try-catch blocks or withErrorHandling wrapper
+        if (content.includes('withErrorHandling') || (content.includes('NextResponse.json') && content.includes('catch'))) {
           totalChecks++;
           const genericErrorPatterns = [
             /error:\s*['"]Internal Server Error['"]/,
             /error:\s*['"]Something went wrong['"]/,
             /error:\s*['"]Failed to/,
             /status:\s*500/,
-            /status:\s*403/
+            /status:\s*403/,
+            /withErrorHandling/
           ];
           
           if (genericErrorPatterns.some(p => p.test(content))) {

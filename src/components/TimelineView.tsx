@@ -8,6 +8,7 @@
 
 import type { Conference } from '@/types/conference';
 import ConferenceCard from './ConferenceCard';
+import { parseLocalDate } from '@/lib/date';
 
 interface TimelineViewProps {
     months: Record<string, Conference[]>;
@@ -20,9 +21,15 @@ export default function TimelineView({ months, speakerMode = false }: TimelineVi
         if (a === 'TBD') return 1;
         if (b === 'TBD') return -1;
 
-        const dateA = new Date(a);
-        const dateB = new Date(b);
-        return dateA.getTime() - dateB.getTime();
+        const dateA = parseLocalDate(`${a.split(' ')[1]}-${a.split(' ')[0]}-01`); // Approximation for month/year sort
+        // Better: parse using the fact that 'a' is 'Month YYYY'
+        const parseMonthYear = (str: string) => {
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            const [mName, year] = str.split(' ');
+            return new Date(parseInt(year), months.indexOf(mName), 1);
+        };
+        
+        return parseMonthYear(a).getTime() - parseMonthYear(b).getTime();
     });
 
     // Filter for speaker mode (only open CFPs)

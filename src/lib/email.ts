@@ -182,7 +182,7 @@ export async function sendDigestEmail(
   frequency: 'daily' | 'weekly' = 'weekly',
   userLocation?: string,
   useGroq: boolean = true
-): Promise<void> {
+): Promise<{ sent: boolean; subject: string; sectionsCount: number }> {
   try {
     const unsubscribeUrl = `${APP_URL}/api/unsubscribe?token=${token}`;
     const sections = categorizeConferencesForEmail(conferences);
@@ -213,16 +213,20 @@ export async function sendDigestEmail(
       textContent = generatePlainTextEmail({ frequency, sections, unsubscribeUrl });
     }
 
+    const subject = generateEmailSubject(frequency, conferences.length);
+
     await transporter.sendMail({
       from: `"ConfScout" <${process.env.ZOHO_USER || process.env.ZOHO_EMAIL}>`,
       to,
-      subject: generateEmailSubject(frequency, conferences.length),
+      subject,
       html: htmlContent,
       text: textContent,
       headers: {
         'List-Unsubscribe': `<${unsubscribeUrl}>`,
       },
     });
+
+    return { sent: true, subject, sectionsCount: Object.keys(sections).length };
   } catch (error) {
     console.error(`Failed to send digest email to ${maskEmail(to)}:`, error);
     throw error;

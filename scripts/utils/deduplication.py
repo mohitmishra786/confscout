@@ -136,8 +136,19 @@ def _merge_conferences(duplicates: list[dict]) -> dict:
             base["endDate"] = dup["endDate"]
         if not base.get("cfp") and dup.get("cfp"):
             base["cfp"] = dup["cfp"]
-        if not base.get("location", {}).get("country") and dup.get("location", {}).get("country"):
-            base["location"]["country"] = dup["location"]["country"]
+        
+        # Merge location info
+        base_loc = base.get("location", {})
+        dup_loc = dup.get("location", {})
+        if not base_loc.get("city") and dup_loc.get("city"):
+            base_loc["city"] = dup_loc["city"]
+        if not base_loc.get("country") and dup_loc.get("country"):
+            base_loc["country"] = dup_loc["country"]
+        if not base_loc.get("lat") and dup_loc.get("lat"):
+            base_loc["lat"] = dup_loc["lat"]
+        if not base_loc.get("lng") and dup_loc.get("lng"):
+            base_loc["lng"] = dup_loc["lng"]
+        
         if not base.get("twitter") and dup.get("twitter"):
             base["twitter"] = dup["twitter"]
     

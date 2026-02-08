@@ -17,7 +17,15 @@ import {
   createRateLimitResponse,
   rateLimitConfigs,
   rateLimitMiddleware,
+  rateLimitMiddlewareAsync,
+  redisRateLimit
 } from '@/lib/rateLimit';
+import { getRedisClient } from '@/lib/redis';
+
+// Mock Redis
+jest.mock('@/lib/redis', () => ({
+  getRedisClient: jest.fn()
+}));
 
 describe('Rate Limiting (Issue #265)', () => {
   // Clear rate limit store before each test to prevent state leakage
@@ -386,6 +394,47 @@ describe('Rate Limiting (Issue #265)', () => {
       
       expect(allowed).toBe(true);
       expect(result?.remaining).toBeLessThan(10);
+    });
+  });
+
+  describe('redisRateLimit', () => {
+    it('should fallback to slidingWindow if Redis is not available', async () => {
+      (getRedisClient as jest.Mock).mockReturnValue(null);
+      const config = { maxRequests: 5, windowSeconds: 60 };
+      const result = await redisRateLimit('test-key', config);
+      expect(result.success).toBe(true);
+    });
+
+    it('should use Redis when available', async () => {
+      const mockRedis = {
+        pipeline: jest.fn().mockReturnValue({
+          zremrangebyscore: jest.fn().mockReturnThis(),
+          zadd: jest.fn().mockReturnThis(),
+          zcard: jest.fn().mockReturnThis(),
+          expire: jest.fn().mockReturnThis(),
+          exec: jest.fn().mockResolvedValue([null, null, 1, null])
+        })
+      };
+      (getRedisClient as jest.Mock).mockReturnValue(mockRedis);
+
+      const config = { maxRequests: 5, windowSeconds: 60 };
+      const result = await redisRateLimit('test-key', config);
+      
+      expect(result.success).toBe(true);
+      expect(result.remaining).toBe(4);
+      expect(mockRedis.pipeline).toHaveBeenCalled();
+    });
+  });
+
+  describe('rateLimitMiddlewareAsync', () => {
+    it('should allow requests and return result', async () => {
+      (getRedisClient as jest.Mock).mockReturnValue(null); // Fallback to memory
+      const request = new NextRequest('http://localhost/api/test');
+      const config = { maxRequests: 5, windowSeconds: 60 };
+      
+      const { allowed, result } = await rateLimitMiddlewareAsync(request, config);
+      expect(allowed).toBe(true);
+      expect(result?.success).toBe(true);
     });
   });
 });

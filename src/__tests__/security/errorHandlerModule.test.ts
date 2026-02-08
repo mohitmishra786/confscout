@@ -168,10 +168,10 @@ describe('Error Handler Module (Issue #300)', () => {
 
       // The error message should not be directly exposed to users in production
       // It should be mapped to a user-friendly message
-      expect(body.error).not.toContain('/usr/src');
-      expect(body.error).not.toContain('db.ts');
+      expect(body.error.message).not.toContain('/usr/src');
+      expect(body.error.message).not.toContain('db.ts');
       // Should have user-friendly message instead
-      expect(body.error).toContain('unexpected');
+      expect(body.error.message).toContain('unexpected');
       // Original error with path is preserved in the error object but not exposed
       expect(internalError.message).toContain('/usr/src');
     });
@@ -201,10 +201,10 @@ describe('Error Handler Module (Issue #300)', () => {
       const response = handleAPIError(error);
       const body = await response.json();
 
-      expect(body.error).not.toContain('xyz123');
-      expect(body.error).not.toContain('password');
-      expect(body.error).toContain('unexpected');
-      expect(body.code).toBe('INTERNAL_ERROR');
+      expect(body.error.message).not.toContain('xyz123');
+      expect(body.error.message).not.toContain('password');
+      expect(body.error.message).toContain('unexpected');
+      expect(body.error.code).toBe('INTERNAL_ERROR');
     });
 
     it('should return user-friendly message for ZodError in production', async () => {
@@ -221,9 +221,9 @@ describe('Error Handler Module (Issue #300)', () => {
       const response = handleAPIError(zodError!);
       const body = await response.json();
 
-      expect(body.code).toBe('VALIDATION_ERROR');
-      expect(body.error).toBe('Validation failed');
-      expect(body.fields).toContain('email');
+      expect(body.error.code).toBe('VALIDATION_ERROR');
+      expect(body.error.message).toBe('Validation failed');
+      expect(body.error.details).toContain('email');
     });
 
     it('should sanitizeValidationError remove detailed messages', () => {
@@ -255,9 +255,9 @@ describe('Error Handler Module (Issue #300)', () => {
       const response = handleAPIError(prismaError);
       const body = await response.json();
 
-      expect(body.code).toBe('DUPLICATE_ENTRY');
-      expect(body.error).toContain('already exists');
-      expect(body.error).not.toContain('Unique constraint');
+      expect(body.error.code).toBe('DUPLICATE_ENTRY');
+      expect(body.error.message).toContain('already exists');
+      expect(body.error.message).not.toContain('Unique constraint');
     });
 
     it('should handle Prisma P2025 error as NOT_FOUND', async () => {
@@ -267,8 +267,8 @@ describe('Error Handler Module (Issue #300)', () => {
       const response = handleAPIError(prismaError);
       const body = await response.json();
 
-      expect(body.code).toBe('NOT_FOUND');
-      expect(body.error).toContain('not found');
+      expect(body.error.code).toBe('NOT_FOUND');
+      expect(body.error.message).toContain('not found');
     });
 
     it('should handle unknown Prisma errors as INTERNAL_ERROR', async () => {
@@ -278,8 +278,8 @@ describe('Error Handler Module (Issue #300)', () => {
       const response = handleAPIError(prismaError);
       const body = await response.json();
 
-      expect(body.code).toBe('INTERNAL_ERROR');
-      expect(body.error).not.toContain('internal db error');
+      expect(body.error.code).toBe('INTERNAL_ERROR');
+      expect(body.error.message).not.toContain('internal db error');
     });
 
     it('should expose error details in development mode', async () => {
@@ -289,8 +289,8 @@ describe('Error Handler Module (Issue #300)', () => {
       const response = handleAPIError(error);
       const body = await response.json();
 
-      expect(body.error).toBe('Detailed error message');
-      expect(body.stack).toBeDefined();
+      expect(body.error.message).toBe('Detailed error message');
+      expect(body.error.stack).toBeDefined();
     });
 
     it('should not expose stack traces in production', async () => {
@@ -300,7 +300,7 @@ describe('Error Handler Module (Issue #300)', () => {
       const response = handleAPIError(error);
       const body = await response.json();
 
-      expect(body).not.toHaveProperty('stack');
+      expect(body.error).not.toHaveProperty('stack');
     });
   });
 
@@ -332,8 +332,8 @@ describe('Error Handler Module (Issue #300)', () => {
       const body = await response.json();
 
       expect(response.status).toBe(500);
-      expect(body.error).not.toContain('Secret internal error');
-      expect(body.error).toContain('unexpected');
+      expect(body.error.message).not.toContain('Secret internal error');
+      expect(body.error.message).toContain('unexpected');
     });
 
     it('should return successful response when no error', async () => {
@@ -359,8 +359,8 @@ describe('Error Handler Module (Issue #300)', () => {
       const body = await response.json();
 
       expect(response.status).toBe(500);
-      expect(body.error).not.toContain('password=xyz');
-      expect(body.code).toBe('INTERNAL_ERROR');
+      expect(body.error.message).not.toContain('password=xyz');
+      expect(body.error.code).toBe('INTERNAL_ERROR');
     });
   });
 });
