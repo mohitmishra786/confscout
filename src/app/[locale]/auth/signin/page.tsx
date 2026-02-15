@@ -84,7 +84,7 @@ export default function SignInPage() {
             {isSignUp ? 'Create Account' : 'Sign In'}
           </h1>
           <p className="text-zinc-400 mb-6">
-            {isSignUp ? 'Start saving your favorite conferences' : 'Welcome back to ConfScout'}
+            {isSignUp ? 'Start saving your favorite conferences' : 'Welcome back to ConfScouting'}
           </p>
 
           {error && (

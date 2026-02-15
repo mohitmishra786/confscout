@@ -307,12 +307,12 @@ export function generateEnhancedEmailHTML(params: EmailTemplateParams): string {
           <tr>
             <td style="background:#f9fafb;padding:32px 40px;border-top:1px solid #e5e7eb;border-radius:0 0 8px 8px;text-align:center;">
               <p style="margin:0 0 8px 0;color:#6b7280;font-size:14px;">
-                You are receiving this because you subscribed to ConfScout updates.
+                You are receiving this because you subscribed to ConfScouting updates.
               </p>
               <p style="margin:0;color:#9ca3af;font-size:13px;">
                 <a href="${unsubscribeUrl}" style="color:#6b7280;text-decoration:underline;">Unsubscribe</a> from these updates
                 <span style="margin:0 8px;">|</span>
-                <a href="${APP_URL}" style="color:#6b7280;text-decoration:underline;">Visit ConfScout</a>
+                <a href="${APP_URL}" style="color:#6b7280;text-decoration:underline;">Visit ConfScouting</a>
               </p>
             </td>
           </tr>

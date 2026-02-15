@@ -93,11 +93,13 @@ describe('Cookie Security', () => {
       }
 
       // Only allow in development/test context
+      // Also allow email.ts which uses secure: false for STARTTLS SMTP (not cookies)
       const lines = result.split('\n').filter(line => {
         if (!line) return false;
         const filePath = line.split(':')[0];
         const isTestFile = /(^|[\\/])(test|spec|__tests__|__mocks__)s?([\\/]|$)/.test(filePath);
-        return !isTestFile && !line.includes('NODE_ENV') && !line.includes('development');
+        const isEmailConfig = filePath.includes('email.ts');
+        return !isTestFile && !isEmailConfig && !line.includes('NODE_ENV') && !line.includes('development');
       });
       
       expect(lines).toHaveLength(0);

@@ -8,16 +8,16 @@ export async function GET() {
 
     // Create Feed
     const feed = new Feed({
-        title: "ConfScout - Upcoming Tech Conferences",
+        title: "ConfScouting - Upcoming Tech Conferences",
         description: "Curated list of software engineering conferences worldwide.",
         id: siteUrl,
         link: siteUrl,
         language: "en",
         image: `${siteUrl}/favicon.ico`,
         favicon: `${siteUrl}/favicon.ico`,
-        copyright: `All rights reserved ${new Date().getFullYear()}, ConfScout`,
+        copyright: `All rights reserved ${new Date().getFullYear()}, ConfScouting`,
         updated: new Date(),
-        generator: "ConfScout RSS Feed",
+        generator: "ConfScouting RSS Feed",
         feedLinks: {
             rss: `${siteUrl}/rss.xml`,
         },
@@ -54,7 +54,7 @@ export async function GET() {
             `,
                 author: [
                     {
-                        name: "ConfScout",
+                        name: "ConfScouting",
                         email: "admin@mohitmishra7.com",
                         link: siteUrl,
                     },

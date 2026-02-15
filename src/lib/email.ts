@@ -29,15 +29,15 @@ export async function sendWelcomeEmail(to: string, token: string) {
   const unsubscribeUrl = `${APP_URL}/api/unsubscribe?token=${token}`;
   
   await transporter.sendMail({
-    from: `"ConfScout" <${process.env.ZOHO_USER || process.env.ZOHO_EMAIL}>`,
+    from: `"ConfScouting" <${process.env.ZOHO_USER || process.env.ZOHO_EMAIL}>`,
     to,
-    subject: 'Welcome to ConfScout!',
+    subject: 'Welcome to ConfScouting!',
     headers: {
       'List-Unsubscribe': `<${unsubscribeUrl}>`,
     },
     html: `
       <div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:20px;border:1px solid #e5e7eb;border-radius:8px;">
-        <h1 style="color:#1e40af;">Welcome to ConfScout!</h1>
+        <h1 style="color:#1e40af;">Welcome to ConfScouting!</h1>
         <p>Thanks for subscribing! You'll receive regular updates on the best tech conferences and CFP deadlines.</p>
         <div style="margin:30px 0;text-align:center;">
           <a href="${APP_URL}" style="background:#111827;color:#ffffff;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">Explore Conferences</a>
@@ -97,10 +97,10 @@ function wrapGroqContent(
           </tr>
           <tr>
             <td style="background:#f9fafb;padding:32px 40px;border-top:1px solid #e5e7eb;border-radius:0 0 8px 8px;text-align:center;">
-              <p style="margin:0 0 8px 0;color:#6b7280;font-size:14px;">You are receiving this because you subscribed to ConfScout updates.</p>
+              <p style="margin:0 0 8px 0;color:#6b7280;font-size:14px;">You are receiving this because you subscribed to ConfScouting updates.</p>
               <p style="margin:0;color:#9ca3af;font-size:13px;">
                 <a href="${unsubscribeUrl}" style="color:#6b7280;text-decoration:underline;">Unsubscribe</a> | 
-                <a href="${APP_URL}" style="color:#6b7280;text-decoration:underline;">Visit ConfScout</a>
+                <a href="${APP_URL}" style="color:#6b7280;text-decoration:underline;">Visit ConfScouting</a>
               </p>
             </td>
           </tr>
@@ -220,7 +220,7 @@ export async function sendDigestEmail(
     const subject = generateEmailSubject(frequency, conferences.length);
 
     await transporter.sendMail({
-      from: `"ConfScout" <${process.env.ZOHO_USER || process.env.ZOHO_EMAIL}>`,
+      from: `"ConfScouting" <${process.env.ZOHO_USER || process.env.ZOHO_EMAIL}>`,
       to,
       subject,
       html: htmlContent,
@@ -245,7 +245,7 @@ export async function sendUnsubscribeEmail(to: string, token: string) {
   const unsubscribeUrl = `${APP_URL}/api/unsubscribe?token=${token}`;
   
   await transporter.sendMail({
-    from: `"ConfScout" <${process.env.ZOHO_USER || process.env.ZOHO_EMAIL}>`,
+    from: `"ConfScouting" <${process.env.ZOHO_USER || process.env.ZOHO_EMAIL}>`,
     to,
     subject: 'You have been unsubscribed',
     headers: {
@@ -268,7 +268,7 @@ export async function sendUnsubscribeEmail(to: string, token: string) {
                   <td style="padding:40px;text-align:center;">
                     <h1 style="margin:0 0 16px 0;color:#111827;font-size:24px;font-weight:700;">Unsubscribe Confirmed</h1>
                     <p style="margin:0 0 24px 0;color:#6b7280;font-size:16px;line-height:1.6;">
-                      You have been successfully removed from the ConfScout mailing list.
+                      You have been successfully removed from the ConfScouting mailing list.
                     </p>
                     <p style="margin:0;color:#9ca3af;font-size:14px;">
                       We're sorry to see you go! If you change your mind, you can always resubscribe at 

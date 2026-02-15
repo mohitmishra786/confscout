@@ -13,7 +13,7 @@ export default function Footer() {
             <div className="relative w-8 h-8 transition-transform group-hover:scale-105">
               <Image
                 src="/logo.png"
-                alt="ConfScout Logo"
+                alt="ConfScouting Logo"
                 fill
                 className="object-contain rounded-lg"
               />

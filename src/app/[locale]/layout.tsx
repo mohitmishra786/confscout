@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://confscout.site'),
-  title: "ConfScout: Tech Conferences Directory",
+  title: "ConfScouting: Tech Conferences Directory",
   description: "Your open-source tech conference companion. Discover upcoming events, track CFPs, and find financial aid opportunities.",
   icons: {
     icon: "/icon.png",
@@ -28,13 +28,13 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   manifest: "/manifest.json",
-  appleWebApp: {
+    appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "ConfScout",
+    title: "ConfScouting",
   },
   openGraph: {
-    title: "ConfScout: Tech Conferences",
+    title: "ConfScouting: Tech Conferences",
     description: "Discover 130+ upcoming tech conferences. Track CFPs and find speaking opportunities.",
     images: [{ url: "/og-image.png", width: 1200, height: 630 }],
     type: "website",
@@ -43,8 +43,8 @@ export const metadata: Metadata = {
     'mobile-web-app-capable': 'yes',
     'apple-mobile-web-app-capable': 'yes',
     'apple-mobile-web-app-status-bar-style': 'default',
-    'apple-mobile-web-app-title': 'ConfScout',
-    'application-name': 'ConfScout',
+    'apple-mobile-web-app-title': 'ConfScouting',
+    'application-name': 'ConfScouting',
   },
 };
 

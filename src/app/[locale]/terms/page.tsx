@@ -10,7 +10,7 @@ export default function TermsPage() {
         <div className="prose prose-invert prose-zinc max-w-none space-y-6 text-zinc-400">
           <section>
             <h2 className="text-xl font-bold text-white mb-4">1. Acceptance of Terms</h2>
-            <p>By using ConfScout, you agree to these terms. If you do not agree, please do not use the platform.</p>
+            <p>By using ConfScouting, you agree to these terms. If you do not agree, please do not use the platform.</p>
           </section>
 
           <section>
@@ -20,12 +20,12 @@ export default function TermsPage() {
 
           <section>
             <h2 className="text-xl font-bold text-white mb-4">3. Use of Content</h2>
-            <p>ConfScout is an open-source project. Data aggregated from third-party sources remains the property of their respective owners.</p>
+            <p>ConfScouting is an open-source project. Data aggregated from third-party sources remains the property of their respective owners.</p>
           </section>
 
           <section>
             <h2 className="text-xl font-bold text-white mb-4">4. Limitation of Liability</h2>
-            <p>ConfScout is provided &quot;as is&quot; without warranty. We are not liable for any travel costs, visa issues, or damages resulting from the use of our platform.</p>
+            <p>ConfScouting is provided &quot;as is&quot; without warranty. We are not liable for any travel costs, visa issues, or damages resulting from the use of our platform.</p>
           </section>
 
           <section className="pt-8 border-t border-zinc-800">

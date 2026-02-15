@@ -20,14 +20,14 @@ export default function Header() {
               <div className="relative w-9 h-9 transition-transform group-hover:scale-105">
                 <Image
                   src="/logo.png"
-                  alt="ConfScout Logo"
+                  alt="ConfScouting Logo"
                   fill
                   className="object-contain rounded-xl"
                   priority
                 />
               </div>
               <span className="text-xl font-bold text-white tracking-tight">
-                ConfScout
+                ConfScouting
               </span>
             </Link>
           </div>

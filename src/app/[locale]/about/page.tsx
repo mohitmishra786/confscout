@@ -11,7 +11,7 @@ export default function AboutPage() {
         {/* Hero */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">
-            About <span className="gradient-text">ConfScout</span>
+            About <span className="gradient-text">ConfScouting</span>
           </h1>
           <p className="text-zinc-400 text-lg">
             Find tech conferences and speaking opportunities
@@ -20,14 +20,14 @@ export default function AboutPage() {
 
         {/* Content */}
         <div className="space-y-8">
-          {/* What is ConfScout */}
+          {/* What is ConfScouting */}
           <div className="card p-8">
-            <h2 className="text-xl font-bold text-white mb-4">What is ConfScout</h2>
+            <h2 className="text-xl font-bold text-white mb-4">What is ConfScouting</h2>
             <p className="text-zinc-400 leading-relaxed">
-              ConfScout is a directory of upcoming tech conferences from around the world.
+              ConfScouting is a directory of upcoming tech conferences from around the world.
               We collect conference information from various public sources and present
               it in a simple, searchable format. Whether you are looking to attend a
-              conference or submit a talk, ConfScout helps you find opportunities that match
+              conference or submit a talk, ConfScouting helps you find opportunities that match
               your interests.
             </p>
           </div>
@@ -82,9 +82,9 @@ export default function AboutPage() {
 
           {/* Support */}
           <div className="card p-8">
-            <h2 className="text-xl font-bold text-white mb-4">Support ConfScout</h2>
+            <h2 className="text-xl font-bold text-white mb-4">Support ConfScouting</h2>
             <p className="text-zinc-400 leading-relaxed mb-6">
-              ConfScout is an open source project. Running and maintaining it involves costs
+              ConfScouting is an open source project. Running and maintaining it involves costs
               for hosting, domain renewal, and development time. If you find this tool
               useful, please consider supporting us.
             </p>
@@ -118,7 +118,7 @@ export default function AboutPage() {
           <div className="card p-8">
             <h2 className="text-xl font-bold text-white mb-4">Open Source</h2>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              ConfScout is fully open source. You can view the code, report issues, or
+              ConfScouting is fully open source. You can view the code, report issues, or
               contribute on GitHub.
             </p>
             <a

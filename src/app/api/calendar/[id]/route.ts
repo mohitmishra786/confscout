@@ -85,7 +85,7 @@ function generateICS(conference: {
 
     return `BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//ConfScout//Conference Calendar//EN
+PRODID:-//ConfScouting//Conference Calendar//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT

@@ -7,7 +7,7 @@ export function generateICalEvent(conference: Conference): string {
   return [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
-    'PRODID:-//ConfScout//EN',
+    'PRODID:-//ConfScouting//EN',
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
     'BEGIN:VEVENT',
@@ -28,7 +28,7 @@ export function generateICalDownload(conferences: Conference[]): string {
   return [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
-    'PRODID:-//ConfScout//EN',
+    'PRODID:-//ConfScouting//EN',
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
     events,

@@ -68,7 +68,7 @@ describe('Email Service', () => {
       expect(mockSendMail).toHaveBeenCalledWith(
         expect.objectContaining({
           to: 'test@example.com',
-          subject: 'Welcome to ConfScout!',
+          subject: 'Welcome to ConfScouting!',
         })
       );
     });

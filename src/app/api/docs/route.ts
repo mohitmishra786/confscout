@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
   const docs = {
-    title: 'ConfScout API Documentation',
+    title: 'ConfScouting API Documentation',
     version: 'v1',
     baseUrl: process.env.NEXT_PUBLIC_APP_URL || 'https://confscout.site',
     endpoints: [
