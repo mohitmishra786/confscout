@@ -15,5 +15,8 @@ geopy>=2.3.0
 # Date parsing for conference dates
 python-dateutil>=2.8.0
 
+# XML parsing with security protections (for dblp source)
+defusedxml>=0.7.1
+
 # (Optional) Discord notifications
 # If using Discord webhooks, requests is sufficient
