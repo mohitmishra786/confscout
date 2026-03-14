@@ -1,13 +1,1 @@
-<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="gradient" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#3b82f6" />
-      <stop offset="100%" stop-color="#8b5cf6" />
-    </linearGradient>
-  </defs>
-  <rect width="512" height="512" rx="128" fill="url(#gradient)" />
-  <path d="M352 144H160C142.3 144 128 158.3 128 176V304C128 321.7 142.3 336 160 336H304L352 384V336H352C369.7 336 384 321.7 384 304V176C384 158.3 369.7 144 352 144ZM192 256H194V258H192V256ZM255 256H257V258H255V256ZM318 256H320V258H318V256Z" fill="white" />
-  <circle cx="192" cy="240" r="24" fill="white" fill-opacity="0.9" />
-  <circle cx="256" cy="240" r="24" fill="white" fill-opacity="0.9" />
-  <circle cx="320" cy="240" r="24" fill="white" fill-opacity="0.9" />
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" fill="none" viewBox="0 0 512 512"><defs><linearGradient id="gradient" x1="0" x2="512" y1="0" y2="512" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient></defs><rect width="512" height="512" fill="url(#gradient)" rx="128"/><path fill="#fff" d="M352 144H160C142.3 144 128 158.3 128 176V304C128 321.7 142.3 336 160 336H304L352 384V336H352C369.7 336 384 321.7 384 304V176C384 158.3 369.7 144 352 144ZM192 256H194V258H192V256ZM255 256H257V258H255V256ZM318 256H320V258H318V256Z"/><circle cx="192" cy="240" r="24" fill="#fff" fill-opacity=".9"/><circle cx="256" cy="240" r="24" fill="#fff" fill-opacity=".9"/><circle cx="320" cy="240" r="24" fill="#fff" fill-opacity=".9"/></svg>
