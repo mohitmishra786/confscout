@@ -15,7 +15,7 @@
  */
 export function isSafeRedirectUrl(
   url: string,
-  allowedHosts: string[] = ['confscout.site', 'localhost', '127.0.0.1']
+  allowedHosts: string[] = ['confscouting.com', 'www.confscouting.com', 'localhost', '127.0.0.1']
 ): boolean {
   if (!url) return false;
 

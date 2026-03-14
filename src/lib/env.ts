@@ -22,6 +22,10 @@ const envSchema = z.object({
   
   // App Config
   NEXT_PUBLIC_MAPBOX_TOKEN: z.string().optional(),
+
+  // Cache invalidation — set this in Vercel env vars and GitHub Actions secrets.
+  // The workflow POSTs to /api/cache/invalidate with this as a Bearer token.
+  CACHE_INVALIDATION_SECRET: z.string().min(16).optional(),
 });
 
 export type Env = z.infer<typeof envSchema>;

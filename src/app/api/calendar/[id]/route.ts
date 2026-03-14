@@ -89,7 +89,7 @@ PRODID:-//ConfScouting//Conference Calendar//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
-UID:${conference.id}@confscout.site
+UID:${conference.id}@confscouting.com
 DTSTAMP:${dtstamp}
 DTSTART;VALUE=DATE:${dtstart}
 DTEND;VALUE=DATE:${dtend}

@@ -9,7 +9,7 @@ import pool from '@/lib/db';
 import { sendDigestEmail } from '@/lib/email';
 import type { Conference } from '@/types/conference';
 import { invalidateCache } from '@/lib/cache';
-import { readFileSync } from 'fs';
+import { readFile } from 'fs/promises';
 import { join } from 'path';
 import { timingSafeEqual } from 'crypto';
 
@@ -120,9 +120,9 @@ export async function GET(request: NextRequest) {
   const triggerFrequency = parseResult.data;
 
   try {
-    // Load conference data using fs (works in serverless)
+    // Load conference data using async fs (non-blocking)
     const dataPath = join(process.cwd(), 'public', 'data', 'conferences.json');
-    const fileContents = readFileSync(dataPath, 'utf8');
+    const fileContents = await readFile(dataPath, 'utf8');
     const data = JSON.parse(fileContents) as { months?: Record<string, Conference[]>; conferences?: Conference[] };
     const conferences: Conference[] = data.months 
       ? Object.values(data.months).flat() as Conference[] 

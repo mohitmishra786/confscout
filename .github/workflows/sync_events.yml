@@ -57,6 +57,22 @@ jobs:
           git commit -m "chore: update conference data [skip ci]"
           git push https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git
 
+      - name: Flush Redis cache + trigger ISR revalidation
+        # Only flush when data actually changed — the git-check step tells us.
+        # Deletes the Redis key, warms it with fresh DB data, and rebuilds
+        # the static homepage so visitors always see the latest conferences.
+        if: steps.git-check.outputs.changes == 'true'
+        env:
+          APP_URL: ${{ vars.NEXT_PUBLIC_APP_URL || 'https://www.confscouting.com' }}
+          CACHE_INVALIDATION_SECRET: ${{ secrets.CACHE_INVALIDATION_SECRET }}
+        run: |
+          curl --fail --silent --show-error \
+            -X POST "${APP_URL}/api/cache/invalidate" \
+            -H "Authorization: Bearer ${CACHE_INVALIDATION_SECRET}" \
+            -H "Content-Type: application/json" \
+          && echo "Cache invalidated successfully" \
+          || echo "Cache invalidation failed (non-fatal)"
+
       - name: Summary
         run: |
           echo "## Conference Data Sync Complete" >> $GITHUB_STEP_SUMMARY

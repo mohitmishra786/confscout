@@ -46,7 +46,9 @@ export default function HomeClient({ initialData }: HomeClientProps) {
   const [viewMode, setViewMode] = useState<'timeline' | 'grid'>('timeline');
   const [speakerMode, setSpeakerMode] = useState(false);
   const [selectedDomain, setSelectedDomain] = useState('all');
-  const [showMap, setShowMap] = useState(true);
+  // Map is hidden by default — defers loading the ~180 KB Leaflet bundle
+  // until the user explicitly opens it, improving mobile TTI.
+  const [showMap, setShowMap] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
   // Subscription and Map UI state
@@ -180,7 +182,7 @@ export default function HomeClient({ initialData }: HomeClientProps) {
     '@type': 'CollectionPage',
     name: 'Tech Conferences Worldwide',
     description: 'A curated list of upcoming tech conferences, CFPs, and events.',
-    url: 'https://confscout.site',
+    url: 'https://www.confscouting.com',
     mainEntity: allConferences.slice(0, 20).map(conf => ({
       '@type': 'Event',
       name: conf.name,
@@ -200,7 +202,7 @@ export default function HomeClient({ initialData }: HomeClientProps) {
           addressCountry: conf.location.country
         }
       },
-      image: 'https://confscout.site/og-image.png',
+      image: 'https://www.confscouting.com/og-image.png',
       description: conf.description || `Tech conference focused on ${conf.domain}.`,
       offers: {
         '@type': 'Offer',

@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/admin', '/api/'],
     },
-    sitemap: 'https://confscout.site/sitemap.xml',
+    sitemap: `${process.env.NEXT_PUBLIC_APP_URL || 'https://www.confscouting.com'}/sitemap.xml`,
   };
 }

@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 import { DOMAIN_INFO } from '@/types/conference';
 
-const BASE_URL = 'https://confscout.site';
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://www.confscouting.com';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [

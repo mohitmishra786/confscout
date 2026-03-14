@@ -21,8 +21,8 @@ describe('Open Redirect Prevention', () => {
     });
 
     it('should allow URLs with allowed hosts', () => {
-      expect(isSafeRedirectUrl('https://confscout.site/dashboard')).toBe(true);
-      expect(isSafeRedirectUrl('https://www.confscout.site/profile')).toBe(true);
+      expect(isSafeRedirectUrl('https://confscouting.com/dashboard')).toBe(true);
+      expect(isSafeRedirectUrl('https://www.confscouting.com/profile')).toBe(true);
     });
 
     it('should reject protocol-relative URLs', () => {
@@ -45,7 +45,7 @@ describe('Open Redirect Prevention', () => {
     });
 
     it('should reject URLs with credentials', () => {
-      expect(isSafeRedirectUrl('https://user:pass@confscout.site')).toBe(false);
+      expect(isSafeRedirectUrl('https://user:pass@confscouting.com')).toBe(false);
     });
 
     it('should reject empty URLs', () => {
@@ -83,7 +83,7 @@ describe('Open Redirect Prevention', () => {
     });
 
     it('should reject URLs with @ symbol in path (credential injection)', () => {
-      expect(isSafeRedirectUrl('https://confscout.site@evil.com')).toBe(false);
+      expect(isSafeRedirectUrl('https://confscouting.com@evil.com')).toBe(false);
     });
   });
 
@@ -122,7 +122,7 @@ describe('Open Redirect Prevention', () => {
     });
 
     it('should reject absolute URLs', () => {
-      expect(isSafeCallbackUrl('https://confscout.site/dashboard')).toBe(false);
+      expect(isSafeCallbackUrl('https://confscouting.com/dashboard')).toBe(false);
       expect(isSafeCallbackUrl('http://localhost:3000')).toBe(false);
     });
 
@@ -244,12 +244,12 @@ describe('Open Redirect Prevention', () => {
   describe('Edge Cases', () => {
     it('should handle URLs with fragments', () => {
       expect(isSafeRedirectUrl('/dashboard#section')).toBe(true);
-      expect(isSafeRedirectUrl('https://confscout.site/page#anchor')).toBe(true);
+      expect(isSafeRedirectUrl('https://confscouting.com/page#anchor')).toBe(true);
     });
 
     it('should handle URLs with query parameters', () => {
       expect(isSafeRedirectUrl('/search?q=test')).toBe(true);
-      expect(isSafeRedirectUrl('https://confscout.site/page?id=123')).toBe(true);
+      expect(isSafeRedirectUrl('https://confscouting.com/page?id=123')).toBe(true);
     });
 
     it('should handle URLs with both query and fragment', () => {

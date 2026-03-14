@@ -1,22 +1,31 @@
 /**
  * ConfScout Homepage - SERVER COMPONENT
- * 
- * This is the main server component that fetches data server-side
- * for optimal performance (reduced TTFB and improved FCP).
+ *
+ * Statically generated at build time for each locale, then revalidated
+ * via ISR every hour so content stays fresh without per-request DB hits.
  */
 
 import { getCachedConferences } from '@/lib/cache';
 import HomeClient from './page.client';
-
-export const dynamic = 'force-dynamic';
-export const revalidate = 3600; // Revalidate every hour
-
 import { JSX } from 'react';
 
+// ISR: rebuild this page at most once per hour on demand.
+// Remove `force-dynamic` — that was forcing a full server render on every
+// request, bypassing the entire Next.js cache and hammering the DB/Redis
+// on every cold start. With ISR the built HTML is served from the CDN edge
+// and only the background revalidation touches the DB.
+export const revalidate = 3600; // seconds
+
+// Tell Next.js which locale segments to pre-render at build time.
+// Currently only 'en' is active (intlMiddleware locales: ['en']).
+// Add more when you add locales: ['en', 'fr', 'de', 'es'].
+export function generateStaticParams() {
+  return [{ locale: 'en' }];
+}
+
 export default async function Home(): Promise<JSX.Element> {
-  // Server-side data fetching - runs in parallel with component rendering
+  // During ISR revalidation this runs once, result is cached at the edge.
+  // During a normal request the cached HTML is returned without touching this.
   const data = await getCachedConferences();
-  
-  // Pass the pre-fetched data to the client component
   return <HomeClient initialData={data} />;
 }

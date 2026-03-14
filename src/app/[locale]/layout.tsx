@@ -1,3 +1,9 @@
+// Pre-render the layout for each supported locale at build time.
+// Must mirror the list in page.tsx generateStaticParams.
+export function generateStaticParams() {
+  return [{ locale: 'en' }];
+}
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
@@ -19,7 +25,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://confscout.site'),
+  metadataBase: new URL('https://www.confscouting.com'),
   title: "ConfScouting: Tech Conferences Directory",
   description: "Your open-source tech conference companion. Discover upcoming events, track CFPs, and find financial aid opportunities.",
   icons: {

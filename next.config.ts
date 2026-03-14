@@ -28,12 +28,20 @@ const nextConfig: NextConfig = {
         source: '/api/:path*',
         headers: [
           { key: 'Access-Control-Allow-Credentials', value: 'true' },
-          { key: 'Access-Control-Allow-Origin', value: process.env.NEXT_PUBLIC_APP_URL || 'https://confscout.site' },
+          { key: 'Access-Control-Allow-Origin', value: process.env.NEXT_PUBLIC_APP_URL || 'https://www.confscouting.com' },
           { key: 'Access-Control-Allow-Methods', value: 'GET,DELETE,PATCH,POST,PUT,OPTIONS' },
-          { 
-            key: 'Access-Control-Allow-Headers', 
-            value: 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version' 
+          {
+            key: 'Access-Control-Allow-Headers',
+            value: 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
           },
+        ],
+      },
+      {
+        // The static JSON fallback is only read when DB + Redis are both down.
+        // Serve it from Vercel's edge cache for 1 h, allow stale for 24 h.
+        source: '/data/:path*.json',
+        headers: [
+          { key: 'Cache-Control', value: 's-maxage=3600, stale-while-revalidate=86400' },
         ],
       },
       {

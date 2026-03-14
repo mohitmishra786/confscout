@@ -4,7 +4,7 @@ export async function GET() {
   const docs = {
     title: 'ConfScouting API Documentation',
     version: 'v1',
-    baseUrl: process.env.NEXT_PUBLIC_APP_URL || 'https://confscout.site',
+    baseUrl: process.env.NEXT_PUBLIC_APP_URL || 'https://www.confscouting.com',
     endpoints: [
       {
         path: '/api/v1/conferences',

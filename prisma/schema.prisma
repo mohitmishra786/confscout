@@ -134,6 +134,8 @@ model Conference {
   @@index([cfpEndDate])
   @@index([cfpStatus])
   @@index([domain, startDate])
+  // Supports queries that filter/sort by geography (e.g. country-page, near-me)
+  @@index([country, city])
   @@map("conferences")
 }
 

@@ -3,7 +3,7 @@ import { promises as fs } from 'fs';
 import path from 'path';
 
 export async function GET() {
-    const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://confscout.site';
+    const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://www.confscouting.com';
     const dataPath = path.join(process.cwd(), 'public/data/conferences.json');
 
     // Create Feed

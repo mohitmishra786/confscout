@@ -48,3 +48,18 @@ jobs:
           git add public/data/conferences.json
           git commit -m "chore: data update [skip ci]" || echo "No changes to commit"
           git push https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git
+
+      - name: Flush Redis cache + trigger ISR revalidation
+        # Deletes the Redis key so the next request fetches fresh DB data,
+        # then warms the cache and rebuilds the static homepage HTML.
+        # Runs even if the git commit was a no-op (data may have changed in DB).
+        env:
+          APP_URL: ${{ secrets.NEXT_PUBLIC_APP_URL || 'https://www.confscouting.com' }}
+          CACHE_INVALIDATION_SECRET: ${{ secrets.CACHE_INVALIDATION_SECRET }}
+        run: |
+          curl --fail --silent --show-error \
+            -X POST "${APP_URL}/api/cache/invalidate" \
+            -H "Authorization: Bearer ${CACHE_INVALIDATION_SECRET}" \
+            -H "Content-Type: application/json" \
+          && echo "Cache invalidated successfully" \
+          || echo "Cache invalidation failed (non-fatal)"

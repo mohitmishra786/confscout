@@ -19,23 +19,43 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
     }
   ],
-  "categories": ["productivity", "education", "lifestyle"],
+  "categories": [
+    "productivity",
+    "education",
+    "lifestyle"
+  ],
   "shortcuts": [
     {
       "name": "Search Conferences",
       "short_name": "Search",
       "description": "Find tech conferences",
       "url": "/search",
-      "icons": [{ "src": "/icon.png", "sizes": "192x192" }]
+      "icons": [
+        {
+          "src": "/icon.png",
+          "sizes": "192x192"
+        }
+      ]
     },
     {
       "name": "Submit Conference",
       "short_name": "Submit",
       "description": "Add a new conference",
       "url": "/submit",
-      "icons": [{ "src": "/icon.png", "sizes": "192x192" }]
+      "icons": [
+        {
+          "src": "/icon.png",
+          "sizes": "192x192"
+        }
+      ]
     }
   ]
 }

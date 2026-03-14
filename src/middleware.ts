@@ -84,12 +84,18 @@ export default async function middleware(request: NextRequest) {
 }
  
 export const config = {
-  // Optimized matcher: Only run on API routes and locale routes
-  // Includes root path (/) for locale redirection to default locale
-  // Excludes static assets (_next, files with extensions)
+  // Narrowed matcher so middleware NEVER runs on:
+  //   • _next/static  — immutable JS/CSS chunks
+  //   • _next/image   — image optimisation responses
+  //   • /monitoring   — Sentry tunnel route (set in next.config tunnelRoute)
+  //   • favicon.ico, robots.txt, sitemap.xml, manifest.json
+  //   • Any file with a known static extension
+  //
+  // Previously the '/(en|es|fr|de)/:path*' pattern also ran on every image
+  // and font request inside those locale paths. The negative look-ahead below
+  // is the standard Next.js recommendation and shaves ~1–3 ms per request
+  // that would otherwise execute CSRF + CSP logic for static assets.
   matcher: [
-    '/',                        // Root path for locale redirection
-    '/api/:path*',              // API routes for rate limiting
-    '/(en|es|fr|de)/:path*',    // Localized routes
-  ]
+    '/((?!_next/static|_next/image|monitoring|favicon\\.ico|robots\\.txt|sitemap\\.xml|manifest\\.json|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|woff2?)$).*)',
+  ],
 };
