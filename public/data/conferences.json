@@ -1,21 +1,21 @@
 {
-  "lastUpdated": "2026-06-18T02:09:21.629848Z",
+  "lastUpdated": "2026-06-18T10:12:20.312948Z",
   "stats": {
-    "total": 1754,
-    "withOpenCFP": 257,
-    "withLocation": 1615,
+    "total": 1652,
+    "withOpenCFP": 249,
+    "withLocation": 1526,
     "byDomain": {
-        "general": 1267,
-        "cloud": 62,
-        "software": 82,
-        "mobile": 18,
-        "web": 30,
-        "security": 44,
-        "data": 10,
-        "devops": 6,
-        "ai": 91,
-        "opensource": 5,
-        "academic": 139
+        "general": 1205,
+        "cloud": 61,
+        "software": 70,
+        "web": 24,
+        "security": 42,
+        "mobile": 10,
+        "data": 8,
+        "devops": 4,
+        "opensource": 4,
+        "academic": 139,
+        "ai": 85
     }
 },
   "months": {
@@ -69,30 +69,6 @@
         "subDomains": [],
         "tags": [],
         "id": "45dca54c5943"
-    },
-    {
-        "name": "DevConf.CZ",
-        "url": "https://www.devconf.info/cz/",
-        "startDate": "2026-06-18",
-        "endDate": "2026-06-20",
-        "location": {
-            "city": "Brno",
-            "country": "Czech Republic",
-            "raw": "Brno, Czech Republic"
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://pretalx.devconf.info/devconf-cz-2026/cfp",
-            "endDate": "2026-03-01",
-            "daysRemaining": -110,
-            "status": "closed"
-        },
-        "twitter": "@devconf_cz",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "0648d4d7fad6"
     },
     {
         "name": "TEDxDhahran",
@@ -306,10 +282,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -437,11 +409,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "twitter": "@GlobAICommunity",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -488,10 +455,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -523,72 +486,6 @@
         "id": "4644fa4cb644"
     },
     {
-        "name": "MAD Summit",
-        "url": "https://mad-summit.de/muenchen",
-        "startDate": "2026-06-22",
-        "endDate": "2026-06-26",
-        "location": {
-            "city": "Munich",
-            "country": "Germany",
-            "raw": "Munich, Germany",
-            "lat": 48.1351,
-            "lng": 11.582
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": "@mad_summit",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "e8a39166340e"
-    },
-    {
-        "name": "MLcon Munich",
-        "url": "https://mlconference.ai/munich",
-        "startDate": "2026-06-22",
-        "endDate": "2026-06-26",
-        "location": {
-            "city": "Munich",
-            "country": "Germany",
-            "raw": "Munich, Germany",
-            "lat": 48.1351,
-            "lng": 11.582
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": "@mlconference",
-        "domain": "ai",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "94c492819d51"
-    },
-    {
-        "name": "PlatformCON Live Day London",
-        "url": "https://platformcon.com/live-day-london",
-        "startDate": "2026-06-23",
-        "endDate": "2026-06-23",
-        "location": {
-            "city": "London",
-            "country": "U.K.",
-            "raw": "London, U.K.",
-            "lat": 51.5074,
-            "lng": -0.1278
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "d8eab5a0f499"
-    },
-    {
         "name": "VibeKode",
         "url": "https://vibekode.it",
         "startDate": "2026-06-23",
@@ -608,10 +505,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -691,27 +584,6 @@
         "subDomains": [],
         "tags": [],
         "id": "930ff02b2dd5"
-    },
-    {
-        "name": "Conversations Roadshow: Berlin by CTO Craft",
-        "url": "https://conversations.ctocraft.com/berlin",
-        "startDate": "2026-06-23",
-        "endDate": "2026-06-23",
-        "location": {
-            "city": "Berlin",
-            "country": "Germany",
-            "raw": "Berlin, Germany",
-            "lat": 52.52,
-            "lng": 13.405
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "4d959287ab7f"
     },
     {
         "name": "AWS Community Day Midwest 2026",
@@ -968,32 +840,6 @@
         "id": "93639f4c5c74"
     },
     {
-        "name": "OWASP Global AppSec EU",
-        "url": "https://owasp.glueup.com/event/owasp-global-appsec-eu-2026-vienna-austria-162243",
-        "startDate": "2026-06-25",
-        "endDate": "2026-06-26",
-        "location": {
-            "city": "Vienna",
-            "country": "Austria",
-            "raw": "Vienna, Austria",
-            "lat": 48.2082,
-            "lng": 16.3738
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://sessionize.com/owasp-global-appsec-eu-2026-cfp-wash",
-            "endDate": "2026-02-03",
-            "daysRemaining": -136,
-            "status": "closed"
-        },
-        "twitter": "@AppSecEU",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "5aac9a2eb429"
-    },
-    {
         "name": "Experts Live Austria 2026",
         "url": "http://www.expertslive.at",
         "startDate": "2026-06-25",
@@ -1142,48 +988,6 @@
         "subDomains": [],
         "tags": [],
         "id": "51556e1376bc"
-    },
-    {
-        "name": "Mastering GitOps",
-        "url": "https://www.mastering-gitops.de",
-        "startDate": "2026-06-25",
-        "endDate": "2026-06-25",
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": null,
-        "domain": "devops",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "f6bed9d67973"
-    },
-    {
-        "name": "DAM Europe",
-        "url": "https://www.henrystewartconferences.com/events/dam-europe-2026",
-        "startDate": "2026-06-25",
-        "endDate": "2026-06-26",
-        "location": {
-            "city": "London",
-            "country": "U.K.",
-            "raw": "London, U.K.",
-            "lat": 51.5074,
-            "lng": -0.1278
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": "@henrystewartdam",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "315aa368a63d"
     },
     {
         "name": "Denver Dev Day | Developer's Conference | June 2026",
@@ -1349,10 +1153,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "data",
         "subDomains": [
             "cloud"
@@ -1433,11 +1233,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "twitter": "@AsynconfEvenet",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -1629,10 +1424,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -1664,30 +1455,6 @@
         "id": "3e9dd342af9f"
     },
     {
-        "name": "The European Power Platform Conference",
-        "url": "https://www.sharepointeurope.com/european-power-platform-conference",
-        "startDate": "2026-06-29",
-        "endDate": "2026-07-02",
-        "location": {
-            "city": "Copenhagen",
-            "country": "Denmark",
-            "raw": "Copenhagen, Denmark",
-            "lat": 55.6761,
-            "lng": 12.5683
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": "@EuropeanPPC",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "59691336f6b9"
-    },
-    {
         "name": "Build //localhost: Zurich",
         "url": "https://globalai.community/chapters/zurich/events/global-ai-bootcamp-zuerich",
         "startDate": "2026-06-30",
@@ -1711,27 +1478,6 @@
         "subDomains": [],
         "tags": [],
         "id": "b998a9994785"
-    },
-    {
-        "name": "GITEX AI EUROPE",
-        "url": "https://www.gitexeurope.com",
-        "startDate": "2026-06-30",
-        "endDate": "2026-07-01",
-        "location": {
-            "city": "Berlin",
-            "country": "Germany",
-            "raw": "Berlin, Germany",
-            "lat": 52.52,
-            "lng": 13.405
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "2a3e0ce13688"
     }
 ],
     "July 2026": [
@@ -1834,52 +1580,6 @@
         "subDomains": [],
         "tags": [],
         "id": "8333f51f0fc1"
-    },
-    {
-        "name": "Web Summer Camp",
-        "url": "https://websummercamp.com/2026",
-        "startDate": "2026-07-02",
-        "endDate": "2026-07-04",
-        "location": {
-            "city": "Opatija",
-            "country": "Croatia",
-            "raw": "Opatija, Croatia"
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "web",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "2631def2557a"
-    },
-    {
-        "name": "ReactNexus",
-        "url": "https://reactnexus.com",
-        "startDate": "2026-07-02",
-        "endDate": "2026-07-03",
-        "location": {
-            "city": "Bengaluru",
-            "country": "India",
-            "raw": "Bengaluru, India",
-            "lat": 20.5937,
-            "lng": 78.9629
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": "@ReactNexus",
-        "domain": "web",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "29643d05412a"
     },
     {
         "name": "Perl Community Conference, Summer 2026",
@@ -2074,35 +1774,6 @@
         "id": "3d6d95f01789"
     },
     {
-        "name": "AI Coding Summit, London Edition",
-        "url": "https://aicodingsummit.com",
-        "startDate": "2026-07-06",
-        "endDate": "2026-07-07",
-        "location": {
-            "city": "London",
-            "country": "U.K.",
-            "raw": "London, U.K.",
-            "lat": 51.5074,
-            "lng": -0.1278
-        },
-        "online": true,
-        "cfp": {
-            "url": "https://gitnation.com/events/ai-coding-summit-london/cfp",
-            "endDate": "2026-04-30",
-            "daysRemaining": -50,
-            "status": "closed"
-        },
-        "twitter": "@AICodingSummit",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "778929248ad9"
-    },
-    {
         "name": "WeAreDevelopers World Congress 2026 - Europe",
         "url": "https://www.wearedevelopers.com/world-congress",
         "startDate": "2026-07-08",
@@ -2128,27 +1799,6 @@
         "id": "8b7b9aa84413"
     },
     {
-        "name": "WeAreDevelopers GmbH",
-        "url": "https://www.wearedevelopers.com/world-congress",
-        "startDate": "2026-07-08",
-        "endDate": "2026-07-10",
-        "location": {
-            "city": "Berlin",
-            "country": "Germany",
-            "raw": "Berlin, Germany",
-            "lat": 52.52,
-            "lng": 13.405
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "software",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "fcde3f41c3e6"
-    },
-    {
         "name": "VMUGNL Summer Sessions - VCF 9",
         "url": "https://vmugnl.nl",
         "startDate": "2026-07-09",
@@ -2172,32 +1822,6 @@
         "subDomains": [],
         "tags": [],
         "id": "ee8606a79b6d"
-    },
-    {
-        "name": "inside agile: Product Owner AI Day",
-        "url": "https://ai.pod.inside-agile.de",
-        "startDate": "2026-07-09",
-        "endDate": "2026-07-09",
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": null,
-        "domain": "software",
-        "tags": [
-            "agile"
-        ],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "755df0fa97c1"
     },
     {
         "name": "Data Saturday Rheinland 2026",
@@ -2325,30 +1949,6 @@
         "id": "bb8d4e185152"
     },
     {
-        "name": "SciPy",
-        "url": "https://www.scipy2026.scipy.org/",
-        "startDate": "2026-07-13",
-        "endDate": "2026-07-19",
-        "location": {
-            "city": "Minneapolis, MN",
-            "country": "U.S.A.",
-            "raw": "Minneapolis, MN, U.S.A."
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://pretalx.com/scipy-2026/cfp",
-            "endDate": "2026-02-25",
-            "daysRemaining": -114,
-            "status": "closed"
-        },
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "e39e6ef9c0d3"
-    },
-    {
         "name": "eduWeb Summit 2026",
         "url": "https://www.eduwebsummit.com",
         "startDate": "2026-07-14",
@@ -2397,51 +1997,6 @@
         "subDomains": [],
         "tags": [],
         "id": "2de6b6c9a894"
-    },
-    {
-        "name": "UberConf",
-        "url": "https://uberconf.com",
-        "startDate": "2026-07-14",
-        "endDate": "2026-07-17",
-        "location": {
-            "city": "Denver, CO",
-            "country": "U.S.A.",
-            "raw": "Denver, CO, U.S.A.",
-            "lat": 39.7392,
-            "lng": -104.9903
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": "@nofluff",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "faae6ea7eb16"
-    },
-    {
-        "name": "National Software Testing Conference",
-        "url": "https://nationalsoftwaretestingconference.co.uk",
-        "startDate": "2026-07-14",
-        "endDate": "2026-07-15",
-        "location": {
-            "city": "London",
-            "country": "U.K.",
-            "raw": "London, U.K.",
-            "lat": 51.5074,
-            "lng": -0.1278
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "software",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "c95b7cb969e7"
     },
     {
         "name": "2026 NCCI Annual Conference",
@@ -2565,28 +2120,6 @@
         "id": "b4da88201456"
     },
     {
-        "name": "droidcon USA",
-        "url": "https://usa.droidcon.com",
-        "startDate": "2026-07-16",
-        "endDate": "2026-07-17",
-        "location": {
-            "city": "Orlando, FL",
-            "country": "U.S.A.",
-            "raw": "Orlando, FL, U.S.A."
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": "@droidcon",
-        "domain": "mobile",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "748bc0b148ac"
-    },
-    {
         "name": "JConf Dominicana 2026",
         "url": "https://jconfdominicana.org",
         "startDate": "2026-07-17",
@@ -2654,10 +2187,6 @@
             "status": "open"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -2737,32 +2266,6 @@
             "aws"
         ],
         "id": "a793aec383d9"
-    },
-    {
-        "name": "AlmaLinux Day",
-        "url": "https://almalinux.org/almalinux-day-los-angeles-2026",
-        "startDate": "2026-07-18",
-        "endDate": "2026-07-18",
-        "location": {
-            "city": "Los Angeles, CA",
-            "country": "U.S.A.",
-            "raw": "Los Angeles, CA, U.S.A.",
-            "lat": 34.0522,
-            "lng": -118.2437
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://sessionize.com/almalinux-day-los-angeles",
-            "endDate": "2026-06-05",
-            "daysRemaining": -14,
-            "status": "closed"
-        },
-        "twitter": null,
-        "domain": "opensource",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "7dddb0cced5c"
     },
     {
         "name": "Google Cloud Next Extended Bangkok 2026",
@@ -2913,29 +2416,6 @@
         "subDomains": [],
         "tags": [],
         "id": "9abed26903a7"
-    },
-    {
-        "name": "Swift Rockies",
-        "url": "https://swiftrockies.com",
-        "startDate": "2026-07-22",
-        "endDate": "2026-07-23",
-        "location": {
-            "city": "Calgary",
-            "country": "Canada",
-            "raw": "Calgary, Canada",
-            "lat": 56.1304,
-            "lng": -106.3468
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "mobile",
-        "tags": [
-            "swift"
-        ],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "95f6249e94ab"
     },
     {
         "name": "Developers Conference 2026",
@@ -3284,32 +2764,6 @@
         "subDomains": [],
         "tags": [],
         "id": "5ba07cfb3eca"
-    },
-    {
-        "name": "4th Tech Summit on Artificial Intelligence & Robotics",
-        "url": "https://artificialintelligence.averconferences.com",
-        "startDate": "2026-08-02",
-        "endDate": "2026-08-02",
-        "location": {
-            "city": "Paris",
-            "country": "France",
-            "raw": "Paris, France",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://artificialintelligence.averconferences.com/scientific_session.php",
-            "endDate": "2026-07-18",
-            "daysRemaining": 29,
-            "status": "open"
-        },
-        "twitter": null,
-        "domain": "ai",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "cef1e4d257e1"
     },
     {
         "name": "La Villa - Hacker Summer Camp 2026",
@@ -3948,32 +3402,6 @@
         "id": "81b495b61000"
     },
     {
-        "name": "Laravel Live Denmark",
-        "url": "https://laravellive.dk",
-        "startDate": "2026-08-20",
-        "endDate": "2026-08-21",
-        "location": {
-            "city": "Copenhagen",
-            "country": "Denmark",
-            "raw": "Copenhagen, Denmark",
-            "lat": 55.6761,
-            "lng": 12.5683
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://laravellive.dk/become-a-speaker",
-            "endDate": "2026-03-15",
-            "daysRemaining": -96,
-            "status": "closed"
-        },
-        "twitter": "@laravellivedk",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "7d88e6a3e0af"
-    },
-    {
         "name": "EightKB August 2026",
         "url": "https://eightkb.online/",
         "startDate": "2026-08-20",
@@ -4512,27 +3940,6 @@
         "subDomains": [],
         "tags": [],
         "id": "b78ac3dce580"
-    },
-    {
-        "name": "Drupalcamp Colorado",
-        "url": "https://www.drupal.org/community/events/drupalcamp-colorado-2026-2026-08-27",
-        "startDate": "2026-08-27",
-        "endDate": "2026-08-28",
-        "location": {
-            "city": "Denver, CO",
-            "country": "U.S.A.",
-            "raw": "Denver, CO, U.S.A.",
-            "lat": 39.7392,
-            "lng": -104.9903
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "125eed5f2701"
     },
     {
         "name": "Umbraco India Festival",
@@ -5113,34 +4520,6 @@
         "id": "dda9384076c3"
     },
     {
-        "name": "DevOpsDays Graz",
-        "url": "https://www.devopsdays.at",
-        "startDate": "2026-09-04",
-        "endDate": "2026-09-05",
-        "location": {
-            "city": "Graz",
-            "country": "Austria",
-            "raw": "Graz, Austria",
-            "lat": 47.5162,
-            "lng": 14.5501
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://pretalx.com/devopsdays-graz-2026/cfp",
-            "endDate": "2026-04-30",
-            "daysRemaining": -50,
-            "status": "closed"
-        },
-        "twitter": null,
-        "domain": "software",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [
-            "devops"
-        ],
-        "id": "b2d0b930b04b"
-    },
-    {
         "name": "Data Saturday Gothenburg",
         "url": "https://datasaturday.se/",
         "startDate": "2026-09-05",
@@ -5235,10 +4614,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "mobile",
         "subDomains": [],
         "tags": [],
@@ -5418,27 +4793,6 @@
         "subDomains": [],
         "tags": [],
         "id": "39ca8ef485ea"
-    },
-    {
-        "name": "RustConf",
-        "url": "https://rustconf.com/rustconf-2026",
-        "startDate": "2026-09-08",
-        "endDate": "2026-09-11",
-        "location": {
-            "city": "Montreal",
-            "country": "Canada",
-            "raw": "Montreal, Canada",
-            "lat": 45.5017,
-            "lng": -73.5673
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "85425b47f54f"
     },
     {
         "name": "KCDC 2026",
@@ -5856,32 +5210,6 @@
         "subDomains": [],
         "tags": [],
         "id": "d1461550df30"
-    },
-    {
-        "name": "ZurichJS Conf",
-        "url": "https://conf.zurichjs.com",
-        "startDate": "2026-09-10",
-        "endDate": "2026-09-11",
-        "location": {
-            "city": "Zurich",
-            "country": "Switzerland",
-            "raw": "Zurich, Switzerland",
-            "lat": 47.3769,
-            "lng": 8.5417
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://conf.zurichjs.com/cfp",
-            "endDate": "2026-04-01",
-            "daysRemaining": -79,
-            "status": "closed"
-        },
-        "twitter": "@zurichjs",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "102542d4e71e"
     },
     {
         "name": "AutoML Conference 2026 (AutoML)",
@@ -6328,25 +5656,6 @@
         "id": "4816f4595bbf"
     },
     {
-        "name": "Disney Data & Analytics Conference (DDAC)",
-        "url": "https://disneydataconference.com",
-        "startDate": "2026-09-14",
-        "endDate": "2026-09-16",
-        "location": {
-            "city": "Orlando, FL",
-            "country": "U.S.A.",
-            "raw": "Orlando, FL, U.S.A."
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "data",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "f1e87b98be72"
-    },
-    {
         "name": "AWS Community Day DACH",
         "url": "https://www.aws-community-day.de/",
         "startDate": "2026-09-15",
@@ -6447,30 +5756,6 @@
         "id": "6cdfbbd368c0"
     },
     {
-        "name": "LDX3 New York",
-        "url": "https://leaddev.com/leaddev-new-york",
-        "startDate": "2026-09-15",
-        "endDate": "2026-09-16",
-        "location": {
-            "city": "New York, NY",
-            "country": "U.S.A.",
-            "raw": "New York, NY, U.S.A.",
-            "lat": 40.7128,
-            "lng": -74.006
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "e397aff58bb3"
-    },
-    {
         "name": "ACM MobiCom - Mobile Computing and Networking 2026",
         "url": "https://sigmobile.org/mobicom",
         "startDate": "2026-09-15",
@@ -6563,10 +5848,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -6619,56 +5900,6 @@
         "subDomains": [],
         "tags": [],
         "id": "6768b5ba338f"
-    },
-    {
-        "name": "uxcon vienna",
-        "url": "https://www.uxcon.io",
-        "startDate": "2026-09-16",
-        "endDate": "2026-09-17",
-        "location": {
-            "city": "Vienna",
-            "country": "Austria",
-            "raw": "Vienna, Austria",
-            "lat": 48.2082,
-            "lng": 16.3738
-        },
-        "online": true,
-        "cfp": {
-            "url": "https://forms.cloud.microsoft/e/UJpffgFHP8",
-            "endDate": "2026-02-15",
-            "daysRemaining": -124,
-            "status": "closed"
-        },
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "a86eb7ae0b28"
-    },
-    {
-        "name": "Hatch Conference",
-        "url": "https://www.hatchconference.com",
-        "startDate": "2026-09-16",
-        "endDate": "2026-09-18",
-        "location": {
-            "city": "Berlin",
-            "country": "Germany",
-            "raw": "Berlin, Germany",
-            "lat": 52.52,
-            "lng": 13.405
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": "@hatchconference",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "af7d6f5c1244"
     },
     {
         "name": "API Platform Conference 2026",
@@ -6740,11 +5971,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "twitter": "@@dotaiconf",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -6795,10 +6021,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "cloud",
         "subDomains": [],
         "tags": [
@@ -7028,82 +6250,6 @@
         "id": "adbc67b0c75e"
     },
     {
-        "name": "entwickler Summit",
-        "url": "https://entwickler.de/entwickler-summit",
-        "startDate": "2026-09-17",
-        "endDate": "2026-09-17",
-        "location": {
-            "city": "Berlin",
-            "country": "Germany",
-            "raw": "Berlin, Germany",
-            "lat": 52.52,
-            "lng": 13.405
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": "@entwickler",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "2d6501e3d11d"
-    },
-    {
-        "name": "World Conference on  Smart Systems : Big Data, IoT, Cybersecurity, and IT in Action",
-        "url": "https://www.smartsystems.thesciencequest.org",
-        "startDate": "2026-09-17",
-        "endDate": "2026-09-19",
-        "location": {
-            "city": "Tokyo",
-            "country": "Japan",
-            "raw": "Tokyo, Japan",
-            "lat": 35.6762,
-            "lng": 139.6503
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "security",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [
-            "academic"
-        ],
-        "id": "f80ced82ac9b"
-    },
-    {
-        "name": "Agent Conf",
-        "url": "https://www.agent.sh",
-        "startDate": "2026-09-17",
-        "endDate": "2026-09-18",
-        "location": {
-            "city": "Warsaw",
-            "country": "Poland",
-            "raw": "Warsaw, Poland",
-            "lat": 52.2297,
-            "lng": 21.0122
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://sessionize.com/agent-conf-2026",
-            "endDate": "2026-06-20",
-            "daysRemaining": 1,
-            "status": "open"
-        },
-        "twitter": "@AgentConf",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "78a3e6704383"
-    },
-    {
         "name": "dotJS",
         "url": "https://www.dotjs.io/",
         "startDate": "2026-09-18",
@@ -7123,11 +6269,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "twitter": "@dotJS",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -7255,30 +6396,6 @@
         "subDomains": [],
         "tags": [],
         "id": "03077d729c88"
-    },
-    {
-        "name": "Future Builders",
-        "url": "https://www.futurebuilders.io",
-        "startDate": "2026-09-18",
-        "endDate": "2026-09-18",
-        "location": {
-            "city": "Vienna",
-            "country": "Austria",
-            "raw": "Vienna, Austria",
-            "lat": 48.2082,
-            "lng": 16.3738
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "45ab339d853f"
     },
     {
         "name": "WhatTheStack",
@@ -7452,32 +6569,6 @@
         "subDomains": [],
         "tags": [],
         "id": "80ec281aabd7"
-    },
-    {
-        "name": "L8Conf",
-        "url": "https://l8conf.com",
-        "startDate": "2026-09-21",
-        "endDate": "2026-09-22",
-        "location": {
-            "city": "Warsaw",
-            "country": "Poland",
-            "raw": "Warsaw, Poland",
-            "lat": 52.2297,
-            "lng": 21.0122
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://docs.google.com/forms/d/e/1FAIpQLSfEDjOe18HZSToF4yfUCGgK3M5045VTtJLYTYuVYezIrjHqKA/viewform",
-            "endDate": "2026-03-21",
-            "daysRemaining": -90,
-            "status": "closed"
-        },
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "7736255608f4"
     },
     {
         "name": "Explore DDD 2026",
@@ -7699,10 +6790,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -7813,27 +6900,6 @@
         "id": "3a6d39f0a3e4"
     },
     {
-        "name": "Future Coding Day",
-        "url": "https://www.futurecodingday.com",
-        "startDate": "2026-09-22",
-        "endDate": "2026-09-22",
-        "location": {
-            "city": "Copenhagen",
-            "country": "Denmark",
-            "raw": "Copenhagen, Denmark",
-            "lat": 55.6761,
-            "lng": 12.5683
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "ad62d137d6e7"
-    },
-    {
         "name": "WeAreDevelopers World Congress 2026 - North America",
         "url": "https://www.wearedevelopers.com/world-congress-us",
         "startDate": "2026-09-23",
@@ -7853,10 +6919,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "software",
         "subDomains": [],
         "tags": [],
@@ -8488,59 +7550,6 @@
         "id": "dc8bf61f7712"
     },
     {
-        "name": "Confitura",
-        "url": "https://2026.confitura.pl",
-        "startDate": "2026-09-25",
-        "endDate": "2026-09-26",
-        "location": {
-            "city": "Warsaw",
-            "country": "Poland",
-            "raw": "Warsaw, Poland",
-            "lat": 52.2297,
-            "lng": 21.0122
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://app.confitura.pl/login",
-            "endDate": "2026-06-07",
-            "daysRemaining": -12,
-            "status": "closed"
-        },
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "2896ba11ef35"
-    },
-    {
-        "name": "AI Pivot Conference",
-        "url": "https://theaipivot.ai/events/anaheim-2026/home.aspx",
-        "startDate": "2026-09-25",
-        "endDate": "2026-09-25",
-        "location": {
-            "city": "Anaheim, CA",
-            "country": "U.S.A.",
-            "raw": "Anaheim, CA, U.S.A."
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://sessionize.com/aipivotconference",
-            "endDate": "2026-05-04",
-            "daysRemaining": -46,
-            "status": "closed"
-        },
-        "twitter": "@aipivotconf",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "5d46e64f3af3"
-    },
-    {
         "name": "BSides Cleveland 2026",
         "url": "https://bsidescle.com/events/2026-conference.php",
         "startDate": "2026-09-26",
@@ -8716,27 +7725,6 @@
         "id": "a43232c5e479"
     },
     {
-        "name": "European Microsoft Fabric Community Conference",
-        "url": "https://www.sharepointeurope.com/european-microsoft-fabric-community-conference",
-        "startDate": "2026-09-28",
-        "endDate": "2026-10-01",
-        "location": {
-            "city": "Barcelona",
-            "country": "Spain",
-            "raw": "Barcelona, Spain",
-            "lat": 41.3851,
-            "lng": 2.1734
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": "@EuropeanFabric",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "c39bd57f9c15"
-    },
-    {
         "name": "Extremadura Digital Day 2026",
         "url": "https://extremaduradigitalday.com",
         "startDate": "2026-09-28",
@@ -8862,29 +7850,6 @@
         "subDomains": [],
         "tags": [],
         "id": "41bf70a05e09"
-    },
-    {
-        "name": "International JavaScript Conference NYC",
-        "url": "https://javascript-conference.com/new-york",
-        "startDate": "2026-09-28",
-        "endDate": "2026-10-02",
-        "location": {
-            "city": "New York, NY",
-            "country": "U.S.A.",
-            "raw": "New York, NY, U.S.A.",
-            "lat": 40.7128,
-            "lng": -74.006
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": "@JavaScriptCon",
-        "domain": "web",
-        "tags": [
-            "javascript"
-        ],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "5c9117175c9c"
     },
     {
         "name": "Modern RE 2026",
@@ -9094,180 +8059,6 @@
         "id": "a535dc124b93"
     },
     {
-        "name": "GOTO Copenhagen",
-        "url": "https://gotocph.com/2026",
-        "startDate": "2026-09-28",
-        "endDate": "2026-10-02",
-        "location": {
-            "city": "Copenhagen",
-            "country": "Denmark",
-            "raw": "Copenhagen, Denmark",
-            "lat": 55.6761,
-            "lng": 12.5683
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": "@GOTOcon",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "064b3a8978b4"
-    },
-    {
-        "name": "API Conference NYC",
-        "url": "https://apiconference.net/new-york",
-        "startDate": "2026-09-28",
-        "endDate": "2026-10-02",
-        "location": {
-            "city": "New York, NY",
-            "country": "U.S.A.",
-            "raw": "New York, NY, U.S.A.",
-            "lat": 40.7128,
-            "lng": -74.006
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": "@api_conference",
-        "domain": "software",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "31a980c06d67"
-    },
-    {
-        "name": "DecOpsCon NYC",
-        "url": "https://devopscon.io/new-york",
-        "startDate": "2026-09-28",
-        "endDate": "2026-10-02",
-        "location": {
-            "city": "New York, NY",
-            "country": "U.S.A.",
-            "raw": "New York, NY, U.S.A.",
-            "lat": 40.7128,
-            "lng": -74.006
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": "@devops_con",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "e640c8ea176b"
-    },
-    {
-        "name": "GAI World",
-        "url": "https://www.gaiworld.com",
-        "startDate": "2026-09-28",
-        "endDate": "2026-09-30",
-        "location": {
-            "city": "Boulder, CO",
-            "country": "U.S.A.",
-            "raw": "Boulder, CO, U.S.A."
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "5751b6d9471a"
-    },
-    {
-        "name": "MLCon NYC",
-        "url": "https://mlconference.ai/new-york",
-        "startDate": "2026-09-28",
-        "endDate": "2026-10-02",
-        "location": {
-            "city": "New York, NY",
-            "country": "U.S.A.",
-            "raw": "New York, NY, U.S.A.",
-            "lat": 40.7128,
-            "lng": -74.006
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": "@mlconference",
-        "domain": "ai",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "4d0bcca964c2"
-    },
-    {
-        "name": "BASTA! Herbst",
-        "url": "https://basta.net/mainz",
-        "startDate": "2026-09-28",
-        "endDate": "2026-10-03",
-        "location": {
-            "city": "Mainz",
-            "country": "Germany",
-            "raw": "Mainz, Germany",
-            "lat": 51.1657,
-            "lng": 10.4515
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": "@BastaConf",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "ead460e10a7f"
-    },
-    {
-        "name": "DrupalCon Europe",
-        "url": "https://events.drupal.org/rotterdam2026",
-        "startDate": "2026-09-28",
-        "endDate": "2026-10-01",
-        "location": {
-            "city": "Rotterdam",
-            "country": "Netherlands",
-            "raw": "Rotterdam, Netherlands",
-            "lat": 52.1326,
-            "lng": 5.2913
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "3818e064e297"
-    },
-    {
-        "name": "Devopsdays Berlin",
-        "url": "https://devopsdays.org/events/2026-berlin/welcome",
-        "startDate": "2026-09-29",
-        "endDate": "2026-09-30",
-        "location": {
-            "city": "Berlin",
-            "country": "Germany",
-            "raw": "Berlin, Germany",
-            "lat": 52.52,
-            "lng": 13.405
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "software",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [
-            "devops"
-        ],
-        "id": "19afafae8d99"
-    },
-    {
         "name": "Cloud Native Days Austria",
         "url": "https://cloudnativedays.at/",
         "startDate": "2026-09-29",
@@ -9293,27 +8084,6 @@
         "id": "91eb370017af"
     },
     {
-        "name": "CTO Craft Con: Europe",
-        "url": "https://conference.ctocraft.com/europe-2026",
-        "startDate": "2026-09-29",
-        "endDate": "2026-09-30",
-        "location": {
-            "city": "Amsterdam",
-            "country": "Netherlands",
-            "raw": "Amsterdam, Netherlands",
-            "lat": 52.3676,
-            "lng": 4.9041
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "691ab3ca4cf0"
-    },
-    {
         "name": "Apidays London",
         "url": "https://www.apidays.global/london",
         "startDate": "2026-09-30",
@@ -9333,11 +8103,6 @@
             "status": "open"
         },
         "source": "developers.events",
-        "twitter": "@APIdaysGlobal",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "software",
         "subDomains": [],
         "tags": [],
@@ -9388,10 +8153,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -9642,32 +8403,6 @@
         "subDomains": [],
         "tags": [],
         "id": "0b968f96d738"
-    },
-    {
-        "name": "Open Tech Day: Software-defined Storage",
-        "url": "https://opentechday.de",
-        "startDate": "2026-10-01",
-        "endDate": "2026-10-01",
-        "location": {
-            "city": "N\u00fcrnberg",
-            "country": "Germany",
-            "raw": "N\u00fcrnberg, Germany",
-            "lat": 51.1657,
-            "lng": 10.4515
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://opentechday.de/propose",
-            "endDate": "2026-05-31",
-            "daysRemaining": -19,
-            "status": "closed"
-        },
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "f3174dac4007"
     },
     {
         "name": "Kubernetes Community Day's Argentina 2026",
@@ -10297,30 +9032,6 @@
         "id": "4b45338247ae"
     },
     {
-        "name": "Jax London",
-        "url": "https://jaxlondon.com",
-        "startDate": "2026-10-05",
-        "endDate": "2026-10-09",
-        "location": {
-            "city": "London",
-            "country": "U.K.",
-            "raw": "London, U.K.",
-            "lat": 51.5074,
-            "lng": -0.1278
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": "@jaxlondon",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "6c6610727020"
-    },
-    {
         "name": "FrontKon 2026",
         "url": "https://www.frontkon.tech/",
         "startDate": "2026-10-06",
@@ -10396,32 +9107,6 @@
         "id": "306b801565c2"
     },
     {
-        "name": "FrontKon",
-        "url": "https://www.frontkon.tech",
-        "startDate": "2026-10-06",
-        "endDate": "2026-10-06",
-        "location": {
-            "city": "Prague",
-            "country": "Czech Republic",
-            "raw": "Prague, Czech Republic",
-            "lat": 50.0755,
-            "lng": 14.4378
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://docs.google.com/forms/d/e/1FAIpQLSesYbIDZX7-3A_hKSxfmK6DAilUXBkIR6dAHfO7BDnyEratQQ/viewform",
-            "endDate": "2026-04-30",
-            "daysRemaining": -50,
-            "status": "closed"
-        },
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "738dbc9d508c"
-    },
-    {
         "name": "Digital Architecture Design Day 2026",
         "url": "https://dadd.nl",
         "startDate": "2026-10-07",
@@ -10466,10 +9151,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -10543,10 +9224,6 @@
             "status": "open"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -10578,27 +9255,6 @@
         ],
         "tags": [],
         "id": "b8e11aac4999"
-    },
-    {
-        "name": "swiftcon@next.app devcon",
-        "url": "https://www.nextappcon.com/swiftcon",
-        "startDate": "2026-10-07",
-        "endDate": "2026-10-09",
-        "location": {
-            "city": "Berlin",
-            "country": "Germany",
-            "raw": "Berlin, Germany",
-            "lat": 52.52,
-            "lng": 13.405
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "mobile",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "792a5ccd6959"
     },
     {
         "name": "Forum PHP 2026",
@@ -10801,30 +9457,6 @@
         "id": "6f6162bc1a81"
     },
     {
-        "name": "Software Architecture Summit",
-        "url": "https://software-architecture-summit.de/berlin",
-        "startDate": "2026-10-12",
-        "endDate": "2026-10-16",
-        "location": {
-            "city": "Berlin",
-            "country": "Germany",
-            "raw": "Berlin, Germany",
-            "lat": 52.52,
-            "lng": 13.405
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": "@SoftwArchSummit",
-        "domain": "software",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "aac7107c5d5e"
-    },
-    {
         "name": "M365 Summit Mainz",
         "url": "https://events.m365-summits.de/M365SummitMainzOktober#/",
         "startDate": "2026-10-12",
@@ -10846,70 +9478,6 @@
         "subDomains": [],
         "tags": [],
         "id": "48237b3fc64c"
-    },
-    {
-        "name": "JavaScript & Angular Days",
-        "url": "https://javascript-days.de/berlin",
-        "startDate": "2026-10-12",
-        "endDate": "2026-10-16",
-        "location": {
-            "city": "Berlin",
-            "country": "Germany",
-            "raw": "Berlin, Germany",
-            "lat": 52.52,
-            "lng": 13.405
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": null,
-        "domain": "web",
-        "tags": [
-            "javascript",
-            "angular"
-        ],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "fe5ec942547a"
-    },
-    {
-        "name": "SwiftLeeds",
-        "url": "https://swiftleeds.co.uk",
-        "startDate": "2026-10-12",
-        "endDate": "2026-10-14",
-        "location": {
-            "city": "Leeds",
-            "country": "U.K.",
-            "raw": "Leeds, U.K."
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": "@swift_leeds",
-        "domain": "mobile",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "b6dce2f0437c"
-    },
-    {
-        "name": "The Nordic APIs UnConference",
-        "url": "https://nordicapis.com/events/napis-unconference-2026",
-        "startDate": "2026-10-12",
-        "endDate": "2026-10-12",
-        "location": {
-            "city": "Stockholm",
-            "country": "Sweden",
-            "raw": "Stockholm, Sweden",
-            "lat": 59.3293,
-            "lng": 18.0686
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "software",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "00038a4d7561"
     },
     {
         "name": "Fast Flow Conf UK 2026",
@@ -11035,71 +9603,6 @@
         "id": "d76abb3e321c"
     },
     {
-        "name": "Platform Summit",
-        "url": "https://nordicapis.com/events/platform-summit-2026",
-        "startDate": "2026-10-13",
-        "endDate": "2026-10-14",
-        "location": {
-            "city": "Stockholm",
-            "country": "Sweden",
-            "raw": "Stockholm, Sweden",
-            "lat": 59.3293,
-            "lng": 18.0686
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "84975f7f3ec8"
-    },
-    {
-        "name": "betterCode() Java",
-        "url": "https://java.bettercode.eu",
-        "startDate": "2026-10-13",
-        "endDate": "2026-10-13",
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [
-            "java"
-        ],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "e830dc37c781"
-    },
-    {
-        "name": "EuroRust",
-        "url": "https://eurorust.eu",
-        "startDate": "2026-10-14",
-        "endDate": "2026-10-17",
-        "location": {
-            "city": "Barcelona",
-            "country": "Spain",
-            "raw": "Barcelona, Spain",
-            "lat": 41.3851,
-            "lng": 2.1734
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": "@euro_rust",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "371aedf3b106"
-    },
-    {
         "name": "KanDDDinsky 2026",
         "url": "https://kandddinsky.com",
         "startDate": "2026-10-14",
@@ -11215,10 +9718,6 @@
             "status": "open"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -11323,27 +9822,6 @@
         "subDomains": [],
         "tags": [],
         "id": "f049b4bf9814"
-    },
-    {
-        "name": "Minds Mastering Machines - M3: LLMs im Unternehmen",
-        "url": "https://m3-konferenz.de/llm.php",
-        "startDate": "2026-10-15",
-        "endDate": "2026-10-15",
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": null,
-        "domain": "ai",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "b635dd0c5666"
     },
     {
         "name": "Tech Fuse Des Moines 2026",
@@ -11496,73 +9974,6 @@
         "subDomains": [],
         "tags": [],
         "id": "01833306b3da"
-    },
-    {
-        "name": "KotlinLeeds",
-        "url": "https://kotlinleeds.com",
-        "startDate": "2026-10-15",
-        "endDate": "2026-10-16",
-        "location": {
-            "city": "Leeds",
-            "country": "U.K.",
-            "raw": "Leeds, U.K."
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": "@kotlinleeds",
-        "domain": "mobile",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "38e8c7a5bad8"
-    },
-    {
-        "name": "2nd International Conference on Artificial Intelligence and Big Data Analytics",
-        "url": "https://vartusconferences.com/aibda",
-        "startDate": "2026-10-15",
-        "endDate": "2026-10-16",
-        "location": {
-            "city": "Singapore",
-            "country": "Singapore",
-            "raw": "Singapore, Singapore",
-            "lat": 1.3521,
-            "lng": 103.8198
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "academic",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [
-            "ai",
-            "data"
-        ],
-        "id": "50137a6b660a"
-    },
-    {
-        "name": "Conversations Roadshow: Stockholm by CTO Craft",
-        "url": "https://conversations.ctocraft.com/stockholm",
-        "startDate": "2026-10-15",
-        "endDate": "2026-10-15",
-        "location": {
-            "city": "Stockholm",
-            "country": "Sweden",
-            "raw": "Stockholm, Sweden",
-            "lat": 59.3293,
-            "lng": 18.0686
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "ea86caaa412f"
     },
     {
         "name": "IEEE/RSJ International Conference on Intelligent Robots and Systems 2026 (IROS)",
@@ -11855,51 +10266,6 @@
         "id": "8e11aa32cce3"
     },
     {
-        "name": "Just Product",
-        "url": "https://www.justproduct.de",
-        "startDate": "2026-10-16",
-        "endDate": "2026-10-16",
-        "location": {
-            "city": "Munich",
-            "country": "Germany",
-            "raw": "Munich, Germany",
-            "lat": 48.1351,
-            "lng": 11.582
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "4cd6564d2ab0"
-    },
-    {
-        "name": "Joomla! World Conference",
-        "url": "https://conference.joomla.org",
-        "startDate": "2026-10-16",
-        "endDate": "2026-10-18",
-        "location": {
-            "city": "Potsdam",
-            "country": "Germany",
-            "raw": "Potsdam, Germany",
-            "lat": 51.1657,
-            "lng": 10.4515
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": "@jworldcon",
-        "domain": "ai",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "72445042dd51"
-    },
-    {
         "name": "AWS COMMUNITY DAY GUATEMALA 2026",
         "url": "https://awscommunityday.gt/",
         "startDate": "2026-10-17",
@@ -12144,72 +10510,12 @@
             "status": "open"
         },
         "source": "developers.events",
-        "twitter": "@Novelticsgroup",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "ai",
         "subDomains": [
             "cloud"
         ],
         "tags": [],
         "id": "76cfa4e968a5"
-    },
-    {
-        "name": "Umbracokalaset",
-        "url": "https://www.umbracokalaset.se",
-        "startDate": "2026-10-20",
-        "endDate": "2026-10-20",
-        "location": {
-            "city": "Stockholm",
-            "country": "Sweden",
-            "raw": "Stockholm, Sweden",
-            "lat": 59.3293,
-            "lng": 18.0686
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://sessionize.com/umbracokalaset-2026",
-            "endDate": "2026-08-16",
-            "daysRemaining": 58,
-            "status": "open"
-        },
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "49d7236a65ed"
-    },
-    {
-        "name": "AMTSO Cyber Research Conference",
-        "url": "https://www.amtso.org/special-events/amtso-cyber-research-conference-2026",
-        "startDate": "2026-10-20",
-        "endDate": "2026-10-21",
-        "location": {
-            "city": "Brussels",
-            "country": "Belgium",
-            "raw": "Brussels, Belgium",
-            "lat": 50.8503,
-            "lng": 4.3517
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://sessionize.com/amtso-cyber-research-conference-2026",
-            "endDate": "2026-03-31",
-            "daysRemaining": -80,
-            "status": "closed"
-        },
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "2821ffc5ee56"
     },
     {
         "name": ".NET DeveloperDays 2026 Warsaw",
@@ -12256,11 +10562,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "twitter": "@jfrog",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -12507,11 +10808,6 @@
             "status": "open"
         },
         "source": "developers.events",
-        "twitter": "@cityjsconf",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -12614,10 +10910,6 @@
             "status": "open"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -12641,10 +10933,6 @@
             "status": "open"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "devops",
         "subDomains": [
             "opensource"
@@ -12799,55 +11087,6 @@
         "subDomains": [],
         "tags": [],
         "id": "bd6f8b2af8ae"
-    },
-    {
-        "name": "EKON | Oktober D\u00fcsseldorf",
-        "url": "https://entwickler-konferenz.de/de",
-        "startDate": "2026-10-23",
-        "endDate": "2026-10-27",
-        "location": {
-            "city": "D\u00fcsseldorf",
-            "country": "Germany",
-            "raw": "D\u00fcsseldorf, Germany",
-            "lat": 51.1657,
-            "lng": 10.4515
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "56ad19d09ace"
-    },
-    {
-        "name": "React Advanced",
-        "url": "https://reactadvanced.com",
-        "startDate": "2026-10-23",
-        "endDate": "2026-10-26",
-        "location": {
-            "city": "London",
-            "country": "U.K.",
-            "raw": "London, U.K.",
-            "lat": 51.5074,
-            "lng": -0.1278
-        },
-        "online": true,
-        "cfp": {
-            "url": "https://gitnation.com/events/react-advanced-2026/cfp",
-            "endDate": "2026-05-24",
-            "daysRemaining": -26,
-            "status": "closed"
-        },
-        "twitter": "@ReactAdvanced",
-        "domain": "web",
-        "tags": [
-            "react"
-        ],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "026cf1b5dff1"
     },
     {
         "name": "Kubernetes Community Days KCD Nigeria",
@@ -13034,27 +11273,6 @@
         "id": "c2ab1b8be72d"
     },
     {
-        "name": "KubeCon + CloudNativeCon North America",
-        "url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america-2026",
-        "startDate": "2026-10-26",
-        "endDate": "2026-10-29",
-        "location": {
-            "city": "Los Angeles, CA",
-            "country": "U.S.A.",
-            "raw": "Los Angeles, CA, U.S.A.",
-            "lat": 34.0522,
-            "lng": -118.2437
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": "@CloudNativeFdn",
-        "domain": "cloud",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "d34d1e6bd069"
-    },
-    {
         "name": "SAINTCON Training 2026",
         "url": "https://saintcon.org",
         "startDate": "2026-10-26",
@@ -13078,29 +11296,6 @@
         "subDomains": [],
         "tags": [],
         "id": "98c06fb357fe"
-    },
-    {
-        "name": "International JavaScript Conference Munich",
-        "url": "https://javascript-conference.com/muenchen",
-        "startDate": "2026-10-26",
-        "endDate": "2026-10-30",
-        "location": {
-            "city": "Munich",
-            "country": "Germany",
-            "raw": "Munich, Germany",
-            "lat": 48.1351,
-            "lng": 11.582
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": "@JavaScriptCon",
-        "domain": "web",
-        "tags": [
-            "javascript"
-        ],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "7b28954e3477"
     },
     {
         "name": "Techorama 2026 Netherlands",
@@ -13147,10 +11342,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "academic",
         "subDomains": [],
         "tags": [],
@@ -13230,29 +11421,6 @@
         "subDomains": [],
         "tags": [],
         "id": "6f1e080ee673"
-    },
-    {
-        "name": "International PHP Conference Munich",
-        "url": "https://phpconference.com/munich",
-        "startDate": "2026-10-26",
-        "endDate": "2026-10-30",
-        "location": {
-            "city": "Munich",
-            "country": "Germany",
-            "raw": "Munich, Germany",
-            "lat": 48.1351,
-            "lng": 11.582
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": "@phpconference",
-        "domain": "general",
-        "tags": [
-            "php"
-        ],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "829da42aa915"
     },
     {
         "name": "OWASP LASCON 2026 - Training",
@@ -13424,11 +11592,6 @@
             "status": "open"
         },
         "source": "developers.events",
-        "twitter": "@APIdaysGlobal",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "software",
         "subDomains": [],
         "tags": [],
@@ -13485,56 +11648,6 @@
         "id": "2f66875ba1b2"
     },
     {
-        "name": "Mozilla Festival",
-        "url": "https://www.mozillafestival.org",
-        "startDate": "2026-10-28",
-        "endDate": "2026-10-30",
-        "location": {
-            "city": "Barcelona",
-            "country": "Spain",
-            "raw": "Barcelona, Spain",
-            "lat": 41.3851,
-            "lng": 2.1734
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": "@mozillafestival",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "0199603dad01"
-    },
-    {
-        "name": "J On The Beach",
-        "url": "https://www.jonthebeach.com",
-        "startDate": "2026-10-29",
-        "endDate": "2026-10-30",
-        "location": {
-            "city": "Malaga",
-            "country": "Spain",
-            "raw": "Malaga, Spain",
-            "lat": 40.4637,
-            "lng": -3.7492
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://confeti.app",
-            "endDate": "2026-03-31",
-            "daysRemaining": -80,
-            "status": "closed"
-        },
-        "twitter": "@jotbconf",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "4a35e3c86023"
-    },
-    {
         "name": "Lambda World",
         "url": "https://www.lambda.world",
         "startDate": "2026-10-29",
@@ -13554,11 +11667,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "twitter": "@lambda_world",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -13659,11 +11767,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "twitter": "@WeyWeyWeb",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "web",
         "subDomains": [],
         "tags": [],
@@ -13947,32 +12050,6 @@
         "id": "d83721b141f7"
     },
     {
-        "name": "Open Source Analytics Conference",
-        "url": "https://osacon.io",
-        "startDate": "2026-11-02",
-        "endDate": "2026-11-02",
-        "location": {
-            "city": "San Francisco, CA",
-            "country": "U.S.A.",
-            "raw": "San Francisco, CA, U.S.A.",
-            "lat": 37.7749,
-            "lng": -122.4194
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": null,
-        "domain": "data",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [
-            "opensource"
-        ],
-        "id": "58783a7468f3"
-    },
-    {
         "name": "OWASP Global AppSec USA (SF) 2026 - CFT",
         "url": "https://owasp.glueup.com/event/owasp-2026-global-appsec-usa-san-francisco-ca-167174/",
         "startDate": "2026-11-02",
@@ -14026,27 +12103,6 @@
         "id": "fe211487a9e8"
     },
     {
-        "name": "W-JAX M\u00fcnchen",
-        "url": "https://jax.de/muenchen",
-        "startDate": "2026-11-02",
-        "endDate": "2026-11-06",
-        "location": {
-            "city": "Munich",
-            "country": "Germany",
-            "raw": "Munich, Germany",
-            "lat": 48.1351,
-            "lng": 11.582
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": "@jaxcon",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "a530714ca7e8"
-    },
-    {
         "name": "Cloud Identity Summit '26",
         "url": "https://www.identitysummit.cloud/",
         "startDate": "2026-11-03",
@@ -14091,10 +12147,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -14120,40 +12172,10 @@
             "status": "open"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
         "id": "7c032fb6ac31"
-    },
-    {
-        "name": "XtremeJ",
-        "url": "https://xtremej.dev",
-        "startDate": "2026-11-03",
-        "endDate": "2026-11-03",
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": true,
-        "cfp": {
-            "url": "https://tinyurl.com/xtreme2026",
-            "endDate": "2026-07-10",
-            "daysRemaining": 21,
-            "status": "open"
-        },
-        "twitter": "@xtremejconf",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "eb4cc91be038"
     },
     {
         "name": "Devoxx Morocco",
@@ -14273,10 +12295,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -14452,30 +12470,6 @@
         "subDomains": [],
         "tags": [],
         "id": "15c03d591192"
-    },
-    {
-        "name": "Heapcon",
-        "url": "https://heapcon.io/2026",
-        "startDate": "2026-11-05",
-        "endDate": "2026-11-06",
-        "location": {
-            "city": "Belgrade",
-            "country": "Serbia",
-            "raw": "Belgrade, Serbia"
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://forms.gle/QBM1aqkL8yS4c6YM8",
-            "endDate": "2026-06-01",
-            "daysRemaining": -18,
-            "status": "closed"
-        },
-        "twitter": "@Heapconf",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "64900603859c"
     },
     {
         "name": "Droidcon & Fluttercon Kenya 2026",
@@ -14801,30 +12795,6 @@
         "id": "c9f8737ef32f"
     },
     {
-        "name": "LeadDev Berlin",
-        "url": "https://leaddev.com/leaddev-berlin",
-        "startDate": "2026-11-09",
-        "endDate": "2026-11-10",
-        "location": {
-            "city": "Berlin",
-            "country": "Germany",
-            "raw": "Berlin, Germany",
-            "lat": 52.52,
-            "lng": 13.405
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "665e167de26d"
-    },
-    {
         "name": "ArgoCon North America",
         "url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/co-located-events/argocon/",
         "startDate": "2026-11-09",
@@ -15069,11 +13039,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "twitter": "@PortoTechHub",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -15103,32 +13068,6 @@
         "subDomains": [],
         "tags": [],
         "id": "5ee8c67d0c48"
-    },
-    {
-        "name": "XtremeJS Online Conference",
-        "url": "https://xtremejs.dev",
-        "startDate": "2026-11-10",
-        "endDate": "2026-11-10",
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": true,
-        "cfp": {
-            "url": "https://tinyurl.com/xtreme2026",
-            "endDate": "2026-07-10",
-            "daysRemaining": 21,
-            "status": "open"
-        },
-        "twitter": "@xtremejsconf",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "7e0ce5e67c69"
     },
     {
         "name": "Conference on Empirical Methods in Natural Language Processing 2026 (EMNLP)",
@@ -15202,10 +13141,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -15306,11 +13241,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "twitter": "@tokyotestfest",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -15413,58 +13343,6 @@
         "subDomains": [],
         "tags": [],
         "id": "a9c208319dc0"
-    },
-    {
-        "name": "SpiceWorld",
-        "url": "https://www.spiceworks.com/spiceworld",
-        "startDate": "2026-11-12",
-        "endDate": "2026-11-13",
-        "location": {
-            "city": "Austin, TX",
-            "country": "U.S.A.",
-            "raw": "Austin, TX, U.S.A.",
-            "lat": 30.2672,
-            "lng": -97.7431
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://sessionize.com/spiceworld-2026",
-            "endDate": "2026-05-01",
-            "daysRemaining": -49,
-            "status": "closed"
-        },
-        "twitter": "@spiceworks",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "25bad51fbfec"
-    },
-    {
-        "name": "CMS Conf",
-        "url": "https://cmsconf.com",
-        "startDate": "2026-11-12",
-        "endDate": "2026-11-14",
-        "location": {
-            "city": "Gdynia",
-            "country": "Poland",
-            "raw": "Gdynia, Poland",
-            "lat": 51.9194,
-            "lng": 19.1451
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://cmsconf.com/call-for-papers",
-            "endDate": "2026-04-30",
-            "daysRemaining": -50,
-            "status": "closed"
-        },
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "ad5307f5d852"
     },
     {
         "name": "Italian Agile Days 2026",
@@ -15763,11 +13641,6 @@
             "status": "open"
         },
         "source": "developers.events",
-        "twitter": "@JSNation",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -15793,10 +13666,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "software",
         "subDomains": [],
         "tags": [
@@ -15872,10 +13741,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "software",
         "subDomains": [],
         "tags": [],
@@ -15926,10 +13791,6 @@
             "status": "open"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "cloud",
         "subDomains": [],
         "tags": [],
@@ -15955,45 +13816,12 @@
             "status": "open"
         },
         "source": "developers.events",
-        "twitter": "@ReactSummit",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "web",
         "subDomains": [],
         "tags": [
             "react"
         ],
         "id": "76b5964d023a"
-    },
-    {
-        "name": "Open Source Monitoring conference",
-        "url": "https://osmc.de",
-        "startDate": "2026-11-17",
-        "endDate": "2026-11-19",
-        "location": {
-            "city": "N\u00fcrnberg",
-            "country": "Germany",
-            "raw": "N\u00fcrnberg, Germany",
-            "lat": 51.1657,
-            "lng": 10.4515
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://osmc.de/call-for-papers",
-            "endDate": "2026-06-30",
-            "daysRemaining": 11,
-            "status": "open"
-        },
-        "twitter": null,
-        "domain": "devops",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [
-            "opensource"
-        ],
-        "id": "af75e0ac4228"
     },
     {
         "name": "NG Poland",
@@ -16069,53 +13897,6 @@
         "subDomains": [],
         "tags": [],
         "id": "9b4bf53bcc2d"
-    },
-    {
-        "name": "XtremePython Online Conference",
-        "url": "https://xtremepython.dev",
-        "startDate": "2026-11-17",
-        "endDate": "2026-11-17",
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": true,
-        "cfp": {
-            "url": "http://www.zindell.com/documents/codeofconduct.pdf",
-            "endDate": "2026-07-10",
-            "daysRemaining": 21,
-            "status": "open"
-        },
-        "twitter": "@xtremepython",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "ebe201b3d11b"
-    },
-    {
-        "name": "betterCode() .NET 11.0",
-        "url": "https://net.bettercode.eu",
-        "startDate": "2026-11-17",
-        "endDate": "2026-11-17",
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "fa8f86df8bd1"
     },
     {
         "name": "Molding Conference 2026",
@@ -16691,56 +14472,6 @@
         "id": "b6a63e4c37d7"
     },
     {
-        "name": "droidCon India",
-        "url": "https://india.droidcon.com",
-        "startDate": "2026-11-20",
-        "endDate": "2026-11-20",
-        "location": {
-            "city": "Bengaluru",
-            "country": "India",
-            "raw": "Bengaluru, India",
-            "lat": 20.5937,
-            "lng": 78.9629
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": "@droidconIN",
-        "domain": "mobile",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "773e798373f7"
-    },
-    {
-        "name": "Agentic Engineering Days Zurich",
-        "url": "https://www.agenticdays.com",
-        "startDate": "2026-11-20",
-        "endDate": "2026-11-20",
-        "location": {
-            "city": "Zurich",
-            "country": "Switzerland",
-            "raw": "Zurich, Switzerland",
-            "lat": 47.3769,
-            "lng": 8.5417
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://sessionize.com/agentic-engineering-days-zurich-2026",
-            "endDate": "2026-07-23",
-            "daysRemaining": 34,
-            "status": "open"
-        },
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "7299ece3d400"
-    },
-    {
         "name": "AppSec Days India 2026 Virtual Conference",
         "url": "https://india.appsecdays.org/",
         "startDate": "2026-11-21",
@@ -16814,93 +14545,6 @@
         "id": "daf13ac6519d"
     },
     {
-        "name": "flutterCon India",
-        "url": "https://india.fluttercon.dev",
-        "startDate": "2026-11-21",
-        "endDate": "2026-11-21",
-        "location": {
-            "city": "Bangalore",
-            "country": "India",
-            "raw": "Bangalore, India",
-            "lat": 12.9716,
-            "lng": 77.5946
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "mobile",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "96e04fb95661"
-    },
-    {
-        "name": "API Conference Berlin",
-        "url": "https://apiconference.net/berlin",
-        "startDate": "2026-11-23",
-        "endDate": "2026-11-27",
-        "location": {
-            "city": "Berlin",
-            "country": "Germany",
-            "raw": "Berlin, Germany",
-            "lat": 52.52,
-            "lng": 13.405
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": "@api_conference",
-        "domain": "software",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "20b2f094c8ef"
-    },
-    {
-        "name": "MLCon Berlin",
-        "url": "https://mlconference.ai/berlin",
-        "startDate": "2026-11-23",
-        "endDate": "2026-11-27",
-        "location": {
-            "city": "Berlin",
-            "country": "Germany",
-            "raw": "Berlin, Germany",
-            "lat": 52.52,
-            "lng": 13.405
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": "@mlconference",
-        "domain": "ai",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "00c57ca0e11a"
-    },
-    {
-        "name": "DDC .NET Developer Conference",
-        "url": "https://www.developer-world.de/ddc",
-        "startDate": "2026-11-23",
-        "endDate": "2026-11-26",
-        "location": {
-            "city": "Cologne",
-            "country": "Germany",
-            "raw": "Cologne, Germany",
-            "lat": 51.1657,
-            "lng": 10.4515
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "software",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "12b3587b5842"
-    },
-    {
         "name": "XtremeAI Online Conference",
         "url": "https://xtremeai.dev",
         "startDate": "2026-11-24",
@@ -16918,11 +14562,6 @@
             "status": "open"
         },
         "source": "developers.events",
-        "twitter": "@xtremeaiconf",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -17073,10 +14712,6 @@
             "status": "open"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "software",
         "subDomains": [],
         "tags": [],
@@ -17106,50 +14741,6 @@
         "subDomains": [],
         "tags": [],
         "id": "237b22173666"
-    },
-    {
-        "name": "betterCode() Rust",
-        "url": "https://rust.bettercode.eu",
-        "startDate": "2026-11-26",
-        "endDate": "2026-11-26",
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [
-            "rust"
-        ],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "5bfcdd11b245"
-    },
-    {
-        "name": "SymfonyCon",
-        "url": "https://live.symfony.com/2026-warsaw-con",
-        "startDate": "2026-11-26",
-        "endDate": "2026-11-27",
-        "location": {
-            "city": "Warsaw",
-            "country": "Poland",
-            "raw": "Warsaw, Poland",
-            "lat": 52.2297,
-            "lng": 21.0122
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": "@symfony_live",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "de1485d024e9"
     },
     {
         "name": "DevFest Belgium",
@@ -17279,29 +14870,6 @@
         "id": "3c45df6b66d1"
     },
     {
-        "name": "DevOpsCon Munich",
-        "url": "https://devopscon.io/muenchen",
-        "startDate": "2026-11-30",
-        "endDate": "2026-12-04",
-        "location": {
-            "city": "Munich",
-            "country": "Germany",
-            "raw": "Munich, Germany",
-            "lat": 48.1351,
-            "lng": 11.582
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": "@devops_con",
-        "domain": "software",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [
-            "devops"
-        ],
-        "id": "825e34ad95e3"
-    },
-    {
         "name": "Reversim Summit 2026",
         "url": "https://summit2026.reversim.com/",
         "startDate": "2026-11-30",
@@ -17325,73 +14893,6 @@
         "subDomains": [],
         "tags": [],
         "id": "0bdc6bdf5eb4"
-    },
-    {
-        "name": "APIConf",
-        "url": "https://apiconf.io",
-        "startDate": "2026-11-30",
-        "endDate": "2026-12-02",
-        "location": {
-            "city": "Clear Water, FL",
-            "country": "U.S.A.",
-            "raw": "Clear Water, FL, U.S.A."
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": null,
-        "domain": "software",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "df7b06724043"
-    },
-    {
-        "name": "IT Security Summit Munich",
-        "url": "https://it-security-summit.com/munich",
-        "startDate": "2026-11-30",
-        "endDate": "2026-12-04",
-        "location": {
-            "city": "Munich",
-            "country": "Germany",
-            "raw": "Munich, Germany",
-            "lat": 48.1351,
-            "lng": 11.582
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": "@ITSecSummit",
-        "domain": "security",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "bdfaa8cad478"
-    },
-    {
-        "name": "ESPC",
-        "url": "https://www.sharepointeurope.com",
-        "startDate": "2026-11-30",
-        "endDate": "2026-12-03",
-        "location": {
-            "city": "Amsterdam",
-            "country": "Netherlands",
-            "raw": "Amsterdam, Netherlands",
-            "lat": 52.3676,
-            "lng": 4.9041
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": "@ESPC_Community",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "52c4c4d94dac"
     }
 ],
     "December 2026": [
@@ -17415,11 +14916,6 @@
             "status": "open"
         },
         "source": "developers.events",
-        "twitter": "@APIdaysGlobal",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "software",
         "subDomains": [],
         "tags": [],
@@ -17499,25 +14995,6 @@
         "subDomains": [],
         "tags": [],
         "id": "4c1c7e8c5293"
-    },
-    {
-        "name": "Tech Leader Summit",
-        "url": "https://techleadersummit.io",
-        "startDate": "2026-12-02",
-        "endDate": "2026-12-04",
-        "location": {
-            "city": "Clearwater, FL",
-            "country": "U.S.A.",
-            "raw": "Clearwater, FL, U.S.A."
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "7c46d6e727a3"
     },
     {
         "name": "Difinity Conference - Auckland - 2026",
@@ -17613,11 +15090,6 @@
             "status": "open"
         },
         "source": "developers.events",
-        "twitter": "@reactdayberlin",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "web",
         "subDomains": [],
         "tags": [
@@ -17720,10 +15192,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -17755,25 +15223,6 @@
         "id": "17244ac2666d"
     },
     {
-        "name": "ArchConf",
-        "url": "https://archconf.com",
-        "startDate": "2026-12-07",
-        "endDate": "2026-12-10",
-        "location": {
-            "city": "Clearwater, FL",
-            "country": "U.S.A.",
-            "raw": "Clearwater, FL, U.S.A."
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "7c1f4e182768"
-    },
-    {
         "name": "Dynamics Summit 08.-09. Dezember 2026",
         "url": "https://events.m365-summits.de/DynamicsSummit0809Dezember2026#/",
         "startDate": "2026-12-08",
@@ -17797,30 +15246,6 @@
         "id": "38ac87d8e67b"
     },
     {
-        "name": "droidcon London",
-        "url": "https://london.droidcon.com",
-        "startDate": "2026-12-09",
-        "endDate": "2026-12-10",
-        "location": {
-            "city": "London",
-            "country": "U.K.",
-            "raw": "London, U.K.",
-            "lat": 51.5074,
-            "lng": -0.1278
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": "@droidcon",
-        "domain": "mobile",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "32551c79edac"
-    },
-    {
         "name": "Great International AI Native Summit (GAINS)",
         "url": "https://ainativesummit.com",
         "startDate": "2026-12-09",
@@ -17840,10 +15265,6 @@
             "status": "open"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -18042,11 +15463,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "twitter": "@AIDevConf",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "software",
         "subDomains": [],
         "tags": [],
@@ -18381,6 +15797,51 @@
     }
 ],
     "TBD": [
+    {
+        "name": "International Joint Conferences on Computer, Information, and Systems Sciences, and Engineering (CISSE)",
+        "url": "https://dblp.org/db/conf/cisse/",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "source": "dblp",
+        "subDomains": [],
+        "tags": [],
+        "id": "97a7b46e55c1"
+    },
+    {
+        "name": "International Conference on Artificial Intelligence in Music, Sound, Art and Design (EvoMUSART)",
+        "url": "https://dblp.org/db/conf/evomusart/",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "academic",
+        "source": "dblp",
+        "sources": [
+            "dblp"
+        ],
+        "subDomains": [
+            "ai"
+        ],
+        "tags": [],
+        "id": "077455393aa0"
+    },
     {
         "name": "International Conference on Computer Games (CGAMES)",
         "url": "https://dblp.org/db/conf/cgames/",
@@ -18901,26 +16362,6 @@
         ],
         "tags": [],
         "id": "1cd16c02332e"
-    },
-    {
-        "name": "International Joint Conferences on Computer, Information, and Systems Sciences, and Engineering (CISSE)",
-        "url": "https://dblp.org/db/conf/cisse/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "source": "dblp",
-        "subDomains": [],
-        "tags": [],
-        "id": "97a7b46e55c1"
     },
     {
         "name": "ACM/IEEE International Conference on Embedded Artificial Intelligence and Sensing Systems (SenSys)",
@@ -20561,26 +18002,6 @@
         "id": "f14263523ea4"
     },
     {
-        "name": "IJITMC 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195331&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "409bcadc5ba7"
-    },
-    {
         "name": "IJAC 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194359&copyownerid=33993",
         "startDate": null,
@@ -20601,6 +18022,26 @@
         "id": "b67f12fc9bed"
     },
     {
+        "name": "IJITMC 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195331&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "409bcadc5ba7"
+    },
+    {
         "name": "IJBISS 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192361&copyownerid=33993",
         "startDate": null,
@@ -20619,6 +18060,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "46ce12b9798b"
+    },
+    {
+        "name": "ELELIJ 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191554&copyownerid=46167",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "38df226a12b2"
     },
     {
         "name": "AMS 2026",
@@ -20679,26 +18140,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "0005a796796f"
-    },
-    {
-        "name": "ELELIJ 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191554&copyownerid=46167",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "38df226a12b2"
     },
     {
         "name": "IJSC 2026",
@@ -20901,26 +18342,6 @@
         "id": "0ad7b2892f0c"
     },
     {
-        "name": "WIPE-OUT  2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199586&copyownerid=198048",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "4eb8af359f78"
-    },
-    {
         "name": "ICAIEM 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194616&copyownerid=182680",
         "startDate": null,
@@ -20944,6 +18365,26 @@
         "id": "10b1e8e42283"
     },
     {
+        "name": "WIPE-OUT  2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199586&copyownerid=198048",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "4eb8af359f78"
+    },
+    {
         "name": "ETAIC 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=189647&copyownerid=182680",
         "startDate": null,
@@ -20962,26 +18403,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "3b0240ab6a52"
-    },
-    {
-        "name": "DEBAI  2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194792&copyownerid=182680",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "8b468b8579e2"
     },
     {
         "name": "USIT 2026",
@@ -21004,8 +18425,8 @@
         "id": "472367f26abb"
     },
     {
-        "name": "CACG 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195200&copyownerid=163220",
+        "name": "DEBAI  2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194792&copyownerid=182680",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -21021,7 +18442,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "c156e3582fd2"
+        "id": "8b468b8579e2"
     },
     {
         "name": "ICAEM 2026",
@@ -21044,8 +18465,8 @@
         "id": "4d38fe5cb648"
     },
     {
-        "name": "AIoTC 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195203&copyownerid=182680",
+        "name": "CACG 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195200&copyownerid=163220",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -21061,7 +18482,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "ec18378e5e98"
+        "id": "c156e3582fd2"
     },
     {
         "name": "ICAMechS 2026",
@@ -21082,6 +18503,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "82459caea2a0"
+    },
+    {
+        "name": "AIoTC 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195203&copyownerid=182680",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "ec18378e5e98"
     },
     {
         "name": "CONF-SEML 2026",
@@ -21142,6 +18583,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "0c26e2052952"
+    },
+    {
+        "name": "CSEIT 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195330&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "f02f251bffc5"
     },
     {
         "name": "MIBIO 2026",
@@ -21224,8 +18685,8 @@
         "id": "8f11c6cc6a67"
     },
     {
-        "name": "IJITCS 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195437&copyownerid=33993",
+        "name": "CIoT 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199700&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -21240,8 +18701,11 @@
         "domain": "general",
         "tags": [],
         "source": "wikicfp",
+        "sources": [
+            "wikicfp"
+        ],
         "subDomains": [],
-        "id": "8e0edc424e07"
+        "id": "40da6e63593f"
     },
     {
         "name": "ACIRS 2026",
@@ -21262,6 +18726,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "2ee3726ca0d1"
+    },
+    {
+        "name": "NLPD 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195488&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "ai",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "6f0fddc39136"
     },
     {
         "name": "BDE 2026",
@@ -21365,26 +18849,6 @@
         ],
         "subDomains": [],
         "id": "fd04dd619afa"
-    },
-    {
-        "name": "IJDKP 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199584&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "0c159db0c034"
     },
     {
         "name": "BMLI  2026",
@@ -21527,8 +18991,8 @@
         "id": "3081dd267c15"
     },
     {
-        "name": "NLPA 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200044&copyownerid=33993",
+        "name": "IJITCS 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195437&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -21540,11 +19004,11 @@
         },
         "online": false,
         "cfp": null,
-        "domain": "ai",
+        "domain": "general",
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "e12674084abe"
+        "id": "8e0edc424e07"
     },
     {
         "name": "ICRCV 2026",
@@ -21647,6 +19111,26 @@
         "id": "02ea6fc862b3"
     },
     {
+        "name": "IJDKP 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199584&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "0c159db0c034"
+    },
+    {
         "name": "MECE 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=189265&copyownerid=170233",
         "startDate": null,
@@ -21687,8 +19171,8 @@
         "id": "04b7042af76f"
     },
     {
-        "name": "ICC 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200046&copyownerid=197609",
+        "name": "NLPA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200044&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -21700,51 +19184,11 @@
         },
         "online": false,
         "cfp": null,
-        "domain": "general",
+        "domain": "ai",
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "eaacb5c85c48"
-    },
-    {
-        "name": "AEIJ 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=188615&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "38cb7dd2ced7"
-    },
-    {
-        "name": "VCOI 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=189522&copyownerid=170233",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "6c996a3b167b"
+        "id": "e12674084abe"
     },
     {
         "name": "MEIJ 2026",
@@ -22247,29 +19691,6 @@
         "id": "b5d211cdffc3"
     },
     {
-        "name": "CIoT 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199700&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "sources": [
-            "wikicfp"
-        ],
-        "subDomains": [],
-        "id": "40da6e63593f"
-    },
-    {
         "name": "EDU 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=189030&copyownerid=170233",
         "startDate": null,
@@ -22690,6 +20111,26 @@
         "id": "971b821d2f27"
     },
     {
+        "name": "AEIJ 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=188615&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "38cb7dd2ced7"
+    },
+    {
         "name": "ICAITE 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192950&copyownerid=13881",
         "startDate": null,
@@ -22768,6 +20209,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "ebcd48c69f0e"
+    },
+    {
+        "name": "VCOI 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=189522&copyownerid=170233",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "6c996a3b167b"
     },
     {
         "name": "ICMV 2026",
@@ -24557,6 +22018,26 @@
         "id": "1ebbec9f6cc8"
     },
     {
+        "name": "CVAA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200081&copyownerid=182680",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "f1f1a0831be0"
+    },
+    {
         "name": "ADIP 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192222&copyownerid=13881",
         "startDate": null,
@@ -24895,26 +22376,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "516d2288a791"
-    },
-    {
-        "name": "ICRMV 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195432&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "377db9491a53"
     },
     {
         "name": "InWeS 2026",
@@ -25833,26 +23294,6 @@
         "id": "e1b167c2e5a3"
     },
     {
-        "name": "NLPD 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195488&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "ai",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "6f0fddc39136"
-    },
-    {
         "name": "IJWesT 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192578&copyownerid=33993",
         "startDate": null,
@@ -26396,26 +23837,6 @@
         "id": "2eecb09378c4"
     },
     {
-        "name": "CMAM 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199587&copyownerid=182680",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "2cb93b164c9c"
-    },
-    {
         "name": "IJASA 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=188813&copyownerid=33993",
         "startDate": null,
@@ -26434,6 +23855,46 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "a703afda81f6"
+    },
+    {
+        "name": "SMC 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192324&copyownerid=46167",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "76ff9fae7c3e"
+    },
+    {
+        "name": "IJCIS 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=188814&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "6b1373ea7ef8"
     },
     {
         "name": "IJWSC 2026",
@@ -26716,46 +24177,6 @@
         "id": "86a67464c271"
     },
     {
-        "name": "SMC 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192324&copyownerid=46167",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "76ff9fae7c3e"
-    },
-    {
-        "name": "IJCIS 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=188814&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "6b1373ea7ef8"
-    },
-    {
         "name": "SPPR  2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=189429&copyownerid=170233",
         "startDate": null,
@@ -26816,26 +24237,6 @@
         "id": "c6bf9a48ef6a"
     },
     {
-        "name": "ADMA 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192318&copyownerid=197210",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "e0b46652e7be"
-    },
-    {
         "name": "ICAITA 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199889&copyownerid=182680",
         "startDate": null,
@@ -26856,6 +24257,46 @@
         "id": "e5f4b8b65cb2"
     },
     {
+        "name": "CMAM 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199587&copyownerid=182680",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "2cb93b164c9c"
+    },
+    {
+        "name": "ADMA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192318&copyownerid=197210",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "e0b46652e7be"
+    },
+    {
         "name": "PRICAI 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192725&copyownerid=197490",
         "startDate": null,
@@ -26874,6 +24315,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "52a680371ff1"
+    },
+    {
+        "name": "NLPIR 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194634&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "ai",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "3979aa41a8f3"
     },
     {
         "name": "ICTAI 2026",
@@ -26914,26 +24375,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "21797edbe5d6"
-    },
-    {
-        "name": "UCT 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191598&copyownerid=182680",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "53cc7f512209"
     },
     {
         "name": "CCET 2026",
@@ -27501,6 +24942,26 @@
         "id": "0688d3cd2a11"
     },
     {
+        "name": "CoMEA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=151971&copyownerid=93140",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "aeb1085901b1"
+    },
+    {
         "name": "IC&C 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192670&copyownerid=13881",
         "startDate": null,
@@ -27559,26 +25020,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "7dcf082136d5"
-    },
-    {
-        "name": "CoMEA 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=151971&copyownerid=93140",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "aeb1085901b1"
     },
     {
         "name": "ICINCO 2026",
@@ -28579,26 +26020,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "74504400f604"
-    },
-    {
-        "name": "NLPIR 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194634&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "ai",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "3979aa41a8f3"
     },
     {
         "name": "MLPR--EI 2026",
@@ -29624,26 +27045,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "2c779524e4b4"
-    },
-    {
-        "name": "RV 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194380&copyownerid=198083",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "0e75bba33022"
     },
     {
         "name": "IJBBR 2026",
@@ -30675,6 +28076,26 @@
         "id": "7382d0c2d04e"
     },
     {
+        "name": "HCIML 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=188826&copyownerid=182680",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "ai",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "d9036593d967"
+    },
+    {
         "name": "CRSA 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192431&copyownerid=163220",
         "startDate": null,
@@ -30733,26 +28154,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "b15c4348fe29"
-    },
-    {
-        "name": "HCIML 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=188826&copyownerid=182680",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "ai",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "d9036593d967"
     },
     {
         "name": "IEEE-ICECCS 2026",
@@ -31315,26 +28716,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "b51be66f58ca"
-    },
-    {
-        "name": "FAccT 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191964&copyownerid=195699",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "98b9ae291a33"
     },
     {
         "name": "NCA 2026",
@@ -32532,26 +29913,6 @@
         "id": "109693e48b00"
     },
     {
-        "name": "MSCE 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=190966&copyownerid=182680",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "310e8dbb0515"
-    },
-    {
         "name": "HS3@ESORICS 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195162&copyownerid=161403",
         "startDate": null,
@@ -32730,6 +30091,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "b107ca9571bd"
+    },
+    {
+        "name": "MSCE 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=190966&copyownerid=182680",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "310e8dbb0515"
     },
     {
         "name": "ANUBIS 2026",
@@ -36564,6 +33945,26 @@
         "id": "3dba78134b60"
     },
     {
+        "name": "ICC 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200046&copyownerid=197609",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "eaacb5c85c48"
+    },
+    {
         "name": "ICISS 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191349&copyownerid=13881",
         "startDate": null,
@@ -37584,6 +34985,46 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "995d30d484ac"
+    },
+    {
+        "name": "UCT 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191598&copyownerid=182680",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "53cc7f512209"
+    },
+    {
+        "name": "SmartTech-IC  2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194722&copyownerid=146777",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "c740aa60097f"
     },
     {
         "name": "AIEA 2026",
@@ -38750,26 +36191,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "e71cb7e3a716"
-    },
-    {
-        "name": "CSEIT 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195330&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "f02f251bffc5"
     },
     {
         "name": "SPTM  2026",
