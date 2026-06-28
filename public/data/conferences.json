@@ -1,16 +1,16 @@
 {
-  "lastUpdated": "2026-06-27T08:29:59.705834Z",
+  "lastUpdated": "2026-06-28T02:01:10.144675Z",
   "stats": {
-    "total": 1713,
-    "withOpenCFP": 231,
+    "total": 1706,
+    "withOpenCFP": 232,
     "withLocation": 1582,
     "byDomain": {
-        "general": 1242,
-        "cloud": 58,
+        "general": 1237,
+        "cloud": 57,
         "software": 82,
         "mobile": 18,
         "web": 27,
-        "security": 41,
+        "security": 40,
         "data": 7,
         "devops": 6,
         "ai": 91,
@@ -20,227 +20,6 @@
 },
   "months": {
     "June 2026": [
-    {
-        "name": "AWS Community Day Brasil 2026 - Edi\u00e7\u00e3o Centro-Oeste",
-        "url": "https://awscommunityday.com.br/centro-oeste",
-        "startDate": "2026-06-27",
-        "endDate": "2026-06-27",
-        "location": {
-            "city": "Brasilia",
-            "country": "Brazil",
-            "raw": "Brasilia (Brazil)",
-            "lat": -14.235,
-            "lng": -51.9253
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://sessionize.com/aws-community-day-brasil-2026-centro-oeste",
-            "endDate": "2026-05-30",
-            "daysRemaining": -29,
-            "status": "closed"
-        },
-        "source": "developers.events",
-        "domain": "cloud",
-        "subDomains": [],
-        "tags": [
-            "aws"
-        ],
-        "id": "d83a681a1c80"
-    },
-    {
-        "name": "KCD Kuala Lumpur 2026",
-        "url": "https://community.cncf.io/kcd-kuala-lumpur-2026",
-        "startDate": "2026-06-27",
-        "endDate": "2026-06-27",
-        "location": {
-            "city": "Kuala Lumpur",
-            "country": "Malaysia",
-            "raw": "Kuala Lumpur (Malaysia)"
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://sessionize.com/kcd-kuala-lumpur-2026",
-            "endDate": "2026-02-28",
-            "daysRemaining": -120,
-            "status": "closed"
-        },
-        "source": "developers.events",
-        "domain": "general",
-        "subDomains": [],
-        "tags": [],
-        "id": "455da0a771e8"
-    },
-    {
-        "name": "Asynconf",
-        "url": "https://asynconf.com/",
-        "startDate": "2026-06-27",
-        "endDate": "2026-06-27",
-        "location": {
-            "city": "Paris",
-            "country": "France",
-            "raw": "Paris (France)",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://cfp.asynconf.com/",
-            "endDate": "2026-04-30",
-            "daysRemaining": -59,
-            "status": "closed"
-        },
-        "source": "developers.events",
-        "twitter": "@AsynconfEvenet",
-        "sources": [
-            "developers.events",
-            "tech-conferences"
-        ],
-        "domain": "general",
-        "subDomains": [],
-        "tags": [],
-        "id": "9e4f66d128e8"
-    },
-    {
-        "name": "AgentCon -  Panam\u00e1 City",
-        "url": "https://agentcon.city/panama-city",
-        "startDate": "2026-06-27",
-        "endDate": "2026-06-27",
-        "location": {
-            "city": "Panama City",
-            "country": "Panama",
-            "raw": "Panama City (Panama)"
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://sessionize.com/agentcon-panama-city",
-            "endDate": "2026-05-25",
-            "daysRemaining": -34,
-            "status": "closed"
-        },
-        "source": "developers.events",
-        "domain": "general",
-        "subDomains": [],
-        "tags": [],
-        "id": "efe4b4d9222a"
-    },
-    {
-        "name": "BSides Maribor 2026",
-        "url": "https://bsidesmaribor.si/",
-        "startDate": "2026-06-27",
-        "endDate": "2026-06-27",
-        "location": {
-            "city": "Maribor",
-            "country": "Slovenia",
-            "raw": "Maribor (Slovenia)"
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://sessionize.com/bsides-maribor",
-            "endDate": "2026-05-25",
-            "daysRemaining": -34,
-            "status": "closed"
-        },
-        "source": "developers.events",
-        "domain": "security",
-        "subDomains": [],
-        "tags": [],
-        "id": "d39bbdd50764"
-    },
-    {
-        "name": "Global Fabric Community Tunisia",
-        "url": "https://globalfabric.community/",
-        "startDate": "2026-06-27",
-        "endDate": "2026-06-27",
-        "location": {
-            "city": "Tunis",
-            "country": "Tunisia",
-            "raw": "Tunis (Tunisia)"
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://sessionize.com/global-fabric-community-TN",
-            "endDate": "2026-05-31",
-            "daysRemaining": -28,
-            "status": "closed"
-        },
-        "source": "developers.events",
-        "domain": "general",
-        "subDomains": [],
-        "tags": [],
-        "id": "27a85e860378"
-    },
-    {
-        "name": "Global Fabric Day 2026 Lima (Latam)",
-        "url": "https://www.meetup.com/microsoftfabric/events/314485030",
-        "startDate": "2026-06-27",
-        "endDate": "2026-06-27",
-        "location": {
-            "city": "Lima",
-            "country": "Peru",
-            "raw": "Lima (Peru)"
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://sessionize.com/global-fabric-day-2026-latam-lima-rr",
-            "endDate": "2026-06-01",
-            "daysRemaining": -27,
-            "status": "closed"
-        },
-        "source": "developers.events",
-        "sources": [
-            "developers.events"
-        ],
-        "domain": "general",
-        "subDomains": [],
-        "tags": [],
-        "id": "8e04df7dbaca"
-    },
-    {
-        "name": "Microsoft Build Osun 2026",
-        "url": "https://globalai.community/events/build-localhost/zzp04ox3/",
-        "startDate": "2026-06-27",
-        "endDate": "2026-06-27",
-        "location": {
-            "city": "Osogbo",
-            "country": "Nigeria",
-            "raw": "Osogbo (Nigeria)"
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://sessionize.com/microsoft-build-osun-2026",
-            "endDate": "2026-06-22",
-            "daysRemaining": -6,
-            "status": "closed"
-        },
-        "source": "developers.events",
-        "domain": "general",
-        "subDomains": [],
-        "tags": [],
-        "id": "ddf952a26f47"
-    },
-    {
-        "name": "Build with AI - EPN",
-        "url": "https://gdg.community.dev/events/details/google-gdg-quito-presents-build-with-ai-epn/cohost-gdg-quito/",
-        "startDate": "2026-06-27",
-        "endDate": "2026-06-27",
-        "location": {
-            "city": "Quito",
-            "country": "Ecuador",
-            "raw": "Quito (Ecuador)"
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://sessionize.com/build-with-ai-epn",
-            "endDate": "2026-06-28",
-            "daysRemaining": 0,
-            "status": "closed"
-        },
-        "source": "developers.events",
-        "domain": "general",
-        "subDomains": [],
-        "tags": [],
-        "id": "8eb7c39b7221"
-    },
     {
         "name": "Cloud Native Summit 2026",
         "url": "https://cloudnativesummit.de/",
@@ -257,7 +36,7 @@
         "cfp": {
             "url": "https://sessionize.com/cloud-native-summit-2026",
             "endDate": "2026-03-31",
-            "daysRemaining": -89,
+            "daysRemaining": -90,
             "status": "closed"
         },
         "source": "developers.events",
@@ -282,7 +61,7 @@
         "cfp": {
             "url": "https://sessionize.com/dwx-26",
             "endDate": "2026-01-11",
-            "daysRemaining": -168,
+            "daysRemaining": -169,
             "status": "closed"
         },
         "source": "developers.events",
@@ -311,7 +90,7 @@
         "cfp": {
             "url": "https://sessionize.com/aiewf2026",
             "endDate": "2026-06-05",
-            "daysRemaining": -23,
+            "daysRemaining": -24,
             "status": "closed"
         },
         "source": "developers.events",
@@ -360,7 +139,7 @@
         "cfp": {
             "url": "https://sessionize.com/BuildLocalhostZurich",
             "endDate": "2026-06-15",
-            "daysRemaining": -13,
+            "daysRemaining": -14,
             "status": "closed"
         },
         "source": "developers.events",
@@ -408,7 +187,7 @@
         "cfp": {
             "url": "https://conference-hall.io/sunny-tech-2026",
             "endDate": "2026-03-01",
-            "daysRemaining": -119,
+            "daysRemaining": -120,
             "status": "closed"
         },
         "source": "developers.events",
@@ -433,7 +212,7 @@
         "cfp": {
             "url": "https://sessionize.com/agile-on-the-beach-2026/",
             "endDate": "2025-11-16",
-            "daysRemaining": -224,
+            "daysRemaining": -225,
             "status": "closed"
         },
         "source": "developers.events",
@@ -458,7 +237,7 @@
         "cfp": {
             "url": "https://sessionize.com/web-summer-camp-2026",
             "endDate": "2026-02-28",
-            "daysRemaining": -120,
+            "daysRemaining": -121,
             "status": "closed"
         },
         "source": "developers.events",
@@ -483,7 +262,7 @@
         "cfp": {
             "url": "https://conference-hall.io/azur-tech-summer-2026",
             "endDate": "2026-03-13",
-            "daysRemaining": -107,
+            "daysRemaining": -108,
             "status": "closed"
         },
         "source": "developers.events",
@@ -554,7 +333,7 @@
         "cfp": {
             "url": "https://www.papercall.io/perlcommunityconferencesummer26",
             "endDate": "2026-07-01",
-            "daysRemaining": 3,
+            "daysRemaining": 2,
             "status": "open"
         },
         "source": "developers.events",
@@ -579,7 +358,7 @@
         "cfp": {
             "url": "https://sessionize.com/agile-lyon-2026/",
             "endDate": "2026-03-13",
-            "daysRemaining": -107,
+            "daysRemaining": -108,
             "status": "closed"
         },
         "source": "developers.events",
@@ -604,7 +383,7 @@
         "cfp": {
             "url": "https://www.papercall.io/aiconnect",
             "endDate": "2026-06-15",
-            "daysRemaining": -13,
+            "daysRemaining": -14,
             "status": "closed"
         },
         "source": "developers.events",
@@ -627,7 +406,7 @@
         "cfp": {
             "url": "https://www.papercall.io/hackelvalle26",
             "endDate": "2026-07-31",
-            "daysRemaining": 33,
+            "daysRemaining": 32,
             "status": "open"
         },
         "source": "developers.events",
@@ -650,7 +429,7 @@
         "cfp": {
             "url": "https://sessionize.com/AIworkshop",
             "endDate": "2026-07-03",
-            "daysRemaining": 5,
+            "daysRemaining": 4,
             "status": "open"
         },
         "source": "developers.events",
@@ -675,7 +454,7 @@
         "cfp": {
             "url": "https://conference-hall.io/riviera-dev-2026",
             "endDate": "2026-03-08",
-            "daysRemaining": -112,
+            "daysRemaining": -113,
             "status": "closed"
         },
         "source": "developers.events",
@@ -698,7 +477,7 @@
         "cfp": {
             "url": "https://sessionize.com/pyday-rancagua-2026",
             "endDate": "2026-05-24",
-            "daysRemaining": -35,
+            "daysRemaining": -36,
             "status": "closed"
         },
         "source": "developers.events",
@@ -721,7 +500,7 @@
         "cfp": {
             "url": "https://sessionize.com/easy-way-365-learningdays-marz-2026-c",
             "endDate": "2026-06-12",
-            "daysRemaining": -16,
+            "daysRemaining": -17,
             "status": "closed"
         },
         "source": "developers.events",
@@ -746,7 +525,7 @@
         "cfp": {
             "url": "https://gitnation.com/events/ai-coding-summit-london/cfp",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "twitter": "@AICodingSummit",
@@ -775,7 +554,7 @@
         "cfp": {
             "url": "https://sessionize.com/wearedevelopers-world-congress-2026-europe",
             "endDate": "2026-01-16",
-            "daysRemaining": -163,
+            "daysRemaining": -164,
             "status": "closed"
         },
         "source": "developers.events",
@@ -821,7 +600,7 @@
         "cfp": {
             "url": "https://sessionize.com/vmugnl-summer-sessions-vcf-9",
             "endDate": "2026-07-08",
-            "daysRemaining": 10,
+            "daysRemaining": 9,
             "status": "open"
         },
         "source": "developers.events",
@@ -872,7 +651,7 @@
         "cfp": {
             "url": "https://sessionize.com/data-saturday-rheinland-2026",
             "endDate": "2026-03-29",
-            "daysRemaining": -91,
+            "daysRemaining": -92,
             "status": "closed"
         },
         "source": "developers.events",
@@ -897,7 +676,7 @@
         "cfp": {
             "url": "https://sessionize.com/bsidespgh-2026/",
             "endDate": "2026-04-17",
-            "daysRemaining": -72,
+            "daysRemaining": -73,
             "status": "closed"
         },
         "source": "developers.events",
@@ -922,7 +701,7 @@
         "cfp": {
             "url": "https://sessionize.com/summercon-2026",
             "endDate": "2026-05-15",
-            "daysRemaining": -44,
+            "daysRemaining": -45,
             "status": "closed"
         },
         "source": "developers.events",
@@ -947,7 +726,7 @@
         "cfp": {
             "url": "https://aclanthology.org",
             "endDate": "2026-03-01",
-            "daysRemaining": -119,
+            "daysRemaining": -120,
             "status": "closed"
         },
         "domain": "general",
@@ -972,7 +751,7 @@
         "cfp": {
             "url": "https://sessionize.com/acm-irving-tech-talk-july-2026",
             "endDate": "2026-07-04",
-            "daysRemaining": 6,
+            "daysRemaining": 5,
             "status": "open"
         },
         "source": "developers.events",
@@ -995,7 +774,7 @@
         "cfp": {
             "url": "https://pretalx.com/scipy-2026/cfp",
             "endDate": "2026-02-25",
-            "daysRemaining": -123,
+            "daysRemaining": -124,
             "status": "closed"
         },
         "twitter": null,
@@ -1021,7 +800,7 @@
         "cfp": {
             "url": "https://sessionize.com/eduweb-summit-2026",
             "endDate": "2026-01-16",
-            "daysRemaining": -163,
+            "daysRemaining": -164,
             "status": "closed"
         },
         "source": "developers.events",
@@ -1046,7 +825,7 @@
         "cfp": {
             "url": "https://sessionize.com/rubyconf-2026",
             "endDate": "2026-03-15",
-            "daysRemaining": -105,
+            "daysRemaining": -106,
             "status": "closed"
         },
         "source": "developers.events",
@@ -1116,7 +895,7 @@
         "cfp": {
             "url": "https://sessionize.com/2026-ncci-annual-conference",
             "endDate": "2026-01-16",
-            "daysRemaining": -163,
+            "daysRemaining": -164,
             "status": "closed"
         },
         "source": "developers.events",
@@ -1139,7 +918,7 @@
         "cfp": {
             "url": "https://sessionize.com/grand-salon-de-la-data-en-afriquegsda",
             "endDate": "2026-05-30",
-            "daysRemaining": -29,
+            "daysRemaining": -30,
             "status": "closed"
         },
         "source": "developers.events",
@@ -1212,7 +991,7 @@
         "cfp": {
             "url": "https://sessionize.com/from-code-to-insight-agentic-ai-mcp-a",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -1259,7 +1038,7 @@
         "cfp": {
             "url": "https://cfp.jconfdominicana.org/jconfdominicana-2026/cfp",
             "endDate": "2026-04-18",
-            "daysRemaining": -71,
+            "daysRemaining": -72,
             "status": "closed"
         },
         "source": "developers.events",
@@ -1284,7 +1063,7 @@
         "cfp": {
             "url": "https://sessionize.com/sqlsatbr26",
             "endDate": "2026-05-01",
-            "daysRemaining": -58,
+            "daysRemaining": -59,
             "status": "closed"
         },
         "source": "developers.events",
@@ -1307,7 +1086,7 @@
         "cfp": {
             "url": "https://www.testautomationinnovationsummit.com/manila/register",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -1336,7 +1115,7 @@
         "cfp": {
             "url": "https://sessionize.com/almalinux-day-los-angeles",
             "endDate": "2026-04-05",
-            "daysRemaining": -84,
+            "daysRemaining": -85,
             "status": "closed"
         },
         "source": "developers.events",
@@ -1359,7 +1138,7 @@
         "cfp": {
             "url": "https://sessionize.com/kcd-lima-peru-2026",
             "endDate": "2026-05-18",
-            "daysRemaining": -41,
+            "daysRemaining": -42,
             "status": "closed"
         },
         "source": "developers.events",
@@ -1382,7 +1161,7 @@
         "cfp": {
             "url": "https://sessionize.com/aws-genai-security-day",
             "endDate": "2026-06-26",
-            "daysRemaining": -2,
+            "daysRemaining": -3,
             "status": "closed"
         },
         "source": "developers.events",
@@ -1411,7 +1190,7 @@
         "cfp": {
             "url": "https://sessionize.com/almalinux-day-los-angeles",
             "endDate": "2026-06-05",
-            "daysRemaining": -23,
+            "daysRemaining": -24,
             "status": "closed"
         },
         "twitter": null,
@@ -1437,7 +1216,7 @@
         "cfp": {
             "url": "https://sessionize.com/google-cloud-next-extended-bangkok-2026/",
             "endDate": "2026-07-01",
-            "daysRemaining": 3,
+            "daysRemaining": 2,
             "status": "open"
         },
         "source": "developers.events",
@@ -1460,7 +1239,7 @@
         "cfp": {
             "url": "https://debconf26.debconf.org/cfp/",
             "endDate": "2026-05-25",
-            "daysRemaining": -34,
+            "daysRemaining": -35,
             "status": "closed"
         },
         "source": "developers.events",
@@ -1485,7 +1264,7 @@
         "cfp": {
             "url": "https://www.papercall.io/ruby-conf-africa-2026",
             "endDate": "2026-03-11",
-            "daysRemaining": -109,
+            "daysRemaining": -110,
             "status": "closed"
         },
         "source": "developers.events",
@@ -1512,7 +1291,7 @@
         "cfp": {
             "url": "https://sessionize.com/sei-summer-series-2026",
             "endDate": "2026-06-12",
-            "daysRemaining": -16,
+            "daysRemaining": -17,
             "status": "closed"
         },
         "source": "developers.events",
@@ -1537,7 +1316,7 @@
         "cfp": {
             "url": "https://sessionize.com/vslive_Microsoft26",
             "endDate": "2026-01-09",
-            "daysRemaining": -170,
+            "daysRemaining": -171,
             "status": "closed"
         },
         "source": "developers.events",
@@ -1562,7 +1341,7 @@
         "cfp": {
             "url": "https://sessionize.com/beer-js-summit-2026",
             "endDate": "2026-04-11",
-            "daysRemaining": -78,
+            "daysRemaining": -79,
             "status": "closed"
         },
         "source": "developers.events",
@@ -1608,7 +1387,7 @@
         "cfp": {
             "url": "https://sessionize.com/mscc-developers-conference-2026/",
             "endDate": "2026-02-28",
-            "daysRemaining": -120,
+            "daysRemaining": -121,
             "status": "closed"
         },
         "source": "developers.events",
@@ -1633,7 +1412,7 @@
         "cfp": {
             "url": "https://sessionize.com/api-conf-lagos-2026",
             "endDate": "2026-03-31",
-            "daysRemaining": -89,
+            "daysRemaining": -90,
             "status": "closed"
         },
         "source": "developers.events",
@@ -1656,7 +1435,7 @@
         "cfp": {
             "url": "https://sessionize.com/durban-ai-maskandi",
             "endDate": "2026-07-03",
-            "daysRemaining": 5,
+            "daysRemaining": 4,
             "status": "open"
         },
         "source": "developers.events",
@@ -1679,7 +1458,7 @@
         "cfp": {
             "url": "https://sessionize.com/kcd-and-oid-vietnam-2026/",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -1704,7 +1483,7 @@
         "cfp": {
             "url": "https://sessionize.com/vslive_Microsoft26",
             "endDate": "2025-12-01",
-            "daysRemaining": -209,
+            "daysRemaining": -210,
             "status": "closed"
         },
         "source": "developers.events",
@@ -1729,7 +1508,7 @@
         "cfp": {
             "url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-japan/co-located-events/argocon/#call-for-proposals",
             "endDate": "2026-04-12",
-            "daysRemaining": -77,
+            "daysRemaining": -78,
             "status": "closed"
         },
         "source": "developers.events",
@@ -1754,7 +1533,7 @@
         "cfp": {
             "url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-japan/co-located-events/keycloakcon/#call-for-proposals",
             "endDate": "2026-04-12",
-            "daysRemaining": -77,
+            "daysRemaining": -78,
             "status": "closed"
         },
         "source": "developers.events",
@@ -1779,7 +1558,7 @@
         "cfp": {
             "url": "https://sessionize.com/london-all-day-d365ppug-july-2026",
             "endDate": "2026-05-03",
-            "daysRemaining": -56,
+            "daysRemaining": -57,
             "status": "closed"
         },
         "source": "developers.events",
@@ -1804,7 +1583,7 @@
         "cfp": {
             "url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-japan/program/cfp/",
             "endDate": "2026-03-29",
-            "daysRemaining": -91,
+            "daysRemaining": -92,
             "status": "closed"
         },
         "source": "developers.events",
@@ -1829,7 +1608,7 @@
         "cfp": {
             "url": "https://sessionize.com/chain-react-2026",
             "endDate": "2026-03-18",
-            "daysRemaining": -102,
+            "daysRemaining": -103,
             "status": "closed"
         },
         "source": "developers.events",
@@ -1856,7 +1635,7 @@
         "cfp": {
             "url": "https://sessionize.com/m365-community-days-nyc",
             "endDate": "2026-05-15",
-            "daysRemaining": -44,
+            "daysRemaining": -45,
             "status": "closed"
         },
         "source": "developers.events",
@@ -1879,7 +1658,7 @@
         "cfp": {
             "url": "https://sessionize.com/azurecloudlabjunior",
             "endDate": "2026-02-28",
-            "daysRemaining": -120,
+            "daysRemaining": -121,
             "status": "closed"
         },
         "source": "developers.events",
@@ -1906,7 +1685,7 @@
         "cfp": {
             "url": "https://sessionize.com/sysadminday-2026-in-leipzig",
             "endDate": "2026-03-31",
-            "daysRemaining": -89,
+            "daysRemaining": -90,
             "status": "closed"
         },
         "source": "developers.events",
@@ -1933,7 +1712,7 @@
         "cfp": {
             "url": "https://sessionize.com/global-security-bootcamp-perth-2026",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -1958,7 +1737,7 @@
         "cfp": {
             "url": "https://artificialintelligence.averconferences.com/scientific_session.php",
             "endDate": "2026-07-18",
-            "daysRemaining": 20,
+            "daysRemaining": 19,
             "status": "open"
         },
         "twitter": null,
@@ -1984,7 +1763,7 @@
         "cfp": {
             "url": "https://sessionize.com/la-villa-hacker-summer-camp-2026",
             "endDate": "2026-06-01",
-            "daysRemaining": -27,
+            "daysRemaining": -28,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2009,7 +1788,7 @@
         "cfp": {
             "url": "https://sessionize.com/gophercon-2026",
             "endDate": "2026-03-04",
-            "daysRemaining": -116,
+            "daysRemaining": -117,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2034,7 +1813,7 @@
         "cfp": {
             "url": "https://sessionize.com/association-for-software-testing-cast",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2059,7 +1838,7 @@
         "cfp": {
             "url": "https://sessionize.com/data-and-ai-bootcamp-brisbane-2026/",
             "endDate": "2026-07-15",
-            "daysRemaining": 17,
+            "daysRemaining": 16,
             "status": "open"
         },
         "source": "developers.events",
@@ -2084,7 +1863,7 @@
         "cfp": {
             "url": "https://sessionize.com/n00b-village-speaking",
             "endDate": "2026-05-01",
-            "daysRemaining": -58,
+            "daysRemaining": -59,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2107,7 +1886,7 @@
         "cfp": {
             "url": "https://sessionize.com/community-over-code-asia-2026",
             "endDate": "2026-04-21",
-            "daysRemaining": -68,
+            "daysRemaining": -69,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2132,7 +1911,7 @@
         "cfp": {
             "url": "https://sessionize.com/rtv-at-dc34",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2157,7 +1936,7 @@
         "cfp": {
             "url": "https://sessionize.com/recon-village",
             "endDate": "2026-06-15",
-            "daysRemaining": -13,
+            "daysRemaining": -14,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2182,7 +1961,7 @@
         "cfp": {
             "url": "https://sessionize.com/appsec-village-def-con-34",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2207,7 +1986,7 @@
         "cfp": {
             "url": "https://sessionize.com/bsides-brighton",
             "endDate": "2026-08-01",
-            "daysRemaining": 34,
+            "daysRemaining": 33,
             "status": "open"
         },
         "source": "developers.events",
@@ -2232,7 +2011,7 @@
         "cfp": {
             "url": "https://sessionize.com/write-the-docs-kenya-conference",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2257,7 +2036,7 @@
         "cfp": {
             "url": "https://sessionize.com/beer-city-code-2026",
             "endDate": "2026-03-01",
-            "daysRemaining": -119,
+            "daysRemaining": -120,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2282,7 +2061,7 @@
         "cfp": {
             "url": "https://www.papercall.io/pyconid2026",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2307,7 +2086,7 @@
         "cfp": {
             "url": "https://www.gophercon.co.uk/call-for-papers",
             "endDate": "2026-04-17",
-            "daysRemaining": -72,
+            "daysRemaining": -73,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2332,7 +2111,7 @@
         "cfp": {
             "url": "https://sessionize.com/ai-risk-summit-2026",
             "endDate": "2026-05-29",
-            "daysRemaining": -30,
+            "daysRemaining": -31,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2357,7 +2136,7 @@
         "cfp": {
             "url": "https://sessionize.com/drupal-govcon-2026",
             "endDate": "2026-06-26",
-            "daysRemaining": -2,
+            "daysRemaining": -3,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2382,7 +2161,7 @@
         "cfp": {
             "url": "https://sessionize.com/renderatl-2026/",
             "endDate": "2026-02-16",
-            "daysRemaining": -132,
+            "daysRemaining": -133,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2405,7 +2184,7 @@
         "cfp": {
             "url": "https://sessionize.com/hands-on-testing-2026",
             "endDate": "2026-07-15",
-            "daysRemaining": 17,
+            "daysRemaining": 16,
             "status": "open"
         },
         "source": "developers.events",
@@ -2430,7 +2209,7 @@
         "cfp": {
             "url": "https://events.linuxfoundation.org/mcp-dev-summit-seoul/program/cfp/",
             "endDate": "2026-05-01",
-            "daysRemaining": -58,
+            "daysRemaining": -59,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2455,7 +2234,7 @@
         "cfp": {
             "url": "https://sessionize.com/carolina-code-conference-2026",
             "endDate": "2026-03-31",
-            "daysRemaining": -89,
+            "daysRemaining": -90,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2478,7 +2257,7 @@
         "cfp": {
             "url": "https://sessionize.com/caribeconf-2026",
             "endDate": "2026-07-21",
-            "daysRemaining": 23,
+            "daysRemaining": 22,
             "status": "open"
         },
         "source": "developers.events",
@@ -2503,7 +2282,7 @@
         "cfp": {
             "url": "https://cfp.hackglasgow.live/",
             "endDate": "2025-12-01",
-            "daysRemaining": -209,
+            "daysRemaining": -210,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2572,7 +2351,7 @@
         "cfp": {
             "url": "https://sessionize.com/aws-community-day-central-asia",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -2597,7 +2376,7 @@
         "cfp": {
             "url": "https://sessionize.com/KubeflowCommunityShowcase_2026/",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2620,7 +2399,7 @@
         "cfp": {
             "url": "https://sessionize.com/codeseccon-2026",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -2645,7 +2424,7 @@
         "cfp": {
             "url": "https://laravellive.dk/become-a-speaker",
             "endDate": "2026-03-15",
-            "daysRemaining": -105,
+            "daysRemaining": -106,
             "status": "closed"
         },
         "twitter": "@laravellivedk",
@@ -2669,7 +2448,7 @@
         "cfp": {
             "url": "https://sessionize.com/eightkb-august-2025-copy",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2694,7 +2473,7 @@
         "cfp": {
             "url": "https://www.papercall.io/gopherconlatam2026",
             "endDate": "2026-03-10",
-            "daysRemaining": -110,
+            "daysRemaining": -111,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2719,7 +2498,7 @@
         "cfp": {
             "url": "https://sessionize.com/ng-kenya-2026",
             "endDate": "2026-04-17",
-            "daysRemaining": -72,
+            "daysRemaining": -73,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2742,7 +2521,7 @@
         "cfp": {
             "url": "https://sessionize.com/hitcon-2026",
             "endDate": "2026-05-03",
-            "daysRemaining": -56,
+            "daysRemaining": -57,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2767,7 +2546,7 @@
         "cfp": {
             "url": "https://sessionize.com/montreal-community-days",
             "endDate": "2026-05-15",
-            "daysRemaining": -44,
+            "daysRemaining": -45,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2792,7 +2571,7 @@
         "cfp": {
             "url": "https://www.papercall.io/gdevcon7",
             "endDate": "2026-05-17",
-            "daysRemaining": -42,
+            "daysRemaining": -43,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2817,7 +2596,7 @@
         "cfp": {
             "url": "https://www.papercall.io/devopsmidwest2026",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2842,7 +2621,7 @@
         "cfp": {
             "url": "https://pycontg.pytogo.org/",
             "endDate": "2026-06-12",
-            "daysRemaining": -16,
+            "daysRemaining": -17,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2865,7 +2644,7 @@
         "cfp": {
             "url": "https://sessionize.com/mct-26",
             "endDate": "2026-06-18",
-            "daysRemaining": -10,
+            "daysRemaining": -11,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2888,7 +2667,7 @@
         "cfp": {
             "url": "https://www.papercall.io/devtalks-2026",
             "endDate": "2026-08-16",
-            "daysRemaining": 49,
+            "daysRemaining": 48,
             "status": "open"
         },
         "source": "developers.events",
@@ -2911,7 +2690,7 @@
         "cfp": {
             "url": "https://sessionize.com/dataglobalhub-gdai-2026",
             "endDate": "2026-08-22",
-            "daysRemaining": 55,
+            "daysRemaining": 54,
             "status": "open"
         },
         "source": "developers.events",
@@ -2936,7 +2715,7 @@
         "cfp": {
             "url": "https://sessionize.com/data-saturday-belo-horizonte-2026",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2959,7 +2738,7 @@
         "cfp": {
             "url": "https://sessionize.com/ai-connect-2026",
             "endDate": "2026-06-15",
-            "daysRemaining": -13,
+            "daysRemaining": -14,
             "status": "closed"
         },
         "source": "developers.events",
@@ -2984,7 +2763,7 @@
         "cfp": {
             "url": "https://sessionize.com/global-security-bootcamp-adelaide-2026",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -3009,7 +2788,7 @@
         "cfp": {
             "url": "https://sessionize.com/aws-community-day-belo-horizonte",
             "endDate": "2026-07-10",
-            "daysRemaining": 12,
+            "daysRemaining": 11,
             "status": "open"
         },
         "source": "developers.events",
@@ -3057,7 +2836,7 @@
         "cfp": {
             "url": "https://sessionize.com/techconpwrcondatacon26",
             "endDate": "2026-02-27",
-            "daysRemaining": -121,
+            "daysRemaining": -122,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3082,7 +2861,7 @@
         "cfp": {
             "url": "https://sessionize.com/sikkerhetsfestivalen-2026",
             "endDate": "2026-02-27",
-            "daysRemaining": -121,
+            "daysRemaining": -122,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3107,7 +2886,7 @@
         "cfp": {
             "url": "https://sessionize.com/ustravels-esto2026",
             "endDate": "2026-01-30",
-            "daysRemaining": -149,
+            "daysRemaining": -150,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3132,7 +2911,7 @@
         "cfp": {
             "url": "https://sessionize.com/techcamp-2026",
             "endDate": "2026-05-08",
-            "daysRemaining": -51,
+            "daysRemaining": -52,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3157,7 +2936,7 @@
         "cfp": {
             "url": "https://sessionize.com/dynamicscon-regional-ohio-valley",
             "endDate": "2026-05-18",
-            "daysRemaining": -41,
+            "daysRemaining": -42,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3182,7 +2961,7 @@
         "cfp": {
             "url": "https://sessionize.com/tailscaleup2026",
             "endDate": "2026-03-13",
-            "daysRemaining": -107,
+            "daysRemaining": -108,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3207,7 +2986,7 @@
         "cfp": {
             "url": "https://sessionize.com/2026-secure-carolinas-conference",
             "endDate": "2026-05-15",
-            "daysRemaining": -44,
+            "daysRemaining": -45,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3253,7 +3032,7 @@
         "cfp": {
             "url": "https://sessionize.com/umbraco-india-festival",
             "endDate": "2026-07-31",
-            "daysRemaining": 33,
+            "daysRemaining": 32,
             "status": "open"
         },
         "source": "developers.events",
@@ -3276,7 +3055,7 @@
         "cfp": {
             "url": "https://sessionize.com/aws-community-day-bolivia-2026",
             "endDate": "2026-05-29",
-            "daysRemaining": -30,
+            "daysRemaining": -31,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3303,7 +3082,7 @@
         "cfp": {
             "url": "https://sessionize.com/data-saturday-oslo-2026",
             "endDate": "2026-03-31",
-            "daysRemaining": -89,
+            "daysRemaining": -90,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3328,7 +3107,7 @@
         "cfp": {
             "url": "https://www.papercall.io/owaspnz26-training",
             "endDate": "2026-05-30",
-            "daysRemaining": -29,
+            "daysRemaining": -30,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3356,7 +3135,7 @@
         "cfp": {
             "url": "https://sessionize.com/swampup-2026",
             "endDate": "2026-04-01",
-            "daysRemaining": -88,
+            "daysRemaining": -89,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3381,7 +3160,7 @@
         "cfp": {
             "url": "https://sessionize.com/cloudx-2026",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3406,7 +3185,7 @@
         "cfp": {
             "url": "https://sessionize.com/ai-techworld-2026",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3431,7 +3210,7 @@
         "cfp": {
             "url": "https://sessionize.com/api-world-2026",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3456,7 +3235,7 @@
         "cfp": {
             "url": "https://sessionize.com/droidkaigi2026",
             "endDate": "2026-05-16",
-            "daysRemaining": -43,
+            "daysRemaining": -44,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3481,7 +3260,7 @@
         "cfp": {
             "url": "https://sessionize.com/kcd-sf-bay-area-2026",
             "endDate": "2026-06-14",
-            "daysRemaining": -14,
+            "daysRemaining": -15,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3506,7 +3285,7 @@
         "cfp": {
             "url": "https://sessionize.com/containerdays-hamburg-2026",
             "endDate": "2026-02-28",
-            "daysRemaining": -120,
+            "daysRemaining": -121,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3531,7 +3310,7 @@
         "cfp": {
             "url": "https://airtable.com/appiCHyAxrHTy92eK/pagdanm13HR3z3f1k/form",
             "endDate": "2026-06-01",
-            "daysRemaining": -27,
+            "daysRemaining": -28,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3556,7 +3335,7 @@
         "cfp": {
             "url": "https://sessionize.com/devpulse3023",
             "endDate": "2026-06-01",
-            "daysRemaining": -27,
+            "daysRemaining": -28,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3579,7 +3358,7 @@
         "cfp": {
             "url": "https://www.papercall.io/pwnedcr0x9",
             "endDate": "2026-07-03",
-            "daysRemaining": 5,
+            "daysRemaining": 4,
             "status": "open"
         },
         "source": "developers.events",
@@ -3604,7 +3383,7 @@
         "cfp": {
             "url": "https://sessionize.com/days-of-knowledge-anz-2026",
             "endDate": "2026-07-31",
-            "daysRemaining": 33,
+            "daysRemaining": 32,
             "status": "open"
         },
         "source": "developers.events",
@@ -3629,7 +3408,7 @@
         "cfp": {
             "url": "https://www.papercall.io/redactecon",
             "endDate": "2026-08-08",
-            "daysRemaining": 41,
+            "daysRemaining": 40,
             "status": "open"
         },
         "source": "developers.events",
@@ -3654,7 +3433,7 @@
         "cfp": {
             "url": "https://sessionize.com/vancouver-microsoft365-summit",
             "endDate": "2026-08-15",
-            "daysRemaining": 48,
+            "daysRemaining": 47,
             "status": "open"
         },
         "source": "developers.events",
@@ -3679,7 +3458,7 @@
         "cfp": {
             "url": "https://sessionize.com/poug-2026/",
             "endDate": "2026-03-31",
-            "daysRemaining": -89,
+            "daysRemaining": -90,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3704,7 +3483,7 @@
         "cfp": {
             "url": "https://pretalx.com/devopsdays-graz-2026/cfp",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3729,7 +3508,7 @@
         "cfp": {
             "url": "https://sessionize.com/shiftenter-summit-2026",
             "endDate": "2026-05-15",
-            "daysRemaining": -44,
+            "daysRemaining": -45,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3754,7 +3533,7 @@
         "cfp": {
             "url": "https://sessionize.com/cim-lingen-2026",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3779,7 +3558,7 @@
         "cfp": {
             "url": "https://sessionize.com/azure-community-day-2026",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3806,7 +3585,7 @@
         "cfp": {
             "url": "https://conference-hall.io/jug-summer-camp-2026",
             "endDate": "2026-06-14",
-            "daysRemaining": -14,
+            "daysRemaining": -15,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3831,7 +3610,7 @@
         "cfp": {
             "url": "https://pretalx.com/devopsdays-graz-2026/cfp",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "twitter": null,
@@ -3859,7 +3638,7 @@
         "cfp": {
             "url": "https://sessionize.com/data-saturday-gothenburg-2026",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3884,7 +3663,7 @@
         "cfp": {
             "url": "https://www.lfopensource.cn/mcp-dev-summit-shanghai/program/cfp/",
             "endDate": "2026-06-10",
-            "daysRemaining": -18,
+            "daysRemaining": -19,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3909,7 +3688,7 @@
         "cfp": {
             "url": "https://sessionize.com/power-bi-next-step",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3934,7 +3713,7 @@
         "cfp": {
             "url": "https://www.iosdevuk.com/speakercall",
             "endDate": "2026-02-16",
-            "daysRemaining": -132,
+            "daysRemaining": -133,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3963,7 +3742,7 @@
         "cfp": {
             "url": "https://fwdcloudsec.org/conference/europe/cfp.html",
             "endDate": "2026-06-12",
-            "daysRemaining": -16,
+            "daysRemaining": -17,
             "status": "closed"
         },
         "source": "developers.events",
@@ -3988,7 +3767,7 @@
         "cfp": {
             "url": "https://sessionize.com/aws-community-day-poland-2026",
             "endDate": "2026-07-06",
-            "daysRemaining": 8,
+            "daysRemaining": 7,
             "status": "open"
         },
         "source": "developers.events",
@@ -4015,7 +3794,7 @@
         "cfp": {
             "url": "https://sessionize.com/rustconf-2026",
             "endDate": "2026-02-16",
-            "daysRemaining": -132,
+            "daysRemaining": -133,
             "status": "closed"
         },
         "source": "developers.events",
@@ -4040,7 +3819,7 @@
         "cfp": {
             "url": "https://sessionize.com/goforit-kunstig-intelligens-i-offentlig",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -4065,7 +3844,7 @@
         "cfp": {
             "url": "https://sessionize.com/circle-of-bytes-innovate-2026",
             "endDate": "2026-06-26",
-            "daysRemaining": -2,
+            "daysRemaining": -3,
             "status": "closed"
         },
         "source": "developers.events",
@@ -4088,7 +3867,7 @@
         "cfp": {
             "url": "https://sessionize.com/ispe-baltics-event",
             "endDate": "2026-07-01",
-            "daysRemaining": 3,
+            "daysRemaining": 2,
             "status": "open"
         },
         "source": "developers.events",
@@ -4113,7 +3892,7 @@
         "cfp": {
             "url": "https://sessionize.com/ai-builders1",
             "endDate": "2026-07-04",
-            "daysRemaining": 6,
+            "daysRemaining": 5,
             "status": "open"
         },
         "source": "developers.events",
@@ -4159,7 +3938,7 @@
         "cfp": {
             "url": "https://sessionize.com/kcdc-2026",
             "endDate": "2026-03-09",
-            "daysRemaining": -111,
+            "daysRemaining": -112,
             "status": "closed"
         },
         "source": "developers.events",
@@ -4184,7 +3963,7 @@
         "cfp": {
             "url": "https://sessionize.com/ssh-live-2026",
             "endDate": "2026-04-17",
-            "daysRemaining": -72,
+            "daysRemaining": -73,
             "status": "closed"
         },
         "source": "developers.events",
@@ -4207,7 +3986,7 @@
         "cfp": {
             "url": "https://sessionize.com/international-testers-week-by-cypress-cameroon",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -4232,7 +4011,7 @@
         "cfp": {
             "url": "https://sessionize.com/percona-live-2026-amsterdam",
             "endDate": "2026-07-15",
-            "daysRemaining": 17,
+            "daysRemaining": 16,
             "status": "open"
         },
         "source": "developers.events",
@@ -4255,7 +4034,7 @@
         "cfp": {
             "url": "https://www.papercall.io/dragonjarcon2026",
             "endDate": "2026-03-31",
-            "daysRemaining": -89,
+            "daysRemaining": -90,
             "status": "closed"
         },
         "source": "developers.events",
@@ -4280,7 +4059,7 @@
         "cfp": {
             "url": "https://conf.zurichjs.com/cfp",
             "endDate": "2026-04-01",
-            "daysRemaining": -88,
+            "daysRemaining": -89,
             "status": "closed"
         },
         "source": "developers.events",
@@ -4305,7 +4084,7 @@
         "cfp": {
             "url": "https://sessionize.com/elixirconf-us-2026",
             "endDate": "2026-04-12",
-            "daysRemaining": -77,
+            "daysRemaining": -78,
             "status": "closed"
         },
         "source": "developers.events",
@@ -4328,7 +4107,7 @@
         "cfp": {
             "url": "https://sessionize.com/escape-2026",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -4353,7 +4132,7 @@
         "cfp": {
             "url": "https://signalsconf.io/cfp/",
             "endDate": "2026-05-10",
-            "daysRemaining": -49,
+            "daysRemaining": -50,
             "status": "closed"
         },
         "source": "developers.events",
@@ -4378,7 +4157,7 @@
         "cfp": {
             "url": "https://sessionize.com/difinity-conference-toronto-2026",
             "endDate": "2026-06-27",
-            "daysRemaining": -1,
+            "daysRemaining": -2,
             "status": "closed"
         },
         "source": "developers.events",
@@ -4403,7 +4182,7 @@
         "cfp": {
             "url": "https://conference-hall.io/nantes-craft-2026",
             "endDate": "2026-06-01",
-            "daysRemaining": -27,
+            "daysRemaining": -28,
             "status": "closed"
         },
         "source": "developers.events",
@@ -4428,7 +4207,7 @@
         "cfp": {
             "url": "https://sessionize.com/bsides-belfast-2026",
             "endDate": "2026-06-06",
-            "daysRemaining": -22,
+            "daysRemaining": -23,
             "status": "closed"
         },
         "source": "developers.events",
@@ -4453,7 +4232,7 @@
         "cfp": {
             "url": "https://events.linuxfoundation.org/mcp-dev-summit-tokyo/program/cfp/",
             "endDate": "2026-06-12",
-            "daysRemaining": -16,
+            "daysRemaining": -17,
             "status": "closed"
         },
         "source": "developers.events",
@@ -4478,7 +4257,7 @@
         "cfp": {
             "url": "https://events.linuxfoundation.org/agntcon-mcpcon-japan/program/cfp/",
             "endDate": "2026-06-12",
-            "daysRemaining": -16,
+            "daysRemaining": -17,
             "status": "closed"
         },
         "source": "developers.events",
@@ -4503,8 +4282,8 @@
         "cfp": {
             "url": "https://www.papercall.io/fyneconf2026",
             "endDate": "2026-06-29",
-            "daysRemaining": 1,
-            "status": "open"
+            "daysRemaining": 0,
+            "status": "closed"
         },
         "source": "developers.events",
         "domain": "general",
@@ -4528,7 +4307,7 @@
         "cfp": {
             "url": "https://sessionize.com/beyondconf-2026",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -4551,7 +4330,7 @@
         "cfp": {
             "url": "https://www.papercall.io/conf42-observability-2026",
             "endDate": "2026-08-10",
-            "daysRemaining": 43,
+            "daysRemaining": 42,
             "status": "open"
         },
         "source": "developers.events",
@@ -4576,7 +4355,7 @@
         "cfp": {
             "url": "https://conf.zurichjs.com/cfp",
             "endDate": "2026-04-01",
-            "daysRemaining": -88,
+            "daysRemaining": -89,
             "status": "closed"
         },
         "twitter": "@zurichjs",
@@ -4602,7 +4381,7 @@
         "cfp": {
             "url": "https://automl.cc",
             "endDate": "2026-06-01",
-            "daysRemaining": -27,
+            "daysRemaining": -28,
             "status": "closed"
         },
         "domain": "ai",
@@ -4627,7 +4406,7 @@
         "cfp": {
             "url": "https://sessionize.com/infobip-shift-2026",
             "endDate": "2026-04-01",
-            "daysRemaining": -88,
+            "daysRemaining": -89,
             "status": "closed"
         },
         "source": "developers.events",
@@ -4652,7 +4431,7 @@
         "cfp": {
             "url": "https://sessionize.com/go-conference-2026/",
             "endDate": "2026-06-15",
-            "daysRemaining": -13,
+            "daysRemaining": -14,
             "status": "closed"
         },
         "source": "developers.events",
@@ -4679,7 +4458,7 @@
         "cfp": {
             "url": "https://sessionize.com/nashville2026",
             "endDate": "2026-06-27",
-            "daysRemaining": -1,
+            "daysRemaining": -2,
             "status": "closed"
         },
         "source": "developers.events",
@@ -4704,7 +4483,7 @@
         "cfp": {
             "url": "https://sessionize.com/bsidesden-2026",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -4729,7 +4508,7 @@
         "cfp": {
             "url": "https://sessionize.com/yyc-datacon-2026",
             "endDate": "2026-08-01",
-            "daysRemaining": 34,
+            "daysRemaining": 33,
             "status": "open"
         },
         "source": "developers.events",
@@ -4752,7 +4531,7 @@
         "cfp": {
             "url": "https://sessionize.com/bsideszadar-2026",
             "endDate": "2026-08-05",
-            "daysRemaining": 38,
+            "daysRemaining": 37,
             "status": "open"
         },
         "source": "developers.events",
@@ -4777,7 +4556,7 @@
         "cfp": {
             "url": "https://sessionize.com/azureonbeer-2026",
             "endDate": "2026-08-31",
-            "daysRemaining": 64,
+            "daysRemaining": 63,
             "status": "open"
         },
         "source": "developers.events",
@@ -4802,7 +4581,7 @@
         "cfp": {
             "url": "https://sessionize.com/acd-bdq-2026",
             "endDate": "2026-08-02",
-            "daysRemaining": 35,
+            "daysRemaining": 34,
             "status": "open"
         },
         "source": "developers.events",
@@ -4827,7 +4606,7 @@
         "cfp": {
             "url": "https://sessionize.com/ng-conf-peru-2026",
             "endDate": "2026-04-15",
-            "daysRemaining": -74,
+            "daysRemaining": -75,
             "status": "closed"
         },
         "source": "developers.events",
@@ -4852,7 +4631,7 @@
         "cfp": {
             "url": "https://sessionize.com/ai-industrial-summit-2026",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -4875,7 +4654,7 @@
         "cfp": {
             "url": "https://sessionize.com/init-2026",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -4898,7 +4677,7 @@
         "cfp": {
             "url": "https://www.papercall.io/pwnedcr9",
             "endDate": "2026-07-03",
-            "daysRemaining": 5,
+            "daysRemaining": 4,
             "status": "open"
         },
         "source": "developers.events",
@@ -4923,7 +4702,7 @@
         "cfp": {
             "url": "https://sessionize.com/2026-forth-roadmap-conference",
             "endDate": "2026-02-13",
-            "daysRemaining": -135,
+            "daysRemaining": -136,
             "status": "closed"
         },
         "source": "developers.events",
@@ -4948,7 +4727,7 @@
         "cfp": {
             "url": "https://sessionize.com/ndc-oslo-2026/",
             "endDate": "2026-04-19",
-            "daysRemaining": -70,
+            "daysRemaining": -71,
             "status": "closed"
         },
         "source": "developers.events",
@@ -4973,7 +4752,7 @@
         "cfp": {
             "url": "https://forms.gle/Q1uxna42kzuUhrYT7",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -5001,7 +4780,7 @@
         "cfp": {
             "url": "https://sessionize.com/infobip-shift-2026",
             "endDate": "2026-05-22",
-            "daysRemaining": -37,
+            "daysRemaining": -38,
             "status": "closed"
         },
         "source": "developers.events",
@@ -5026,7 +4805,7 @@
         "cfp": {
             "url": "https://sessionize.com/brains-on-silicon",
             "endDate": "2026-08-27",
-            "daysRemaining": 60,
+            "daysRemaining": 59,
             "status": "open"
         },
         "source": "developers.events",
@@ -5070,7 +4849,7 @@
         "cfp": {
             "url": "https://sessionize.com/aws-community-day-dach-2026",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -5096,9 +4875,9 @@
         "online": false,
         "cfp": {
             "url": "https://sessionize.com/kcd-washington-dc-2026",
-            "endDate": "2026-06-26",
-            "daysRemaining": -2,
-            "status": "closed"
+            "endDate": "2026-06-30",
+            "daysRemaining": 1,
+            "status": "open"
         },
         "source": "developers.events",
         "domain": "general",
@@ -5120,7 +4899,7 @@
         "cfp": {
             "url": "https://sessionize.com/ispe-nordic-baltic-validation-summit-2026",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -5145,7 +4924,7 @@
         "cfp": {
             "url": "https://sessionize.com/XenSummit2026",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -5219,7 +4998,7 @@
         "cfp": {
             "url": "https://sessionize.com/tech-passion-day-2026",
             "endDate": "2026-04-01",
-            "daysRemaining": -88,
+            "daysRemaining": -89,
             "status": "closed"
         },
         "source": "developers.events",
@@ -5244,7 +5023,7 @@
         "cfp": {
             "url": "https://sessionize.com/tacon-2026",
             "endDate": "2026-03-01",
-            "daysRemaining": -119,
+            "daysRemaining": -120,
             "status": "closed"
         },
         "source": "developers.events",
@@ -5267,7 +5046,7 @@
         "cfp": {
             "url": "https://www.techtok.mt/call-for-speakers",
             "endDate": "2026-04-10",
-            "daysRemaining": -79,
+            "daysRemaining": -80,
             "status": "closed"
         },
         "source": "developers.events",
@@ -5294,7 +5073,7 @@
         "cfp": {
             "url": "https://sessionize.com/ai-native-workplace-2026",
             "endDate": "2026-06-06",
-            "daysRemaining": -22,
+            "daysRemaining": -23,
             "status": "closed"
         },
         "source": "developers.events",
@@ -5319,7 +5098,7 @@
         "cfp": {
             "url": "https://sessionize.com/dc-stateofthestack-2026",
             "endDate": "2026-06-08",
-            "daysRemaining": -20,
+            "daysRemaining": -21,
             "status": "closed"
         },
         "source": "developers.events",
@@ -5344,7 +5123,7 @@
         "cfp": {
             "url": "https://forms.cloud.microsoft/e/UJpffgFHP8",
             "endDate": "2026-02-15",
-            "daysRemaining": -133,
+            "daysRemaining": -134,
             "status": "closed"
         },
         "twitter": null,
@@ -5394,7 +5173,7 @@
         "cfp": {
             "url": "https://api-platform.com/fr/con/2026/call-for-papers/",
             "endDate": "2026-03-22",
-            "daysRemaining": -98,
+            "daysRemaining": -99,
             "status": "closed"
         },
         "source": "developers.events",
@@ -5419,7 +5198,7 @@
         "cfp": {
             "url": "https://sessionize.com/swiss-cloud-native-day-2026",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -5444,7 +5223,7 @@
         "cfp": {
             "url": "https://www.dotai.io/speak",
             "endDate": "2026-04-28",
-            "daysRemaining": -61,
+            "daysRemaining": -62,
             "status": "closed"
         },
         "source": "developers.events",
@@ -5474,7 +5253,7 @@
         "cfp": {
             "url": "https://docs.google.com/forms/d/e/1FAIpQLSfbFEGYxD_9gEyBzIb4oFi47-6r9ATWp4fCfR3IPL48XPL_9Q/viewform",
             "endDate": "2026-05-17",
-            "daysRemaining": -42,
+            "daysRemaining": -43,
             "status": "closed"
         },
         "source": "developers.events",
@@ -5499,7 +5278,7 @@
         "cfp": {
             "url": "https://forms.gle/q9w6QvYC1jTHDUQU8",
             "endDate": "2026-06-08",
-            "daysRemaining": -20,
+            "daysRemaining": -21,
             "status": "closed"
         },
         "source": "developers.events",
@@ -5530,7 +5309,7 @@
         "cfp": {
             "url": "https://sessionize.com/helish-summit-2026",
             "endDate": "2026-02-28",
-            "daysRemaining": -120,
+            "daysRemaining": -121,
             "status": "closed"
         },
         "source": "developers.events",
@@ -5553,7 +5332,7 @@
         "cfp": {
             "url": "https://sessionize.com/pycon-camerooon-2026",
             "endDate": "2026-04-20",
-            "daysRemaining": -69,
+            "daysRemaining": -70,
             "status": "closed"
         },
         "source": "developers.events",
@@ -5578,7 +5357,7 @@
         "cfp": {
             "url": "https://www.papercall.io/emberfest-2026",
             "endDate": "2026-05-03",
-            "daysRemaining": -56,
+            "daysRemaining": -57,
             "status": "closed"
         },
         "source": "developers.events",
@@ -5601,7 +5380,7 @@
         "cfp": {
             "url": "https://sessionize.com/sos2026/",
             "endDate": "2026-05-04",
-            "daysRemaining": -55,
+            "daysRemaining": -56,
             "status": "closed"
         },
         "source": "developers.events",
@@ -5626,7 +5405,7 @@
         "cfp": {
             "url": "https://sessionize.com/podcast-movement-2026",
             "endDate": "2026-06-01",
-            "daysRemaining": -27,
+            "daysRemaining": -28,
             "status": "closed"
         },
         "source": "developers.events",
@@ -5651,7 +5430,7 @@
         "cfp": {
             "url": "https://events.linuxfoundation.org/agntcon-mcpcon-europe/program/cfp/",
             "endDate": "2026-06-08",
-            "daysRemaining": -20,
+            "daysRemaining": -21,
             "status": "closed"
         },
         "source": "developers.events",
@@ -5676,7 +5455,7 @@
         "cfp": {
             "url": "https://sessionize.com/agent-conf-2026",
             "endDate": "2026-06-20",
-            "daysRemaining": -8,
+            "daysRemaining": -9,
             "status": "closed"
         },
         "source": "developers.events",
@@ -5701,7 +5480,7 @@
         "cfp": {
             "url": "https://www.papercall.io/bsidesyxe2026",
             "endDate": "2026-07-31",
-            "daysRemaining": 33,
+            "daysRemaining": 32,
             "status": "open"
         },
         "source": "developers.events",
@@ -5726,7 +5505,7 @@
         "cfp": {
             "url": "https://www.papercall.io/honeycon26",
             "endDate": "2026-09-01",
-            "daysRemaining": 65,
+            "daysRemaining": 64,
             "status": "open"
         },
         "source": "developers.events",
@@ -5798,7 +5577,7 @@
         "cfp": {
             "url": "https://sessionize.com/agent-conf-2026",
             "endDate": "2026-06-20",
-            "daysRemaining": -8,
+            "daysRemaining": -9,
             "status": "closed"
         },
         "twitter": "@AgentConf",
@@ -5827,7 +5606,7 @@
         "cfp": {
             "url": "https://www.dotjs.io/speak",
             "endDate": "2026-04-28",
-            "daysRemaining": -61,
+            "daysRemaining": -62,
             "status": "closed"
         },
         "source": "developers.events",
@@ -5857,7 +5636,7 @@
         "cfp": {
             "url": "https://sessionize.com/utahjs-conf-2026",
             "endDate": "2026-04-27",
-            "daysRemaining": -62,
+            "daysRemaining": -63,
             "status": "closed"
         },
         "source": "developers.events",
@@ -5882,7 +5661,7 @@
         "cfp": {
             "url": "https://sessionize.com/m365-twin-cities-2026/",
             "endDate": "2026-06-01",
-            "daysRemaining": -27,
+            "daysRemaining": -28,
             "status": "closed"
         },
         "source": "developers.events",
@@ -5907,7 +5686,7 @@
         "cfp": {
             "url": "https://sessionize.com/bsidescache-2026",
             "endDate": "2026-06-19",
-            "daysRemaining": -9,
+            "daysRemaining": -10,
             "status": "closed"
         },
         "source": "developers.events",
@@ -5932,7 +5711,7 @@
         "cfp": {
             "url": "https://conference-hall.io/wordcamp-bretagne",
             "endDate": "2026-07-05",
-            "daysRemaining": 7,
+            "daysRemaining": 6,
             "status": "open"
         },
         "source": "developers.events",
@@ -5955,7 +5734,7 @@
         "cfp": {
             "url": "https://sessionize.com/valusignal-2026",
             "endDate": "2026-08-31",
-            "daysRemaining": 64,
+            "daysRemaining": 63,
             "status": "open"
         },
         "source": "developers.events",
@@ -6002,7 +5781,7 @@
         "cfp": {
             "url": "https://wts.sh/login",
             "endDate": "2026-03-01",
-            "daysRemaining": -119,
+            "daysRemaining": -120,
             "status": "closed"
         },
         "source": "developers.events",
@@ -6027,7 +5806,7 @@
         "cfp": {
             "url": "https://sessionize.com/sitwhm2026",
             "endDate": "2026-05-30",
-            "daysRemaining": -29,
+            "daysRemaining": -30,
             "status": "closed"
         },
         "source": "developers.events",
@@ -6052,7 +5831,7 @@
         "cfp": {
             "url": "https://sessionize.com/day-of-data-slc-2026/",
             "endDate": "2026-07-06",
-            "daysRemaining": 8,
+            "daysRemaining": 7,
             "status": "open"
         },
         "source": "developers.events",
@@ -6077,7 +5856,7 @@
         "cfp": {
             "url": "https://sessionize.com/kcd-gujarat-2026",
             "endDate": "2026-07-14",
-            "daysRemaining": 16,
+            "daysRemaining": 15,
             "status": "open"
         },
         "source": "developers.events",
@@ -6102,7 +5881,7 @@
         "cfp": {
             "url": "https://sessionize.com/data-ai-saturday-vitoria-2026",
             "endDate": "2026-08-15",
-            "daysRemaining": 48,
+            "daysRemaining": 47,
             "status": "open"
         },
         "source": "developers.events",
@@ -6127,7 +5906,7 @@
         "cfp": {
             "url": "https://sessionize.com/amtso-cyber-research-conference-2026",
             "endDate": "2026-03-31",
-            "daysRemaining": -89,
+            "daysRemaining": -90,
             "status": "closed"
         },
         "source": "developers.events",
@@ -6174,7 +5953,7 @@
         "cfp": {
             "url": "https://www.papercall.io/tq2026",
             "endDate": "2026-04-15",
-            "daysRemaining": -74,
+            "daysRemaining": -75,
             "status": "closed"
         },
         "source": "developers.events",
@@ -6199,7 +5978,7 @@
         "cfp": {
             "url": "https://docs.google.com/forms/d/e/1FAIpQLSfEDjOe18HZSToF4yfUCGgK3M5045VTtJLYTYuVYezIrjHqKA/viewform",
             "endDate": "2026-03-21",
-            "daysRemaining": -99,
+            "daysRemaining": -100,
             "status": "closed"
         },
         "twitter": null,
@@ -6225,7 +6004,7 @@
         "cfp": {
             "url": "https://sessionize.com/explore-ddd-2026",
             "endDate": "2026-03-20",
-            "daysRemaining": -100,
+            "daysRemaining": -101,
             "status": "closed"
         },
         "source": "developers.events",
@@ -6248,7 +6027,7 @@
         "cfp": {
             "url": "https://sessionize.com/devdays-2026",
             "endDate": "2026-03-23",
-            "daysRemaining": -97,
+            "daysRemaining": -98,
             "status": "closed"
         },
         "source": "developers.events",
@@ -6273,7 +6052,7 @@
         "cfp": {
             "url": "https://sessionize.com/prairiedevcon2026",
             "endDate": "2026-03-28",
-            "daysRemaining": -92,
+            "daysRemaining": -93,
             "status": "closed"
         },
         "source": "developers.events",
@@ -6298,7 +6077,7 @@
         "cfp": {
             "url": "https://sessionize.com/nordic-summit-2026",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -6323,7 +6102,7 @@
         "cfp": {
             "url": "https://sessionize.com/brucon-0x12",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -6348,7 +6127,7 @@
         "cfp": {
             "url": "https://sessionize.com/partner-vibe",
             "endDate": "2026-06-15",
-            "daysRemaining": -13,
+            "daysRemaining": -14,
             "status": "closed"
         },
         "source": "developers.events",
@@ -6373,7 +6152,7 @@
         "cfp": {
             "url": "https://www.papercall.io/dodrox26",
             "endDate": "2026-06-01",
-            "daysRemaining": -27,
+            "daysRemaining": -28,
             "status": "closed"
         },
         "source": "developers.events",
@@ -6400,7 +6179,7 @@
         "cfp": {
             "url": "https://sessionize.com/civo-navigate-london-2026",
             "endDate": "2026-01-31",
-            "daysRemaining": -148,
+            "daysRemaining": -149,
             "status": "closed"
         },
         "source": "developers.events",
@@ -6425,7 +6204,7 @@
         "cfp": {
             "url": "https://heise-devsec.de/code_of_conduct.php",
             "endDate": "2026-04-14",
-            "daysRemaining": -75,
+            "daysRemaining": -76,
             "status": "closed"
         },
         "source": "developers.events",
@@ -6454,7 +6233,7 @@
         "cfp": {
             "url": "https://sessionize.com/java-forum-nord-2026",
             "endDate": "2026-05-05",
-            "daysRemaining": -54,
+            "daysRemaining": -55,
             "status": "closed"
         },
         "source": "developers.events",
@@ -6481,7 +6260,7 @@
         "cfp": {
             "url": "https://sessionize.com/salon-data-2026/",
             "endDate": "2026-05-24",
-            "daysRemaining": -35,
+            "daysRemaining": -36,
             "status": "closed"
         },
         "source": "developers.events",
@@ -6506,7 +6285,7 @@
         "cfp": {
             "url": "https://sessionize.com/agile-en-seine-2026",
             "endDate": "2026-06-23",
-            "daysRemaining": -5,
+            "daysRemaining": -6,
             "status": "closed"
         },
         "source": "developers.events",
@@ -6533,7 +6312,7 @@
         "cfp": {
             "url": "https://sessionize.com/dutch-umbraco-alliance",
             "endDate": "2026-07-17",
-            "daysRemaining": 19,
+            "daysRemaining": 18,
             "status": "open"
         },
         "source": "developers.events",
@@ -6603,7 +6382,7 @@
         "cfp": {
             "url": "https://sessionize.com/wearedevelopers-world-congress-2026-us",
             "endDate": "2026-03-31",
-            "daysRemaining": -89,
+            "daysRemaining": -90,
             "status": "closed"
         },
         "source": "developers.events",
@@ -6632,7 +6411,7 @@
         "cfp": {
             "url": "https://sessionize.com/bed-con-2026/",
             "endDate": "2026-04-26",
-            "daysRemaining": -63,
+            "daysRemaining": -64,
             "status": "closed"
         },
         "source": "developers.events",
@@ -6657,7 +6436,7 @@
         "cfp": {
             "url": "https://sessionize.com/bit-summit-2026",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -6682,7 +6461,7 @@
         "cfp": {
             "url": "https://sessionize.com/rails-world-2026/",
             "endDate": "2026-05-16",
-            "daysRemaining": -43,
+            "daysRemaining": -44,
             "status": "closed"
         },
         "source": "developers.events",
@@ -6707,7 +6486,7 @@
         "cfp": {
             "url": "https://sessionize.com/2026-acsa-women-in-school-leadership-for1511",
             "endDate": "2026-05-25",
-            "daysRemaining": -34,
+            "daysRemaining": -35,
             "status": "closed"
         },
         "source": "developers.events",
@@ -6732,7 +6511,7 @@
         "cfp": {
             "url": "https://sessionize.com/azure-fest-2026",
             "endDate": "2026-06-05",
-            "daysRemaining": -23,
+            "daysRemaining": -24,
             "status": "closed"
         },
         "source": "developers.events",
@@ -6759,7 +6538,7 @@
         "cfp": {
             "url": "https://sessionize.com/ai-horizons-2026",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -6784,7 +6563,7 @@
         "cfp": {
             "url": "https://sessionize.com/directions-enterprise-2026",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -6809,7 +6588,7 @@
         "cfp": {
             "url": "https://conference-hall.io/react-native-connection-2026",
             "endDate": "2026-06-07",
-            "daysRemaining": -21,
+            "daysRemaining": -22,
             "status": "closed"
         },
         "source": "developers.events",
@@ -6838,7 +6617,7 @@
         "cfp": {
             "url": "https://sessionize.com/turn-conference-26",
             "endDate": "2026-02-28",
-            "daysRemaining": -120,
+            "daysRemaining": -121,
             "status": "closed"
         },
         "source": "developers.events",
@@ -6861,7 +6640,7 @@
         "cfp": {
             "url": "https://sessionize.com/owasp-appsecportugalcfp-2026",
             "endDate": "2026-04-25",
-            "daysRemaining": -64,
+            "daysRemaining": -65,
             "status": "closed"
         },
         "source": "developers.events",
@@ -6886,7 +6665,7 @@
         "cfp": {
             "url": "https://sessionize.com/owasp-appsec-days-france-2026",
             "endDate": "2026-05-07",
-            "daysRemaining": -52,
+            "daysRemaining": -53,
             "status": "closed"
         },
         "source": "developers.events",
@@ -6911,7 +6690,7 @@
         "cfp": {
             "url": "https://sessionize.com/bsides-edmonton-2026",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -6936,7 +6715,7 @@
         "cfp": {
             "url": "https://sessionize.com/ux-yall-2026",
             "endDate": "2026-06-02",
-            "daysRemaining": -26,
+            "daysRemaining": -27,
             "status": "closed"
         },
         "source": "developers.events",
@@ -6961,7 +6740,7 @@
         "cfp": {
             "url": "https://conference-hall.io/platformcon26-live-day-paris",
             "endDate": "2026-06-15",
-            "daysRemaining": -13,
+            "daysRemaining": -14,
             "status": "closed"
         },
         "source": "developers.events",
@@ -6984,7 +6763,7 @@
         "cfp": {
             "url": "https://sessionize.com/ai-community-days-in-cebu-philippines",
             "endDate": "2026-06-27",
-            "daysRemaining": -1,
+            "daysRemaining": -2,
             "status": "closed"
         },
         "source": "developers.events",
@@ -7009,7 +6788,7 @@
         "cfp": {
             "url": "https://sessionize.com/umbraco-germany-festival",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -7017,6 +6796,31 @@
         "subDomains": [],
         "tags": [],
         "id": "7d54a34ae930"
+    },
+    {
+        "name": "aMP Day Montpellier 2026",
+        "url": "https://ampcommunity.online/amp-day-montpellier-2026/",
+        "startDate": "2026-09-24",
+        "endDate": "2026-09-24",
+        "location": {
+            "city": "Montpellier",
+            "country": "France",
+            "raw": "Montpellier (France)",
+            "lat": 46.2276,
+            "lng": 2.2137
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/ampday-montpellier-2026/",
+            "endDate": "2026-07-10",
+            "daysRemaining": 11,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "fd2950a6355f"
     },
     {
         "name": "SQLDay Lite 2026",
@@ -7034,7 +6838,7 @@
         "cfp": {
             "url": "https://sessionize.com/sqlday-lite-2026",
             "endDate": "2026-07-31",
-            "daysRemaining": 33,
+            "daysRemaining": 32,
             "status": "open"
         },
         "source": "developers.events",
@@ -7057,7 +6861,7 @@
         "cfp": {
             "url": "https://www.papercall.io/conf42-ai-agents-2026",
             "endDate": "2026-08-24",
-            "daysRemaining": 57,
+            "daysRemaining": 56,
             "status": "open"
         },
         "source": "developers.events",
@@ -7105,7 +6909,7 @@
         "cfp": {
             "url": "https://sessionize.com/security-bsides-albuquerque-2026",
             "endDate": "2026-05-15",
-            "daysRemaining": -44,
+            "daysRemaining": -45,
             "status": "closed"
         },
         "source": "developers.events",
@@ -7130,7 +6934,7 @@
         "cfp": {
             "url": "https://sessionize.com/pumahat-cybersecurity-week-edicion-2026",
             "endDate": "2026-07-17",
-            "daysRemaining": 19,
+            "daysRemaining": 18,
             "status": "open"
         },
         "source": "developers.events",
@@ -7155,7 +6959,7 @@
         "cfp": {
             "url": "https://sessionize.com/aipivotconference",
             "endDate": "2026-05-04",
-            "daysRemaining": -55,
+            "daysRemaining": -56,
             "status": "closed"
         },
         "source": "developers.events",
@@ -7180,7 +6984,7 @@
         "cfp": {
             "url": "https://sessionize.com/bsides-Krakow-2026",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -7205,7 +7009,7 @@
         "cfp": {
             "url": "https://app.confitura.pl/login",
             "endDate": "2026-06-07",
-            "daysRemaining": -21,
+            "daysRemaining": -22,
             "status": "closed"
         },
         "source": "developers.events",
@@ -7230,7 +7034,7 @@
         "cfp": {
             "url": "https://sessionize.com/bsides-orlando-2026",
             "endDate": "2026-07-05",
-            "daysRemaining": 7,
+            "daysRemaining": 6,
             "status": "open"
         },
         "source": "developers.events",
@@ -7255,7 +7059,7 @@
         "cfp": {
             "url": "https://sessionize.com/sit-paris-2026",
             "endDate": "2026-07-10",
-            "daysRemaining": 12,
+            "daysRemaining": 11,
             "status": "open"
         },
         "source": "developers.events",
@@ -7280,7 +7084,7 @@
         "cfp": {
             "url": "https://app.confitura.pl/login",
             "endDate": "2026-06-07",
-            "daysRemaining": -21,
+            "daysRemaining": -22,
             "status": "closed"
         },
         "twitter": null,
@@ -7304,7 +7108,7 @@
         "cfp": {
             "url": "https://sessionize.com/aipivotconference",
             "endDate": "2026-05-04",
-            "daysRemaining": -55,
+            "daysRemaining": -56,
             "status": "closed"
         },
         "twitter": "@aipivotconf",
@@ -7333,7 +7137,7 @@
         "cfp": {
             "url": "https://sessionize.com/bsides-cleveland-2026",
             "endDate": "2026-08-22",
-            "daysRemaining": 55,
+            "daysRemaining": 54,
             "status": "open"
         },
         "source": "developers.events",
@@ -7358,7 +7162,7 @@
         "cfp": {
             "url": "https://sessionize.com/come-to-code-2026",
             "endDate": "2026-05-07",
-            "daysRemaining": -52,
+            "daysRemaining": -53,
             "status": "closed"
         },
         "source": "developers.events",
@@ -7383,7 +7187,7 @@
         "cfp": {
             "url": "https://sessionize.com/1nn0vai2026",
             "endDate": "2026-06-07",
-            "daysRemaining": -21,
+            "daysRemaining": -22,
             "status": "closed"
         },
         "source": "developers.events",
@@ -7408,7 +7212,7 @@
         "cfp": {
             "url": "https://sessionize.com/paralelo-37",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -7433,7 +7237,7 @@
         "cfp": {
             "url": "https://sessionize.com/kcd-sao-paulo-2026",
             "endDate": "2026-07-05",
-            "daysRemaining": 7,
+            "daysRemaining": 6,
             "status": "open"
         },
         "source": "developers.events",
@@ -7458,7 +7262,7 @@
         "cfp": {
             "url": "https://www.papercall.io/chiwitcon2026",
             "endDate": "2026-05-20",
-            "daysRemaining": -39,
+            "daysRemaining": -40,
             "status": "closed"
         },
         "source": "developers.events",
@@ -7481,7 +7285,7 @@
         "cfp": {
             "url": "https://www.papercall.io/devopsdays-bogota-2026",
             "endDate": "2026-06-05",
-            "daysRemaining": -23,
+            "daysRemaining": -24,
             "status": "closed"
         },
         "source": "developers.events",
@@ -7529,7 +7333,7 @@
         "cfp": {
             "url": "https://www.papercall.io/extremadura-digital-day-2026",
             "endDate": "2026-05-16",
-            "daysRemaining": -43,
+            "daysRemaining": -44,
             "status": "closed"
         },
         "source": "developers.events",
@@ -7554,7 +7358,7 @@
         "cfp": {
             "url": "https://www.papercall.io/dod-dfw-2026",
             "endDate": "2026-06-01",
-            "daysRemaining": -27,
+            "daysRemaining": -28,
             "status": "closed"
         },
         "source": "developers.events",
@@ -7581,7 +7385,7 @@
         "cfp": {
             "url": "https://www.papercall.io/sreday-amsterdam-2026-q4",
             "endDate": "2026-10-01",
-            "daysRemaining": 95,
+            "daysRemaining": 94,
             "status": "open"
         },
         "source": "developers.events",
@@ -7604,7 +7408,7 @@
         "cfp": {
             "url": "https://www.papercall.io/devopsdays-istanbul-2026",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -7631,7 +7435,7 @@
         "cfp": {
             "url": "https://www.papercall.io/serverlessdays-milano-2026",
             "endDate": "2026-06-01",
-            "daysRemaining": -27,
+            "daysRemaining": -28,
             "status": "closed"
         },
         "source": "developers.events",
@@ -7679,7 +7483,7 @@
         "cfp": {
             "url": "https://sessionize.com/modernre2026",
             "endDate": "2026-03-01",
-            "daysRemaining": -119,
+            "daysRemaining": -120,
             "status": "closed"
         },
         "source": "developers.events",
@@ -7704,7 +7508,7 @@
         "cfp": {
             "url": "https://artificialintelligence.averconferences.com/scientific_session.php",
             "endDate": "2026-03-09",
-            "daysRemaining": -111,
+            "daysRemaining": -112,
             "status": "closed"
         },
         "source": "developers.events",
@@ -7729,7 +7533,7 @@
         "cfp": {
             "url": "https://sessionize.com/goatmire-elixir-2026",
             "endDate": "2026-04-12",
-            "daysRemaining": -77,
+            "daysRemaining": -78,
             "status": "closed"
         },
         "source": "developers.events",
@@ -7756,7 +7560,7 @@
         "cfp": {
             "url": "https://sessionize.com/cybersecurity-conference-csc-26",
             "endDate": "2026-06-01",
-            "daysRemaining": -27,
+            "daysRemaining": -28,
             "status": "closed"
         },
         "source": "developers.events",
@@ -7781,7 +7585,7 @@
         "cfp": {
             "url": "https://sessionize.com/data-streaming-summit-san-francisco-2026",
             "endDate": "2026-06-15",
-            "daysRemaining": -13,
+            "daysRemaining": -14,
             "status": "closed"
         },
         "source": "developers.events",
@@ -7806,7 +7610,7 @@
         "cfp": {
             "url": "https://sessionize.com/rocky-mountain-ruby-2026",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -7833,7 +7637,7 @@
         "cfp": {
             "url": "https://www.papercall.io/btw2026scaleupsummit",
             "endDate": "2026-08-31",
-            "daysRemaining": 64,
+            "daysRemaining": 63,
             "status": "open"
         },
         "source": "developers.events",
@@ -7861,7 +7665,7 @@
         "cfp": {
             "url": "https://www.papercall.io/fairtechbtw",
             "endDate": "2026-08-31",
-            "daysRemaining": 64,
+            "daysRemaining": 63,
             "status": "open"
         },
         "source": "developers.events",
@@ -8060,7 +7864,7 @@
         "cfp": {
             "url": "https://sessionize.com/cloud-native-days-austria-2026",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -8085,7 +7889,7 @@
         "cfp": {
             "url": "https://sessionize.com/kcd-sofia-2026/",
             "endDate": "2026-07-18",
-            "daysRemaining": 20,
+            "daysRemaining": 19,
             "status": "open"
         },
         "source": "developers.events",
@@ -8131,7 +7935,7 @@
         "cfp": {
             "url": "https://apidays.typeform.com/to/ILJeAaV8",
             "endDate": "2026-09-29",
-            "daysRemaining": 93,
+            "daysRemaining": 92,
             "status": "open"
         },
         "source": "developers.events",
@@ -8161,7 +7965,7 @@
         "cfp": {
             "url": "https://sessionize.com/thecloudandaisummit2026",
             "endDate": "2026-02-28",
-            "daysRemaining": -120,
+            "daysRemaining": -121,
             "status": "closed"
         },
         "source": "developers.events",
@@ -8186,7 +7990,7 @@
         "cfp": {
             "url": "https://pretalx.com/techsummit-2026/cfp",
             "endDate": "2026-05-15",
-            "daysRemaining": -44,
+            "daysRemaining": -45,
             "status": "closed"
         },
         "source": "developers.events",
@@ -8215,7 +8019,7 @@
         "cfp": {
             "url": "https://sessionize.com/umbraco-us-festival-2026",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -8240,7 +8044,7 @@
         "cfp": {
             "url": "https://sessionize.com/clojureconj-2026",
             "endDate": "2026-06-14",
-            "daysRemaining": -14,
+            "daysRemaining": -15,
             "status": "closed"
         },
         "source": "developers.events",
@@ -8265,7 +8069,7 @@
         "cfp": {
             "url": "https://sessionize.com/acsa-2026-lead-with-pride-summit/",
             "endDate": "2026-06-15",
-            "daysRemaining": -13,
+            "daysRemaining": -14,
             "status": "closed"
         },
         "source": "developers.events",
@@ -8288,7 +8092,7 @@
         "cfp": {
             "url": "https://sessionize.com/subsurface-2026",
             "endDate": "2026-07-17",
-            "daysRemaining": 19,
+            "daysRemaining": 18,
             "status": "open"
         },
         "source": "developers.events",
@@ -8311,7 +8115,7 @@
         "cfp": {
             "url": "https://2026.clojure-conj.org/cfp",
             "endDate": "2026-06-14",
-            "daysRemaining": -14,
+            "daysRemaining": -15,
             "status": "closed"
         },
         "twitter": null,
@@ -8339,7 +8143,7 @@
         "cfp": {
             "url": "https://conference-hall.io/volcamp-2026",
             "endDate": "2026-05-18",
-            "daysRemaining": -41,
+            "daysRemaining": -42,
             "status": "closed"
         },
         "source": "developers.events",
@@ -8362,7 +8166,7 @@
         "cfp": {
             "url": "https://sessionize.com/sfk-2026",
             "endDate": "2026-04-01",
-            "daysRemaining": -88,
+            "daysRemaining": -89,
             "status": "closed"
         },
         "source": "developers.events",
@@ -8387,7 +8191,7 @@
         "cfp": {
             "url": "https://conference-hall.io/wax-2026-conference-tech-au-stade-velodrome",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -8412,7 +8216,7 @@
         "cfp": {
             "url": "https://sessionize.com/designup26",
             "endDate": "2026-05-03",
-            "daysRemaining": -56,
+            "daysRemaining": -57,
             "status": "closed"
         },
         "source": "developers.events",
@@ -8435,7 +8239,7 @@
         "cfp": {
             "url": "https://sessionize.com/MWCKL2026",
             "endDate": "2026-05-30",
-            "daysRemaining": -29,
+            "daysRemaining": -30,
             "status": "closed"
         },
         "source": "developers.events",
@@ -8460,7 +8264,7 @@
         "cfp": {
             "url": "https://sessionize.com/net-assemble-2026",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -8485,7 +8289,7 @@
         "cfp": {
             "url": "https://opentechday.de/propose",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "twitter": null,
@@ -8511,7 +8315,7 @@
         "cfp": {
             "url": "https://sessionize.com/kubernetes-community-days-argentina-2026",
             "endDate": "2026-08-01",
-            "daysRemaining": 34,
+            "daysRemaining": 33,
             "status": "open"
         },
         "source": "developers.events",
@@ -8538,7 +8342,7 @@
         "cfp": {
             "url": "https://conference-hall.io/devfest-perros-guirec-2026",
             "endDate": "2026-06-15",
-            "daysRemaining": -13,
+            "daysRemaining": -14,
             "status": "closed"
         },
         "source": "developers.events",
@@ -8563,7 +8367,7 @@
         "cfp": {
             "url": "https://www.papercall.io/sls-days-cardiff-2026",
             "endDate": "2026-07-31",
-            "daysRemaining": 33,
+            "daysRemaining": 32,
             "status": "open"
         },
         "source": "developers.events",
@@ -8588,7 +8392,7 @@
         "cfp": {
             "url": "https://sessionize.com/bizz-summit-es-2026",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -8613,7 +8417,7 @@
         "cfp": {
             "url": "https://sessionize.com/women-in-fabric-2026",
             "endDate": "2026-08-31",
-            "daysRemaining": 64,
+            "daysRemaining": 63,
             "status": "open"
         },
         "source": "developers.events",
@@ -8638,7 +8442,7 @@
         "cfp": {
             "url": "https://www.papercall.io/bsidesbloomington2026",
             "endDate": "2026-09-15",
-            "daysRemaining": 79,
+            "daysRemaining": 78,
             "status": "open"
         },
         "source": "developers.events",
@@ -8663,7 +8467,7 @@
         "cfp": {
             "url": "https://sessionize.com/aws-community-day-bulgaria-2026",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -8690,7 +8494,7 @@
         "cfp": {
             "url": "https://sessionize.com/scottish-summit-2026",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -8715,7 +8519,7 @@
         "cfp": {
             "url": "https://sessionize.com/sql-saturday-boston-2026/",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -8740,7 +8544,7 @@
         "cfp": {
             "url": "https://sessionize.com/devfest-aranjuez-2026",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -8765,7 +8569,7 @@
         "cfp": {
             "url": "https://bsidesmemphis.org/call-for-papers/",
             "endDate": "2026-06-15",
-            "daysRemaining": -13,
+            "daysRemaining": -14,
             "status": "closed"
         },
         "source": "developers.events",
@@ -8790,7 +8594,7 @@
         "cfp": {
             "url": "https://sessionize.com/ddd-perth-2026",
             "endDate": "2026-06-28",
-            "daysRemaining": 0,
+            "daysRemaining": -1,
             "status": "closed"
         },
         "source": "developers.events",
@@ -8815,7 +8619,7 @@
         "cfp": {
             "url": "https://sessionize.com/devfest-modena-2026",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -8840,7 +8644,7 @@
         "cfp": {
             "url": "https://sessionize.com/bsides-cheltenham-2026",
             "endDate": "2026-07-10",
-            "daysRemaining": 12,
+            "daysRemaining": 11,
             "status": "open"
         },
         "source": "developers.events",
@@ -8865,7 +8669,7 @@
         "cfp": {
             "url": "https://sessionize.com/ash-conference-2026",
             "endDate": "2026-07-10",
-            "daysRemaining": 12,
+            "daysRemaining": 11,
             "status": "open"
         },
         "source": "developers.events",
@@ -8890,7 +8694,7 @@
         "cfp": {
             "url": "https://sessionize.com/pybay2026",
             "endDate": "2026-07-12",
-            "daysRemaining": 14,
+            "daysRemaining": 13,
             "status": "open"
         },
         "source": "developers.events",
@@ -8913,7 +8717,7 @@
         "cfp": {
             "url": "https://app.advocu.com/events/6a1a0561c3e9df1cc3c9180b",
             "endDate": "2026-08-01",
-            "daysRemaining": 34,
+            "daysRemaining": 33,
             "status": "open"
         },
         "source": "developers.events",
@@ -8938,7 +8742,7 @@
         "cfp": {
             "url": "https://sessionize.com/offensive-ai-con",
             "endDate": "2026-07-31",
-            "daysRemaining": 33,
+            "daysRemaining": 32,
             "status": "open"
         },
         "source": "developers.events",
@@ -8963,7 +8767,7 @@
         "cfp": {
             "url": "https://dvbe26.cfp.dev/",
             "endDate": "2026-07-17",
-            "daysRemaining": 19,
+            "daysRemaining": 18,
             "status": "open"
         },
         "source": "developers.events",
@@ -8988,7 +8792,7 @@
         "cfp": {
             "url": "https://sessionize.com/west-slope-startup-week-2026",
             "endDate": "2026-06-20",
-            "daysRemaining": -8,
+            "daysRemaining": -9,
             "status": "closed"
         },
         "source": "developers.events",
@@ -9013,7 +8817,7 @@
         "cfp": {
             "url": "https://sessionize.com/iiba-poland-summit-2026",
             "endDate": "2026-03-31",
-            "daysRemaining": -89,
+            "daysRemaining": -90,
             "status": "closed"
         },
         "source": "developers.events",
@@ -9038,7 +8842,7 @@
         "cfp": {
             "url": "https://jaxlondon.com/call-for-papers/",
             "endDate": "2026-04-13",
-            "daysRemaining": -76,
+            "daysRemaining": -77,
             "status": "closed"
         },
         "source": "developers.events",
@@ -9061,7 +8865,7 @@
         "cfp": {
             "url": "https://sessionize.com/experts-live-saudi-2026",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -9086,7 +8890,7 @@
         "cfp": {
             "url": "https://sessionize.com/nordic-integration-summit-2026",
             "endDate": "2026-05-10",
-            "daysRemaining": -49,
+            "daysRemaining": -50,
             "status": "closed"
         },
         "source": "developers.events",
@@ -9111,7 +8915,7 @@
         "cfp": {
             "url": "https://www.papercall.io/dodprague26",
             "endDate": "2026-07-01",
-            "daysRemaining": 3,
+            "daysRemaining": 2,
             "status": "open"
         },
         "source": "developers.events",
@@ -9138,7 +8942,7 @@
         "cfp": {
             "url": "https://events.linuxfoundation.org/mcp-dev-summit-toronto/program/cfp/",
             "endDate": "2026-07-14",
-            "daysRemaining": 16,
+            "daysRemaining": 15,
             "status": "open"
         },
         "source": "developers.events",
@@ -9187,7 +8991,7 @@
         "cfp": {
             "url": "https://docs.google.com/forms/d/e/1FAIpQLSesYbIDZX7-3A_hKSxfmK6DAilUXBkIR6dAHfO7BDnyEratQQ/viewform",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -9212,7 +9016,7 @@
         "cfp": {
             "url": "https://sessionize.com/mvp-dagen-2026",
             "endDate": "2026-05-24",
-            "daysRemaining": -35,
+            "daysRemaining": -36,
             "status": "closed"
         },
         "source": "developers.events",
@@ -9237,7 +9041,7 @@
         "cfp": {
             "url": "https://sessionize.com/ics-cybersecurity-conference/",
             "endDate": "2026-06-26",
-            "daysRemaining": -2,
+            "daysRemaining": -3,
             "status": "closed"
         },
         "source": "developers.events",
@@ -9262,7 +9066,7 @@
         "cfp": {
             "url": "https://docs.google.com/forms/d/e/1FAIpQLSesYbIDZX7-3A_hKSxfmK6DAilUXBkIR6dAHfO7BDnyEratQQ/viewform",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "twitter": null,
@@ -9288,7 +9092,7 @@
         "cfp": {
             "url": "https://sessionize.com/dadd2026",
             "endDate": "2026-02-16",
-            "daysRemaining": -132,
+            "daysRemaining": -133,
             "status": "closed"
         },
         "source": "developers.events",
@@ -9313,7 +9117,7 @@
         "cfp": {
             "url": "https://www.data2day.de/cfp.php",
             "endDate": "2026-04-15",
-            "daysRemaining": -74,
+            "daysRemaining": -75,
             "status": "closed"
         },
         "source": "developers.events",
@@ -9342,7 +9146,7 @@
         "cfp": {
             "url": "https://sessionize.com/frontmania-2026",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -9365,7 +9169,7 @@
         "cfp": {
             "url": "https://www.youtube.com/channel/UCes9XCUZd51CAigbBEGlfNg/",
             "endDate": "2026-05-15",
-            "daysRemaining": -44,
+            "daysRemaining": -45,
             "status": "closed"
         },
         "source": "developers.events",
@@ -9390,7 +9194,7 @@
         "cfp": {
             "url": "https://sessionize.com/nextapp26",
             "endDate": "2026-07-01",
-            "daysRemaining": 3,
+            "daysRemaining": 2,
             "status": "open"
         },
         "source": "developers.events",
@@ -9419,7 +9223,7 @@
         "cfp": {
             "url": "https://sessionize.com/cloud-security-village-2026",
             "endDate": "2026-08-15",
-            "daysRemaining": 48,
+            "daysRemaining": 47,
             "status": "open"
         },
         "source": "developers.events",
@@ -9467,7 +9271,7 @@
         "cfp": {
             "url": "https://afup.org/event/forumphp2026",
             "endDate": "2026-06-22",
-            "daysRemaining": -6,
+            "daysRemaining": -7,
             "status": "closed"
         },
         "source": "developers.events",
@@ -9494,7 +9298,7 @@
         "cfp": {
             "url": "https://sessionize.com/data-saturday-holland-2026",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -9519,7 +9323,7 @@
         "cfp": {
             "url": "https://sessionize.com/lakehouse-day-2026",
             "endDate": "2026-03-20",
-            "daysRemaining": -100,
+            "daysRemaining": -101,
             "status": "closed"
         },
         "source": "developers.events",
@@ -9544,7 +9348,7 @@
         "cfp": {
             "url": "https://sessionize.com/data-saturdays-sofia-2026",
             "endDate": "2026-06-01",
-            "daysRemaining": -27,
+            "daysRemaining": -28,
             "status": "closed"
         },
         "source": "developers.events",
@@ -9569,7 +9373,7 @@
         "cfp": {
             "url": "https://sessionize.com/devfest-milano-2026",
             "endDate": "2026-07-06",
-            "daysRemaining": 8,
+            "daysRemaining": 7,
             "status": "open"
         },
         "source": "developers.events",
@@ -9594,7 +9398,7 @@
         "cfp": {
             "url": "https://coling.org",
             "endDate": "2026-06-01",
-            "daysRemaining": -27,
+            "daysRemaining": -28,
             "status": "closed"
         },
         "domain": "academic",
@@ -9617,7 +9421,7 @@
         "cfp": {
             "url": "https://sessionize.com/javacro26",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -9642,7 +9446,7 @@
         "cfp": {
             "url": "https://sessionize.com/dataminds-connect-2026",
             "endDate": "2026-05-21",
-            "daysRemaining": -38,
+            "daysRemaining": -39,
             "status": "closed"
         },
         "source": "developers.events",
@@ -9689,7 +9493,7 @@
         "cfp": {
             "url": "https://sessionize.com/m365-summit-mainz-12-14-oktober-2026/",
             "endDate": "2026-08-30",
-            "daysRemaining": 63,
+            "daysRemaining": 62,
             "status": "open"
         },
         "source": "developers.events",
@@ -9778,7 +9582,7 @@
         "cfp": {
             "url": "https://sessionize.com/fast-flow-conf-uk-26",
             "endDate": "2026-04-01",
-            "daysRemaining": -88,
+            "daysRemaining": -89,
             "status": "closed"
         },
         "source": "developers.events",
@@ -9803,7 +9607,7 @@
         "cfp": {
             "url": "https://events.linuxfoundation.org/bazelcon/program/cfp/",
             "endDate": "2026-06-21",
-            "daysRemaining": -7,
+            "daysRemaining": -8,
             "status": "closed"
         },
         "source": "developers.events",
@@ -9828,7 +9632,7 @@
         "cfp": {
             "url": "https://sessionize.com/techbash-2026/",
             "endDate": "2026-03-31",
-            "daysRemaining": -89,
+            "daysRemaining": -90,
             "status": "closed"
         },
         "source": "developers.events",
@@ -9853,7 +9657,7 @@
         "cfp": {
             "url": "https://sessionize.com/experts-live-sweden-2026",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -9876,7 +9680,7 @@
         "cfp": {
             "url": "https://sessionize.com/dnn-virtual-summit-2026",
             "endDate": "2026-05-15",
-            "daysRemaining": -44,
+            "daysRemaining": -45,
             "status": "closed"
         },
         "source": "developers.events",
@@ -9966,7 +9770,7 @@
         "cfp": {
             "url": "https://sessionize.com/kandddinsky-2026",
             "endDate": "2026-03-14",
-            "daysRemaining": -106,
+            "daysRemaining": -107,
             "status": "closed"
         },
         "source": "developers.events",
@@ -9991,7 +9795,7 @@
         "cfp": {
             "url": "https://sessionize.com/baselone-2026",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -10016,7 +9820,7 @@
         "cfp": {
             "url": "https://sessionize.com/daten-wg-2026/",
             "endDate": "2026-05-04",
-            "daysRemaining": -55,
+            "daysRemaining": -56,
             "status": "closed"
         },
         "source": "developers.events",
@@ -10039,7 +9843,7 @@
         "cfp": {
             "url": "https://sessionize.com/hroug-2026",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -10062,7 +9866,7 @@
         "cfp": {
             "url": "https://www.leadsspire.com/our-events",
             "endDate": "2026-09-16",
-            "daysRemaining": 80,
+            "daysRemaining": 79,
             "status": "open"
         },
         "source": "developers.events",
@@ -10091,7 +9895,7 @@
         "cfp": {
             "url": "https://sessionize.com/containerkonferansen-2026",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -10116,7 +9920,7 @@
         "cfp": {
             "url": "https://sessionize.com/fabric-day",
             "endDate": "2026-07-06",
-            "daysRemaining": 8,
+            "daysRemaining": 7,
             "status": "open"
         },
         "source": "developers.events",
@@ -10141,7 +9945,7 @@
         "cfp": {
             "url": "https://sessionize.com/nic-2026",
             "endDate": "2026-08-10",
-            "daysRemaining": 43,
+            "daysRemaining": 42,
             "status": "open"
         },
         "source": "developers.events",
@@ -10166,7 +9970,7 @@
         "cfp": {
             "url": "https://sessionize.com/cognitionx-emirates-2026",
             "endDate": "2026-09-15",
-            "daysRemaining": 79,
+            "daysRemaining": 78,
             "status": "open"
         },
         "source": "developers.events",
@@ -10212,7 +10016,7 @@
         "cfp": {
             "url": "https://sessionize.com/tech-fuse-des-moines-2026",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -10237,7 +10041,7 @@
         "cfp": {
             "url": "https://sessionize.com/momentum-2026",
             "endDate": "2026-06-01",
-            "daysRemaining": -27,
+            "daysRemaining": -28,
             "status": "closed"
         },
         "source": "developers.events",
@@ -10262,7 +10066,7 @@
         "cfp": {
             "url": "https://sessionize.com/fabfest2026",
             "endDate": "2026-06-15",
-            "daysRemaining": -13,
+            "daysRemaining": -14,
             "status": "closed"
         },
         "source": "developers.events",
@@ -10287,7 +10091,7 @@
         "cfp": {
             "url": "https://sessionize.com/aws-north-community-conference-2026",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -10314,7 +10118,7 @@
         "cfp": {
             "url": "https://cfp.longhornphp.com",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -10339,7 +10143,7 @@
         "cfp": {
             "url": "https://www.papercall.io/conf42-devsecops-2026",
             "endDate": "2026-09-14",
-            "daysRemaining": 78,
+            "daysRemaining": 77,
             "status": "open"
         },
         "source": "developers.events",
@@ -10546,7 +10350,7 @@
         "cfp": {
             "url": "https://sessionize.com/aws-community-day-australia-2026",
             "endDate": "2026-08-16",
-            "daysRemaining": 49,
+            "daysRemaining": 48,
             "status": "open"
         },
         "source": "developers.events",
@@ -10573,7 +10377,7 @@
         "cfp": {
             "url": "https://sessionize.com/devfest-hamburg-2026",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -10596,7 +10400,7 @@
         "cfp": {
             "url": "https://sessionize.com/maltaawscommunityday-2026",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -10623,7 +10427,7 @@
         "cfp": {
             "url": "https://sessionize.com/2026-data-in-the-d-conference",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -10648,7 +10452,7 @@
         "cfp": {
             "url": "https://sessionize.com/morcillaconf-2026",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -10673,7 +10477,7 @@
         "cfp": {
             "url": "https://sessionize.com/umbraco-uk-conference-2026",
             "endDate": "2026-07-01",
-            "daysRemaining": 3,
+            "daysRemaining": 2,
             "status": "open"
         },
         "source": "developers.events",
@@ -10696,7 +10500,7 @@
         "cfp": {
             "url": "https://sessionize.com/omniopencon-2026",
             "endDate": "2026-08-31",
-            "daysRemaining": 64,
+            "daysRemaining": 63,
             "status": "open"
         },
         "source": "developers.events",
@@ -10764,7 +10568,7 @@
         "cfp": {
             "url": "https://sessionize.com/aws-community-day-guatemala-2026",
             "endDate": "2026-07-08",
-            "daysRemaining": 10,
+            "daysRemaining": 9,
             "status": "open"
         },
         "source": "developers.events",
@@ -10791,7 +10595,7 @@
         "cfp": {
             "url": "https://sessionize.com/bsidesnyc-0x06",
             "endDate": "2026-07-19",
-            "daysRemaining": 21,
+            "daysRemaining": 20,
             "status": "open"
         },
         "source": "developers.events",
@@ -10816,7 +10620,7 @@
         "cfp": {
             "url": "https://sessionize.com/pycon-ireland-2026",
             "endDate": "2026-07-31",
-            "daysRemaining": 33,
+            "daysRemaining": 32,
             "status": "open"
         },
         "source": "developers.events",
@@ -10839,7 +10643,7 @@
         "cfp": {
             "url": "https://sessionize.com/aws-community-day-paraguay-2026",
             "endDate": "2026-09-15",
-            "daysRemaining": 79,
+            "daysRemaining": 78,
             "status": "open"
         },
         "source": "developers.events",
@@ -10866,7 +10670,7 @@
         "cfp": {
             "url": "https://allthingsopen.org/call-for-papers",
             "endDate": "2026-03-31",
-            "daysRemaining": -89,
+            "daysRemaining": -90,
             "status": "closed"
         },
         "source": "developers.events",
@@ -10891,7 +10695,7 @@
         "cfp": {
             "url": "https://sessionize.com/gophercon-israel-2026/",
             "endDate": "2026-07-08",
-            "daysRemaining": 10,
+            "daysRemaining": 9,
             "status": "open"
         },
         "source": "developers.events",
@@ -10916,7 +10720,7 @@
         "cfp": {
             "url": "https://sessionize.com/kcd-uk-edinburgh-2026",
             "endDate": "2026-06-08",
-            "daysRemaining": -20,
+            "daysRemaining": -21,
             "status": "closed"
         },
         "source": "developers.events",
@@ -10941,7 +10745,7 @@
         "cfp": {
             "url": "https://sessionize.com/ai-rising-2026",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -10966,7 +10770,7 @@
         "cfp": {
             "url": "https://sessionize.com/tdc-2026/",
             "endDate": "2026-05-03",
-            "daysRemaining": -56,
+            "daysRemaining": -57,
             "status": "closed"
         },
         "source": "developers.events",
@@ -10991,7 +10795,7 @@
         "cfp": {
             "url": "https://datascience.novelticsconferences.com/register",
             "endDate": "2026-10-15",
-            "daysRemaining": 109,
+            "daysRemaining": 108,
             "status": "open"
         },
         "source": "developers.events",
@@ -11023,7 +10827,7 @@
         "cfp": {
             "url": "https://sessionize.com/umbracokalaset-2026",
             "endDate": "2026-08-16",
-            "daysRemaining": 49,
+            "daysRemaining": 48,
             "status": "open"
         },
         "twitter": null,
@@ -11052,7 +10856,7 @@
         "cfp": {
             "url": "https://sessionize.com/amtso-cyber-research-conference-2026",
             "endDate": "2026-03-31",
-            "daysRemaining": -89,
+            "daysRemaining": -90,
             "status": "closed"
         },
         "twitter": null,
@@ -11078,7 +10882,7 @@
         "cfp": {
             "url": "https://sessionize.com/net-developerdays-2026",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -11103,7 +10907,7 @@
         "cfp": {
             "url": "https://sessionize.com/swampup-europe-2026",
             "endDate": "2026-05-18",
-            "daysRemaining": -41,
+            "daysRemaining": -42,
             "status": "closed"
         },
         "source": "developers.events",
@@ -11133,7 +10937,7 @@
         "cfp": {
             "url": "https://sessionize.com/hayadata-2026",
             "endDate": "2026-07-12",
-            "daysRemaining": 14,
+            "daysRemaining": 13,
             "status": "open"
         },
         "source": "developers.events",
@@ -11158,7 +10962,7 @@
         "cfp": {
             "url": "https://sessionize.com/umbracokalaset-2026",
             "endDate": "2026-08-16",
-            "daysRemaining": 49,
+            "daysRemaining": 48,
             "status": "open"
         },
         "source": "developers.events",
@@ -11183,7 +10987,7 @@
         "cfp": {
             "url": "https://sessionize.com/code-beam-europe-2026",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -11206,7 +11010,7 @@
         "cfp": {
             "url": "https://sessionize.com/p99-conf-2026",
             "endDate": "2026-03-27",
-            "daysRemaining": -93,
+            "daysRemaining": -94,
             "status": "closed"
         },
         "source": "developers.events",
@@ -11231,7 +11035,7 @@
         "cfp": {
             "url": "https://sessionize.com/hellostavanger-2026",
             "endDate": "2026-05-03",
-            "daysRemaining": -56,
+            "daysRemaining": -57,
             "status": "closed"
         },
         "source": "developers.events",
@@ -11256,7 +11060,7 @@
         "cfp": {
             "url": "https://sessionize.com/resend",
             "endDate": "2026-05-22",
-            "daysRemaining": -37,
+            "daysRemaining": -38,
             "status": "closed"
         },
         "source": "developers.events",
@@ -11281,7 +11085,7 @@
         "cfp": {
             "url": "https://sessionize.com/mq-summit-2026",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -11306,7 +11110,7 @@
         "cfp": {
             "url": "https://sessionize.com/thunderplains-2026",
             "endDate": "2026-06-15",
-            "daysRemaining": -13,
+            "daysRemaining": -14,
             "status": "closed"
         },
         "source": "developers.events",
@@ -11329,7 +11133,7 @@
         "cfp": {
             "url": "https://cfp.agenticbuild.day/agentic-ai-build-day-2026/",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -11354,7 +11158,7 @@
         "cfp": {
             "url": "https://docs.google.com/forms/d/e/1FAIpQLSejZUdKqdZo0fZtcqDEWOqkhTGgsnXx5KJOo5flW2E-Ej2a2A/viewform",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -11384,7 +11188,7 @@
         "cfp": {
             "url": "https://sessionize.com/agile-tour-bordeaux-2026",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -11409,7 +11213,7 @@
         "cfp": {
             "url": "https://sessionize.com/aws-community-day-adria-2026",
             "endDate": "2026-06-15",
-            "daysRemaining": -13,
+            "daysRemaining": -14,
             "status": "closed"
         },
         "source": "developers.events",
@@ -11436,7 +11240,7 @@
         "cfp": {
             "url": "https://sessionize.com/cloud-native-days-poland-2026/",
             "endDate": "2026-06-01",
-            "daysRemaining": -27,
+            "daysRemaining": -28,
             "status": "closed"
         },
         "source": "developers.events",
@@ -11461,7 +11265,7 @@
         "cfp": {
             "url": "https://push-conference.com/#calls",
             "endDate": "2026-10-01",
-            "daysRemaining": 95,
+            "daysRemaining": 94,
             "status": "open"
         },
         "source": "developers.events",
@@ -11488,7 +11292,7 @@
         "cfp": {
             "url": "https://osoday.com/call-for-papers",
             "endDate": "2026-08-31",
-            "daysRemaining": 64,
+            "daysRemaining": 63,
             "status": "open"
         },
         "source": "developers.events",
@@ -11519,7 +11323,7 @@
         "cfp": {
             "url": "https://sessionize.com/mypita",
             "endDate": "2026-03-06",
-            "daysRemaining": -114,
+            "daysRemaining": -115,
             "status": "closed"
         },
         "source": "developers.events",
@@ -11544,7 +11348,7 @@
         "cfp": {
             "url": "https://sessionize.com/bsidesqueretaro",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -11569,7 +11373,7 @@
         "cfp": {
             "url": "https://sessionize.com/pyho-2026",
             "endDate": "2026-06-15",
-            "daysRemaining": -13,
+            "daysRemaining": -14,
             "status": "closed"
         },
         "source": "developers.events",
@@ -11594,7 +11398,7 @@
         "cfp": {
             "url": "https://sessionize.com/data-day-edinburgh-2026",
             "endDate": "2026-07-12",
-            "daysRemaining": 14,
+            "daysRemaining": 13,
             "status": "open"
         },
         "source": "developers.events",
@@ -11617,7 +11421,7 @@
         "cfp": {
             "url": "https://sessionize.com/bsides-tirana-2026",
             "endDate": "2026-08-15",
-            "daysRemaining": 48,
+            "daysRemaining": 47,
             "status": "open"
         },
         "source": "developers.events",
@@ -11642,7 +11446,7 @@
         "cfp": {
             "url": "https://sessionize.com/mauiday-cologne-2026",
             "endDate": "2026-08-31",
-            "daysRemaining": 64,
+            "daysRemaining": 63,
             "status": "open"
         },
         "source": "developers.events",
@@ -11667,7 +11471,7 @@
         "cfp": {
             "url": "https://app.advocu.com/events/6a23072ad472212056a5eb3c",
             "endDate": "2026-09-19",
-            "daysRemaining": 83,
+            "daysRemaining": 82,
             "status": "open"
         },
         "source": "developers.events",
@@ -11713,7 +11517,7 @@
         "cfp": {
             "url": "https://gitnation.com/events/react-advanced-2026/cfp",
             "endDate": "2026-05-24",
-            "daysRemaining": -35,
+            "daysRemaining": -36,
             "status": "closed"
         },
         "twitter": "@ReactAdvanced",
@@ -11741,7 +11545,7 @@
         "cfp": {
             "url": "https://sessionize.com/kubernetes-community-days-nigeria-2026",
             "endDate": "2026-06-28",
-            "daysRemaining": 0,
+            "daysRemaining": -1,
             "status": "closed"
         },
         "source": "developers.events",
@@ -11771,7 +11575,7 @@
         "cfp": {
             "url": "https://sessionize.com/bsides-colorado-springs-2026",
             "endDate": "2026-08-16",
-            "daysRemaining": 49,
+            "daysRemaining": 48,
             "status": "open"
         },
         "source": "developers.events",
@@ -11796,7 +11600,7 @@
         "cfp": {
             "url": "https://sessionize.com/st-louis-day-of-data",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -11821,7 +11625,7 @@
         "cfp": {
             "url": "https://sessionize.com/sqlsaturday-minnesota-2026",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -11846,7 +11650,7 @@
         "cfp": {
             "url": "https://sessionize.com/devopsdays-floripa26",
             "endDate": "2026-08-30",
-            "daysRemaining": 63,
+            "daysRemaining": 62,
             "status": "open"
         },
         "source": "developers.events",
@@ -11873,7 +11677,7 @@
         "cfp": {
             "url": "https://sessionize.com/2026-power-platform-community-conference",
             "endDate": "2026-01-31",
-            "daysRemaining": -148,
+            "daysRemaining": -149,
             "status": "closed"
         },
         "source": "developers.events",
@@ -11898,7 +11702,7 @@
         "cfp": {
             "url": "https://conference-hall.io/atmtp26",
             "endDate": "2026-06-28",
-            "daysRemaining": 0,
+            "daysRemaining": -1,
             "status": "closed"
         },
         "source": "developers.events",
@@ -11946,7 +11750,7 @@
         "cfp": {
             "url": "https://sessionize.com/saintcon-training-2026",
             "endDate": "2026-06-14",
-            "daysRemaining": -14,
+            "daysRemaining": -15,
             "status": "closed"
         },
         "source": "developers.events",
@@ -11994,7 +11798,7 @@
         "cfp": {
             "url": "https://sessionize.com/techorama-2026-netherlands",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -12019,7 +11823,7 @@
         "cfp": {
             "url": "https://aiccsa.net/AICCSA2026/calls.php",
             "endDate": "2026-05-30",
-            "daysRemaining": -29,
+            "daysRemaining": -30,
             "status": "closed"
         },
         "source": "developers.events",
@@ -12048,7 +11852,7 @@
         "cfp": {
             "url": "https://2026.cloudnativedays.no/cfp",
             "endDate": "2026-06-01",
-            "daysRemaining": -27,
+            "daysRemaining": -28,
             "status": "closed"
         },
         "source": "developers.events",
@@ -12073,7 +11877,7 @@
         "cfp": {
             "url": "https://sessionize.com/saintcon2026",
             "endDate": "2026-06-13",
-            "daysRemaining": -15,
+            "daysRemaining": -16,
             "status": "closed"
         },
         "source": "developers.events",
@@ -12098,7 +11902,7 @@
         "cfp": {
             "url": "https://sessionize.com/vibe-coding-con",
             "endDate": "2026-07-01",
-            "daysRemaining": 3,
+            "daysRemaining": 2,
             "status": "open"
         },
         "source": "developers.events",
@@ -12146,7 +11950,7 @@
         "cfp": {
             "url": "https://sessionize.com/owasp-lascon-2026-training",
             "endDate": "2026-06-08",
-            "daysRemaining": -20,
+            "daysRemaining": -21,
             "status": "closed"
         },
         "source": "developers.events",
@@ -12171,7 +11975,7 @@
         "cfp": {
             "url": "https://sessionize.com/containerdays-singapore-2026/",
             "endDate": "2026-07-31",
-            "daysRemaining": 33,
+            "daysRemaining": 32,
             "status": "open"
         },
         "source": "developers.events",
@@ -12196,7 +12000,7 @@
         "cfp": {
             "url": "https://sessionize.com/directions-emea-2026",
             "endDate": "2026-09-15",
-            "daysRemaining": 79,
+            "daysRemaining": 78,
             "status": "open"
         },
         "source": "developers.events",
@@ -12221,7 +12025,7 @@
         "cfp": {
             "url": "https://sessionize.com/cloud-native-summit-apac",
             "endDate": "2026-07-31",
-            "daysRemaining": 33,
+            "daysRemaining": 32,
             "status": "open"
         },
         "source": "developers.events",
@@ -12246,7 +12050,7 @@
         "cfp": {
             "url": "https://sessionize.com/codemotion-milan-26",
             "endDate": "2026-05-15",
-            "daysRemaining": -44,
+            "daysRemaining": -45,
             "status": "closed"
         },
         "source": "developers.events",
@@ -12271,7 +12075,7 @@
         "cfp": {
             "url": "https://sessionize.com/platformcon-sydney",
             "endDate": "2026-07-04",
-            "daysRemaining": 6,
+            "daysRemaining": 5,
             "status": "open"
         },
         "source": "developers.events",
@@ -12296,7 +12100,7 @@
         "cfp": {
             "url": "https://apidays.typeform.com/to/ILJeAaV8",
             "endDate": "2026-10-27",
-            "daysRemaining": 121,
+            "daysRemaining": 120,
             "status": "open"
         },
         "source": "developers.events",
@@ -12326,7 +12130,7 @@
         "cfp": {
             "url": "https://reg.githubuniverse.com/flow/github/universe26/cfs/page/cfs-landing",
             "endDate": "2026-05-01",
-            "daysRemaining": -58,
+            "daysRemaining": -59,
             "status": "closed"
         },
         "source": "developers.events",
@@ -12351,7 +12155,7 @@
         "cfp": {
             "url": "https://sessionize.com/mitechcon-2026",
             "endDate": "2026-05-16",
-            "daysRemaining": -43,
+            "daysRemaining": -44,
             "status": "closed"
         },
         "source": "developers.events",
@@ -12400,7 +12204,7 @@
         "cfp": {
             "url": "https://confeti.app",
             "endDate": "2026-03-31",
-            "daysRemaining": -89,
+            "daysRemaining": -90,
             "status": "closed"
         },
         "twitter": "@jotbconf",
@@ -12426,7 +12230,7 @@
         "cfp": {
             "url": "https://confeti.app/events/lambda-world-2026",
             "endDate": "2026-03-31",
-            "daysRemaining": -89,
+            "daysRemaining": -90,
             "status": "closed"
         },
         "source": "developers.events",
@@ -12456,7 +12260,7 @@
         "cfp": {
             "url": "https://conference-hall.io/cloud-nord-2026",
             "endDate": "2026-06-22",
-            "daysRemaining": -6,
+            "daysRemaining": -7,
             "status": "closed"
         },
         "source": "developers.events",
@@ -12481,7 +12285,7 @@
         "cfp": {
             "url": "https://www.papercall.io/conf42-prompt-engineering-2026",
             "endDate": "2026-09-28",
-            "daysRemaining": 92,
+            "daysRemaining": 91,
             "status": "open"
         },
         "source": "developers.events",
@@ -12506,7 +12310,7 @@
         "cfp": {
             "url": "https://sessionize.com/dutch-cloud-native-day-2026",
             "endDate": "2026-06-21",
-            "daysRemaining": -7,
+            "daysRemaining": -8,
             "status": "closed"
         },
         "source": "developers.events",
@@ -12531,7 +12335,7 @@
         "cfp": {
             "url": "https://confeti.app/events/weyweyweb-2026",
             "endDate": "2026-03-31",
-            "daysRemaining": -89,
+            "daysRemaining": -90,
             "status": "closed"
         },
         "source": "developers.events",
@@ -12561,7 +12365,7 @@
         "cfp": {
             "url": "https://pretalx.com/jsconf-mx-2026/cfp",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -12586,7 +12390,7 @@
         "cfp": {
             "url": "https://www.campus-agile.org/Speakers",
             "endDate": "2026-06-15",
-            "daysRemaining": -13,
+            "daysRemaining": -14,
             "status": "closed"
         },
         "source": "developers.events",
@@ -12613,7 +12417,7 @@
         "cfp": {
             "url": "https://conference-hall.io/bdx-i-o-2026",
             "endDate": "2026-06-28",
-            "daysRemaining": 0,
+            "daysRemaining": -1,
             "status": "closed"
         },
         "source": "developers.events",
@@ -12638,7 +12442,7 @@
         "cfp": {
             "url": "https://sessionize.com/product-management-day-2026",
             "endDate": "2026-05-03",
-            "daysRemaining": -56,
+            "daysRemaining": -57,
             "status": "closed"
         },
         "source": "developers.events",
@@ -12663,7 +12467,7 @@
         "cfp": {
             "url": "https://sessionize.com/triangle-infosecon-2026",
             "endDate": "2026-10-02",
-            "daysRemaining": 96,
+            "daysRemaining": 95,
             "status": "open"
         },
         "source": "developers.events",
@@ -12688,7 +12492,7 @@
         "cfp": {
             "url": "https://conference-hall.io/cloud-nord-2026",
             "endDate": "2026-06-12",
-            "daysRemaining": -16,
+            "daysRemaining": -17,
             "status": "closed"
         },
         "source": "developers.events",
@@ -12713,7 +12517,7 @@
         "cfp": {
             "url": "https://sessionize.com/devfest-cz-2026",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -12738,7 +12542,7 @@
         "cfp": {
             "url": "https://sessionize.com/ticino-data-conference-2026",
             "endDate": "2026-08-31",
-            "daysRemaining": 64,
+            "daysRemaining": 63,
             "status": "open"
         },
         "source": "developers.events",
@@ -12761,7 +12565,7 @@
         "cfp": {
             "url": "https://sessionize.com/droidcon-uganda-2026",
             "endDate": "2026-10-13",
-            "daysRemaining": 107,
+            "daysRemaining": 106,
             "status": "open"
         },
         "source": "developers.events",
@@ -12788,7 +12592,7 @@
         "cfp": {
             "url": "https://sessionize.com/rustlab-2026",
             "endDate": "2026-04-13",
-            "daysRemaining": -76,
+            "daysRemaining": -77,
             "status": "closed"
         },
         "source": "developers.events",
@@ -12813,7 +12617,7 @@
         "cfp": {
             "url": "https://sessionize.com/golab-2026",
             "endDate": "2026-04-20",
-            "daysRemaining": -69,
+            "daysRemaining": -70,
             "status": "closed"
         },
         "source": "developers.events",
@@ -12864,7 +12668,7 @@
         "cfp": {
             "url": "https://sessionize.com/owasp-global-appsec-USA-SF-2026-c",
             "endDate": "2026-04-01",
-            "daysRemaining": -88,
+            "daysRemaining": -89,
             "status": "closed"
         },
         "source": "developers.events",
@@ -12892,7 +12696,7 @@
         "cfp": {
             "url": "https://sessionize.com/microsoft-techcon-365-dallas-2026/",
             "endDate": "2026-05-22",
-            "daysRemaining": -37,
+            "daysRemaining": -38,
             "status": "closed"
         },
         "source": "developers.events",
@@ -12938,7 +12742,7 @@
         "cfp": {
             "url": "https://sessionize.com/cloud-identity-summit-26",
             "endDate": "2026-05-25",
-            "daysRemaining": -34,
+            "daysRemaining": -35,
             "status": "closed"
         },
         "source": "developers.events",
@@ -12963,7 +12767,7 @@
         "cfp": {
             "url": "https://s2n.heise.de/cfp.php",
             "endDate": "2026-05-04",
-            "daysRemaining": -55,
+            "daysRemaining": -56,
             "status": "closed"
         },
         "source": "developers.events",
@@ -12992,7 +12796,7 @@
         "cfp": {
             "url": "https://theconf.ai/call-for-papers",
             "endDate": "2026-09-30",
-            "daysRemaining": 94,
+            "daysRemaining": 93,
             "status": "open"
         },
         "source": "developers.events",
@@ -13021,7 +12825,7 @@
         "cfp": {
             "url": "https://tinyurl.com/xtreme2026",
             "endDate": "2026-07-10",
-            "daysRemaining": 12,
+            "daysRemaining": 11,
             "status": "open"
         },
         "twitter": "@xtremejconf",
@@ -13045,7 +12849,7 @@
         "cfp": {
             "url": "https://dvma26.cfp.dev",
             "endDate": "2026-07-05",
-            "daysRemaining": 7,
+            "daysRemaining": 6,
             "status": "open"
         },
         "source": "developers.events",
@@ -13070,7 +12874,7 @@
         "cfp": {
             "url": "https://www.papercall.io/womenintech2026",
             "endDate": "2026-06-19",
-            "daysRemaining": -9,
+            "daysRemaining": -10,
             "status": "closed"
         },
         "source": "developers.events",
@@ -13095,7 +12899,7 @@
         "cfp": {
             "url": "https://cfp.codetalks.com",
             "endDate": "2026-05-15",
-            "daysRemaining": -44,
+            "daysRemaining": -45,
             "status": "closed"
         },
         "source": "developers.events",
@@ -13120,7 +12924,7 @@
         "cfp": {
             "url": "https://www.papercall.io/nullbytesec",
             "endDate": "2026-09-30",
-            "daysRemaining": 94,
+            "daysRemaining": 93,
             "status": "open"
         },
         "source": "developers.events",
@@ -13145,7 +12949,7 @@
         "cfp": {
             "url": "https://automation.eurostarsoftwaretesting.com/call-for-speakers",
             "endDate": "2026-02-06",
-            "daysRemaining": -142,
+            "daysRemaining": -143,
             "status": "closed"
         },
         "source": "developers.events",
@@ -13174,7 +12978,7 @@
         "cfp": {
             "url": "https://sessionize.com/oredev-2026/",
             "endDate": "2026-03-09",
-            "daysRemaining": -111,
+            "daysRemaining": -112,
             "status": "closed"
         },
         "source": "developers.events",
@@ -13199,7 +13003,7 @@
         "cfp": {
             "url": "https://sessionize.com/2026-acsa-leadership-summit",
             "endDate": "2026-04-27",
-            "daysRemaining": -62,
+            "daysRemaining": -63,
             "status": "closed"
         },
         "source": "developers.events",
@@ -13222,7 +13026,7 @@
         "cfp": {
             "url": "https://sessionize.com/kcd-budapest-2026",
             "endDate": "2026-06-20",
-            "daysRemaining": -8,
+            "daysRemaining": -9,
             "status": "closed"
         },
         "source": "developers.events",
@@ -13247,7 +13051,7 @@
         "cfp": {
             "url": "https://sessionize.com/2026-bsides-columbus",
             "endDate": "2026-07-31",
-            "daysRemaining": 33,
+            "daysRemaining": 32,
             "status": "open"
         },
         "source": "developers.events",
@@ -13272,7 +13076,7 @@
         "cfp": {
             "url": "https://www.papercall.io/do-ios-2026",
             "endDate": "2026-08-16",
-            "daysRemaining": 49,
+            "daysRemaining": 48,
             "status": "open"
         },
         "source": "developers.events",
@@ -13297,7 +13101,7 @@
         "cfp": {
             "url": "https://www.papercall.io/barcamprd2026",
             "endDate": "2026-10-17",
-            "daysRemaining": 111,
+            "daysRemaining": 110,
             "status": "open"
         },
         "source": "developers.events",
@@ -13320,7 +13124,7 @@
         "cfp": {
             "url": "https://www.papercall.io/devcon2026",
             "endDate": "2026-10-18",
-            "daysRemaining": 112,
+            "daysRemaining": 111,
             "status": "open"
         },
         "source": "developers.events",
@@ -13343,7 +13147,7 @@
         "cfp": {
             "url": "https://forms.gle/QBM1aqkL8yS4c6YM8",
             "endDate": "2026-06-01",
-            "daysRemaining": -27,
+            "daysRemaining": -28,
             "status": "closed"
         },
         "twitter": "@Heapconf",
@@ -13369,7 +13173,7 @@
         "cfp": {
             "url": "https://sessionize.com/droidcon-fluttercon-kenya-2026",
             "endDate": "2026-07-31",
-            "daysRemaining": 33,
+            "daysRemaining": 32,
             "status": "open"
         },
         "source": "developers.events",
@@ -13392,7 +13196,7 @@
         "cfp": {
             "url": "https://forms.gle/QBM1aqkL8yS4c6YM8",
             "endDate": "2026-06-01",
-            "daysRemaining": -27,
+            "daysRemaining": -28,
             "status": "closed"
         },
         "source": "developers.events",
@@ -13417,7 +13221,7 @@
         "cfp": {
             "url": "https://sessionize.com/games-ground-2026",
             "endDate": "2026-06-19",
-            "daysRemaining": -9,
+            "daysRemaining": -10,
             "status": "closed"
         },
         "source": "developers.events",
@@ -13440,7 +13244,7 @@
         "cfp": {
             "url": "https://www.papercall.io/conf42-platform-engineering-2026",
             "endDate": "2026-10-05",
-            "daysRemaining": 99,
+            "daysRemaining": 98,
             "status": "open"
         },
         "source": "developers.events",
@@ -13465,7 +13269,7 @@
         "cfp": {
             "url": "https://sessionize.com/pnw-day-of-data-20261107",
             "endDate": "2026-07-31",
-            "daysRemaining": 33,
+            "daysRemaining": 32,
             "status": "open"
         },
         "source": "developers.events",
@@ -13509,7 +13313,7 @@
         "cfp": {
             "url": "https://sessionize.com/iowa-code-camp-fall-2026",
             "endDate": "2026-10-02",
-            "daysRemaining": 96,
+            "daysRemaining": 95,
             "status": "open"
         },
         "source": "developers.events",
@@ -13534,7 +13338,7 @@
         "cfp": {
             "url": "https://sessionize.com/devfest-kc-2026",
             "endDate": "2026-08-07",
-            "daysRemaining": 40,
+            "daysRemaining": 39,
             "status": "open"
         },
         "source": "developers.events",
@@ -13559,7 +13363,7 @@
         "cfp": {
             "url": "https://sessionize.com/devfest-pescara-reloaded/",
             "endDate": "2026-08-31",
-            "daysRemaining": 64,
+            "daysRemaining": 63,
             "status": "open"
         },
         "source": "developers.events",
@@ -13584,7 +13388,7 @@
         "cfp": {
             "url": "https://app.advocu.com/events/6a2028c3bdc2ee829b525a39",
             "endDate": "2026-09-30",
-            "daysRemaining": 94,
+            "daysRemaining": 93,
             "status": "open"
         },
         "source": "developers.events",
@@ -13609,7 +13413,7 @@
         "cfp": {
             "url": "https://sessionize.com/maintainer-summit-na-2026",
             "endDate": "2026-07-19",
-            "daysRemaining": 21,
+            "daysRemaining": 20,
             "status": "open"
         },
         "source": "developers.events",
@@ -13634,7 +13438,7 @@
         "cfp": {
             "url": "https://sessionize.com/2026-govit-leadership-summit-symposium",
             "endDate": "2026-04-17",
-            "daysRemaining": -72,
+            "daysRemaining": -73,
             "status": "closed"
         },
         "source": "developers.events",
@@ -13659,7 +13463,7 @@
         "cfp": {
             "url": "https://sessionize.com/simply-cyber-con-2026",
             "endDate": "2026-07-31",
-            "daysRemaining": 33,
+            "daysRemaining": 32,
             "status": "open"
         },
         "source": "developers.events",
@@ -13684,7 +13488,7 @@
         "cfp": {
             "url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/program/cfp/",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -13709,7 +13513,7 @@
         "cfp": {
             "url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/co-located-events/kubernetes-on-edge-day/#call-for-proposals",
             "endDate": "2026-06-21",
-            "daysRemaining": -7,
+            "daysRemaining": -8,
             "status": "closed"
         },
         "source": "developers.events",
@@ -13736,7 +13540,7 @@
         "cfp": {
             "url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/co-located-events/platform-engineering-day/#call-for-proposals",
             "endDate": "2026-06-21",
-            "daysRemaining": -7,
+            "daysRemaining": -8,
             "status": "closed"
         },
         "source": "developers.events",
@@ -13785,7 +13589,7 @@
         "cfp": {
             "url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/co-located-events/argocon/#call-for-proposals",
             "endDate": "2026-06-21",
-            "daysRemaining": -7,
+            "daysRemaining": -8,
             "status": "closed"
         },
         "source": "developers.events",
@@ -13810,7 +13614,7 @@
         "cfp": {
             "url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/co-located-events/backstagecon/#call-for-proposals",
             "endDate": "2026-06-21",
-            "daysRemaining": -7,
+            "daysRemaining": -8,
             "status": "closed"
         },
         "source": "developers.events",
@@ -13835,7 +13639,7 @@
         "cfp": {
             "url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/co-located-events/ciliumcon/#call-for-proposals",
             "endDate": "2026-06-21",
-            "daysRemaining": -7,
+            "daysRemaining": -8,
             "status": "closed"
         },
         "source": "developers.events",
@@ -13860,7 +13664,7 @@
         "cfp": {
             "url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/co-located-events/fluxcon/#call-for-proposals",
             "endDate": "2026-06-21",
-            "daysRemaining": -7,
+            "daysRemaining": -8,
             "status": "closed"
         },
         "source": "developers.events",
@@ -13885,7 +13689,7 @@
         "cfp": {
             "url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/co-located-events/observability-day/#call-for-proposals",
             "endDate": "2026-06-21",
-            "daysRemaining": -7,
+            "daysRemaining": -8,
             "status": "closed"
         },
         "source": "developers.events",
@@ -13910,7 +13714,7 @@
         "cfp": {
             "url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/co-located-events/open-source-securitycon/#call-for-proposals",
             "endDate": "2026-06-21",
-            "daysRemaining": -7,
+            "daysRemaining": -8,
             "status": "closed"
         },
         "source": "developers.events",
@@ -13937,7 +13741,7 @@
         "cfp": {
             "url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/co-located-events/agentics-day-mcp-agents/#call-for-proposals",
             "endDate": "2026-06-21",
-            "daysRemaining": -7,
+            "daysRemaining": -8,
             "status": "closed"
         },
         "source": "developers.events",
@@ -13962,7 +13766,7 @@
         "cfp": {
             "url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/co-located-events/cloud-native-ai-inference-day/#call-for-proposals",
             "endDate": "2026-06-21",
-            "daysRemaining": -7,
+            "daysRemaining": -8,
             "status": "closed"
         },
         "source": "developers.events",
@@ -13987,7 +13791,7 @@
         "cfp": {
             "url": "https://sessionize.com/cloudcon-syd-2026",
             "endDate": "2026-08-14",
-            "daysRemaining": 47,
+            "daysRemaining": 46,
             "status": "open"
         },
         "source": "developers.events",
@@ -14010,7 +13814,7 @@
         "cfp": {
             "url": "https://sessionize.com/pth-2026",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -14040,7 +13844,7 @@
         "cfp": {
             "url": "https://sessionize.com/gess-dubai-2026",
             "endDate": "2026-06-26",
-            "daysRemaining": -2,
+            "daysRemaining": -3,
             "status": "closed"
         },
         "source": "developers.events",
@@ -14065,7 +13869,7 @@
         "cfp": {
             "url": "https://tinyurl.com/xtreme2026",
             "endDate": "2026-07-10",
-            "daysRemaining": 12,
+            "daysRemaining": 11,
             "status": "open"
         },
         "twitter": "@xtremejsconf",
@@ -14091,7 +13895,7 @@
         "cfp": {
             "url": "https://aclanthology.org",
             "endDate": "2026-07-01",
-            "daysRemaining": 3,
+            "daysRemaining": 2,
             "status": "open"
         },
         "domain": "ai",
@@ -14118,7 +13922,7 @@
         "cfp": {
             "url": "https://corl.org",
             "endDate": "2026-08-01",
-            "daysRemaining": 34,
+            "daysRemaining": 33,
             "status": "open"
         },
         "domain": "academic",
@@ -14143,7 +13947,7 @@
         "cfp": {
             "url": "https://clc-conference.eu/cfp_en.php",
             "endDate": "2026-04-21",
-            "daysRemaining": -68,
+            "daysRemaining": -69,
             "status": "closed"
         },
         "source": "developers.events",
@@ -14172,7 +13976,7 @@
         "cfp": {
             "url": "https://sessionize.com/eluae26",
             "endDate": "2026-06-10",
-            "daysRemaining": -18,
+            "daysRemaining": -19,
             "status": "closed"
         },
         "source": "developers.events",
@@ -14197,7 +14001,7 @@
         "cfp": {
             "url": "https://sessionize.com/iapc-world-conference",
             "endDate": "2026-07-01",
-            "daysRemaining": 3,
+            "daysRemaining": 2,
             "status": "open"
         },
         "source": "developers.events",
@@ -14222,7 +14026,7 @@
         "cfp": {
             "url": "https://sessionize.com/jfall26",
             "endDate": "2026-09-01",
-            "daysRemaining": 65,
+            "daysRemaining": 64,
             "status": "open"
         },
         "source": "developers.events",
@@ -14247,7 +14051,7 @@
         "cfp": {
             "url": "https://tokyotestfest.com/en/cfp_2026/",
             "endDate": "2026-04-10",
-            "daysRemaining": -79,
+            "daysRemaining": -80,
             "status": "closed"
         },
         "source": "developers.events",
@@ -14277,7 +14081,7 @@
         "cfp": {
             "url": "https://sessionize.com/update-conference-prague-2026",
             "endDate": "2026-06-15",
-            "daysRemaining": -13,
+            "daysRemaining": -14,
             "status": "closed"
         },
         "source": "developers.events",
@@ -14302,7 +14106,7 @@
         "cfp": {
             "url": "https://cmsconf.com/call-for-papers/",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -14327,7 +14131,7 @@
         "cfp": {
             "url": "https://sessionize.com/spiceworld-2026",
             "endDate": "2026-05-01",
-            "daysRemaining": -58,
+            "daysRemaining": -59,
             "status": "closed"
         },
         "source": "developers.events",
@@ -14350,7 +14154,7 @@
         "cfp": {
             "url": "https://sessionize.com/nodes26/",
             "endDate": "2026-06-15",
-            "daysRemaining": -13,
+            "daysRemaining": -14,
             "status": "closed"
         },
         "source": "developers.events",
@@ -14375,7 +14179,7 @@
         "cfp": {
             "url": "https://sessionize.com/spiceworld-2026",
             "endDate": "2026-05-01",
-            "daysRemaining": -58,
+            "daysRemaining": -59,
             "status": "closed"
         },
         "twitter": "@spiceworks",
@@ -14401,7 +14205,7 @@
         "cfp": {
             "url": "https://cmsconf.com/call-for-papers",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "twitter": null,
@@ -14427,7 +14231,7 @@
         "cfp": {
             "url": "https://sessionize.com/italian-agile-days-2026",
             "endDate": "2026-07-26",
-            "daysRemaining": 28,
+            "daysRemaining": 27,
             "status": "open"
         },
         "source": "developers.events",
@@ -14454,7 +14258,7 @@
         "cfp": {
             "url": "https://docs.google.com/forms/d/e/1FAIpQLSfp1CznTTQey3bB0ALMq8OJpFZkWqrevlBhvAvWlRBlo4c6xg/viewform",
             "endDate": "2026-11-13",
-            "daysRemaining": 138,
+            "daysRemaining": 137,
             "status": "open"
         },
         "source": "developers.events",
@@ -14479,7 +14283,7 @@
         "cfp": {
             "url": "https://sessionize.com/CB26-TRAINING",
             "endDate": "2026-03-31",
-            "daysRemaining": -89,
+            "daysRemaining": -90,
             "status": "closed"
         },
         "source": "developers.events",
@@ -14504,7 +14308,7 @@
         "cfp": {
             "url": "https://talks.devopsdays.org/devopsdays-barcelona-2026/cfp",
             "endDate": "2026-06-15",
-            "daysRemaining": -13,
+            "daysRemaining": -14,
             "status": "closed"
         },
         "source": "developers.events",
@@ -14531,7 +14335,7 @@
         "cfp": {
             "url": "https://sessionize.com/pgday-mexico-2026",
             "endDate": "2026-08-01",
-            "daysRemaining": 34,
+            "daysRemaining": 33,
             "status": "open"
         },
         "source": "developers.events",
@@ -14556,7 +14360,7 @@
         "cfp": {
             "url": "https://cfp.capitoledulibre.org/cdl-2026/cfp",
             "endDate": "2026-07-20",
-            "daysRemaining": 22,
+            "daysRemaining": 21,
             "status": "open"
         },
         "source": "developers.events",
@@ -14581,7 +14385,7 @@
         "cfp": {
             "url": "https://sessionize.com/dynamics-365-summit-2026",
             "endDate": "2026-08-20",
-            "daysRemaining": 53,
+            "daysRemaining": 52,
             "status": "open"
         },
         "source": "developers.events",
@@ -14604,7 +14408,7 @@
         "cfp": {
             "url": "https://sessionize.com/black-alpaca-2026",
             "endDate": "2026-10-05",
-            "daysRemaining": 99,
+            "daysRemaining": 98,
             "status": "open"
         },
         "source": "developers.events",
@@ -14629,7 +14433,7 @@
         "cfp": {
             "url": "https://sessionize.com/live-360-tech-con-orlando-2026",
             "endDate": "2026-03-23",
-            "daysRemaining": -97,
+            "daysRemaining": -98,
             "status": "closed"
         },
         "source": "developers.events",
@@ -14654,7 +14458,7 @@
         "cfp": {
             "url": "https://sessionize.com/cybermarketingcon-2026",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -14704,7 +14508,7 @@
         "cfp": {
             "url": "https://gitnation.com/events/jsnation-us-2026/cfp",
             "endDate": "2026-07-13",
-            "daysRemaining": 15,
+            "daysRemaining": 14,
             "status": "open"
         },
         "source": "developers.events",
@@ -14734,7 +14538,7 @@
         "cfp": {
             "url": "https://agiletestingdays.com/call-for-papers",
             "endDate": "2026-03-29",
-            "daysRemaining": -91,
+            "daysRemaining": -92,
             "status": "closed"
         },
         "source": "developers.events",
@@ -14763,7 +14567,7 @@
         "cfp": {
             "url": "https://sessionize.com/budapestbi26",
             "endDate": "2026-05-03",
-            "daysRemaining": -56,
+            "daysRemaining": -57,
             "status": "closed"
         },
         "source": "developers.events",
@@ -14788,7 +14592,7 @@
         "cfp": {
             "url": "https://sessionize.com/sag2026-cfp",
             "endDate": "2026-06-09",
-            "daysRemaining": -19,
+            "daysRemaining": -20,
             "status": "closed"
         },
         "source": "developers.events",
@@ -14813,7 +14617,7 @@
         "cfp": {
             "url": "https://sessionize.com/sag2026-cfp",
             "endDate": "2026-06-09",
-            "daysRemaining": -19,
+            "daysRemaining": -20,
             "status": "closed"
         },
         "source": "developers.events",
@@ -14842,7 +14646,7 @@
         "cfp": {
             "url": "https://gitnation.com/events/ai-coding-summit-nyc/cfp",
             "endDate": "2026-07-09",
-            "daysRemaining": 11,
+            "daysRemaining": 10,
             "status": "open"
         },
         "source": "developers.events",
@@ -14872,7 +14676,7 @@
         "cfp": {
             "url": "https://sessionize.com/ai-engineering-summit",
             "endDate": "2026-07-14",
-            "daysRemaining": 16,
+            "daysRemaining": 15,
             "status": "open"
         },
         "source": "developers.events",
@@ -14897,7 +14701,7 @@
         "cfp": {
             "url": "https://techaiconf.com/register-interest",
             "endDate": "2026-10-09",
-            "daysRemaining": 103,
+            "daysRemaining": 102,
             "status": "open"
         },
         "source": "developers.events",
@@ -14926,7 +14730,7 @@
         "cfp": {
             "url": "https://gitnation.com/events/react-summit-us-2026/cfp",
             "endDate": "2026-07-09",
-            "daysRemaining": 11,
+            "daysRemaining": 10,
             "status": "open"
         },
         "source": "developers.events",
@@ -14958,7 +14762,7 @@
         "cfp": {
             "url": "https://osmc.de/call-for-papers",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "twitter": null,
@@ -14986,7 +14790,7 @@
         "cfp": {
             "url": "https://docs.google.com/forms/d/e/1FAIpQLSeVsK-OA9HudBjk7CpkKNCK8M_DD4_DF-AsFLAP8wdHeZ3O-g/viewform",
             "endDate": "2026-09-15",
-            "daysRemaining": 79,
+            "daysRemaining": 78,
             "status": "open"
         },
         "source": "developers.events",
@@ -15011,7 +14815,7 @@
         "cfp": {
             "url": "https://docs.google.com/forms/d/e/1FAIpQLSeVsK-OA9HudBjk7CpkKNCK8M_DD4_DF-AsFLAP8wdHeZ3O-g/viewform",
             "endDate": "2026-09-15",
-            "daysRemaining": 79,
+            "daysRemaining": 78,
             "status": "open"
         },
         "source": "developers.events",
@@ -15036,7 +14840,7 @@
         "cfp": {
             "url": "https://docs.google.com/forms/d/e/1FAIpQLSeVsK-OA9HudBjk7CpkKNCK8M_DD4_DF-AsFLAP8wdHeZ3O-g/viewform",
             "endDate": "2026-09-15",
-            "daysRemaining": 79,
+            "daysRemaining": 78,
             "status": "open"
         },
         "source": "developers.events",
@@ -15061,7 +14865,7 @@
         "cfp": {
             "url": "http://www.zindell.com/documents/codeofconduct.pdf",
             "endDate": "2026-07-10",
-            "daysRemaining": 12,
+            "daysRemaining": 11,
             "status": "open"
         },
         "twitter": "@xtremepython",
@@ -15108,7 +14912,7 @@
         "cfp": {
             "url": "https://sessionize.com/molding-conference-2026",
             "endDate": "2026-06-13",
-            "daysRemaining": -15,
+            "daysRemaining": -16,
             "status": "closed"
         },
         "source": "developers.events",
@@ -15133,7 +14937,7 @@
         "cfp": {
             "url": "https://sessionize.com/cloud-day-2026",
             "endDate": "2026-06-14",
-            "daysRemaining": -14,
+            "daysRemaining": -15,
             "status": "closed"
         },
         "source": "developers.events",
@@ -15158,7 +14962,7 @@
         "cfp": {
             "url": "https://sessionize.com/n26mx",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -15183,7 +14987,7 @@
         "cfp": {
             "url": "https://tinyurl.com/asfchurconfcfp",
             "endDate": "2026-07-31",
-            "daysRemaining": 33,
+            "daysRemaining": 32,
             "status": "open"
         },
         "source": "developers.events",
@@ -15213,7 +15017,7 @@
         "cfp": {
             "url": "https://sessionize.com/cloud-native-denmark-2026",
             "endDate": "2026-06-14",
-            "daysRemaining": -14,
+            "daysRemaining": -15,
             "status": "closed"
         },
         "source": "developers.events",
@@ -15238,7 +15042,7 @@
         "cfp": {
             "url": "https://sessionize.com/lead27",
             "endDate": "2026-04-08",
-            "daysRemaining": -81,
+            "daysRemaining": -82,
             "status": "closed"
         },
         "source": "developers.events",
@@ -15263,7 +15067,7 @@
         "cfp": {
             "url": "https://sessionize.com/devfest-toulouse-2026",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -15288,7 +15092,7 @@
         "cfp": {
             "url": "https://sessionize.com/reactjsday-2026",
             "endDate": "2026-06-14",
-            "daysRemaining": -14,
+            "daysRemaining": -15,
             "status": "closed"
         },
         "source": "developers.events",
@@ -15313,7 +15117,7 @@
         "cfp": {
             "url": "https://www.papercall.io/swiftbharat-2026",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -15340,7 +15144,7 @@
         "cfp": {
             "url": "https://sessionize.com/analysis-design-architecture-2026",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -15365,7 +15169,7 @@
         "cfp": {
             "url": "https://events.linuxfoundation.org/mcp-dev-summit-nairobi/program/cfp/",
             "endDate": "2026-07-01",
-            "daysRemaining": 3,
+            "daysRemaining": 2,
             "status": "open"
         },
         "source": "developers.events",
@@ -15390,7 +15194,7 @@
         "cfp": {
             "url": "https://sessionize.com/agile-laval-2026",
             "endDate": "2026-07-02",
-            "daysRemaining": 4,
+            "daysRemaining": 3,
             "status": "open"
         },
         "source": "developers.events",
@@ -15415,7 +15219,7 @@
         "cfp": {
             "url": "https://sessionize.com/kcd-porto-2026",
             "endDate": "2026-07-15",
-            "daysRemaining": 17,
+            "daysRemaining": 16,
             "status": "open"
         },
         "source": "developers.events",
@@ -15440,7 +15244,7 @@
         "cfp": {
             "url": "https://sessionize.com/kcd-porto-2026",
             "endDate": "2026-07-15",
-            "daysRemaining": 17,
+            "daysRemaining": 16,
             "status": "open"
         },
         "source": "developers.events",
@@ -15467,7 +15271,7 @@
         "cfp": {
             "url": "https://sessionize.com/x-ops-conference-mad-2026",
             "endDate": "2026-07-31",
-            "daysRemaining": 33,
+            "daysRemaining": 32,
             "status": "open"
         },
         "source": "developers.events",
@@ -15492,7 +15296,7 @@
         "cfp": {
             "url": "https://sessionize.com/bsides-amsterdam-2026",
             "endDate": "2026-08-11",
-            "daysRemaining": 44,
+            "daysRemaining": 43,
             "status": "open"
         },
         "source": "developers.events",
@@ -15515,7 +15319,7 @@
         "cfp": {
             "url": "https://sessionize.com/defcamp-2026",
             "endDate": "2026-10-15",
-            "daysRemaining": 109,
+            "daysRemaining": 108,
             "status": "open"
         },
         "source": "developers.events",
@@ -15538,7 +15342,7 @@
         "cfp": {
             "url": "https://www.papercall.io/conf42-mlops-2026",
             "endDate": "2026-10-19",
-            "daysRemaining": 113,
+            "daysRemaining": 112,
             "status": "open"
         },
         "source": "developers.events",
@@ -15563,7 +15367,7 @@
         "cfp": {
             "url": "https://sessionize.com/swiftsonic-26",
             "endDate": "2026-03-31",
-            "daysRemaining": -89,
+            "daysRemaining": -90,
             "status": "closed"
         },
         "source": "developers.events",
@@ -15588,7 +15392,7 @@
         "cfp": {
             "url": "https://sessionize.com/open-conf-2026",
             "endDate": "2026-04-19",
-            "daysRemaining": -70,
+            "daysRemaining": -71,
             "status": "closed"
         },
         "source": "developers.events",
@@ -15613,7 +15417,7 @@
         "cfp": {
             "url": "https://sessionize.com/angularday-2026",
             "endDate": "2026-06-14",
-            "daysRemaining": -14,
+            "daysRemaining": -15,
             "status": "closed"
         },
         "source": "developers.events",
@@ -15638,7 +15442,7 @@
         "cfp": {
             "url": "https://www.papercall.io/techmids-conf-2026",
             "endDate": "2026-09-01",
-            "daysRemaining": 65,
+            "daysRemaining": 64,
             "status": "open"
         },
         "source": "developers.events",
@@ -15661,7 +15465,7 @@
         "cfp": {
             "url": "https://sessionize.com/boyaconf-2026",
             "endDate": "2026-09-21",
-            "daysRemaining": 85,
+            "daysRemaining": 84,
             "status": "open"
         },
         "source": "developers.events",
@@ -15686,7 +15490,7 @@
         "cfp": {
             "url": "https://www.papercall.io/pyconwroclaw2026",
             "endDate": "2026-10-01",
-            "daysRemaining": 95,
+            "daysRemaining": 94,
             "status": "open"
         },
         "source": "developers.events",
@@ -15735,7 +15539,7 @@
         "cfp": {
             "url": "https://sessionize.com/agentic-engineering-days-zurich-2026",
             "endDate": "2026-07-23",
-            "daysRemaining": 25,
+            "daysRemaining": 24,
             "status": "open"
         },
         "twitter": null,
@@ -15759,7 +15563,7 @@
         "cfp": {
             "url": "https://sessionize.com/owasp-global-appsec-india-2026-cfp",
             "endDate": "2026-07-31",
-            "daysRemaining": 33,
+            "daysRemaining": 32,
             "status": "open"
         },
         "source": "developers.events",
@@ -15784,7 +15588,7 @@
         "cfp": {
             "url": "https://sessionize.com/nidc-2026",
             "endDate": "2026-08-12",
-            "daysRemaining": 45,
+            "daysRemaining": 44,
             "status": "open"
         },
         "source": "developers.events",
@@ -15809,7 +15613,7 @@
         "cfp": {
             "url": "https://sessionize.com/fluttercon-india-2026",
             "endDate": "2026-08-16",
-            "daysRemaining": 49,
+            "daysRemaining": 48,
             "status": "open"
         },
         "source": "developers.events",
@@ -15919,7 +15723,7 @@
         "cfp": {
             "url": "https://tinyurl.com/xtreme2026",
             "endDate": "2026-07-10",
-            "daysRemaining": 12,
+            "daysRemaining": 11,
             "status": "open"
         },
         "source": "developers.events",
@@ -15947,7 +15751,7 @@
         "cfp": {
             "url": "https://sessionize.com/azure-summit-24-25-november-2026/",
             "endDate": "2026-02-15",
-            "daysRemaining": -133,
+            "daysRemaining": -134,
             "status": "closed"
         },
         "source": "developers.events",
@@ -15974,7 +15778,7 @@
         "cfp": {
             "url": "https://sessionize.com/civo-navigate-india-2026",
             "endDate": "2026-03-31",
-            "daysRemaining": -89,
+            "daysRemaining": -90,
             "status": "closed"
         },
         "source": "developers.events",
@@ -15999,7 +15803,7 @@
         "cfp": {
             "url": "https://sessionize.com/manage-agile-2026",
             "endDate": "2026-05-31",
-            "daysRemaining": -28,
+            "daysRemaining": -29,
             "status": "closed"
         },
         "source": "developers.events",
@@ -16026,7 +15830,7 @@
         "cfp": {
             "url": "https://sessionize.com/wpc-2026",
             "endDate": "2026-07-05",
-            "daysRemaining": 7,
+            "daysRemaining": 6,
             "status": "open"
         },
         "source": "developers.events",
@@ -16051,7 +15855,7 @@
         "cfp": {
             "url": "https://sessionize.com/agile-tour-montreal-2026/",
             "endDate": "2026-07-18",
-            "daysRemaining": 20,
+            "daysRemaining": 19,
             "status": "open"
         },
         "source": "developers.events",
@@ -16076,7 +15880,7 @@
         "cfp": {
             "url": "https://sessionize.com/smartcloud-365-2026",
             "endDate": "2026-07-31",
-            "daysRemaining": 33,
+            "daysRemaining": 32,
             "status": "open"
         },
         "source": "developers.events",
@@ -16101,7 +15905,7 @@
         "cfp": {
             "url": "https://sessionize.com/wearedevelopers-conference-2026-india",
             "endDate": "2026-07-24",
-            "daysRemaining": 26,
+            "daysRemaining": 25,
             "status": "open"
         },
         "source": "developers.events",
@@ -16130,7 +15934,7 @@
         "cfp": {
             "url": "https://live.symfony.com/2026-warsaw-con/cfp",
             "endDate": "2026-07-01",
-            "daysRemaining": 3,
+            "daysRemaining": 2,
             "status": "open"
         },
         "source": "developers.events",
@@ -16199,7 +16003,7 @@
         "cfp": {
             "url": "https://conference-hall.io/devfest-belgium-2026",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -16224,7 +16028,7 @@
         "cfp": {
             "url": "https://sessionize.com/women-in-agile-eu-launching-new-voices-27107",
             "endDate": "2026-06-28",
-            "daysRemaining": 0,
+            "daysRemaining": -1,
             "status": "closed"
         },
         "source": "developers.events",
@@ -16251,7 +16055,7 @@
         "cfp": {
             "url": "https://sessionize.com/conference-devmtl-2026",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -16276,7 +16080,7 @@
         "cfp": {
             "url": "https://conference-hall.io/devfest-paris-2026",
             "endDate": "2026-07-01",
-            "daysRemaining": 3,
+            "daysRemaining": 2,
             "status": "open"
         },
         "source": "developers.events",
@@ -16301,7 +16105,7 @@
         "cfp": {
             "url": "https://sessionize.com/workplace-ninjas-india-2026/",
             "endDate": "2026-09-01",
-            "daysRemaining": 65,
+            "daysRemaining": 64,
             "status": "open"
         },
         "source": "developers.events",
@@ -16326,7 +16130,7 @@
         "cfp": {
             "url": "https://gambiconf.dev/cfp",
             "endDate": "2026-06-21",
-            "daysRemaining": -7,
+            "daysRemaining": -8,
             "status": "closed"
         },
         "source": "developers.events",
@@ -16351,7 +16155,7 @@
         "cfp": {
             "url": "https://sessionize.com/the-repair-summit/",
             "endDate": "2026-09-11",
-            "daysRemaining": 75,
+            "daysRemaining": 74,
             "status": "open"
         },
         "source": "developers.events",
@@ -16399,7 +16203,7 @@
         "cfp": {
             "url": "https://sessionize.com/reversim-summit-2026",
             "endDate": "2026-07-26",
-            "daysRemaining": 28,
+            "daysRemaining": 27,
             "status": "open"
         },
         "source": "developers.events",
@@ -16491,7 +16295,7 @@
         "cfp": {
             "url": "https://sessionize.com/jakartaone-livestream-2026/",
             "endDate": "2026-09-08",
-            "daysRemaining": 72,
+            "daysRemaining": 71,
             "status": "open"
         },
         "source": "developers.events",
@@ -16516,7 +16320,7 @@
         "cfp": {
             "url": "https://apidays.typeform.com/to/ILJeAaV8",
             "endDate": "2026-11-30",
-            "daysRemaining": 155,
+            "daysRemaining": 154,
             "status": "open"
         },
         "source": "developers.events",
@@ -16546,7 +16350,7 @@
         "cfp": {
             "url": "https://sessionize.com/power-conference-2026",
             "endDate": "2026-07-14",
-            "daysRemaining": 16,
+            "daysRemaining": 15,
             "status": "open"
         },
         "source": "developers.events",
@@ -16571,7 +16375,7 @@
         "cfp": {
             "url": "https://sessionize.com/tagt-gifted26",
             "endDate": "2026-06-05",
-            "daysRemaining": -23,
+            "daysRemaining": -24,
             "status": "closed"
         },
         "source": "developers.events",
@@ -16596,7 +16400,7 @@
         "cfp": {
             "url": "https://sessionize.com/cloud-native-summit-europe-2026/",
             "endDate": "2026-08-14",
-            "daysRemaining": 47,
+            "daysRemaining": 46,
             "status": "open"
         },
         "source": "developers.events",
@@ -16638,7 +16442,7 @@
         "cfp": {
             "url": "https://sessionize.com/difinity-conference-auckland-2026",
             "endDate": "2026-05-20",
-            "daysRemaining": -39,
+            "daysRemaining": -40,
             "status": "closed"
         },
         "source": "developers.events",
@@ -16666,7 +16470,7 @@
         "cfp": {
             "url": "https://sessionize.com/devday-2026",
             "endDate": "2026-08-15",
-            "daysRemaining": 48,
+            "daysRemaining": 47,
             "status": "open"
         },
         "source": "developers.events",
@@ -16689,7 +16493,7 @@
         "cfp": {
             "url": "https://www.papercall.io/conf42-chaos-engineering-2026",
             "endDate": "2026-11-02",
-            "daysRemaining": 127,
+            "daysRemaining": 126,
             "status": "open"
         },
         "source": "developers.events",
@@ -16714,7 +16518,7 @@
         "cfp": {
             "url": "https://gitnation.com/events/react-day-berlin-2026/cfp",
             "endDate": "2026-08-12",
-            "daysRemaining": 45,
+            "daysRemaining": 44,
             "status": "open"
         },
         "source": "developers.events",
@@ -16746,7 +16550,7 @@
         "cfp": {
             "url": "https://conference-hall.io/devfest-lyon-2026",
             "endDate": "2026-06-07",
-            "daysRemaining": -21,
+            "daysRemaining": -22,
             "status": "closed"
         },
         "source": "developers.events",
@@ -16771,7 +16575,7 @@
         "cfp": {
             "url": "https://conference-hall.io/devfest-dijon-2026",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -16796,7 +16600,7 @@
         "cfp": {
             "url": "https://sessionize.com/htmd-conference-2026-cfs",
             "endDate": "2026-06-30",
-            "daysRemaining": 2,
+            "daysRemaining": 1,
             "status": "open"
         },
         "source": "developers.events",
@@ -16821,7 +16625,7 @@
         "cfp": {
             "url": "https://www.ittage.informatik-aktuell.de/index.html",
             "endDate": "2026-04-30",
-            "daysRemaining": -59,
+            "daysRemaining": -60,
             "status": "closed"
         },
         "source": "developers.events",
@@ -16850,7 +16654,7 @@
         "cfp": {
             "url": "https://sessionize.com/ape-2026",
             "endDate": "2026-12-12",
-            "daysRemaining": 167,
+            "daysRemaining": 166,
             "status": "open"
         },
         "source": "developers.events",
@@ -16892,7 +16696,7 @@
         "cfp": {
             "url": "https://sessionize.com/dynamics-summit-08-09-dezember-2026",
             "endDate": "2026-06-15",
-            "daysRemaining": -13,
+            "daysRemaining": -14,
             "status": "closed"
         },
         "source": "developers.events",
@@ -16941,7 +16745,7 @@
         "cfp": {
             "url": "https://ainativesummit.com/cfp",
             "endDate": "2026-07-15",
-            "daysRemaining": 17,
+            "daysRemaining": 16,
             "status": "open"
         },
         "source": "developers.events",
@@ -16970,7 +16774,7 @@
         "cfp": {
             "url": "https://www.devopsrex.fr/fr/cfp",
             "endDate": "2026-06-08",
-            "daysRemaining": -20,
+            "daysRemaining": -21,
             "status": "closed"
         },
         "source": "developers.events",
@@ -16997,7 +16801,7 @@
         "cfp": {
             "url": "https://sessionize.com/kcd-suisse-romande-2026",
             "endDate": "2026-07-15",
-            "daysRemaining": 17,
+            "daysRemaining": 16,
             "status": "open"
         },
         "source": "developers.events",
@@ -17022,7 +16826,7 @@
         "cfp": {
             "url": "https://pretalx.com/open-source-experience-2026/cfp",
             "endDate": "2026-06-14",
-            "daysRemaining": -14,
+            "daysRemaining": -15,
             "status": "closed"
         },
         "source": "developers.events",
@@ -17047,7 +16851,7 @@
         "cfp": {
             "url": "https://sessionize.com/cloudbrew-2026",
             "endDate": "2026-06-07",
-            "daysRemaining": -21,
+            "daysRemaining": -22,
             "status": "closed"
         },
         "source": "developers.events",
@@ -17074,7 +16878,7 @@
         "cfp": {
             "url": "https://conference-hall.io/kcd-provence-2026",
             "endDate": "2026-07-05",
-            "daysRemaining": 7,
+            "daysRemaining": 6,
             "status": "open"
         },
         "source": "developers.events",
@@ -17097,7 +16901,7 @@
         "cfp": {
             "url": "https://sessionize.com/ghi-con",
             "endDate": "2026-08-01",
-            "daysRemaining": 34,
+            "daysRemaining": 33,
             "status": "open"
         },
         "source": "developers.events",
@@ -17120,7 +16924,7 @@
         "cfp": {
             "url": "https://sessionize.com/12-reasons-why-with-tech-experts-co",
             "endDate": "2026-11-30",
-            "daysRemaining": 155,
+            "daysRemaining": 154,
             "status": "open"
         },
         "source": "developers.events",
@@ -17143,7 +16947,7 @@
         "cfp": {
             "url": "https://aiconference.dev/cfp",
             "endDate": "2026-06-01",
-            "daysRemaining": -27,
+            "daysRemaining": -28,
             "status": "closed"
         },
         "source": "developers.events",
@@ -17173,7 +16977,7 @@
         "cfp": {
             "url": "https://sessionize.com/bsides-rdu-2026",
             "endDate": "2026-07-31",
-            "daysRemaining": 33,
+            "daysRemaining": 32,
             "status": "open"
         },
         "source": "developers.events",
@@ -17200,7 +17004,7 @@
         "cfp": {
             "url": "https://sessionize.com/data-community-day-austria-2027/",
             "endDate": "2026-10-04",
-            "daysRemaining": 98,
+            "daysRemaining": 97,
             "status": "open"
         },
         "source": "developers.events",
@@ -17223,7 +17027,7 @@
         "cfp": {
             "url": "https://sessionize.com/governance-security-summit-19-20-j",
             "endDate": "2026-08-20",
-            "daysRemaining": 53,
+            "daysRemaining": 52,
             "status": "open"
         },
         "source": "developers.events",
@@ -17248,7 +17052,7 @@
         "cfp": {
             "url": "https://sessionize.com/power-bi-summit-16-17-februar-2027",
             "endDate": "2026-09-17",
-            "daysRemaining": 81,
+            "daysRemaining": 80,
             "status": "open"
         },
         "source": "developers.events",
@@ -17273,7 +17077,7 @@
         "cfp": {
             "url": "https://sessionize.com/sql-konferenz-2027",
             "endDate": "2026-10-04",
-            "daysRemaining": 98,
+            "daysRemaining": 97,
             "status": "open"
         },
         "source": "developers.events",
@@ -17298,7 +17102,7 @@
         "cfp": {
             "url": "https://sessionize.com/nordevcon-2027",
             "endDate": "2026-09-30",
-            "daysRemaining": 94,
+            "daysRemaining": 93,
             "status": "open"
         },
         "source": "developers.events",
@@ -17323,7 +17127,7 @@
         "cfp": {
             "url": "https://sessionize.com/monster-scale-summit-2027",
             "endDate": "2026-08-28",
-            "daysRemaining": 61,
+            "daysRemaining": 60,
             "status": "open"
         },
         "source": "developers.events",
@@ -17346,7 +17150,7 @@
         "cfp": {
             "url": "https://sessionize.com/north-american-m365-summit-16-17-march",
             "endDate": "2026-10-17",
-            "daysRemaining": 111,
+            "daysRemaining": 110,
             "status": "open"
         },
         "source": "developers.events",
@@ -17373,7 +17177,7 @@
         "cfp": {
             "url": "https://sessionize.com/analytics-and-data-summit-2027",
             "endDate": "2026-11-07",
-            "daysRemaining": 132,
+            "daysRemaining": 131,
             "status": "open"
         },
         "source": "developers.events",
@@ -17398,7 +17202,7 @@
         "cfp": {
             "url": "https://developersummit.com/cfp",
             "endDate": "2026-09-30",
-            "daysRemaining": 94,
+            "daysRemaining": 93,
             "status": "open"
         },
         "source": "developers.events",
@@ -17425,7 +17229,7 @@
         "cfp": {
             "url": "https://sessionize.com/web-rebels-2027",
             "endDate": "2026-08-31",
-            "daysRemaining": 64,
+            "daysRemaining": 63,
             "status": "open"
         },
         "source": "developers.events",
@@ -17450,7 +17254,7 @@
         "cfp": {
             "url": "https://sessionize.com/planview-connect-2027",
             "endDate": "2027-03-24",
-            "daysRemaining": 269,
+            "daysRemaining": 268,
             "status": "open"
         },
         "source": "developers.events",
@@ -17475,7 +17279,7 @@
         "cfp": {
             "url": "https://sessionize.com/ai-copilot-summit-01-02-juni-2027",
             "endDate": "2026-12-21",
-            "daysRemaining": 176,
+            "daysRemaining": 175,
             "status": "open"
         },
         "source": "developers.events",
@@ -20451,6 +20255,26 @@
         "id": "24dca02a080a"
     },
     {
+        "name": "WiMoNe 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200236&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "265a5fa37107"
+    },
+    {
         "name": "SIPR 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=189176&copyownerid=170233",
         "startDate": null,
@@ -20609,26 +20433,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "c5a85fae2826"
-    },
-    {
-        "name": "WiMoNe 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200236&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "265a5fa37107"
     },
     {
         "name": "LiSci 2026",
@@ -31509,29 +31313,6 @@
         "id": "e353bc4648a8"
     },
     {
-        "name": "EOCON  2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200226&copyownerid=199287",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "sources": [
-            "wikicfp"
-        ],
-        "subDomains": [],
-        "id": "906154a253d0"
-    },
-    {
         "name": "ICACT 2027",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199980&copyownerid=170537",
         "startDate": null,
@@ -31550,6 +31331,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "e176aa6386c8"
+    },
+    {
+        "name": "EOCON  2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200227&copyownerid=199287",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "b8007146765a"
     },
     {
         "name": "EMERGING  2026",
@@ -31750,6 +31551,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "d664f599e232"
+    },
+    {
+        "name": "APWG eCrime  2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192508&copyownerid=182749",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "3d29d9367e92"
     },
     {
         "name": "ICCSIE 2026",
