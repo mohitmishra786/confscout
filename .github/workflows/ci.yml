@@ -44,6 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DATABASE_URL: postgresql://user:pass@localhost:5432/ci
+      GROQ_API_KEY: dummy-ci-key
     steps:
       - uses: actions/checkout@v4
         with:
