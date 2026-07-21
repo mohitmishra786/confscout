@@ -3,6 +3,7 @@
 import { createContext, useContext, useState, ReactNode, useEffect, useMemo, useCallback, useRef } from 'react';
 import type { Conference } from '@/types/conference';
 import { isValidConference } from '@/lib/validation';
+import { safeGetItem, safeSetItem, safeParseJson } from '@/lib/safeStorage';
 
 interface CompareContextType {
   selectedConferences: Conference[];
@@ -19,27 +20,16 @@ export function CompareProvider({ children }: { children: ReactNode }) {
 
   // Load from session storage on mount (more secure than localStorage for ephemeral data)
   useEffect(() => {
-    try {
-      const saved = sessionStorage.getItem('compare_conferences');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed)) {
-          const validated = parsed.filter(isValidConference);
-          setSelectedConferences(validated);
-        }
-      }
-    } catch {
-      console.warn('Failed to load compare data from storage');
+    const saved = safeGetItem('session', 'compare_conferences');
+    const parsed = safeParseJson<unknown>(saved, null);
+    if (Array.isArray(parsed)) {
+      setSelectedConferences(parsed.filter(isValidConference));
     }
   }, []);
 
-  // Save to session storage on change
+  // Save to session storage on change (quota-safe — issue #223)
   useEffect(() => {
-    try {
-      sessionStorage.setItem('compare_conferences', JSON.stringify(selectedConferences));
-    } catch {
-      console.warn('Failed to save compare data to storage');
-    }
+    safeSetItem('session', 'compare_conferences', JSON.stringify(selectedConferences));
   }, [selectedConferences]);
 
   // Latest-value ref so addToCompare stays stable without stale closures.

@@ -216,5 +216,24 @@ export const GET = withErrorHandling(async (request: NextRequest) => {
     }
   };
 
-  return NextResponse.json(result);
+  // Weak ETag from page fingerprint (issue #131) — clients can revalidate cheaply.
+  const etagSource = `${total}:${page}:${limit}:${domain ?? ''}:${search ?? ''}:${cfpOnly}:${formattedConferences.map((c) => c.id).join(',')}`;
+  const etag = `"c-${Buffer.from(etagSource).toString('base64url').slice(0, 27)}"`;
+  const ifNoneMatch = request.headers.get('if-none-match');
+  if (ifNoneMatch && ifNoneMatch === etag) {
+    return new NextResponse(null, {
+      status: 304,
+      headers: {
+        ETag: etag,
+        'Cache-Control': 'private, max-age=30, stale-while-revalidate=60',
+      },
+    });
+  }
+
+  return NextResponse.json(result, {
+    headers: {
+      ETag: etag,
+      'Cache-Control': 'private, max-age=30, stale-while-revalidate=60',
+    },
+  });
 });
