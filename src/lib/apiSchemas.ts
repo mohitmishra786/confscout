@@ -233,6 +233,22 @@ export const bodySchemas = {
     data => data.interests || data.bio,
     { message: 'Either interests or bio must be provided', path: ['interests'] }
   ),
+
+  /**
+   * Saved search create body (issue #56)
+   */
+  savedSearch: z.object({
+    name: z.string()
+      .min(1, 'Name is required')
+      .max(80, 'Name too long')
+      .regex(patterns.safeString, 'Invalid characters in name'),
+    filters: z.object({
+      q: z.string().max(200).optional(),
+      domain: z.string().max(50).optional(),
+      cfp: z.boolean().optional(),
+      sortBy: z.string().max(40).optional(),
+    }).strict(),
+  }),
 };
 
 /**

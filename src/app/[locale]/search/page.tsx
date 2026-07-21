@@ -1,17 +1,31 @@
 'use client';
 
-import { useState, useEffect, useMemo, useDeferredValue, Suspense } from 'react';
+import { useState, useEffect, useMemo, useDeferredValue, Suspense, useCallback } from 'react';
 import { useSearchParams, useRouter, useParams } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import { type ConferenceData, type SortOption, DOMAIN_INFO } from '@/types/conference';
 
 import Header from '@/components/Header';
 import ConferenceCard from '@/components/ConferenceCard';
 import Footer from '@/components/Footer';
+import { secureFetch } from '@/lib/api';
+
+interface SavedSearchRow {
+  id: string;
+  name: string;
+  filters: {
+    q?: string;
+    domain?: string;
+    cfp?: boolean;
+    sortBy?: string;
+  };
+}
 
 function SearchContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const params = useParams();
+  const { status: authStatus } = useSession();
 
   const [data, setData] = useState<ConferenceData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -30,9 +44,93 @@ function SearchContent() {
   // filter+sort is scheduled at lower priority.
   const deferredSearchTerm = useDeferredValue(searchTerm);
 
+  // Saved searches (issue #56)
+  const [savedSearches, setSavedSearches] = useState<SavedSearchRow[]>([]);
+  const [saveName, setSaveName] = useState('');
+  const [saveBusy, setSaveBusy] = useState(false);
+  const [saveMsg, setSaveMsg] = useState<string | null>(null);
+
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const conferencesPerPage = 12;
+
+  const loadSavedSearches = useCallback(async () => {
+    if (authStatus !== 'authenticated') {
+      setSavedSearches([]);
+      return;
+    }
+    try {
+      const res = await secureFetch('/api/user/saved-searches');
+      if (!res.ok) return;
+      const json = await res.json();
+      setSavedSearches(Array.isArray(json.data) ? json.data : []);
+    } catch {
+      // non-fatal
+    }
+  }, [authStatus]);
+
+  useEffect(() => {
+    void loadSavedSearches();
+  }, [loadSavedSearches]);
+
+  const applySavedSearch = (row: SavedSearchRow) => {
+    const f = row.filters || {};
+    setSearchTerm(f.q || '');
+    setSelectedDomain(f.domain || 'all');
+    setShowCfpOnly(Boolean(f.cfp));
+    if (f.sortBy) setSortBy(f.sortBy as SortOption);
+    setCurrentPage(1);
+  };
+
+  const handleSaveSearch = async () => {
+    const name = saveName.trim();
+    if (!name) {
+      setSaveMsg('Enter a name for this search');
+      return;
+    }
+    setSaveBusy(true);
+    setSaveMsg(null);
+    try {
+      const res = await secureFetch('/api/user/saved-searches', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          filters: {
+            q: searchTerm || undefined,
+            domain: selectedDomain !== 'all' ? selectedDomain : undefined,
+            cfp: showCfpOnly || undefined,
+            sortBy: sortBy !== 'startDate' ? sortBy : undefined,
+          },
+        }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setSaveMsg(json?.error?.message || json?.error || 'Could not save search');
+        return;
+      }
+      setSaveName('');
+      setSaveMsg('Saved');
+      await loadSavedSearches();
+    } catch {
+      setSaveMsg('Could not save search');
+    } finally {
+      setSaveBusy(false);
+    }
+  };
+
+  const handleDeleteSaved = async (id: string) => {
+    try {
+      const res = await secureFetch(`/api/user/saved-searches?id=${encodeURIComponent(id)}`, {
+        method: 'DELETE',
+      });
+      if (res.ok) {
+        setSavedSearches((prev) => prev.filter((s) => s.id !== id));
+      }
+    } catch {
+      // ignore
+    }
+  };
 
   useEffect(() => {
     const loadData = async () => {
@@ -274,6 +372,64 @@ function SearchContent() {
               {filteredConferences.length} result{filteredConferences.length !== 1 ? 's' : ''}
             </div>
           </div>
+
+          {/* Saved searches (#56) — signed-in users only */}
+          {authStatus === 'authenticated' && (
+            <div className="mt-4 pt-4 border-t border-zinc-800/80">
+              <div className="flex flex-col sm:flex-row gap-2 sm:items-center">
+                <label htmlFor="save-search-name" className="sr-only">
+                  Name for saved search
+                </label>
+                <input
+                  id="save-search-name"
+                  type="text"
+                  maxLength={80}
+                  placeholder="Name this search…"
+                  value={saveName}
+                  onChange={(e) => setSaveName(e.target.value)}
+                  className="flex-1"
+                />
+                <button
+                  type="button"
+                  onClick={() => void handleSaveSearch()}
+                  disabled={saveBusy}
+                  className="btn-primary whitespace-nowrap disabled:opacity-50"
+                >
+                  {saveBusy ? 'Saving…' : 'Save search'}
+                </button>
+              </div>
+              {saveMsg && (
+                <p className="text-xs text-zinc-400 mt-2" role="status">
+                  {saveMsg}
+                </p>
+              )}
+              {savedSearches.length > 0 && (
+                <ul className="flex flex-wrap gap-2 mt-3">
+                  {savedSearches.map((row) => (
+                    <li key={row.id}>
+                      <span className="inline-flex items-center gap-1 rounded-full border border-zinc-700 bg-zinc-900/60 pl-3 pr-1 py-1 text-xs text-zinc-200">
+                        <button
+                          type="button"
+                          onClick={() => applySavedSearch(row)}
+                          className="hover:text-white"
+                        >
+                          {row.name}
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => void handleDeleteSaved(row.id)}
+                          aria-label={`Delete saved search ${row.name}`}
+                          className="ml-1 rounded-full px-1.5 py-0.5 text-zinc-500 hover:text-red-400 hover:bg-zinc-800"
+                        >
+                          ×
+                        </button>
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )}
         </section>
 
         {/* Results */}
