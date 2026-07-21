@@ -9,6 +9,7 @@ import { querySchemas } from '@/lib/apiSchemas';
 import { withErrorHandling } from '@/lib/errorHandler';
 import { ApiResponse } from '@/types/api';
 import { Prisma } from '@prisma/client';
+import { getLocalMonthYear } from '@/lib/date';
 
 /**
  * GET /api/conferences
@@ -82,7 +83,11 @@ export const GET = withErrorHandling(async (request: NextRequest) => {
 
   apiLogger.time('dbQuery');
   const skip = (page - 1) * limit;
+  const userId = session?.user?.id;
 
+  // Attendance: use `_count` for totals (issue #84) and a tiny preview
+  // relation (take 5) instead of loading full attendance rows just to count.
+  // isAttending is resolved with a single batched query for the page of IDs.
   const [conferences, total] = await Promise.all([
     prisma.conference.findMany({
       where,
@@ -106,68 +111,43 @@ export const GET = withErrorHandling(async (request: NextRequest) => {
         source: true,
         tags: true,
         financialAid: true,
-        ...(session?.user ? {
-          attendances: {
-            select: {
-              userId: true,
-              user: {
-                select: {
-                  image: true,
-                  name: true
-                }
-              }
-            },
-            take: 5
-          }
-        } : {})
+        _count: { select: { attendances: true } },
+        attendances: {
+          select: {
+            user: { select: { image: true, name: true } },
+          },
+          take: 5,
+          orderBy: { createdAt: 'desc' },
+        },
       },
       orderBy: { startDate: 'asc' },
       skip,
       take: limit,
     }),
-    prisma.conference.count({ where })
+    prisma.conference.count({ where }),
   ]);
-  apiLogger.timeEnd('dbQuery');
 
-  interface DbConferenceWithAttendances {
-    id: string;
-    name: string;
-    url: string;
-    startDate: Date | null;
-    endDate: Date | null;
-    city: string | null;
-    country: string | null;
-    locationRaw: string | null;
-    lat: number | null;
-    lng: number | null;
-    online: boolean;
-    cfpUrl: string | null;
-    cfpEndDate: Date | null;
-    cfpStatus: string | null;
-    domain: string;
-    description: string | null;
-    source: string;
-    tags: string[];
-    financialAid: unknown;
-    attendances?: {
-      userId: string;
-      user: {
-        image: string | null;
-        name: string | null;
-      };
-    }[];
+  const attendingSet = new Set<string>();
+  if (userId && conferences.length > 0) {
+    const myAttendance = await prisma.attendance.findMany({
+      where: {
+        userId,
+        conferenceId: { in: conferences.map((c) => c.id) },
+      },
+      select: { conferenceId: true },
+    });
+    for (const row of myAttendance) {
+      attendingSet.add(row.conferenceId);
+    }
   }
-
-  const dbConfs = conferences as unknown as DbConferenceWithAttendances[];
+  apiLogger.timeEnd('dbQuery');
 
   const months: Record<string, Conference[]> = {};
   const byDomain: Record<string, number> = {};
   let withOpenCFP = 0;
   let withLocation = 0;
 
-  const formattedConferences = dbConfs.map((c) => {
-    const attendances = c.attendances || [];
-    
+  const formattedConferences = conferences.map((c) => {
     return {
       id: c.id,
       name: c.name,
@@ -179,29 +159,26 @@ export const GET = withErrorHandling(async (request: NextRequest) => {
         country: c.country || '',
         raw: c.locationRaw || '',
         lat: c.lat || undefined,
-        lng: c.lng || undefined
+        lng: c.lng || undefined,
       },
       online: c.online,
       cfp: {
         url: c.cfpUrl || '',
         endDate: c.cfpEndDate ? c.cfpEndDate.toISOString().split('T')[0] : null,
-        status: (c.cfpStatus as 'open' | 'closed' | undefined)
+        status: (c.cfpStatus as 'open' | 'closed' | undefined),
       },
       domain: c.domain,
       description: c.description || undefined,
       source: c.source,
       tags: c.tags,
-      // Prisma Json fields are already plain JS values — the
-      // JSON.parse(JSON.stringify()) deep clone was a no-op with real cost.
+      // Prisma Json fields are already plain JS values.
       financialAid: (c.financialAid ?? undefined) as Conference['financialAid'],
-      ...(session?.user ? {
-        attendeeCount: attendances.length,
-        isAttending: attendances.some((a: { userId: string }) => a.userId === session.user.id),
-        attendees: attendances.slice(0, 5).map((a: { user: { image: string | null; name: string | null } }) => ({
-          image: a.user.image,
-          name: a.user.name
-        }))
-      } : {})
+      attendeeCount: c._count.attendances,
+      isAttending: userId ? attendingSet.has(c.id) : false,
+      attendees: c.attendances.map((a) => ({
+        image: a.user.image,
+        name: a.user.name,
+      })),
     };
   });
 
@@ -210,10 +187,8 @@ export const GET = withErrorHandling(async (request: NextRequest) => {
     if (conf.cfp?.status === 'open') withOpenCFP++;
     if (conf.location.lat) withLocation++;
 
-    const monthKey = conf.startDate
-      ? new Date(conf.startDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
-      : 'TBD';
-    
+    const monthKey = conf.startDate ? getLocalMonthYear(conf.startDate) : 'TBD';
+
     if (!months[monthKey]) months[monthKey] = [];
     months[monthKey].push(conf);
   }
