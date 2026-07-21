@@ -52,12 +52,32 @@ function filterConferencesForUser(
   preferences: SubscriberPreferences
 ): Conference[] {
   const domain = preferences?.domain;
+  const location = (preferences?.location || preferences?.country || '').toLowerCase();
 
-  if (!domain || domain === 'all') {
-    return conferences;
-  }
+  let filtered =
+    !domain || domain === 'all'
+      ? [...conferences]
+      : conferences.filter((c) => c.domain === domain);
 
-  return conferences.filter(c => c.domain === domain);
+  // Personalization ranking (issue #64): open CFPs first, then location match,
+  // then sooner start dates. Keeps digests action-oriented without needing AI.
+  filtered.sort((a, b) => {
+    const aOpen = a.cfp?.status === 'open' ? 0 : 1;
+    const bOpen = b.cfp?.status === 'open' ? 0 : 1;
+    if (aOpen !== bOpen) return aOpen - bOpen;
+
+    if (location) {
+      const aLoc = (a.location?.raw || '').toLowerCase().includes(location) ? 0 : 1;
+      const bLoc = (b.location?.raw || '').toLowerCase().includes(location) ? 0 : 1;
+      if (aLoc !== bLoc) return aLoc - bLoc;
+    }
+
+    const aDate = a.startDate || '9999';
+    const bDate = b.startDate || '9999';
+    return aDate.localeCompare(bDate);
+  });
+
+  return filtered;
 }
 
 /**

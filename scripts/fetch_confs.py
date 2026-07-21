@@ -460,14 +460,25 @@ def fetch_sessionize_cfps() -> list:
     
     print(f"[INFO] Sessionize: Scraping {len(SESSIONIZE_CFPS)} known CFP pages...")
 
-    with ConfScoutHTTPClient() as client:
-        for url in SESSIONIZE_CFPS:
+    # Parallelize page scrapes (issue #87) with a small worker pool so we stay
+    # polite to Sessionize while still finishing faster than pure serial I/O.
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+
+    def _scrape_one(url: str):
+        with ConfScoutHTTPClient() as client:
+            return scrape_sessionize_cfp_page(url, client)
+
+    max_workers = min(4, len(SESSIONIZE_CFPS))
+    with ThreadPoolExecutor(max_workers=max_workers) as pool:
+        futures = {pool.submit(_scrape_one, url): url for url in SESSIONIZE_CFPS}
+        for fut in as_completed(futures):
+            url = futures[fut]
             try:
-                conf = scrape_sessionize_cfp_page(url, client)
+                conf = fut.result()
                 if conf:
                     conferences.append(conf)
                     print(f"  [OK] Scraped: {conf['name']}")
-            except (requests.RequestException, ValueError) as e:
+            except (requests.RequestException, ValueError, OSError) as e:
                 print(f"  [FAIL] Failed to scrape {url}: {e}")
     
     print(f"[OK] Fetched {len(conferences)} CFPs from Sessionize")

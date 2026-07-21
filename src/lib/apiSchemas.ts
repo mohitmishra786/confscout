@@ -80,6 +80,10 @@ export const querySchemas = {
       z.literal('all'),
     ]).optional(),
     cfp_open: z.enum(['true', 'false']).optional(),
+    q: z.string()
+      .max(200, 'Search query too long')
+      .regex(patterns.safeString, 'Invalid characters in search')
+      .optional(),
     format: z.enum(['json', 'csv']).default('json'),
   }),
 

@@ -70,10 +70,16 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-blue-600 focus:text-white focus:px-4 focus:py-2 focus:rounded-md"
+        >
+          Skip to content
+        </a>
         <NextIntlClientProvider messages={messages}>
           <SessionProvider>
             <CompareProvider>
-              {children}
+              <div id="main-content">{children}</div>
               <CompareBar />
             </CompareProvider>
           </SessionProvider>

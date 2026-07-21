@@ -375,3 +375,25 @@ input[type="checkbox"]:focus {
     transform: none;
   }
 }
+
+/* Print styles (issue #229) */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  header, footer, nav, .btn-primary, button, #compare-bar, [data-nosnippet] {
+    display: none !important;
+  }
+  .card {
+    break-inside: avoid;
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+    content-visibility: visible;
+  }
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #444;
+  }
+}

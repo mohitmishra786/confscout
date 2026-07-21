@@ -33,6 +33,7 @@ export async function GET(request: Request) {
     const domain = validated.domain;
     const cfpOnly = validated.cfp_open === 'true';
     const format = validated.format;
+    const q = validated.q?.trim().toLowerCase();
 
     const data = await getCachedConferences();
 
@@ -47,6 +48,23 @@ export async function GET(request: Request) {
 
     if (cfpOnly) {
       conferences = conferences.filter(c => c.cfp?.status === 'open');
+    }
+
+    // Server-side text search for public API consumers (issue #176 / #75 path)
+    if (q) {
+      conferences = conferences.filter((c) => {
+        const hay = [
+          c.name,
+          c.description,
+          c.location?.raw,
+          c.domain,
+          ...(c.tags || []),
+        ]
+          .filter(Boolean)
+          .join(' ')
+          .toLowerCase();
+        return hay.includes(q);
+      });
     }
 
     if (format === 'csv') {
