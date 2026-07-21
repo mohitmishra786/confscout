@@ -10,10 +10,11 @@
  * - Domain and filter controls
  */
 
-import { useState, useMemo, useEffect, useRef, useCallback } from 'react';
+import { useState, useMemo, useEffect, useRef, useDeferredValue } from 'react';
 import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
-import { type Conference, type ConferenceData, DOMAIN_INFO } from '@/types/conference';
+import { type Conference, type ConferenceData, type HomeInitialData, DOMAIN_INFO } from '@/types/conference';
+import { parseLocalDate } from '@/lib/date';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import TimelineView from '@/components/TimelineView';
@@ -32,15 +33,63 @@ const WorldMap = dynamic(() => import('@/components/WorldMap'), {
   ),
 });
 
+const MONTH_NAMES = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December',
+];
+
+/**
+ * Per-conference derived data, computed ONCE per dataset change instead of
+ * on every keystroke. Previously the month grouping called
+ * `new Date(...).toLocaleDateString(...)` for all ~6k conferences on every
+ * render — that was the 10.3 s INP measured on the search input.
+ */
+interface IndexedConference {
+  conf: Conference;
+  monthKey: string;
+  monthTime: number;
+  searchText: string;
+}
+
+function buildIndex(conferences: Conference[]): IndexedConference[] {
+  return conferences.map((conf) => {
+    const d = conf.startDate ? parseLocalDate(conf.startDate) : null;
+    const monthKey = d ? `${MONTH_NAMES[d.getMonth()]} ${d.getFullYear()}` : 'TBD';
+    const monthTime = d ? new Date(d.getFullYear(), d.getMonth(), 1).getTime() : Number.MAX_SAFE_INTEGER;
+    const searchText = `${conf.name} ${conf.location?.raw ?? ''} ${(conf.tags ?? []).join(' ')}`.toLowerCase();
+    return { conf, monthKey, monthTime, searchText };
+  });
+}
+
 interface HomeClientProps {
-  initialData: ConferenceData;
+  initialData: HomeInitialData;
 }
 
 export default function HomeClient({ initialData }: HomeClientProps) {
   const t = useTranslations('HomePage');
 
-  // Use server-provided data - no client-side fetch needed!
-  const data = initialData;
+  // The server inlines only the first month groups (fast LCP). The full
+  // dataset is loaded from the CDN-cached static JSON after hydration.
+  const [fullData, setFullData] = useState<ConferenceData | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    fetch('/data/conferences.json')
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
+      .then((json: ConferenceData) => {
+        if (!cancelled) setFullData(json);
+      })
+      .catch(() => {
+        // Progressive enhancement only — the initial server-rendered
+        // month groups stay usable if the fetch fails.
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const data = fullData ?? initialData;
+  const isFullDataLoaded = fullData !== null;
+  const monthCount = fullData ? Object.keys(fullData.months).length : initialData.monthCount;
 
   // View and filter state
   const [viewMode, setViewMode] = useState<'timeline' | 'grid'>('timeline');
@@ -50,6 +99,10 @@ export default function HomeClient({ initialData }: HomeClientProps) {
   // until the user explicitly opens it, improving mobile TTI.
   const [showMap, setShowMap] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  // Deferred value keeps the input painting instantly; the list re-render
+  // (which filters thousands of rows) is scheduled at lower priority.
+  const deferredSearchTerm = useDeferredValue(searchTerm);
+  const isSearchStale = searchTerm !== deferredSearchTerm;
 
   // Subscription and Map UI state
   const [isSubscribeOpen, setIsSubscribeOpen] = useState(false);
@@ -63,7 +116,7 @@ export default function HomeClient({ initialData }: HomeClientProps) {
   // Reset lazy load when filters change
   useEffect(() => {
     setVisibleCount(20);
-  }, [selectedDomain, speakerMode, searchTerm]);
+  }, [selectedDomain, speakerMode, deferredSearchTerm]);
 
   // Intersection observer for infinite scroll/lazy loading
   useEffect(() => {
@@ -89,78 +142,59 @@ export default function HomeClient({ initialData }: HomeClientProps) {
     return Object.values(data.months).flat();
   }, [data]);
 
-  // Filtered conferences
-  const filteredConferences = useMemo(() => {
-    let confs = [...allConferences];
+  // Derived per-conference data (month key, sort key, searchable text),
+  // built once per dataset — not per keystroke.
+  const conferenceIndex = useMemo(() => buildIndex(allConferences), [allConferences]);
 
-    // Domain filter
-    if (selectedDomain !== 'all') {
-      confs = confs.filter(c => c.domain === selectedDomain);
-    }
-
-    // Speaker mode (open CFPs only)
-    if (speakerMode) {
-      confs = confs.filter(c => c.cfp?.status === 'open');
-    }
-
-    // Search
-    if (searchTerm.trim()) {
-      const term = searchTerm.toLowerCase();
-      confs = confs.filter(c =>
-        c.name.toLowerCase().includes(term) ||
-        c.location?.raw?.toLowerCase().includes(term) ||
-        c.tags?.some(t => t.toLowerCase().includes(term))
-      );
-    }
-
-    return confs;
-  }, [allConferences, selectedDomain, speakerMode, searchTerm]);
-
-  // Regroup filtered conferences by month
-  const filteredMonths = useMemo(() => {
-    const grouped: Record<string, Conference[]> = {};
-
-    for (const conf of filteredConferences) {
-      const monthKey = conf.startDate
-        ? new Date(conf.startDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
-        : 'TBD';
-
-      if (!grouped[monthKey]) grouped[monthKey] = [];
-      grouped[monthKey].push(conf);
-    }
-
-    // Sort months correctly (TBD at the end)
-    const sortedGrouped: Record<string, Conference[]> = {};
-    const sortedKeys = Object.keys(grouped).sort((a, b) => {
-      if (a === 'TBD') return 1;
-      if (b === 'TBD') return -1;
-      return new Date(a).getTime() - new Date(b).getTime();
+  // Single filtered view of the index — shared by the flat list (grid/map)
+  // and the month-grouped timeline, so the filter runs exactly once.
+  const filteredIndex = useMemo(() => {
+    const term = deferredSearchTerm.trim().toLowerCase();
+    return conferenceIndex.filter(({ conf, searchText }) => {
+      if (selectedDomain !== 'all' && conf.domain !== selectedDomain) return false;
+      if (speakerMode && conf.cfp?.status !== 'open') return false;
+      if (term && !searchText.includes(term)) return false;
+      return true;
     });
+  }, [conferenceIndex, selectedDomain, speakerMode, deferredSearchTerm]);
 
-    for (const key of sortedKeys) {
-      // Sort conferences within month by startDate
-      sortedGrouped[key] = grouped[key].sort((a, b) => 
-        (a.startDate || '').localeCompare(b.startDate || '')
-      );
+  const filteredConferences = useMemo(
+    () => filteredIndex.map(({ conf }) => conf),
+    [filteredIndex]
+  );
+
+  // Regroup filtered conferences by month using the precomputed keys —
+  // no date parsing or Intl formatting in this loop.
+  const filteredMonths = useMemo(() => {
+    const grouped = new Map<string, { time: number; confs: Conference[] }>();
+
+    for (const { conf, monthKey, monthTime } of filteredIndex) {
+      const entry = grouped.get(monthKey);
+      if (entry) entry.confs.push(conf);
+      else grouped.set(monthKey, { time: monthTime, confs: [conf] });
     }
 
-    return sortedGrouped;
-  }, [filteredConferences]);
+    return Object.fromEntries(
+      [...grouped.entries()]
+        .sort((a, b) => a[1].time - b[1].time)
+        .map(([key, { confs }]) => [
+          key,
+          confs.toSorted((a, b) => (a.startDate || '').localeCompare(b.startDate || '')),
+        ])
+    );
+  }, [filteredIndex]);
 
-  // Get unique domains for filter
+  // Domain list with counts — sourced from the server-computed stats so it
+  // is correct even before the full dataset has loaded.
   const domains = useMemo(() => {
-    const counts: Record<string, number> = {};
-    for (const c of allConferences) {
-      counts[c.domain] = (counts[c.domain] || 0) + 1;
-    }
-    return Object.entries(counts)
+    return Object.entries(data.stats.byDomain)
       .sort((a, b) => b[1] - a[1])
       .map(([slug, count]) => ({
         slug,
         count,
         ...DOMAIN_INFO[slug] || { name: slug, icon: '📌', color: '#6B7280' }
       }));
-  }, [allConferences]);
+  }, [data.stats.byDomain]);
 
   const handleLocationFound = (lat: number, lng: number) => {
     setMapCenter([lat, lng]);
@@ -177,7 +211,7 @@ export default function HomeClient({ initialData }: HomeClientProps) {
     }
   };
 
-  const jsonLd = {
+  const jsonLd = useMemo(() => ({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: 'Tech Conferences Worldwide',
@@ -210,7 +244,7 @@ export default function HomeClient({ initialData }: HomeClientProps) {
         availability: 'https://schema.org/InStock'
       }
     }))
-  };
+  }), [allConferences]);
 
   // Stale data detection
   const isStale = useMemo(() => {
@@ -229,7 +263,7 @@ export default function HomeClient({ initialData }: HomeClientProps) {
         <div className="bg-amber-900/20 border-b border-amber-500/20 py-2 px-4 text-center">
           <p className="text-amber-200/80 text-xs">
             ⚠️ Data might be stale. Last updated {new Date(data.lastUpdated).toLocaleDateString()}. 
-            <button onClick={() => window.location.reload()} className="ml-2 underline hover:text-white">Refresh</button>
+            <button type="button" onClick={() => window.location.reload()} className="ml-2 underline hover:text-white">Refresh</button>
           </p>
         </div>
       )}
@@ -237,8 +271,9 @@ export default function HomeClient({ initialData }: HomeClientProps) {
       {/* Subscribe Button (Fixed or top) */}
       <div className="fixed bottom-6 right-6 z-40">
         <button
+          type="button"
           onClick={() => setIsSubscribeOpen(true)}
-          className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-transform hover:scale-105 flex items-center gap-2"
+          className="bg-blue-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-[transform,background-color] duration-150 ease-out flex items-center gap-2 motion-safe:hover:scale-105 motion-safe:active:scale-95 hover:bg-blue-500"
         >
           Get Updates
         </button>
@@ -252,7 +287,7 @@ export default function HomeClient({ initialData }: HomeClientProps) {
       <main className="w-full max-w-7xl mx-auto px-4 py-6 sm:py-8">
         {/* Hero */}
         <section className="text-center mb-8">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 [text-wrap:balance]">
             <span className="gradient-text">Tech Conferences</span>
             <br />
             <span className="text-white">Worldwide</span>
@@ -268,20 +303,20 @@ export default function HomeClient({ initialData }: HomeClientProps) {
         {data?.stats && (
           <section className="mb-6 grid grid-cols-2 md:grid-cols-4 gap-3">
             <div className="card p-4 text-center">
-              <div className="text-2xl font-bold text-white mb-1">{data.stats.total.toLocaleString()}</div>
-              <div className="text-xs text-zinc-500">{t('stats.conferences')}</div>
+              <div className="text-2xl font-bold text-white mb-1 tabular-nums">{data.stats.total.toLocaleString()}</div>
+              <div className="text-xs text-zinc-400">{t('stats.conferences')}</div>
             </div>
             <div className="card p-4 text-center">
-              <div className="text-2xl font-bold text-green-400 mb-1">{data.stats.withOpenCFP}</div>
-              <div className="text-xs text-zinc-500">{t('stats.openCfps')}</div>
+              <div className="text-2xl font-bold text-green-400 mb-1 tabular-nums">{data.stats.withOpenCFP}</div>
+              <div className="text-xs text-zinc-400">{t('stats.openCfps')}</div>
             </div>
             <div className="card p-4 text-center">
-              <div className="text-2xl font-bold text-blue-400 mb-1">{data.stats.withLocation.toLocaleString()}</div>
-              <div className="text-xs text-zinc-500">{t('stats.mapped')}</div>
+              <div className="text-2xl font-bold text-blue-400 mb-1 tabular-nums">{data.stats.withLocation.toLocaleString()}</div>
+              <div className="text-xs text-zinc-400">{t('stats.mapped')}</div>
             </div>
             <div className="card p-4 text-center">
-              <div className="text-2xl font-bold text-purple-400 mb-1">{Object.keys(data.months).length}</div>
-              <div className="text-xs text-zinc-500">{t('stats.months')}</div>
+              <div className="text-2xl font-bold text-purple-400 mb-1 tabular-nums">{monthCount}</div>
+              <div className="text-xs text-zinc-400">{t('stats.months')}</div>
             </div>
           </section>
         )}
@@ -290,7 +325,9 @@ export default function HomeClient({ initialData }: HomeClientProps) {
         <section className="mb-6">
           <div className="flex items-center justify-between mb-2">
             <button
+              type="button"
               onClick={() => setShowMap(!showMap)}
+              aria-expanded={showMap}
               className={`text-sm text-zinc-400 hover:text-white transition-colors`}
             >
               {showMap ? t('map.hide') : t('map.show')}
@@ -316,8 +353,10 @@ export default function HomeClient({ initialData }: HomeClientProps) {
           <div className="flex flex-col md:flex-row gap-3 mb-4">
             {/* Search */}
             <div className="flex-1">
+              <label htmlFor="conference-search" className="sr-only">{t('filters.searchPlaceholder')}</label>
               <input
-                type="text"
+                id="conference-search"
+                type="search"
                 placeholder={t('filters.searchPlaceholder')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -327,12 +366,14 @@ export default function HomeClient({ initialData }: HomeClientProps) {
 
             {/* Domain */}
             <div className="w-full md:w-56">
+              <label htmlFor="domain-filter" className="sr-only">{t('filters.allDomains')}</label>
               <select
+                id="domain-filter"
                 value={selectedDomain}
                 onChange={(e) => setSelectedDomain(e.target.value)}
                 className="w-full bg-zinc-900 border border-zinc-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 outline-none"
               >
-                <option value="all">{t('filters.allDomains')} ({allConferences.length})</option>
+                <option value="all">{t('filters.allDomains')} ({data.stats.total.toLocaleString()})</option>
                 {domains.map(d => (
                   <option key={d.slug} value={d.slug}>
                     {d.name} ({d.count})
@@ -359,26 +400,34 @@ export default function HomeClient({ initialData }: HomeClientProps) {
               </label>
 
               {/* View Toggle */}
-              <div className="flex items-center gap-1 bg-zinc-800 rounded-lg p-1">
+              <div className="flex items-center gap-1 bg-zinc-800 rounded-lg p-1" role="group" aria-label="View mode">
                 <button
+                  type="button"
                   onClick={() => setViewMode('timeline')}
-                  className={`px-3 py-1 text-xs font-medium rounded ${viewMode === 'timeline' ? 'bg-zinc-600 text-white' : 'text-zinc-400 hover:text-zinc-200'}`}
+                  aria-pressed={viewMode === 'timeline'}
+                  className={`px-3 py-1 text-xs font-medium rounded transition-[color,background-color,transform] duration-150 ease-out motion-safe:active:scale-95 ${viewMode === 'timeline' ? 'bg-zinc-600 text-white' : 'text-zinc-400 hover:text-zinc-200'}`}
                 >
                   {t('filters.timeline')}
                 </button>
                 <button
+                  type="button"
                   onClick={() => setViewMode('grid')}
-                  className={`px-3 py-1 text-xs font-medium rounded ${viewMode === 'grid' ? 'bg-zinc-600 text-white' : 'text-zinc-400 hover:text-zinc-200'}`}
+                  aria-pressed={viewMode === 'grid'}
+                  className={`px-3 py-1 text-xs font-medium rounded transition-[color,background-color,transform] duration-150 ease-out motion-safe:active:scale-95 ${viewMode === 'grid' ? 'bg-zinc-600 text-white' : 'text-zinc-400 hover:text-zinc-200'}`}
                 >
                   {t('filters.grid')}
                 </button>
               </div>
             </div>
 
-            <div className="text-sm text-zinc-500">
+            <div className="text-sm text-zinc-400 tabular-nums" aria-live="polite">
               {filteredConferences.length} result{filteredConferences.length !== 1 ? 's' : ''}
+              {!isFullDataLoaded && (
+                <span className="ml-2 text-zinc-500" role="status">Loading full index…</span>
+              )}
               {(selectedDomain !== 'all' || speakerMode || searchTerm) && (
                 <button
+                  type="button"
                   onClick={() => {
                     setSelectedDomain('all');
                     setSpeakerMode(false);
@@ -394,14 +443,16 @@ export default function HomeClient({ initialData }: HomeClientProps) {
         </section>
 
         {/* Conference Display */}
+        <div className={isSearchStale ? 'opacity-70 transition-opacity' : 'transition-opacity'}>
         {filteredConferences.length > 0 ? (
           viewMode === 'timeline' ? (
             <TimelineView months={filteredMonths} speakerMode={speakerMode} />
           ) : (
             <div className="space-y-8">
+              <h2 className="sr-only">Conference results</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {filteredConferences.slice(0, visibleCount).map((conf, idx) => (
-                  <ConferenceCard key={`${conf.id}-${idx}`} conference={conf} searchTerm={searchTerm} />
+                {filteredConferences.slice(0, visibleCount).map((conf) => (
+                  <ConferenceCard key={conf.id} conference={conf} searchTerm={deferredSearchTerm} />
                 ))}
               </div>
               
@@ -413,7 +464,7 @@ export default function HomeClient({ initialData }: HomeClientProps) {
               )}
 
               {filteredConferences.length > 50 && visibleCount >= filteredConferences.length && (
-                <div className="col-span-full text-center py-4 text-zinc-500">
+                <div className="col-span-full text-center py-4 text-zinc-400">
                   Showing all {filteredConferences.length} results.
                 </div>
               )}
@@ -423,10 +474,11 @@ export default function HomeClient({ initialData }: HomeClientProps) {
           <div className="text-center py-20 px-4 card border-dashed border-zinc-800">
             <div className="text-4xl mb-4">🔍</div>
             <h3 className="text-xl font-bold text-white mb-2">No conferences found</h3>
-            <p className="text-zinc-500 max-w-md mx-auto mb-8">
+            <p className="text-zinc-400 max-w-md mx-auto mb-8">
               We couldn&apos;t find any conferences matching your current filters. Try adjusting your search term or clearing filters to see more results.
             </p>
             <button
+              type="button"
               onClick={() => {
                 setSelectedDomain('all');
                 setSpeakerMode(false);
@@ -438,10 +490,11 @@ export default function HomeClient({ initialData }: HomeClientProps) {
             </button>
           </div>
         )}
+        </div>
 
         {/* Last Updated */}
         {data?.lastUpdated && (
-          <div className="mt-10 text-center text-sm text-zinc-600">
+          <div className="mt-10 text-center text-sm text-zinc-400">
             Last updated: {new Date(data.lastUpdated).toLocaleDateString('en-US', {
               year: 'numeric', month: 'long', day: 'numeric'
             })}

@@ -20,7 +20,6 @@ interface WorldMapProps {
     onMarkerClick?: (conference: MappableConference) => void;
 }
 
-/* eslint-disable @typescript-eslint/consistent-type-imports */
 type LeafletModule = typeof import('react-leaflet');
 type LeafletClusterModule = typeof import('react-leaflet-cluster');
 
@@ -32,6 +31,38 @@ type LeafletComponents = {
     Marker: LeafletModule['Marker'];
     useMap: LeafletModule['useMap'];
 };
+
+// Domain marker colors — hoisted to module level (was rebuilt every render).
+const DOMAIN_COLORS: Record<string, string> = {
+    ai: '#8B5CF6',
+    software: '#3B82F6',
+    security: '#EF4444',
+    web: '#10B981',
+    mobile: '#F59E0B',
+    cloud: '#06B6D4',
+    data: '#EC4899',
+    devops: '#8B5CF6',
+    opensource: '#22C55E',
+    academic: '#6366F1',
+    general: '#6B7280',
+};
+
+function getDomainColor(domain: string): string {
+    return DOMAIN_COLORS[domain] || '#6B7280';
+}
+
+// Handles view updates using the map instance. Hoisted out of the parent
+// component — defining it inline created a new component type on every
+// render, remounting it and re-triggering its effect each time.
+function MapController({ center, zoom, useMap }: { center?: [number, number]; zoom?: number; useMap: LeafletComponents['useMap'] }) {
+    const map = useMap();
+    useEffect(() => {
+        if (center) {
+            map.flyTo(center, zoom || 6, { duration: 1.5 });
+        }
+    }, [center, zoom, map]);
+    return null;
+}
 
 function MapContainerComponent({ conferences, center, zoom, onMarkerClick }: WorldMapProps) {
     const [components, setComponents] = useState<LeafletComponents | null>(null);
@@ -64,6 +95,7 @@ function MapContainerComponent({ conferences, center, zoom, onMarkerClick }: Wor
                 <div className="text-red-400 text-4xl mb-4">⚠️</div>
                 <div className="text-gray-300 font-medium mb-2">{error}</div>
                 <button 
+                    type="button"
                     onClick={() => window.location.reload()}
                     className="text-blue-400 text-sm underline hover:text-blue-300"
                 >
@@ -83,39 +115,10 @@ function MapContainerComponent({ conferences, center, zoom, onMarkerClick }: Wor
 
     const { MapContainer, TileLayer, CircleMarker, Popup, useMap } = components;
 
-    // Inner component to handle view updates using the map instance
-    const MapController = ({ center, zoom }: { center?: [number, number]; zoom?: number }) => {
-        const map = useMap();
-        useEffect(() => {
-            if (center) {
-                map.flyTo(center, zoom || 6, { duration: 1.5 });
-            }
-        }, [center, zoom, map]);
-        return null;
-    };
-
     // Filter conferences with valid coordinates
     const mappableConferences = conferences.filter(
         c => c.location?.lat && c.location?.lng
     );
-
-    // Get marker color based on domain
-    const getDomainColor = (domain: string): string => {
-        const colors: Record<string, string> = {
-            ai: '#8B5CF6',
-            software: '#3B82F6',
-            security: '#EF4444',
-            web: '#10B981',
-            mobile: '#F59E0B',
-            cloud: '#06B6D4',
-            data: '#EC4899',
-            devops: '#8B5CF6',
-            opensource: '#22C55E',
-            academic: '#6366F1',
-            general: '#6B7280',
-        };
-        return colors[domain] || '#6B7280';
-    };
 
     return (
         <MapContainer
@@ -130,7 +133,7 @@ function MapContainerComponent({ conferences, center, zoom, onMarkerClick }: Wor
                 attribution='&copy; <a href="https://carto.com/">CARTO</a>'
             />
 
-            <MapController center={center} zoom={zoom} />
+            <MapController center={center} zoom={zoom} useMap={useMap} />
 
             <MarkerClusterGroup
                 chunkedLoading
@@ -139,9 +142,9 @@ function MapContainerComponent({ conferences, center, zoom, onMarkerClick }: Wor
                 zoomToBoundsOnClick={true}
                 maxClusterRadius={40}
             >
-                {mappableConferences.map((conf, idx) => (
+                {mappableConferences.map((conf) => (
                     <CircleMarker
-                        key={`${conf.id}-${idx}`}
+                        key={conf.id}
                         center={[conf.location.lat!, conf.location.lng!]}
                         radius={8}
                         pathOptions={{
@@ -197,19 +200,8 @@ function MapContainerComponent({ conferences, center, zoom, onMarkerClick }: Wor
 }
 
 export default function WorldMap(props: WorldMapProps) {
-    const [isMounted, setIsMounted] = useState(false);
-
-    useEffect(() => {
-        setIsMounted(true);
-    }, []);
-
-    if (!isMounted) {
-        return (
-            <div className="w-full h-[600px] bg-gray-900 rounded-lg flex items-center justify-center">
-                <div className="text-gray-400">Loading map...</div>
-            </div>
-        );
-    }
-
+    // This component is only ever loaded via next/dynamic with ssr:false,
+    // so no client-mount gate is needed (that gate caused a visible
+    // "Loading map..." flash on every mount).
     return <MapContainerComponent {...props} />;
 }

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { DOMAIN_INFO } from '@/types/conference';
 import { secureFetch } from '@/lib/api';
+import { useModalA11y } from '@/hooks/useModalA11y';
 
 interface SubscribeModalProps {
     isOpen: boolean;
@@ -15,20 +16,15 @@ export default function SubscribeModal({ isOpen, onClose }: SubscribeModalProps)
     const [frequency, setFrequency] = useState('weekly');
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
     const [message, setMessage] = useState('');
+    const { dialogRef } = useModalA11y(isOpen, onClose);
 
+    // Auto-close after a successful subscribe (previously a cleanup was
+    // returned from an async handler, which React never runs).
     useEffect(() => {
-        const handleEscape = (e: KeyboardEvent) => {
-            if (e.key === 'Escape') onClose();
-        };
-
-        if (isOpen) {
-            window.addEventListener('keydown', handleEscape);
-        }
-
-        return () => {
-            window.removeEventListener('keydown', handleEscape);
-        };
-    }, [isOpen, onClose]);
+        if (status !== 'success') return;
+        const timer = setTimeout(onClose, 3000);
+        return () => clearTimeout(timer);
+    }, [status, onClose]);
 
     if (!isOpen) return null;
 
@@ -52,11 +48,6 @@ export default function SubscribeModal({ isOpen, onClose }: SubscribeModalProps)
             if (res.ok) {
                 setStatus('success');
                 setMessage(data.message || 'Subscribed successfully!');
-                // Auto-close after 3s, but only if component is still mounted
-                const timer = setTimeout(() => {
-                    onClose();
-                }, 3000);
-                return () => clearTimeout(timer);
             } else {
                 setStatus('error');
                 setMessage(data.error || 'Something went wrong');
@@ -69,30 +60,39 @@ export default function SubscribeModal({ isOpen, onClose }: SubscribeModalProps)
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-            <div className="bg-zinc-900 border border-zinc-800 rounded-lg max-w-md w-full p-6 shadow-2xl relative">
+            <div
+                ref={dialogRef}
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="subscribe-modal-title"
+                className="bg-zinc-900 border border-zinc-800 rounded-lg max-w-md w-full p-6 shadow-2xl relative"
+            >
                 <button
+                    type="button"
                     onClick={onClose}
-                    className="absolute top-4 right-4 text-zinc-500 hover:text-white"
+                    aria-label="Close"
+                    className="absolute top-4 right-4 text-zinc-400 hover:text-white transition-colors"
                 >
                     ✕
                 </button>
 
-                <h2 className="text-2xl font-bold mb-2 text-white">Get Updates</h2>
+                <h2 id="subscribe-modal-title" className="text-2xl font-bold mb-2 text-white">Get Updates</h2>
                 <p className="text-zinc-400 mb-6 text-sm">
                     Receive curated updates of upcoming conferences and CFPs delivered to your inbox.
                 </p>
 
                 {status === 'success' ? (
-                    <div className="text-center py-8">
-                        <div className="text-5xl mb-4">✨</div>
+                    <div className="text-center py-8" role="status">
+                        <div className="text-5xl mb-4" aria-hidden="true">✨</div>
                         <h3 className="text-xl font-bold text-white mb-2">All set!</h3>
                         <p className="text-zinc-400">{message}</p>
                     </div>
                 ) : (
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
-                            <label className="block text-xs font-medium text-zinc-500 mb-1">Email Address</label>
+                            <label htmlFor="subscribe-email" className="block text-xs font-medium text-zinc-400 mb-1">Email Address</label>
                             <input
+                                id="subscribe-email"
                                 type="email"
                                 required
                                 value={email}
@@ -104,8 +104,9 @@ export default function SubscribeModal({ isOpen, onClose }: SubscribeModalProps)
 
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <label className="block text-xs font-medium text-zinc-500 mb-1">Interest</label>
+                                <label htmlFor="subscribe-domain" className="block text-xs font-medium text-zinc-400 mb-1">Interest</label>
                                 <select
+                                    id="subscribe-domain"
                                     value={domain}
                                     onChange={(e) => setDomain(e.target.value)}
                                     className="w-full bg-zinc-800 border border-zinc-700 rounded p-2.5 text-white focus:ring-2 focus:ring-blue-500 outline-none"
@@ -117,8 +118,9 @@ export default function SubscribeModal({ isOpen, onClose }: SubscribeModalProps)
                                 </select>
                             </div>
                             <div>
-                                <label className="block text-xs font-medium text-zinc-500 mb-1">Frequency</label>
+                                <label htmlFor="subscribe-frequency" className="block text-xs font-medium text-zinc-400 mb-1">Frequency</label>
                                 <select
+                                    id="subscribe-frequency"
                                     value={frequency}
                                     onChange={(e) => setFrequency(e.target.value)}
                                     className="w-full bg-zinc-800 border border-zinc-700 rounded p-2.5 text-white focus:ring-2 focus:ring-blue-500 outline-none"
@@ -130,7 +132,7 @@ export default function SubscribeModal({ isOpen, onClose }: SubscribeModalProps)
                         </div>
 
                         {status === 'error' && (
-                            <div className="text-red-400 text-sm">{message}</div>
+                            <div className="text-red-400 text-sm" role="alert">{message}</div>
                         )}
 
                         <button

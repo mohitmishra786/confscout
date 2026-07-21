@@ -124,6 +124,15 @@ describe('SQL Injection Protection (Issue #268)', () => {
         const content = readFileSync(route, 'utf-8');
 
         if (content.includes('.query(') || content.includes('prisma.')) {
+          // Routes that never read user input (e.g. /api/health takes no
+          // parameters or body) have nothing to validate — Zod would be
+          // security theater there.
+          const readsUserInput =
+            content.includes('searchParams') ||
+            content.includes('request.json(') ||
+            content.includes('await params');
+          if (!readsUserInput) continue;
+
           const hasZodImport = /from ['"]zod['"]/.test(content) || /from ['"]@\/lib\/apiSchemas['"]/.test(content);
           const hasZodUsage = content.includes('z.') || content.includes('.safeParse(') || content.includes('.parse(');
 

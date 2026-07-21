@@ -191,7 +191,9 @@ export const GET = withErrorHandling(async (request: NextRequest) => {
       description: c.description || undefined,
       source: c.source,
       tags: c.tags,
-      financialAid: c.financialAid ? JSON.parse(JSON.stringify(c.financialAid)) : undefined,
+      // Prisma Json fields are already plain JS values — the
+      // JSON.parse(JSON.stringify()) deep clone was a no-op with real cost.
+      financialAid: (c.financialAid ?? undefined) as Conference['financialAid'],
       ...(session?.user ? {
         attendeeCount: attendances.length,
         isAttending: attendances.some((a: { userId: string }) => a.userId === session.user.id),

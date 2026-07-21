@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import type { Conference } from '@/types/conference';
+import { useModalA11y } from '@/hooks/useModalA11y';
 
 interface TravelModalProps {
   isOpen: boolean;
@@ -16,27 +16,7 @@ interface TravelModalProps {
  * Provides deep links to travel booking sites based on conference logistics.
  */
 export default function TravelModal({ isOpen, onClose, conference }: TravelModalProps) {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-    };
-
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-      window.addEventListener('keydown', handleEscape);
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    
-    return () => {
-      document.body.style.overflow = 'unset';
-      window.removeEventListener('keydown', handleEscape);
-    };
-  }, [isOpen, onClose]);
+  const { mounted, dialogRef } = useModalA11y(isOpen, onClose);
 
   if (!isOpen || !mounted) return null;
 
@@ -49,15 +29,28 @@ export default function TravelModal({ isOpen, onClose, conference }: TravelModal
 
   const modalContent = (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200" onClick={onClose} />
-      
-      <div className="bg-zinc-900 border border-zinc-800 rounded-3xl w-full max-w-md overflow-hidden shadow-2xl animate-in zoom-in-95 duration-200 relative z-10">
+      {/* Backdrop — native button so click-to-close is keyboard-accessible */}
+      <button
+        type="button"
+        aria-label="Close dialog"
+        className="absolute inset-0 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200 cursor-default"
+        onClick={onClose}
+        tabIndex={-1}
+      />
+
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="travel-modal-title"
+        className="bg-zinc-900 border border-zinc-800 rounded-3xl w-full max-w-md overflow-hidden shadow-2xl animate-in zoom-in-95 duration-200 relative z-10"
+      >
         <div className="p-6 border-b border-zinc-800 flex justify-between items-center">
-          <h2 className="text-xl font-bold text-white flex items-center gap-2">
-            <span className="text-blue-400">✈️</span> Travel Logistics
+          <h2 id="travel-modal-title" className="text-xl font-bold text-white flex items-center gap-2">
+            <span className="text-blue-400" aria-hidden="true">✈️</span> Travel Logistics
           </h2>
-          <button onClick={onClose} className="text-zinc-500 hover:text-white transition-colors p-1">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <button type="button" onClick={onClose} aria-label="Close" className="text-zinc-400 hover:text-white transition-colors p-1">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
@@ -77,10 +70,10 @@ export default function TravelModal({ isOpen, onClose, conference }: TravelModal
                 className="flex items-center justify-between p-4 bg-zinc-950 border border-zinc-800 rounded-2xl hover:border-blue-500/50 hover:bg-blue-500/5 transition-all group"
               >
                 <div className="flex items-center gap-3">
-                  <span className="text-2xl">🛫</span>
+                  <span className="text-2xl" aria-hidden="true">🛫</span>
                   <div>
                     <div className="text-sm font-bold text-white">Find Flights</div>
-                    <div className="text-[10px] text-zinc-500">Google Flights</div>
+                    <div className="text-[10px] text-zinc-400">Google Flights</div>
                   </div>
                 </div>
                 <svg className="w-5 h-5 text-zinc-600 group-hover:text-blue-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -95,10 +88,10 @@ export default function TravelModal({ isOpen, onClose, conference }: TravelModal
                 className="flex items-center justify-between p-4 bg-zinc-950 border border-zinc-800 rounded-2xl hover:border-blue-500/50 hover:bg-blue-500/5 transition-all group"
               >
                 <div className="flex items-center gap-3">
-                  <span className="text-2xl">🏨</span>
+                  <span className="text-2xl" aria-hidden="true">🏨</span>
                   <div>
                     <div className="text-sm font-bold text-white">Book Hotels</div>
-                    <div className="text-[10px] text-zinc-500">Booking.com</div>
+                    <div className="text-[10px] text-zinc-400">Booking.com</div>
                   </div>
                 </div>
                 <svg className="w-5 h-5 text-zinc-600 group-hover:text-blue-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -113,10 +106,10 @@ export default function TravelModal({ isOpen, onClose, conference }: TravelModal
                 className="flex items-center justify-between p-4 bg-zinc-950 border border-zinc-800 rounded-2xl hover:border-blue-500/50 hover:bg-blue-500/5 transition-all group"
               >
                 <div className="flex items-center gap-3">
-                  <span className="text-2xl">🏠</span>
+                  <span className="text-2xl" aria-hidden="true">🏠</span>
                   <div>
                     <div className="text-sm font-bold text-white">Search Airbnbs</div>
-                    <div className="text-[10px] text-zinc-500">Airbnb</div>
+                    <div className="text-[10px] text-zinc-400">Airbnb</div>
                   </div>
                 </div>
                 <svg className="w-5 h-5 text-zinc-600 group-hover:text-blue-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -135,7 +128,7 @@ export default function TravelModal({ isOpen, onClose, conference }: TravelModal
         </div>
 
         <div className="p-4 text-center">
-          <button onClick={onClose} className="text-zinc-500 hover:text-white text-xs font-medium transition-colors">
+          <button type="button" onClick={onClose} className="text-zinc-400 hover:text-white text-xs font-medium transition-colors">
             Close
           </button>
         </div>

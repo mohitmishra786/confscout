@@ -68,7 +68,9 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   // 2. Fetch Conferences
   const data = await getCachedConferences();
   const allConferences = Object.values(data.months).flat();
-  const userConferences = allConferences.filter(c => bookmarks.includes(c.id));
+  // Set lookup — Array.includes inside a filter is O(n·m).
+  const bookmarkIdSet = new Set(bookmarks);
+  const userConferences = allConferences.filter(c => bookmarkIdSet.has(c.id));
 
   return (
     <div className="min-h-screen bg-black">
@@ -82,6 +84,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                 src={user.image}
                 alt={user.name || 'User'}
                 fill
+                sizes="128px"
                 className="object-cover rounded-full border-4 border-zinc-800"
               />
             ) : (
@@ -91,12 +94,12 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
             )}
           </div>
           <h1 className="text-3xl font-bold text-white mb-2">{user.name || 'Anonymous User'}</h1>
-          <p className="text-zinc-500">Member since {new Date(user.createdAt).getFullYear()}</p>
+          <p className="text-zinc-400">Member since {new Date(user.createdAt).getFullYear()}</p>
           
           <div className="mt-6 flex gap-4">
             <div className="px-4 py-2 bg-zinc-900 rounded-lg border border-zinc-800 text-center">
-              <span className="block text-2xl font-bold text-white">{userConferences.length}</span>
-              <span className="text-xs text-zinc-500 uppercase tracking-wider">Events</span>
+              <span className="block text-2xl font-bold text-white tabular-nums">{userConferences.length}</span>
+              <span className="text-xs text-zinc-400 uppercase tracking-wider">Events</span>
             </div>
           </div>
         </div>
@@ -111,7 +114,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
             ))}
           </div>
         ) : (
-          <div className="text-center py-12 text-zinc-600 italic">
+          <div className="text-center py-12 text-zinc-400 italic">
             No public events listed.
           </div>
         )}

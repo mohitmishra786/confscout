@@ -6,7 +6,6 @@
  */
 
 import React from 'react';
-import { sanitizeXSS } from '@/lib/validation';
 
 interface SafeHighlightedTextProps {
   text: string;
@@ -45,14 +44,14 @@ export function SafeHighlightedText({ text, searchTerm, className = '' }: SafeHi
           if (part.toLowerCase() === safeSearchTerm.toLowerCase()) {
             return (
               <mark 
-                key={index} 
+                key={`hl-${index}`} 
                 className="bg-blue-500/30 text-blue-300 rounded px-0.5"
               >
                 {part}
               </mark>
             );
           }
-          return <span key={index}>{part}</span>;
+          return <span key={`tx-${index}`}>{part}</span>;
         })}
       </span>
     );
@@ -62,5 +61,4 @@ export function SafeHighlightedText({ text, searchTerm, className = '' }: SafeHi
   }
 }
 
-export { sanitizeXSS };
 export default SafeHighlightedText;

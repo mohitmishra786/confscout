@@ -15,6 +15,7 @@ export default function Footer() {
                 src="/logo.png"
                 alt="ConfScouting Logo"
                 fill
+                sizes="32px"
                 className="object-contain rounded-lg"
               />
             </div>
@@ -24,7 +25,7 @@ export default function Footer() {
           </div>
 
           {/* Links */}
-          <nav className="flex items-center gap-4 sm:gap-6 text-sm text-zinc-500" aria-label="Footer navigation">
+          <nav className="flex items-center gap-4 sm:gap-6 text-sm text-zinc-400" aria-label="Footer navigation">
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
             <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
             <a
@@ -54,12 +55,12 @@ export default function Footer() {
           </nav>
         </div>
 
-        <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-zinc-800/50 text-center text-xs text-zinc-600">
+        <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-zinc-800/50 text-center text-xs text-zinc-400">
           <p>{t('dataUpdate')}</p>
           <p className="mt-2">
             {t.rich('builtWith', {
               link: (chunks) => (
-                <Link href="/about" className="text-zinc-500 hover:text-white transition-colors">
+                <Link href="/about" className="text-zinc-400 hover:text-white transition-colors">
                   {chunks}
                 </Link>
               )

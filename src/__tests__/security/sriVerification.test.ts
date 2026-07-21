@@ -1,7 +1,6 @@
 
 import { glob } from 'glob';
 import { readFileSync } from 'fs';
-import { join } from 'path';
 
 describe('Subresource Integrity (SRI)', () => {
   it('should ensure all external scripts have integrity attributes', async () => {

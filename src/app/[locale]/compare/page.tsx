@@ -25,14 +25,16 @@ export default function ComparePage() {
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr>
-                  <th className="p-4 border-b border-zinc-800 text-zinc-500 w-32">Feature</th>
+                  <th className="p-4 border-b border-zinc-800 text-zinc-400 w-32">Feature</th>
                   {selectedConferences.map(c => (
                     <th key={c.id} className="p-4 border-b border-zinc-800 min-w-[200px]">
                       <div className="flex justify-between items-start gap-2">
                         <span className="text-white font-bold text-lg">{c.name}</span>
                         <button 
+                          type="button"
                           onClick={() => removeFromCompare(c.id)} 
-                          className="text-zinc-500 hover:text-red-400 text-xl leading-none"
+                          aria-label={`Remove ${c.name} from comparison`}
+                          className="text-zinc-400 hover:text-red-400 text-xl leading-none"
                           title="Remove"
                         >
                           ×

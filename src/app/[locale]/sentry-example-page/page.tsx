@@ -1,6 +1,7 @@
 'use client';
 
-import Head from 'next/head';
+// Title is provided by this route's layout.tsx metadata export —
+// `next/head` is ignored in the App Router.
 
 export default function SentryExamplePage() {
   return (
@@ -13,10 +14,6 @@ export default function SentryExamplePage() {
       border: '1px solid #ccc',
       borderRadius: '8px',
     }}>
-      <Head>
-        <title>Sentry Next.js Example Page</title>
-      </Head>
-
       <h1>Sentry Next.js Example Page</h1>
 
       <p>

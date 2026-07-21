@@ -1,10 +1,9 @@
 import { Feed } from 'feed';
-import { promises as fs } from 'fs';
-import path from 'path';
+import { readStaticConferences } from '@/lib/staticConferences';
+import type { Conference } from '@/types/conference';
 
 export async function GET() {
     const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://www.confscouting.com';
-    const dataPath = path.join(process.cwd(), 'public/data/conferences.json');
 
     // Create Feed
     const feed = new Feed({
@@ -29,13 +28,12 @@ export async function GET() {
     });
 
     try {
-        const fileContents = await fs.readFile(dataPath, 'utf8');
-        const data = JSON.parse(fileContents);
-        const conferences = data.conferences || [];
+        // TTL-cached module-level read — no per-request file I/O.
+        const data = await readStaticConferences();
+        const conferences = Object.values(data.months ?? {}).flat();
 
         // Add posts
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        conferences.forEach((conf: any) => {
+        conferences.forEach((conf: Conference) => {
             // Use startDate or lastUpdated for date
             const date = conf.startDate ? new Date(conf.startDate) : new Date();
             const link = conf.url;

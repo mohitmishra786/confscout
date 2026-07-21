@@ -35,7 +35,7 @@ function runNpmAudit(): Record<string, unknown> {
 
   try {
     return JSON.parse(auditOutput || '{}');
-  } catch (_e) {
+  } catch {
     throw new Error(`Failed to parse npm audit output as JSON: ${auditOutput.slice(0, 100)}...`);
   }
 }

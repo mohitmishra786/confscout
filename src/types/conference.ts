@@ -79,6 +79,19 @@ export interface ConferenceData {
   months: Record<string, Conference[]>;
 }
 
+/**
+ * Slim payload for the homepage's first paint.
+ *
+ * `months` contains ONLY the first couple of month groups so the server
+ * doesn't have to serialize the full ~6k-conference dataset into the HTML
+ * (that was a 35 MB document / 2.5 s LCP render delay). The client fetches
+ * the complete dataset from /data/conferences.json after hydration.
+ */
+export interface HomeInitialData extends ConferenceData {
+  /** Total number of month groups in the FULL dataset. */
+  monthCount: number;
+}
+
 export interface ConferenceStats {
   total: number;
   withOpenCFP: number;

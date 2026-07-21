@@ -33,8 +33,9 @@ export default async function BookmarksPage() {
   const data = await getCachedConferences();
   const allConferences = Object.values(data.months).flat();
 
-  // 3. Filter bookmarked conferences
-  const bookmarkedConferences = allConferences.filter(c => bookmarkIds.includes(c.id));
+  // 3. Filter bookmarked conferences (Set lookup — includes() in a filter is O(n·m))
+  const bookmarkIdSet = new Set(bookmarkIds);
+  const bookmarkedConferences = allConferences.filter(c => bookmarkIdSet.has(c.id));
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -55,7 +56,7 @@ export default async function BookmarksPage() {
           <div className="text-center py-20 border border-zinc-800 border-dashed rounded-3xl bg-zinc-900/20">
             <div className="text-5xl mb-4 opacity-20">🔖</div>
             <h2 className="text-xl font-medium text-zinc-300 mb-2">No bookmarks yet</h2>
-            <p className="text-zinc-500 mb-6">Start saving conferences to track them here.</p>
+            <p className="text-zinc-400 mb-6">Start saving conferences to track them here.</p>
             <Link href="/" className="btn-primary px-6 py-2 inline-block">Browse Conferences</Link>
           </div>
         )}

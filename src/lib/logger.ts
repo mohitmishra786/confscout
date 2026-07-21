@@ -63,8 +63,6 @@ class Logger {
 export const cacheLogger = new Logger('Cache');
 export const apiLogger = new Logger('API');
 export const dbLogger = new Logger('DB');
-export const authLogger = new Logger('Auth');
 export const securityLogger = new Logger('Security'); // SECURITY: Specific logger for security events
-export const appLogger = new Logger('App');
 
 export default Logger;

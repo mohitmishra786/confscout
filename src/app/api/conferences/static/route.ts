@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
-import { readFileSync } from 'fs';
-import { join } from 'path';
 import type { ConferenceData } from '@/types/conference';
 import { apiLogger } from '@/lib/logger';
+import { readStaticConferences } from '@/lib/staticConferences';
 
 /**
  * GET /api/conferences/static
@@ -13,10 +12,10 @@ import { apiLogger } from '@/lib/logger';
 export async function GET() {
   try {
     apiLogger.info('Static API: Fetching from file');
-    const filePath = join(process.cwd(), 'public/data/conferences.json');
-    const fileData = readFileSync(filePath, 'utf8');
-    const jsonData = JSON.parse(fileData);
-    
+    // TTL-cached at module level — no sync readFileSync blocking the event
+    // loop, and no re-parse of the ~2 MB JSON on every request.
+    const jsonData = await readStaticConferences();
+
     apiLogger.info('Static API: Returning data', { 
       months: jsonData.months ? Object.keys(jsonData.months).length : 0 
     });
