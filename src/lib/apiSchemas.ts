@@ -80,6 +80,10 @@ export const querySchemas = {
       z.literal('all'),
     ]).optional(),
     cfp_open: z.enum(['true', 'false']).optional(),
+    q: z.string()
+      .max(200, 'Search query too long')
+      .regex(patterns.safeString, 'Invalid characters in search')
+      .optional(),
     format: z.enum(['json', 'csv']).default('json'),
   }),
 
@@ -90,6 +94,41 @@ export const querySchemas = {
     conferenceId: z.string()
       .regex(patterns.conferenceId, 'Invalid conference ID')
       .max(100, 'Conference ID too long'),
+  }),
+
+  /**
+   * Search autocomplete query (issue #75)
+   */
+  searchSuggest: z.object({
+    q: z.string()
+      .trim()
+      .min(2, 'Query must be at least 2 characters')
+      .max(80, 'Query too long')
+      .regex(patterns.safeString, 'Invalid characters in search')
+      .transform((s) => s.toLowerCase()),
+  }),
+
+  /**
+   * Related conferences query (issue #70)
+   */
+  relatedConferences: z.object({
+    id: z.string()
+      .min(1, 'Conference id is required')
+      .max(120, 'Conference id too long')
+      .regex(patterns.conferenceId, 'Invalid conference ID'),
+    limit: z.preprocess(
+      (val) => (val === null || val === undefined || val === '' ? undefined : val),
+      z.coerce.number().int().min(1).max(12).default(6)
+    ),
+  }),
+
+  /**
+   * Saved-search delete query
+   */
+  savedSearchId: z.object({
+    id: z.string()
+      .min(1, 'Saved search id is required')
+      .max(100, 'Saved search id too long'),
   }),
 };
 
@@ -233,6 +272,25 @@ export const bodySchemas = {
     data => data.interests || data.bio,
     { message: 'Either interests or bio must be provided', path: ['interests'] }
   ),
+
+  /**
+   * Saved search create body (issue #56)
+   */
+  savedSearch: z.object({
+    name: z.string()
+      .min(1, 'Name is required')
+      .max(80, 'Name too long')
+      .regex(patterns.safeString, 'Invalid characters in name'),
+    filters: z.object({
+      q: z.string()
+        .max(200, 'Search query too long')
+        .regex(patterns.safeString, 'Invalid characters in search')
+        .optional(),
+      domain: z.string().max(50).optional(),
+      cfp: z.boolean().optional(),
+      sortBy: z.string().max(40).optional(),
+    }).strict(),
+  }),
 };
 
 /**

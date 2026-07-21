@@ -86,11 +86,28 @@ body {
   background-clip: text;
 }
 
+/* Touch targets — WCAG 2.5.5 / issue #79 (min 44px interactive area) */
+button,
+.btn-primary,
+a.btn-primary,
+[role="button"] {
+  min-height: 44px;
+  min-width: 44px;
+}
+button.p-1\.5,
+button[class*="p-1.5"] {
+  min-height: 44px;
+  min-width: 44px;
+}
+
 /* Card styling */
 .card {
   background: var(--surface-card);
   border: 1px solid var(--border-subtle);
   border-radius: 1rem;
+  /* Offscreen cards skip layout/paint work (issue #106) */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 228px;
   /* Specific properties only — never `transition: all` */
   transition: transform 200ms var(--ease-out-strong),
     box-shadow 200ms var(--ease-out-strong),
@@ -370,5 +387,27 @@ input[type="checkbox"]:focus {
   .btn-primary:hover,
   .btn-primary:active {
     transform: none;
+  }
+}
+
+/* Print styles (issue #229) */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  header, footer, nav, .btn-primary, button, #compare-bar, [data-nosnippet] {
+    display: none !important;
+  }
+  .card {
+    break-inside: avoid;
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+    content-visibility: visible;
+  }
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #444;
   }
 }

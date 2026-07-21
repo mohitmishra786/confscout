@@ -12,6 +12,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { CompareProvider } from '@/context/CompareContext';
 import CompareBar from '@/components/CompareBar';
+import ServiceWorkerRegister from '@/components/ServiceWorkerRegister';
 import "../globals.css";
 
 const geistSans = Geist({
@@ -69,14 +70,21 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-blue-600 focus:text-white focus:px-4 focus:py-2 focus:rounded-md"
+        >
+          Skip to content
+        </a>
         <NextIntlClientProvider messages={messages}>
           <SessionProvider>
             <CompareProvider>
-              {children}
+              <div id="main-content" tabIndex={-1}>{children}</div>
               <CompareBar />
             </CompareProvider>
           </SessionProvider>
         </NextIntlClientProvider>
+        <ServiceWorkerRegister />
         <Analytics />
       </body>
     </html>

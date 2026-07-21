@@ -208,21 +208,65 @@ class GeocodeCache:
         self.cache = self._load_cache()
     
     def _load_cache(self) -> dict:
+        """Load primary cache; fall back to rolling .bak when primary is bad."""
+        bak = self.cache_file.with_suffix(self.cache_file.suffix + ".bak")
+
         if self.cache_file.exists():
             try:
                 with open(self.cache_file, 'r', encoding='utf-8') as f:
                     return json.load(f)
-            except (json.JSONDecodeError, IOError):
-                return {}
+            except (json.JSONDecodeError, IOError) as primary_exc:
+                print(f"[WARN] Primary geocode cache unreadable: {primary_exc}")
+
+        if bak.exists():
+            try:
+                with open(bak, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                print(f"[WARN] Restored geocode cache from {bak.name} ({len(data)} entries)")
+                return data
+            except (json.JSONDecodeError, IOError) as bak_exc:
+                print(f"[WARN] Geocode cache backup unreadable: {bak_exc}")
+
         return {}
     
     def _save_cache(self) -> bool:
+        """Atomic write + rolling .bak (issue #205) to avoid corrupt JSON."""
+        import os
+        import tempfile
+
         try:
             self.cache_file.parent.mkdir(parents=True, exist_ok=True)
-            with open(self.cache_file, 'w', encoding='utf-8') as f:
-                json.dump(self.cache, f, indent=2, ensure_ascii=False)
+            payload = json.dumps(self.cache, indent=2, ensure_ascii=False)
+
+            if self.cache_file.exists():
+                bak = self.cache_file.with_suffix(self.cache_file.suffix + ".bak")
+                try:
+                    bak.write_bytes(self.cache_file.read_bytes())
+                except OSError as bak_exc:
+                    # Backup is best-effort; continue with the atomic write.
+                    print(f"[WARN] Could not write geocode cache backup: {bak_exc}")
+
+            fd, tmp_name = tempfile.mkstemp(
+                dir=str(self.cache_file.parent),
+                prefix=".city_cache.",
+                suffix=".tmp",
+            )
+            try:
+                with os.fdopen(fd, "w", encoding="utf-8") as f:
+                    f.write(payload)
+                    f.flush()
+                    os.fsync(f.fileno())
+                os.replace(tmp_name, self.cache_file)
+            except Exception:
+                # Best-effort cleanup of the temp file; ignore if already gone.
+                try:
+                    os.unlink(tmp_name)
+                except OSError as cleanup_exc:
+                    print(f"[WARN] Could not remove temp cache file {tmp_name}: {cleanup_exc}")
+                raise
             return True
-        except IOError:
+        except (IOError, OSError) as save_exc:
+            print(f"[WARN] Geocode cache save failed: {save_exc}")
             return False
     
     def get(self, key: str) -> Optional[Tuple[float, float]]:

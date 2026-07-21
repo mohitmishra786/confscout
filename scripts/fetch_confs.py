@@ -20,6 +20,15 @@ from pathlib import Path
 
 import requests
 from bs4 import BeautifulSoup
+
+
+def soup_parser() -> str:
+    """Prefer lxml when installed (issue #104); fall back to html.parser."""
+    try:
+        import lxml  # noqa: F401
+        return "lxml"
+    except ImportError:
+        return "html.parser"
 from dateutil.parser import parse as parse_date
 from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut
@@ -98,6 +107,11 @@ FINANCIAL_AID_KEYWORDS = [
     "opportunity grant", "diversity fund", "inclusion"
 ]
 
+# Ordered lowercase keywords so financialAid.types emission is deterministic
+# (preserves source list order; issues #96 / #110).
+FINANCIAL_AID_KEYWORDS_LOWER = tuple(k.lower() for k in FINANCIAL_AID_KEYWORDS)
+
+
 # Country to continent mapping (common countries)
 COUNTRY_CONTINENTS = {
     "U.S.A.": "North America", "USA": "North America", "United States": "North America",
@@ -131,6 +145,17 @@ def load_cache():
                 city_cache = json.load(f)
             print(f"[INFO] Loaded {len(city_cache)} cached locations.")
         except json.JSONDecodeError:
+            # Prefer rolling backup if present (issue #205 / #206)
+            bak = CACHE_PATH.with_suffix(CACHE_PATH.suffix + ".bak")
+            if bak.exists():
+                try:
+                    with open(bak, 'r', encoding='utf-8') as f:
+                        city_cache = json.load(f)
+                    print(f"[WARN] Cache corrupted; restored {len(city_cache)} entries from .bak")
+                    return
+                except (json.JSONDecodeError, OSError) as bak_exc:
+                    # Backup also unreadable; fall through to empty cache.
+                    print(f"[WARN] Cache backup restore failed: {bak_exc}")
             print("[WARN] Cache file corrupted. Starting fresh.")
             city_cache = {}
     else:
@@ -138,10 +163,42 @@ def load_cache():
 
 
 def save_cache():
-    """Save city coordinates cache."""
+    """Save city coordinates cache atomically (issue #205).
+
+    Writes to a temp file then renames over the target so a crash mid-write
+    cannot leave a half-written JSON that corrupts the next run. Also keeps
+    a single rolling .bak of the previous good cache when one exists.
+    """
+    import os
+    import tempfile
+
     CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
-    with open(CACHE_PATH, 'w', encoding='utf-8') as f:
-        json.dump(city_cache, f, indent=2, ensure_ascii=False)
+    payload = json.dumps(city_cache, indent=2, ensure_ascii=False)
+
+    # Backup previous good cache (best-effort).
+    if CACHE_PATH.exists():
+        bak = CACHE_PATH.with_suffix(CACHE_PATH.suffix + ".bak")
+        try:
+            bak.write_bytes(CACHE_PATH.read_bytes())
+        except OSError as exc:
+            print(f"[WARN] Could not write cache backup: {exc}")
+
+    fd, tmp_name = tempfile.mkstemp(
+        dir=str(CACHE_PATH.parent), prefix=".city_cache.", suffix=".tmp"
+    )
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as f:
+            f.write(payload)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp_name, CACHE_PATH)
+    except Exception:
+        # Best-effort cleanup of the temp file; ignore if already gone.
+        try:
+            os.unlink(tmp_name)
+        except OSError as cleanup_exc:
+            print(f"[WARN] Could not remove temp cache file {tmp_name}: {cleanup_exc}")
+        raise
     print(f"[INFO] Saved {len(city_cache)} locations to cache.")
 
 
@@ -210,7 +267,7 @@ def detect_financial_aid(description: str = "", name: str = "") -> dict:
     text = f"{name} {description}".lower()
 
     detected_types = []
-    for keyword in FINANCIAL_AID_KEYWORDS:
+    for keyword in FINANCIAL_AID_KEYWORDS_LOWER:
         if keyword in text:
             if "travel" in keyword:
                 if "travel" not in detected_types:
@@ -307,22 +364,39 @@ def fetch_confs_tech_data() -> list:
         "networking", "performance", "testing", "opensource", "leadership", "product"
     ]
 
-    # Use GitHub-optimized HTTP client with proper User-Agent
-    with GitHubHTTPClient() as client:
-        for year in years:
-            for topic in topics:
-                url = f"{GITHUB_BASE_URL}/{year}/{topic}.json"
-                try:
-                    # Use client with retry logic and proper User-Agent
-                    response = client.get_with_retry(url, max_retries=3, timeout=10)
-                    data = response.json()
-                    for conf in data:
-                        conferences.append(parse_confs_tech_entry(conf, topic))
-                    print(f"[OK] Fetched {len(data)} conferences from {year}/{topic}.json")
-                except requests.RequestException as e:
-                    print(f"[FAIL] Failed to fetch {url}: {e}")
-                except json.JSONDecodeError:
-                    print(f"[FAIL] Invalid JSON in {url}")
+    # Parallel fetch of year×topic JSON files (issue #86). Each worker owns its
+    # own HTTP client so connection state stays thread-local.
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+
+    jobs = [
+        (year, topic, f"{GITHUB_BASE_URL}/{year}/{topic}.json")
+        for year in years
+        for topic in topics
+    ]
+
+    def _fetch_topic(year: int, topic: str, url: str) -> list:
+        with GitHubHTTPClient() as client:
+            response = client.get_with_retry(url, max_retries=3, timeout=10)
+            data = response.json()
+            parsed = [parse_confs_tech_entry(conf, topic) for conf in data]
+            print(f"[OK] Fetched {len(data)} conferences from {year}/{topic}.json")
+            return parsed
+
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        futures = {
+            pool.submit(_fetch_topic, year, topic, url): (year, topic, url)
+            for year, topic, url in jobs
+        }
+        for fut in as_completed(futures):
+            year, topic, url = futures[fut]
+            try:
+                conferences.extend(fut.result())
+            except requests.RequestException as e:
+                print(f"[FAIL] Failed to fetch {url}: {e}")
+            except json.JSONDecodeError:
+                print(f"[FAIL] Invalid JSON in {url}")
+            except Exception as e:
+                print(f"[FAIL] Unexpected error for {url}: {e}")
 
     return conferences
 
@@ -425,16 +499,44 @@ def fetch_sessionize_cfps() -> list:
     
     print(f"[INFO] Sessionize: Scraping {len(SESSIONIZE_CFPS)} known CFP pages...")
 
-    with ConfScoutHTTPClient() as client:
-        for url in SESSIONIZE_CFPS:
+    # Parallelize page scrapes (issue #87) with a small worker pool so we stay
+    # polite to Sessionize while still finishing faster than pure serial I/O.
+    # Shared throttle gates every worker before hitting Sessionize.
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+    import threading
+    import time as _time
+
+    _sessionize_lock = threading.Lock()
+    _sessionize_min_interval = 1.0  # seconds between Sessionize requests
+    _sessionize_last_request = 0.0
+
+    def _sessionize_throttle() -> None:
+        nonlocal _sessionize_last_request
+        with _sessionize_lock:
+            now = _time.monotonic()
+            wait = _sessionize_min_interval - (now - _sessionize_last_request)
+            if wait > 0:
+                _time.sleep(wait)
+            _sessionize_last_request = _time.monotonic()
+
+    def _scrape_one(url: str) -> Optional[dict]:
+        _sessionize_throttle()
+        with ConfScoutHTTPClient() as client:
+            return scrape_sessionize_cfp_page(url, client)
+
+    max_workers = min(4, len(SESSIONIZE_CFPS))
+    with ThreadPoolExecutor(max_workers=max_workers) as pool:
+        futures = {pool.submit(_scrape_one, url): url for url in SESSIONIZE_CFPS}
+        for fut in as_completed(futures):
+            url = futures[fut]
             try:
-                conf = scrape_sessionize_cfp_page(url, client)
+                conf = fut.result()
                 if conf:
                     conferences.append(conf)
                     print(f"  [OK] Scraped: {conf['name']}")
-            except (requests.RequestException, ValueError) as e:
+            except (requests.RequestException, ValueError, OSError) as e:
                 print(f"  [FAIL] Failed to scrape {url}: {e}")
-    
+
     print(f"[OK] Fetched {len(conferences)} CFPs from Sessionize")
     return conferences
 
@@ -453,7 +555,7 @@ def scrape_sessionize_cfp_page(url: str, client: ConfScoutHTTPClient) -> Optiona
     if response.status_code != 200:
         return None
     
-    soup = BeautifulSoup(response.text, 'html.parser')
+    soup = BeautifulSoup(response.text, soup_parser())
     
     # Extract event name from ibox-title container
     title_box = soup.find(class_="ibox-title")

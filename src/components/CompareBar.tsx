@@ -8,7 +8,10 @@ export default function CompareBar() {
   if (selectedConferences.length === 0) return null;
 
   return (
-    <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 bg-zinc-900 border border-zinc-700 rounded-full shadow-2xl p-2 px-6 flex items-center gap-4 animate-in slide-in-from-bottom-10 fade-in">
+    <div
+      id="compare-bar"
+      className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 bg-zinc-900 border border-zinc-700 rounded-full shadow-2xl p-2 px-6 flex items-center gap-4 animate-in slide-in-from-bottom-10 fade-in"
+    >
       <div className="flex -space-x-2">
         {selectedConferences.map(c => (
           <div key={c.id} className="relative group">
