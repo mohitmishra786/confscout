@@ -9,6 +9,7 @@ import { querySchemas } from '@/lib/apiSchemas';
 import { withErrorHandling } from '@/lib/errorHandler';
 import { ApiResponse } from '@/types/api';
 import { Prisma } from '@prisma/client';
+import { createHash } from 'crypto';
 import { getLocalMonthYear } from '@/lib/date';
 
 /**
@@ -85,8 +86,8 @@ export const GET = withErrorHandling(async (request: NextRequest) => {
   const skip = (page - 1) * limit;
   const userId = session?.user?.id;
 
-  // Attendance: use `_count` for totals (issue #84) and a tiny preview
-  // relation (take 5) instead of loading full attendance rows just to count.
+  // Attendance: use `_count` for totals (issue #84). Preview avatars only
+  // for authenticated viewers — anonymous responses never expose names/images.
   // isAttending is resolved with a single batched query for the page of IDs.
   const [conferences, total] = await Promise.all([
     prisma.conference.findMany({
@@ -112,13 +113,17 @@ export const GET = withErrorHandling(async (request: NextRequest) => {
         tags: true,
         financialAid: true,
         _count: { select: { attendances: true } },
-        attendances: {
-          select: {
-            user: { select: { image: true, name: true } },
-          },
-          take: 5,
-          orderBy: { createdAt: 'desc' },
-        },
+        ...(userId
+          ? {
+              attendances: {
+                select: {
+                  user: { select: { image: true, name: true } },
+                },
+                take: 5,
+                orderBy: { createdAt: 'desc' as const },
+              },
+            }
+          : {}),
       },
       orderBy: { startDate: 'asc' },
       skip,
@@ -147,7 +152,14 @@ export const GET = withErrorHandling(async (request: NextRequest) => {
   let withOpenCFP = 0;
   let withLocation = 0;
 
+  type AttendancePreview = {
+    user: { image: string | null; name: string | null };
+  };
+
   const formattedConferences = conferences.map((c) => {
+    const previews: AttendancePreview[] = userId
+      ? (((c as unknown as { attendances?: AttendancePreview[] }).attendances) ?? [])
+      : [];
     return {
       id: c.id,
       name: c.name,
@@ -174,11 +186,15 @@ export const GET = withErrorHandling(async (request: NextRequest) => {
       // Prisma Json fields are already plain JS values.
       financialAid: (c.financialAid ?? undefined) as Conference['financialAid'],
       attendeeCount: c._count.attendances,
-      isAttending: userId ? attendingSet.has(c.id) : false,
-      attendees: c.attendances.map((a) => ({
-        image: a.user.image,
-        name: a.user.name,
-      })),
+      ...(userId
+        ? {
+            isAttending: attendingSet.has(c.id),
+            attendees: previews.map((a) => ({
+              image: a.user.image,
+              name: a.user.name,
+            })),
+          }
+        : {}),
     };
   });
 
@@ -216,9 +232,24 @@ export const GET = withErrorHandling(async (request: NextRequest) => {
     }
   };
 
-  // Weak ETag from page fingerprint (issue #131) — clients can revalidate cheaply.
-  const etagSource = `${total}:${page}:${limit}:${domain ?? ''}:${search ?? ''}:${cfpOnly}:${formattedConferences.map((c) => c.id).join(',')}`;
-  const etag = `"c-${Buffer.from(etagSource).toString('base64url').slice(0, 27)}"`;
+  // Stronger fingerprint: hash full id list + personalization (user + attendance)
+  // so truncated base64 cannot ignore trailing IDs and account switches cannot 304.
+  const attendanceFingerprint = userId
+    ? formattedConferences
+        .map((c) => `${c.id}:${c.isAttending ? 1 : 0}:${c.attendeeCount}`)
+        .join(',')
+    : formattedConferences.map((c) => c.id).join(',');
+  const etagSource = [
+    total,
+    page,
+    limit,
+    domain ?? '',
+    search ?? '',
+    cfpOnly,
+    userId ?? 'anon',
+    attendanceFingerprint,
+  ].join('|');
+  const etag = `"c-${createHash('sha256').update(etagSource).digest('base64url').slice(0, 27)}"`;
   const ifNoneMatch = request.headers.get('if-none-match');
   if (ifNoneMatch && ifNoneMatch === etag) {
     return new NextResponse(null, {
@@ -226,6 +257,7 @@ export const GET = withErrorHandling(async (request: NextRequest) => {
       headers: {
         ETag: etag,
         'Cache-Control': 'private, max-age=30, stale-while-revalidate=60',
+        Vary: 'Cookie',
       },
     });
   }
@@ -234,6 +266,7 @@ export const GET = withErrorHandling(async (request: NextRequest) => {
     headers: {
       ETag: etag,
       'Cache-Control': 'private, max-age=30, stale-while-revalidate=60',
+      Vary: 'Cookie',
     },
   });
 });

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getCachedConferences } from '@/lib/cache';
-import { withErrorHandling, Errors } from '@/lib/errorHandler';
+import { withErrorHandling } from '@/lib/errorHandler';
+import { querySchemas } from '@/lib/apiSchemas';
 import type { Conference } from '@/types/conference';
 import type { ApiResponse } from '@/types/api';
 
@@ -9,13 +10,9 @@ import type { ApiResponse } from '@/types/api';
  * Lightweight autocomplete suggestions for the search UI (issue #75).
  */
 export const GET = withErrorHandling(async (request: NextRequest) => {
-  const q = (request.nextUrl.searchParams.get('q') || '').trim().toLowerCase();
-  if (q.length < 2) {
-    throw Errors.validation('Query must be at least 2 characters');
-  }
-  if (q.length > 80) {
-    throw Errors.validation('Query too long');
-  }
+  const { q } = querySchemas.searchSuggest.parse({
+    q: request.nextUrl.searchParams.get('q') ?? undefined,
+  });
 
   const data = await getCachedConferences();
   const all = Object.values(data.months).flat() as Conference[];

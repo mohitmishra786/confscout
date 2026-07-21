@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getCachedConferences } from '@/lib/cache';
 import { withErrorHandling, Errors } from '@/lib/errorHandler';
+import { querySchemas } from '@/lib/apiSchemas';
 import type { Conference } from '@/types/conference';
 import type { ApiResponse } from '@/types/api';
 
@@ -9,15 +10,10 @@ import type { ApiResponse } from '@/types/api';
  * Related conferences by shared domain/tags (issue #70) — no vector DB required.
  */
 export const GET = withErrorHandling(async (request: NextRequest) => {
-  const id = request.nextUrl.searchParams.get('id');
-  const limit = Math.min(
-    12,
-    Math.max(1, Number(request.nextUrl.searchParams.get('limit') || 6) || 6)
-  );
-
-  if (!id || id.length > 120) {
-    throw Errors.validation('Conference id is required');
-  }
+  const { id, limit } = querySchemas.relatedConferences.parse({
+    id: request.nextUrl.searchParams.get('id') ?? undefined,
+    limit: request.nextUrl.searchParams.get('limit') ?? undefined,
+  });
 
   const data = await getCachedConferences();
   const all = Object.values(data.months).flat() as Conference[];

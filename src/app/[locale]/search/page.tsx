@@ -79,7 +79,8 @@ function SearchContent() {
     setSearchTerm(f.q || '');
     setSelectedDomain(f.domain || 'all');
     setShowCfpOnly(Boolean(f.cfp));
-    if (f.sortBy) setSortBy(f.sortBy as SortOption);
+    // Always reset sort from saved filters (default startDate when omitted)
+    setSortBy((f.sortBy as SortOption) || 'startDate');
     setCurrentPage(1);
   };
 

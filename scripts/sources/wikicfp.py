@@ -10,6 +10,7 @@ Based on http://www.wikicfp.com/cfp/allcat showing 9000+ CFPs per major category
 
 import requests
 from bs4 import BeautifulSoup
+from importlib.util import find_spec
 from typing import List, Dict, Optional
 import re
 from datetime import datetime
@@ -114,7 +115,8 @@ def _fetch_category(category: str, domain: str) -> List[Dict]:
             print(f"[wikicfp] Page {page} failed for {category}: {e}")
             break
         
-        soup = BeautifulSoup(response.text, "lxml" if __import__("importlib").util.find_spec("lxml") else "html.parser")
+        parser = "lxml" if find_spec("lxml") else "html.parser"
+        soup = BeautifulSoup(response.text, parser)
         
         # Find conference table rows
         page_confs = _parse_conference_list(soup, category, domain)

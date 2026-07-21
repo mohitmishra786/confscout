@@ -4,7 +4,7 @@ import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { validateCsrfToken } from '@/lib/csrf';
 import { withErrorHandling, Errors } from '@/lib/errorHandler';
-import { bodySchemas } from '@/lib/apiSchemas';
+import { bodySchemas, querySchemas } from '@/lib/apiSchemas';
 import type { ApiResponse } from '@/types/api';
 
 /**
@@ -84,10 +84,9 @@ export const DELETE = withErrorHandling(async (request: NextRequest) => {
     throw Errors.unauthorized();
   }
 
-  const id = request.nextUrl.searchParams.get('id');
-  if (!id || id.length > 100) {
-    throw Errors.validation('Saved search id is required');
-  }
+  const { id } = querySchemas.savedSearchId.parse({
+    id: request.nextUrl.searchParams.get('id') ?? undefined,
+  });
 
   const result = await prisma.savedSearch.deleteMany({
     where: { id, userId: session.user.id },

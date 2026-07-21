@@ -86,17 +86,18 @@ body {
   background-clip: text;
 }
 
-/* Touch targets — WCAG 2.5.5 / issue #79 (min ~44px interactive area) */
+/* Touch targets — WCAG 2.5.5 / issue #79 (min 44px interactive area) */
 button,
 .btn-primary,
 a.btn-primary,
 [role="button"] {
-  min-height: 2.5rem;
+  min-height: 44px;
+  min-width: 44px;
 }
 button.p-1\.5,
 button[class*="p-1.5"] {
-  min-height: 2.5rem;
-  min-width: 2.5rem;
+  min-height: 44px;
+  min-width: 44px;
 }
 
 /* Card styling */

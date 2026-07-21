@@ -208,12 +208,25 @@ class GeocodeCache:
         self.cache = self._load_cache()
     
     def _load_cache(self) -> dict:
+        """Load primary cache; fall back to rolling .bak when primary is bad."""
+        bak = self.cache_file.with_suffix(self.cache_file.suffix + ".bak")
+
         if self.cache_file.exists():
             try:
                 with open(self.cache_file, 'r', encoding='utf-8') as f:
                     return json.load(f)
-            except (json.JSONDecodeError, IOError):
-                return {}
+            except (json.JSONDecodeError, IOError) as primary_exc:
+                print(f"[WARN] Primary geocode cache unreadable: {primary_exc}")
+
+        if bak.exists():
+            try:
+                with open(bak, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                print(f"[WARN] Restored geocode cache from {bak.name} ({len(data)} entries)")
+                return data
+            except (json.JSONDecodeError, IOError) as bak_exc:
+                print(f"[WARN] Geocode cache backup unreadable: {bak_exc}")
+
         return {}
     
     def _save_cache(self) -> bool:

@@ -107,8 +107,9 @@ FINANCIAL_AID_KEYWORDS = [
     "opportunity grant", "diversity fund", "inclusion"
 ]
 
-# Precomputed lowercase set for O(1) membership (issues #96, #110)
-FINANCIAL_AID_KEYWORDS_SET = frozenset(k.lower() for k in FINANCIAL_AID_KEYWORDS)
+# Ordered lowercase keywords so financialAid.types emission is deterministic
+# (preserves source list order; issues #96 / #110).
+FINANCIAL_AID_KEYWORDS_LOWER = tuple(k.lower() for k in FINANCIAL_AID_KEYWORDS)
 
 
 # Country to continent mapping (common countries)
@@ -266,7 +267,7 @@ def detect_financial_aid(description: str = "", name: str = "") -> dict:
     text = f"{name} {description}".lower()
 
     detected_types = []
-    for keyword in FINANCIAL_AID_KEYWORDS_SET:
+    for keyword in FINANCIAL_AID_KEYWORDS_LOWER:
         if keyword in text:
             if "travel" in keyword:
                 if "travel" not in detected_types:
@@ -500,9 +501,26 @@ def fetch_sessionize_cfps() -> list:
 
     # Parallelize page scrapes (issue #87) with a small worker pool so we stay
     # polite to Sessionize while still finishing faster than pure serial I/O.
+    # Shared throttle gates every worker before hitting Sessionize.
     from concurrent.futures import ThreadPoolExecutor, as_completed
+    import threading
+    import time as _time
 
-    def _scrape_one(url: str):
+    _sessionize_lock = threading.Lock()
+    _sessionize_min_interval = 1.0  # seconds between Sessionize requests
+    _sessionize_last_request = 0.0
+
+    def _sessionize_throttle() -> None:
+        nonlocal _sessionize_last_request
+        with _sessionize_lock:
+            now = _time.monotonic()
+            wait = _sessionize_min_interval - (now - _sessionize_last_request)
+            if wait > 0:
+                _time.sleep(wait)
+            _sessionize_last_request = _time.monotonic()
+
+    def _scrape_one(url: str) -> Optional[dict]:
+        _sessionize_throttle()
         with ConfScoutHTTPClient() as client:
             return scrape_sessionize_cfp_page(url, client)
 
@@ -518,7 +536,7 @@ def fetch_sessionize_cfps() -> list:
                     print(f"  [OK] Scraped: {conf['name']}")
             except (requests.RequestException, ValueError, OSError) as e:
                 print(f"  [FAIL] Failed to scrape {url}: {e}")
-    
+
     print(f"[OK] Fetched {len(conferences)} CFPs from Sessionize")
     return conferences
 

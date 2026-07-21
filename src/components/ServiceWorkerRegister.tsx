@@ -1,6 +1,9 @@
 'use client';
 
 import { useEffect } from 'react';
+import Logger from '@/lib/logger';
+
+const swLogger = new Logger('SW');
 
 /**
  * Registers the production service worker (issue #74).
@@ -15,7 +18,9 @@ export default function ServiceWorkerRegister() {
       try {
         await navigator.serviceWorker.register('/sw.js', { scope: '/' });
       } catch (err) {
-        console.warn('[sw] registration failed', err);
+        swLogger.warn('registration failed', {
+          error: err instanceof Error ? err.message : String(err),
+        });
       }
     };
 

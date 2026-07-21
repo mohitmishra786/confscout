@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState, ReactNode, useEffect, useMemo, useCallback, useRef } from 'react';
+import { createContext, useContext, useState, ReactNode, useEffect, useMemo, useCallback } from 'react';
 import type { Conference } from '@/types/conference';
 import { isValidConference } from '@/lib/validation';
 import { safeGetItem, safeSetItem, safeParseJson } from '@/lib/safeStorage';
@@ -32,20 +32,22 @@ export function CompareProvider({ children }: { children: ReactNode }) {
     safeSetItem('session', 'compare_conferences', JSON.stringify(selectedConferences));
   }, [selectedConferences]);
 
-  // Latest-value ref so addToCompare stays stable without stale closures.
-  const selectedRef = useRef(selectedConferences);
-  useEffect(() => {
-    selectedRef.current = selectedConferences;
-  }, [selectedConferences]);
-
+  // Functional updater so rapid sequential adds (e.g. deep-link ?ids= hydration)
+  // never drop conferences due to a stale selectedRef snapshot.
   const addToCompare = useCallback((conf: Conference) => {
-    const current = selectedRef.current;
-    if (current.length >= 4) {
-      alert("You can only compare up to 4 conferences.");
-      return;
-    }
-    if (current.find(c => c.id === conf.id)) return;
-    setSelectedConferences([...current, conf]);
+    setSelectedConferences((current) => {
+      if (current.some((c) => c.id === conf.id)) {
+        return current;
+      }
+      if (current.length >= 4) {
+        // Defer alert so we stay pure inside the updater
+        queueMicrotask(() => {
+          alert('You can only compare up to 4 conferences.');
+        });
+        return current;
+      }
+      return [...current, conf];
+    });
   }, []);
 
   const removeFromCompare = useCallback((confId: string) => {
