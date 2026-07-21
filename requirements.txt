@@ -8,6 +8,8 @@ requests>=2.28.0
 
 # HTML parsing for web scraping (WikiCFP, etc.)
 beautifulsoup4>=4.11.0
+# Faster HTML parser used when available
+lxml>=4.9.0
 
 # Geocoding for location coordinates
 geopy>=2.3.0

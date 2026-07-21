@@ -43,6 +43,7 @@ function SearchContent() {
   // Keeps the input painting instantly while the (thousands-of-rows)
   // filter+sort is scheduled at lower priority.
   const deferredSearchTerm = useDeferredValue(searchTerm);
+  const [suggestions, setSuggestions] = useState<string[]>([]);
 
   // Saved searches (issue #56)
   const [savedSearches, setSavedSearches] = useState<SavedSearchRow[]>([]);
@@ -147,6 +148,33 @@ function SearchContent() {
     };
     loadData();
   }, []);
+
+  // Autocomplete suggestions (issue #75)
+  useEffect(() => {
+    const q = deferredSearchTerm.trim();
+    if (q.length < 2) {
+      setSuggestions([]);
+      return;
+    }
+    let cancelled = false;
+    const t = window.setTimeout(() => {
+      void fetch(`/api/search/suggest?q=${encodeURIComponent(q)}`)
+        .then((r) => (r.ok ? r.json() : null))
+        .then((json) => {
+          if (cancelled || !json?.data) return;
+          const names: string[] = json.data.conferences || [];
+          const tags: string[] = json.data.tags || [];
+          setSuggestions([...names, ...tags.map((t: string) => `#${t}`)].slice(0, 8));
+        })
+        .catch(() => {
+          if (!cancelled) setSuggestions([]);
+        });
+    }, 200);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(t);
+    };
+  }, [deferredSearchTerm]);
 
   // Flatten conferences from months
   const allConferences = useMemo(() => {
@@ -318,7 +346,14 @@ function SearchContent() {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full"
+                list="search-suggestions"
+                autoComplete="off"
               />
+              <datalist id="search-suggestions">
+                {suggestions.map((s) => (
+                  <option key={s} value={s.replace(/^#/, '')} />
+                ))}
+              </datalist>
             </div>
 
             {/* Domain */}

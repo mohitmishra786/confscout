@@ -21,7 +21,7 @@ def fetch() -> list[dict]:
     try:
         response = requests.get(PAPERCALL_URL, timeout=30)
         response.raise_for_status()
-        soup = BeautifulSoup(response.text, "html.parser")
+        soup = BeautifulSoup(response.text, "lxml" if __import__("importlib").util.find_spec("lxml") else "html.parser")
         
         # Find event cards
         event_links = soup.find_all("a", href=re.compile(r"^/[a-z0-9-]+$"))

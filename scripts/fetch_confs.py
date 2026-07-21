@@ -20,6 +20,15 @@ from pathlib import Path
 
 import requests
 from bs4 import BeautifulSoup
+
+
+def soup_parser() -> str:
+    """Prefer lxml when installed (issue #104); fall back to html.parser."""
+    try:
+        import lxml  # noqa: F401
+        return "lxml"
+    except ImportError:
+        return "html.parser"
 from dateutil.parser import parse as parse_date
 from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut
@@ -135,6 +144,16 @@ def load_cache():
                 city_cache = json.load(f)
             print(f"[INFO] Loaded {len(city_cache)} cached locations.")
         except json.JSONDecodeError:
+            # Prefer rolling backup if present (issue #205 / #206)
+            bak = CACHE_PATH.with_suffix(CACHE_PATH.suffix + ".bak")
+            if bak.exists():
+                try:
+                    with open(bak, 'r', encoding='utf-8') as f:
+                        city_cache = json.load(f)
+                    print(f"[WARN] Cache corrupted; restored {len(city_cache)} entries from .bak")
+                    return
+                except (json.JSONDecodeError, OSError):
+                    pass
             print("[WARN] Cache file corrupted. Starting fresh.")
             city_cache = {}
     else:
@@ -342,22 +361,39 @@ def fetch_confs_tech_data() -> list:
         "networking", "performance", "testing", "opensource", "leadership", "product"
     ]
 
-    # Use GitHub-optimized HTTP client with proper User-Agent
-    with GitHubHTTPClient() as client:
-        for year in years:
-            for topic in topics:
-                url = f"{GITHUB_BASE_URL}/{year}/{topic}.json"
-                try:
-                    # Use client with retry logic and proper User-Agent
-                    response = client.get_with_retry(url, max_retries=3, timeout=10)
-                    data = response.json()
-                    for conf in data:
-                        conferences.append(parse_confs_tech_entry(conf, topic))
-                    print(f"[OK] Fetched {len(data)} conferences from {year}/{topic}.json")
-                except requests.RequestException as e:
-                    print(f"[FAIL] Failed to fetch {url}: {e}")
-                except json.JSONDecodeError:
-                    print(f"[FAIL] Invalid JSON in {url}")
+    # Parallel fetch of year×topic JSON files (issue #86). Each worker owns its
+    # own HTTP client so connection state stays thread-local.
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+
+    jobs = [
+        (year, topic, f"{GITHUB_BASE_URL}/{year}/{topic}.json")
+        for year in years
+        for topic in topics
+    ]
+
+    def _fetch_topic(year: int, topic: str, url: str) -> list:
+        with GitHubHTTPClient() as client:
+            response = client.get_with_retry(url, max_retries=3, timeout=10)
+            data = response.json()
+            parsed = [parse_confs_tech_entry(conf, topic) for conf in data]
+            print(f"[OK] Fetched {len(data)} conferences from {year}/{topic}.json")
+            return parsed
+
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        futures = {
+            pool.submit(_fetch_topic, year, topic, url): (year, topic, url)
+            for year, topic, url in jobs
+        }
+        for fut in as_completed(futures):
+            year, topic, url = futures[fut]
+            try:
+                conferences.extend(fut.result())
+            except requests.RequestException as e:
+                print(f"[FAIL] Failed to fetch {url}: {e}")
+            except json.JSONDecodeError:
+                print(f"[FAIL] Invalid JSON in {url}")
+            except Exception as e:
+                print(f"[FAIL] Unexpected error for {url}: {e}")
 
     return conferences
 
@@ -499,7 +535,7 @@ def scrape_sessionize_cfp_page(url: str, client: ConfScoutHTTPClient) -> Optiona
     if response.status_code != 200:
         return None
     
-    soup = BeautifulSoup(response.text, 'html.parser')
+    soup = BeautifulSoup(response.text, soup_parser())
     
     # Extract event name from ibox-title container
     title_box = soup.find(class_="ibox-title")

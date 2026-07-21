@@ -114,7 +114,7 @@ def _fetch_category(category: str, domain: str) -> List[Dict]:
             print(f"[wikicfp] Page {page} failed for {category}: {e}")
             break
         
-        soup = BeautifulSoup(response.text, "html.parser")
+        soup = BeautifulSoup(response.text, "lxml" if __import__("importlib").util.find_spec("lxml") else "html.parser")
         
         # Find conference table rows
         page_confs = _parse_conference_list(soup, category, domain)
