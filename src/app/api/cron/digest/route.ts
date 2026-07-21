@@ -54,13 +54,14 @@ function filterConferencesForUser(
   const domain = preferences?.domain;
   const location = (preferences?.location || preferences?.country || '').toLowerCase();
 
-  let filtered =
+  const filtered =
     !domain || domain === 'all'
       ? [...conferences]
       : conferences.filter((c) => c.domain === domain);
 
   // Personalization ranking (issue #64): open CFPs first, then location match,
   // then sooner start dates. Keeps digests action-oriented without needing AI.
+  // sort mutates in place; filtered is a fresh array so callers' input is safe.
   filtered.sort((a, b) => {
     const aOpen = a.cfp?.status === 'open' ? 0 : 1;
     const bOpen = b.cfp?.status === 'open' ? 0 : 1;

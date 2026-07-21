@@ -229,8 +229,9 @@ class GeocodeCache:
                 bak = self.cache_file.with_suffix(self.cache_file.suffix + ".bak")
                 try:
                     bak.write_bytes(self.cache_file.read_bytes())
-                except OSError:
-                    pass
+                except OSError as bak_exc:
+                    # Backup is best-effort; continue with the atomic write.
+                    print(f"[WARN] Could not write geocode cache backup: {bak_exc}")
 
             fd, tmp_name = tempfile.mkstemp(
                 dir=str(self.cache_file.parent),
@@ -244,13 +245,15 @@ class GeocodeCache:
                     os.fsync(f.fileno())
                 os.replace(tmp_name, self.cache_file)
             except Exception:
+                # Best-effort cleanup of the temp file; ignore if already gone.
                 try:
                     os.unlink(tmp_name)
-                except OSError:
-                    pass
+                except OSError as cleanup_exc:
+                    print(f"[WARN] Could not remove temp cache file {tmp_name}: {cleanup_exc}")
                 raise
             return True
-        except (IOError, OSError):
+        except (IOError, OSError) as save_exc:
+            print(f"[WARN] Geocode cache save failed: {save_exc}")
             return False
     
     def get(self, key: str) -> Optional[Tuple[float, float]]:

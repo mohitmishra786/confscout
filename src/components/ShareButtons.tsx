@@ -34,25 +34,13 @@ export default function ShareButtons({
 
   const shareText = text || title;
 
-  const handleNativeShare = useCallback(async () => {
-    if (typeof navigator !== 'undefined' && typeof navigator.share === 'function') {
-      try {
-        await navigator.share({ title, text: shareText, url: absoluteUrl });
-        return;
-      } catch {
-        // User cancelled or share failed — fall through to copy.
-      }
-    }
-    await handleCopy();
-  }, [absoluteUrl, shareText, title]);
-
   const handleCopy = useCallback(async () => {
     try {
       await navigator.clipboard.writeText(absoluteUrl);
       setCopied(true);
       window.setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Fallback for older browsers
+      // Fallback for older browsers / denied clipboard permission
       const input = document.createElement('input');
       input.value = absoluteUrl;
       document.body.appendChild(input);
@@ -64,6 +52,18 @@ export default function ShareButtons({
     }
   }, [absoluteUrl]);
 
+  const handleNativeShare = useCallback(async () => {
+    if (typeof navigator !== 'undefined' && typeof navigator.share === 'function') {
+      try {
+        await navigator.share({ title, text: shareText, url: absoluteUrl });
+        return;
+      } catch {
+        // User cancelled or share failed — fall through to copy.
+      }
+    }
+    await handleCopy();
+  }, [absoluteUrl, shareText, title, handleCopy]);
+
   const encodedUrl = encodeURIComponent(absoluteUrl);
   const encodedText = encodeURIComponent(shareText);
 
@@ -71,7 +71,7 @@ export default function ShareButtons({
     <div className={`flex items-center gap-1.5 ${className}`}>
       <button
         type="button"
-        onClick={handleNativeShare}
+        onClick={() => void handleNativeShare()}
         aria-label="Share conference"
         className="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 border border-transparent hover:border-zinc-700 transition-colors"
         title="Share"
@@ -83,7 +83,7 @@ export default function ShareButtons({
 
       <button
         type="button"
-        onClick={handleCopy}
+        onClick={() => void handleCopy()}
         aria-label={copied ? 'Link copied' : 'Copy link'}
         className="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 border border-transparent hover:border-zinc-700 transition-colors"
         title={copied ? 'Copied!' : 'Copy link'}

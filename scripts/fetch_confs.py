@@ -152,8 +152,9 @@ def load_cache():
                         city_cache = json.load(f)
                     print(f"[WARN] Cache corrupted; restored {len(city_cache)} entries from .bak")
                     return
-                except (json.JSONDecodeError, OSError):
-                    pass
+                except (json.JSONDecodeError, OSError) as bak_exc:
+                    # Backup also unreadable; fall through to empty cache.
+                    print(f"[WARN] Cache backup restore failed: {bak_exc}")
             print("[WARN] Cache file corrupted. Starting fresh.")
             city_cache = {}
     else:
@@ -191,10 +192,11 @@ def save_cache():
             os.fsync(f.fileno())
         os.replace(tmp_name, CACHE_PATH)
     except Exception:
+        # Best-effort cleanup of the temp file; ignore if already gone.
         try:
             os.unlink(tmp_name)
-        except OSError:
-            pass
+        except OSError as cleanup_exc:
+            print(f"[WARN] Could not remove temp cache file {tmp_name}: {cleanup_exc}")
         raise
     print(f"[INFO] Saved {len(city_cache)} locations to cache.")
 
