@@ -12,6 +12,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { CompareProvider } from '@/context/CompareContext';
 import CompareBar from '@/components/CompareBar';
+import ServiceWorkerRegister from '@/components/ServiceWorkerRegister';
 import "../globals.css";
 
 const geistSans = Geist({
@@ -77,6 +78,7 @@ export default async function RootLayout({
             </CompareProvider>
           </SessionProvider>
         </NextIntlClientProvider>
+        <ServiceWorkerRegister />
         <Analytics />
       </body>
     </html>
