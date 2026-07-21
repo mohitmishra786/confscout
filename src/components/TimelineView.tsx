@@ -8,7 +8,15 @@
 
 import type { Conference } from '@/types/conference';
 import ConferenceCard from './ConferenceCard';
-import { parseLocalDate } from '@/lib/date';
+
+const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+// Hoisted to module level — was re-created on every sort comparison.
+function parseMonthYear(str: string): number {
+    if (str === 'TBD') return Number.MAX_SAFE_INTEGER;
+    const [mName, year] = str.split(' ');
+    return new Date(parseInt(year), MONTH_NAMES.indexOf(mName), 1).getTime();
+}
 
 interface TimelineViewProps {
     months: Record<string, Conference[]>;
@@ -17,20 +25,7 @@ interface TimelineViewProps {
 
 export default function TimelineView({ months, speakerMode = false }: TimelineViewProps) {
     // Get sorted month keys
-    const sortedMonths = Object.keys(months).sort((a, b) => {
-        if (a === 'TBD') return 1;
-        if (b === 'TBD') return -1;
-
-        const dateA = parseLocalDate(`${a.split(' ')[1]}-${a.split(' ')[0]}-01`); // Approximation for month/year sort
-        // Better: parse using the fact that 'a' is 'Month YYYY'
-        const parseMonthYear = (str: string) => {
-            const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-            const [mName, year] = str.split(' ');
-            return new Date(parseInt(year), months.indexOf(mName), 1);
-        };
-        
-        return parseMonthYear(a).getTime() - parseMonthYear(b).getTime();
-    });
+    const sortedMonths = Object.keys(months).sort((a, b) => parseMonthYear(a) - parseMonthYear(b));
 
     // Filter for speaker mode (only open CFPs)
     const filteredMonths = speakerMode
@@ -44,11 +39,7 @@ export default function TimelineView({ months, speakerMode = false }: TimelineVi
         : months;
 
     const displayMonths = speakerMode
-        ? Object.keys(filteredMonths).sort((a, b) => {
-            if (a === 'TBD') return 1;
-            if (b === 'TBD') return -1;
-            return new Date(a).getTime() - new Date(b).getTime();
-        })
+        ? Object.keys(filteredMonths).sort((a, b) => parseMonthYear(a) - parseMonthYear(b))
         : sortedMonths;
 
     if (displayMonths.length === 0) {
@@ -70,8 +61,8 @@ export default function TimelineView({ months, speakerMode = false }: TimelineVi
                         {/* Month Header - Sticky */}
                         <div className="sticky top-16 z-10 py-2 mb-4">
                             <div className="inline-flex items-center gap-3 bg-gray-900/95 backdrop-blur-sm px-4 py-2 rounded-full border border-gray-700">
-                                <span className="text-xl font-bold text-white">{month}</span>
-                                <span className="text-sm text-gray-400">
+                                <h2 className="text-xl font-bold text-white">{month}</h2>
+                                <span className="text-sm text-gray-400 tabular-nums">
                                     {confs.length} conference{confs.length !== 1 ? 's' : ''}
                                 </span>
                                 {speakerMode && (
@@ -84,8 +75,8 @@ export default function TimelineView({ months, speakerMode = false }: TimelineVi
 
                         {/* Conference Grid */}
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                            {confs.map((conf, idx) => (
-                                <ConferenceCard key={`${conf.id}-${idx}`} conference={conf} />
+                            {confs.map((conf) => (
+                                <ConferenceCard key={conf.id} conference={conf} />
                             ))}
                         </div>
                     </div>

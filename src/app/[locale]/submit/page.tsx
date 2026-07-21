@@ -68,19 +68,21 @@ export default function SubmitConferencePage() {
         <form onSubmit={handleSubmit} className="card p-6 space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="text-xs font-medium text-zinc-500 mb-1 block">Conference Name *</label>
+              <label htmlFor="conf-name" className="text-xs font-medium text-zinc-400 mb-1 block">Conference Name *</label>
               <input
                 required
+                id="conf-name"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-white"
               />
             </div>
             <div>
-              <label className="text-xs font-medium text-zinc-500 mb-1 block">Website URL *</label>
+              <label htmlFor="conf-url" className="text-xs font-medium text-zinc-400 mb-1 block">Website URL *</label>
               <input
                 required
                 type="url"
+                id="conf-url"
                 value={formData.url}
                 onChange={(e) => setFormData({ ...formData, url: e.target.value })}
                 className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-white"
@@ -90,19 +92,21 @@ export default function SubmitConferencePage() {
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="text-xs font-medium text-zinc-500 mb-1 block">Start Date *</label>
+              <label htmlFor="conf-start" className="text-xs font-medium text-zinc-400 mb-1 block">Start Date *</label>
               <input
                 required
                 type="date"
+                id="conf-start"
                 value={formData.startDate}
                 onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
                 className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-white"
               />
             </div>
             <div>
-              <label className="text-xs font-medium text-zinc-500 mb-1 block">End Date</label>
+              <label htmlFor="conf-end" className="text-xs font-medium text-zinc-400 mb-1 block">End Date</label>
               <input
                 type="date"
+                id="conf-end"
                 value={formData.endDate}
                 onChange={(e) => setFormData({ ...formData, endDate: e.target.value })}
                 className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-white"
@@ -112,18 +116,20 @@ export default function SubmitConferencePage() {
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="text-xs font-medium text-zinc-500 mb-1 block">City *</label>
+              <label htmlFor="conf-city" className="text-xs font-medium text-zinc-400 mb-1 block">City *</label>
               <input
                 required
+                id="conf-city"
                 value={formData.city}
                 onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                 className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-white"
               />
             </div>
             <div>
-              <label className="text-xs font-medium text-zinc-500 mb-1 block">Country *</label>
+              <label htmlFor="conf-country" className="text-xs font-medium text-zinc-400 mb-1 block">Country *</label>
               <input
                 required
+                id="conf-country"
                 value={formData.country}
                 onChange={(e) => setFormData({ ...formData, country: e.target.value })}
                 className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-white"
@@ -132,10 +138,11 @@ export default function SubmitConferencePage() {
           </div>
 
           <div>
-            <label className="text-xs font-medium text-zinc-500 mb-1 block">Domain *</label>
+            <label htmlFor="conf-domain" className="text-xs font-medium text-zinc-400 mb-1 block">Domain *</label>
             <select
               required
-              value={formData.domain}
+              id="conf-domain"
+                value={formData.domain}
               onChange={(e) => setFormData({ ...formData, domain: e.target.value })}
               className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-white"
             >
@@ -167,19 +174,21 @@ export default function SubmitConferencePage() {
             <h3 className="text-lg font-semibold text-white mb-3">CFP Information</h3>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="text-xs font-medium text-zinc-500 mb-1 block">CFP URL</label>
+                <label htmlFor="conf-cfp-url" className="text-xs font-medium text-zinc-400 mb-1 block">CFP URL</label>
                 <input
                   type="url"
-                  value={formData.cfpUrl}
+                  id="conf-cfp-url"
+                value={formData.cfpUrl}
                   onChange={(e) => setFormData({ ...formData, cfpUrl: e.target.value })}
                   className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-white"
                 />
               </div>
               <div>
-                <label className="text-xs font-medium text-zinc-500 mb-1 block">CFP End Date</label>
+                <label htmlFor="conf-cfp-end" className="text-xs font-medium text-zinc-400 mb-1 block">CFP End Date</label>
                 <input
                   type="date"
-                  value={formData.cfpEndDate}
+                  id="conf-cfp-end"
+                value={formData.cfpEndDate}
                   onChange={(e) => setFormData({ ...formData, cfpEndDate: e.target.value })}
                   className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-white"
                 />
@@ -191,20 +200,22 @@ export default function SubmitConferencePage() {
             <h3 className="text-lg font-semibold text-white mb-3">Organizer Information</h3>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="text-xs font-medium text-zinc-500 mb-1 block">Your Name *</label>
+                <label htmlFor="conf-org-name" className="text-xs font-medium text-zinc-400 mb-1 block">Your Name *</label>
                 <input
                   required
-                  value={formData.organizerName}
+                  id="conf-org-name"
+                value={formData.organizerName}
                   onChange={(e) => setFormData({ ...formData, organizerName: e.target.value })}
                   className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-white"
                 />
               </div>
               <div>
-                <label className="text-xs font-medium text-zinc-500 mb-1 block">Your Email *</label>
+                <label htmlFor="conf-org-email" className="text-xs font-medium text-zinc-400 mb-1 block">Your Email *</label>
                 <input
                   required
                   type="email"
-                  value={formData.organizerEmail}
+                  id="conf-org-email"
+                value={formData.organizerEmail}
                   onChange={(e) => setFormData({ ...formData, organizerEmail: e.target.value })}
                   className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-white"
                 />
@@ -213,9 +224,10 @@ export default function SubmitConferencePage() {
           </div>
 
           <div>
-            <label className="text-xs font-medium text-zinc-500 mb-1 block">Description</label>
+            <label htmlFor="conf-description" className="text-xs font-medium text-zinc-400 mb-1 block">Description</label>
             <textarea
-              value={formData.description}
+              id="conf-description"
+                value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
               maxLength={500}
               rows={3}
@@ -224,9 +236,10 @@ export default function SubmitConferencePage() {
           </div>
 
           <div>
-            <label className="text-xs font-medium text-zinc-500 mb-1 block">Tags (comma separated)</label>
+            <label htmlFor="conf-tags" className="text-xs font-medium text-zinc-400 mb-1 block">Tags (comma separated)</label>
             <input
-              value={formData.tags}
+              id="conf-tags"
+                value={formData.tags}
               onChange={(e) => setFormData({ ...formData, tags: e.target.value })}
               placeholder="react, python, cloud"
               className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-white"

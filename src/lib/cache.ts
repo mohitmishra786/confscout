@@ -84,7 +84,9 @@ function mapDbConference(c: DbConference): Conference {
     description: c.description ?? undefined,
     source: c.source,
     tags: c.tags,
-    financialAid: c.financialAid ? JSON.parse(JSON.stringify(c.financialAid)) : undefined,
+    // Prisma Json fields are already plain JS values — the
+    // JSON.parse(JSON.stringify()) deep clone was a no-op with real cost.
+    financialAid: (c.financialAid ?? undefined) as Conference['financialAid'],
   };
 }
 

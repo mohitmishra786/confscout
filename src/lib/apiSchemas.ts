@@ -101,8 +101,7 @@ export const bodySchemas = {
    * Subscription request body
    */
   subscribe: z.object({
-    email: z.string()
-      .email('Invalid email format')
+    email: z.email('Invalid email format')
       .max(254, 'Email too long')
       .toLowerCase(),
     preferences: z.record(z.string(), z.any())
@@ -119,8 +118,7 @@ export const bodySchemas = {
       .min(2, 'Conference name must be at least 2 characters')
       .max(200, 'Conference name too long')
       .regex(patterns.safeString, 'Invalid characters in name'),
-    url: z.string()
-      .url('Invalid URL format')
+    url: z.url('Invalid URL format')
       .max(500, 'URL too long'),
     startDate: z.string()
       .regex(patterns.date, 'Invalid date format (YYYY-MM-DD)'),
@@ -140,8 +138,7 @@ export const bodySchemas = {
       .min(1, 'Domain is required')
       .max(50, 'Domain too long')
       .regex(patterns.domain, 'Invalid domain format'),
-    cfpUrl: z.string()
-      .url('Invalid CFP URL')
+    cfpUrl: z.url('Invalid CFP URL')
       .max(500, 'CFP URL too long')
       .optional(),
     cfpEndDate: z.string()
@@ -158,8 +155,7 @@ export const bodySchemas = {
       .min(2, 'Organizer name is required')
       .max(100, 'Organizer name too long')
       .regex(patterns.safeString, 'Invalid characters in organizer name'),
-    organizerEmail: z.string()
-      .email('Invalid email format')
+    organizerEmail: z.email('Invalid email format')
       .max(254, 'Email too long')
       .toLowerCase(),
     submissionType: z.enum(['update', 'new']).default('new'),
@@ -177,8 +173,7 @@ export const bodySchemas = {
       .min(2, 'Name must be at least 2 characters')
       .max(100, 'Name too long')
       .regex(patterns.safeString, 'Invalid characters in name'),
-    email: z.string()
-      .email('Invalid email address')
+    email: z.email('Invalid email address')
       .max(254, 'Email too long')
       .toLowerCase(),
     password: z.string()

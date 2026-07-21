@@ -48,12 +48,11 @@ export default function DashboardClient({ initialEvents }: DashboardClientProps)
     }
   };
 
-  const grouped = {
-    saved: events.filter(e => e.status === 'saved'),
-    applied: events.filter(e => e.status === 'applied'),
-    accepted: events.filter(e => e.status === 'accepted'),
-    rejected: events.filter(e => e.status === 'rejected'),
-  };
+  // Single pass instead of 4 separate filter() iterations.
+  const grouped = { saved: [] as TrackedEvent[], applied: [] as TrackedEvent[], accepted: [] as TrackedEvent[], rejected: [] as TrackedEvent[] };
+  for (const e of events) {
+    if (e.status in grouped) grouped[e.status as keyof typeof grouped].push(e);
+  }
 
   return (
     <div className="space-y-12">
@@ -62,24 +61,25 @@ export default function DashboardClient({ initialEvents }: DashboardClientProps)
         {(Object.keys(grouped) as Array<keyof typeof grouped>).map((status) => (
           <div key={status} className="flex flex-col gap-4">
             <div className="flex items-center justify-between px-2">
-              <h2 className="font-bold text-zinc-500 uppercase tracking-wider text-sm">
+              <h2 className="font-bold text-zinc-400 uppercase tracking-wider text-sm">
                 {STATUS_LABELS[status]} ({grouped[status].length})
               </h2>
             </div>
             
             <div className="flex flex-col gap-4 min-h-[200px] p-2 bg-zinc-900/30 rounded-2xl border border-zinc-800/50">
               {grouped[status].length === 0 ? (
-                <div className="flex-1 flex items-center justify-center text-zinc-700 text-xs italic">
+                <div className="flex-1 flex items-center justify-center text-zinc-500 text-xs italic">
                   No events
                 </div>
               ) : (
                 grouped[status].map((item) => (
                   <div key={item.id} className="relative group">
-                    <div className="absolute top-2 right-2 z-20 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="absolute top-2 right-2 z-20 opacity-0 group-hover:opacity-100 focus-within:opacity-100 transition-opacity">
                       <select
                         value={item.status}
                         disabled={updatingId === item.id}
                         onChange={(e) => updateStatus(item.id, e.target.value)}
+                        aria-label={`Update status for ${item.conference.name}`}
                         className="bg-black border border-zinc-700 text-[10px] rounded px-1 py-0.5 outline-none cursor-pointer"
                       >
                         {Object.entries(STATUS_LABELS).map(([val, label]) => (

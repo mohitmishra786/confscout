@@ -3,17 +3,17 @@ import { z } from 'zod';
 const envSchema = z.object({
   // Base
   NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
-  NEXT_PUBLIC_APP_URL: z.string().url().default('http://localhost:3000'),
+  NEXT_PUBLIC_APP_URL: z.url().default('http://localhost:3000'),
   
   // Database
   DATABASE_URL: z.string().min(1),
   
   // Redis (Optional but recommended for production)
-  UPSTASH_REDIS_REST_URL: z.string().url().optional(),
+  UPSTASH_REDIS_REST_URL: z.url().optional(),
   UPSTASH_REDIS_REST_TOKEN: z.string().optional(),
   
   // Auth
-  NEXTAUTH_URL: z.string().url().optional(),
+  NEXTAUTH_URL: z.url().optional(),
   NEXTAUTH_SECRET: z.string().min(1).optional(),
   
   // External APIs

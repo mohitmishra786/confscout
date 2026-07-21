@@ -323,7 +323,7 @@ describe('Error Handler Module (Issue #300)', () => {
     });
 
     it('should catch errors and return sanitized response', async () => {
-      const handler = withErrorHandling(async (_req: NextRequest) => {
+      const handler = withErrorHandling(async () => {
         throw new Error('Secret internal error details');
       });
 
@@ -337,7 +337,7 @@ describe('Error Handler Module (Issue #300)', () => {
     });
 
     it('should return successful response when no error', async () => {
-      const handler = withErrorHandling(async (_req: NextRequest) => {
+      const handler = withErrorHandling(async () => {
         return NextResponse.json({ success: true }, { status: 200 });
       });
 
@@ -350,7 +350,7 @@ describe('Error Handler Module (Issue #300)', () => {
     });
 
     it('should sanitize APIError with unknown code', async () => {
-      const handler = withErrorHandling(async (_req: NextRequest) => {
+      const handler = withErrorHandling(async () => {
         throw new APIError(500, 'Internal secret: password=xyz', 'UNKNOWN_CODE' as ErrorCode);
       });
 

@@ -20,8 +20,9 @@ export async function GET(request: Request) {
     }
 
     if (validated.ids) {
-      const ids = validated.ids.split(',');
-      conferences = conferences.filter(c => ids.includes(c.id));
+      // Set lookup — includes() inside filter is O(n·m).
+      const ids = new Set(validated.ids.split(','));
+      conferences = conferences.filter(c => ids.has(c.id));
     }
 
     const icalData = generateICalDownload(conferences);

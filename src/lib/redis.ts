@@ -4,12 +4,22 @@ import { env } from '@/lib/env';
 
 let redis: Redis | null = null;
 
+/**
+ * Shared Upstash Redis client for Node and Edge.
+ *
+ * Construct with explicit url/token (not Redis.fromEnv()) so the same code
+ * works when webpack aliases `@upstash/redis` → the Cloudflare/Edge entry
+ * (see next.config.ts). The nodejs entry reads process.version for telemetry
+ * and triggers an Edge Runtime build warning if pulled into middleware.
+ */
 export function getRedisClient(): Redis | null {
   if (redis) return redis;
-  
+
   try {
-    if (env.UPSTASH_REDIS_REST_URL && env.UPSTASH_REDIS_REST_TOKEN) {
-      redis = Redis.fromEnv();
+    const url = env.UPSTASH_REDIS_REST_URL;
+    const token = env.UPSTASH_REDIS_REST_TOKEN;
+    if (url && token) {
+      redis = new Redis({ url, token });
       cacheLogger.info('Redis client initialized');
       return redis;
     }

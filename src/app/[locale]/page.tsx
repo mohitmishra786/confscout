@@ -27,5 +27,19 @@ export default async function Home(): Promise<JSX.Element> {
   // During ISR revalidation this runs once, result is cached at the edge.
   // During a normal request the cached HTML is returned without touching this.
   const data = await getCachedConferences();
-  return <HomeClient initialData={data} />;
+
+  // Only inline the first two month groups. Serializing the full dataset
+  // (~6k conferences) produced a 35 MB HTML document that destroyed LCP,
+  // TBT and TTI. The client progressively loads the full dataset from
+  // /data/conferences.json after hydration. Stats/monthCount are tiny, so
+  // every number on the page is correct from the first paint.
+  const INITIAL_MONTH_GROUPS = 2;
+  const initialData = {
+    lastUpdated: data.lastUpdated,
+    stats: data.stats,
+    months: Object.fromEntries(Object.entries(data.months).slice(0, INITIAL_MONTH_GROUPS)),
+    monthCount: Object.keys(data.months).length,
+  };
+
+  return <HomeClient initialData={initialData} />;
 }

@@ -16,11 +16,35 @@ import { SafeImage } from '@/components/SafeImage';
 import VisaModal from './VisaModal';
 import TravelModal from './TravelModal';
 import { secureFetch } from '@/lib/api';
-import { formatLocalDate, parseLocalDate } from '@/lib/date';
+import { parseLocalDate } from '@/lib/date';
 
 interface ConferenceCardProps {
   conference: Omit<Conference, 'description'>;
   searchTerm?: string;
+}
+
+// Cached Intl formatter — creating one per call (as `toLocaleDateString`
+// does internally) was a measurable cost across hundreds of cards.
+const DATE_FMT = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' });
+
+// Hoisted to module level — was re-created on every card render.
+function formatDateRange(start: string | null, end: string | null): string {
+  if (!start) return 'TBD';
+  const s = parseLocalDate(start);
+  const e = end ? parseLocalDate(end) : null;
+
+  if (!s) return 'TBD';
+
+  const startStr = DATE_FMT.format(s);
+
+  if (!e || s.getTime() === e.getTime()) return startStr;
+
+  // Same month
+  if (s.getMonth() === e.getMonth() && s.getFullYear() === e.getFullYear()) {
+    return `${startStr}-${e.getDate()}`;
+  }
+
+  return `${startStr} - ${DATE_FMT.format(e)}`;
 }
 
 /**
@@ -101,7 +125,7 @@ const ConferenceCard = memo(function ConferenceCard({ conference, searchTerm }: 
 
   // CFP badge styling based on urgency
   const getCfpBadgeStyle = () => {
-    if (!cfpIsOpen) return 'text-zinc-500 bg-zinc-800 border-zinc-700';
+    if (!cfpIsOpen) return 'text-zinc-400 bg-zinc-800 border-zinc-700';
     if (daysRemaining <= 3) return 'text-red-400 bg-red-400/10 border-red-400/20';
     if (daysRemaining <= 7) return 'text-orange-400 bg-orange-400/10 border-orange-400/20';
     if (daysRemaining <= 14) return 'text-yellow-400 bg-yellow-400/10 border-yellow-400/20';
@@ -120,33 +144,12 @@ const ConferenceCard = memo(function ConferenceCard({ conference, searchTerm }: 
   const domainInfo = DOMAIN_INFO[conference.domain] || DOMAIN_INFO.general;
   const domainColor = domainInfo.color;
 
-  // Format date range
-  const formatDateRange = (start: string | null, end: string | null) => {
-    if (!start) return 'TBD';
-    const s = parseLocalDate(start);
-    const e = end ? parseLocalDate(end) : null;
-
-    if (!s) return 'TBD';
-
-    const options: Intl.DateTimeFormatOptions = { month: 'short', day: 'numeric' };
-    const startStr = s.toLocaleDateString('en-US', options);
-
-    if (!e || s.getTime() === e.getTime()) return startStr;
-
-    // Same month
-    if (s.getMonth() === e.getMonth() && s.getFullYear() === e.getFullYear()) {
-      return `${startStr}-${e.getDate()}`;
-    }
-
-    return `${startStr} - ${e.toLocaleDateString('en-US', options)}`;
-  };
-
   // Location text
   const locationText = conference.location?.raw || (conference.online ? 'Online' : 'TBD');
 
   return (
     <article
-      className="card group flex flex-col h-full relative overflow-hidden hover:shadow-lg transition-all duration-300"
+      className="card group flex flex-col h-full relative overflow-hidden hover:shadow-lg"
       style={{ borderColor: 'rgba(255,255,255,0.05)' }}
     >
       {/* Glow effect on hover */}
@@ -160,7 +163,7 @@ const ConferenceCard = memo(function ConferenceCard({ conference, searchTerm }: 
         <div className="flex items-center justify-between mb-3 text-xs font-medium">
           <div className="flex items-center gap-2">
             <div className="relative w-6 h-6 bg-zinc-800 rounded-md flex items-center justify-center overflow-hidden border border-zinc-700">
-              <span className="text-[10px] text-zinc-500 font-bold">{conference.domain[0].toUpperCase()}</span>
+              <span className="text-[10px] text-zinc-400 font-bold">{conference.domain[0].toUpperCase()}</span>
             </div>
             <div className="flex items-center gap-2">
               <span
@@ -181,7 +184,7 @@ const ConferenceCard = memo(function ConferenceCard({ conference, searchTerm }: 
               {getCfpText()}
             </a>
           ) : (
-            <span className="text-zinc-600 px-2 py-0.5 border border-zinc-800 rounded bg-zinc-900/50">
+            <span className="text-zinc-400 px-2 py-0.5 border border-zinc-800 rounded bg-zinc-900/50">
               No CFP
             </span>
           )}
@@ -193,7 +196,7 @@ const ConferenceCard = memo(function ConferenceCard({ conference, searchTerm }: 
             href={conference.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:underline decoration-blue-400/30 focus:outline-none"
+            className="hover:underline decoration-blue-400/30 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
           >
             <SafeHighlightedText text={conference.name} searchTerm={searchTerm || ''} />
           </a>
@@ -202,13 +205,13 @@ const ConferenceCard = memo(function ConferenceCard({ conference, searchTerm }: 
         {/* Meta: Date & Location */}
         <div className="flex flex-wrap items-center gap-y-1 gap-x-3 text-sm text-zinc-400 mb-4">
           <div className="flex items-center gap-1.5">
-            <svg className="w-4 h-4 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
             <span>{formatDateRange(conference.startDate, conference.endDate)}</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <svg className="w-4 h-4 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
@@ -224,7 +227,7 @@ const ConferenceCard = memo(function ConferenceCard({ conference, searchTerm }: 
               <div className="flex items-center gap-2 mb-1">
                 <div className="flex -space-x-2">
                   {conference.attendees?.map((a, i) => (
-                    <div key={i} className="w-5 h-5 rounded-full border border-zinc-900 overflow-hidden bg-zinc-800">
+                    <div key={a.name ?? a.image ?? i} className="w-5 h-5 rounded-full border border-zinc-900 overflow-hidden bg-zinc-800">
                       {a.image ? (
                         <SafeImage 
                           src={a.image} 
@@ -236,14 +239,14 @@ const ConferenceCard = memo(function ConferenceCard({ conference, searchTerm }: 
                           className="object-cover"
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center text-[8px] text-zinc-500">
+                        <div className="w-full h-full flex items-center justify-center text-[8px] text-zinc-400">
                           {a.name?.[0]}
                         </div>
                       )}
                     </div>
                   ))}
                 </div>
-                <span className="text-[10px] text-zinc-500 font-medium">
+                <span className="text-[10px] text-zinc-400 font-medium">
                   {attendeeCount} going
                 </span>
               </div>
@@ -262,7 +265,7 @@ const ConferenceCard = memo(function ConferenceCard({ conference, searchTerm }: 
                 </span>
               )}
               {conference.tags?.slice(0, 2).map(tag => (
-                <span key={tag} className="px-1.5 py-0.5 rounded text-[10px] text-zinc-500 bg-zinc-900 border border-zinc-800">
+                <span key={tag} className="px-1.5 py-0.5 rounded text-[10px] text-zinc-400 bg-zinc-900 border border-zinc-800">
                   {tag}
                 </span>
               ))}
@@ -273,33 +276,42 @@ const ConferenceCard = memo(function ConferenceCard({ conference, searchTerm }: 
           <div className="flex items-center gap-2 whitespace-nowrap">
             {/* Bookmark Toggle */}
             <button
+              type="button"
               onClick={toggleBookmark}
-              className={`p-1.5 rounded-lg transition-all border ${isBookmarked ? 'text-yellow-400 bg-yellow-400/10 border-yellow-400/20' : 'text-zinc-500 hover:text-zinc-300 border-transparent hover:bg-zinc-800'}`}
+              aria-label={isBookmarked ? "Remove bookmark" : "Add bookmark"}
+              aria-pressed={isBookmarked}
+              className={`p-1.5 rounded-lg transition-[color,background-color,border-color] duration-150 border ${isBookmarked ? 'text-yellow-400 bg-yellow-400/10 border-yellow-400/20' : 'text-zinc-400 hover:text-zinc-200 border-transparent hover:bg-zinc-800'}`}
               title={isBookmarked ? "Remove bookmark" : "Add bookmark"}
             >
-              <svg className="w-4 h-4" fill={isBookmarked ? "currentColor" : "none"} stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4" fill={isBookmarked ? "currentColor" : "none"} stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.382-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
               </svg>
             </button>
 
             {/* Attendance Toggle */}
             <button
+              type="button"
               onClick={toggleAttendance}
-              className={`p-1.5 rounded-lg transition-all border ${isAttending ? 'text-green-400 bg-green-400/10 border-green-400/20' : 'text-zinc-500 hover:text-zinc-300 border-transparent hover:bg-zinc-800'}`}
+              aria-label={isAttending ? "I'm not going" : "I'm going!"}
+              aria-pressed={isAttending}
+              className={`p-1.5 rounded-lg transition-[color,background-color,border-color] duration-150 border ${isAttending ? 'text-green-400 bg-green-400/10 border-green-400/20' : 'text-zinc-400 hover:text-zinc-200 border-transparent hover:bg-zinc-800'}`}
               title={isAttending ? "I'm not going" : "I'm going!"}
             >
-              <svg className="w-4 h-4" fill={isAttending ? "currentColor" : "none"} stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4" fill={isAttending ? "currentColor" : "none"} stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
               </svg>
             </button>
 
             {/* Compare Toggle */}
             <button
+              type="button"
               onClick={toggleCompare}
-              className={`p-1.5 transition-colors ${isCompared ? 'text-blue-400' : 'text-zinc-500 hover:text-zinc-300'}`}
+              aria-label={isCompared ? "Remove from comparison" : "Add to comparison"}
+              aria-pressed={isCompared}
+              className={`p-1.5 transition-colors duration-150 ${isCompared ? 'text-blue-400' : 'text-zinc-400 hover:text-zinc-200'}`}
               title={isCompared ? "Remove from comparison" : "Add to comparison"}
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
               </svg>
             </button>
@@ -308,23 +320,27 @@ const ConferenceCard = memo(function ConferenceCard({ conference, searchTerm }: 
             {!conference.online && (
               <>
                 <button
+                  type="button"
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
                     setIsTravelOpen(true);
                   }}
-                  className="p-1.5 text-zinc-500 hover:text-blue-400 transition-colors"
+                  aria-label="Travel Logistics (Flights/Hotels)"
+                  className="p-1.5 text-zinc-400 hover:text-blue-400 transition-colors duration-150"
                   title="Travel Logistics (Flights/Hotels)"
                 >
                   <span className="text-sm" aria-hidden="true">✈️</span>
                 </button>
                 <button
+                  type="button"
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
                     setIsVisaOpen(true);
                   }}
-                  className="p-1.5 text-zinc-500 hover:text-blue-400 transition-colors"
+                  aria-label="Visa Support Letter Request"
+                  className="p-1.5 text-zinc-400 hover:text-blue-400 transition-colors duration-150"
                   title="Visa Support Letter Request"
                 >
                   <span className="text-sm" aria-hidden="true">🛂</span>
@@ -337,10 +353,11 @@ const ConferenceCard = memo(function ConferenceCard({ conference, searchTerm }: 
               <a
                 href={`/api/calendar/${conference.id}`}
                 title="Add to Calendar"
-                className="p-1.5 text-zinc-500 hover:text-green-400 transition-colors"
+                aria-label="Add to Calendar"
+                className="p-1.5 text-zinc-400 hover:text-green-400 transition-colors duration-150"
                 onClick={(e) => e.stopPropagation()}
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
               </a>

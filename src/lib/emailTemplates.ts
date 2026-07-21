@@ -232,12 +232,14 @@ export function generateEnhancedEmailHTML(params: EmailTemplateParams): string {
   const title = generateEmailTitle(frequency);
   const subtitle = generateEmailSubtitle(frequency);
   
-  const sectionsHTML = sections
-    .filter(s => s.conferences.length > 0)
-    .map(s => generateSectionHTML(s.title, s.conferences, s.description))
-    .join('');
-  
-  const totalConferences = sections.reduce((sum, s) => sum + s.conferences.length, 0);
+  // Single pass: filter empty sections and build HTML in one iteration.
+  let sectionsHTML = '';
+  let totalConferences = 0;
+  for (const s of sections) {
+    if (s.conferences.length === 0) continue;
+    totalConferences += s.conferences.length;
+    sectionsHTML += generateSectionHTML(s.title, s.conferences, s.description);
+  }
   
   return `<!DOCTYPE html>
 <html lang="en">

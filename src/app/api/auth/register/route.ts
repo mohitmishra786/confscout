@@ -2,13 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import bcrypt from 'bcrypt';
 import crypto from 'crypto';
-import { z } from 'zod';
 import { validateCsrfToken } from '@/lib/csrf';
 import { securityLogger } from '@/lib/logger';
 import { withErrorHandling, Errors } from '@/lib/errorHandler';
 import { bodySchemas } from '@/lib/apiSchemas';
 import { ApiResponse } from '@/types/api';
-import { env } from '@/lib/env';
 
 const DEFAULT_BCRYPT_ROUNDS = 14;
 

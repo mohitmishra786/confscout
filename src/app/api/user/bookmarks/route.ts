@@ -4,10 +4,10 @@ import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { validateCsrfToken } from '@/lib/csrf';
 import { withErrorHandling, Errors } from '@/lib/errorHandler';
-import { querySchemas, bodySchemas } from '@/lib/apiSchemas';
+import { bodySchemas } from '@/lib/apiSchemas';
 import { ApiResponse } from '@/types/api';
 
-export const GET = withErrorHandling(async (request: NextRequest) => {
+export const GET = withErrorHandling(async () => {
   const session = await getServerSession(authOptions);
   
   if (!session?.user?.id) {

@@ -14,24 +14,27 @@ export default async function DashboardPage() {
     redirect('/auth/signin');
   }
 
-  // 1. Get User's Bookmarks
-  const bookmarks = await prisma.bookmark.findMany({
-    where: { userId: session.user.id },
-    orderBy: { createdAt: 'desc' }
-  });
+  // Independent fetches — run in parallel, not sequentially.
+  const [bookmarks, data] = await Promise.all([
+    prisma.bookmark.findMany({
+      where: { userId: session.user.id },
+      orderBy: { createdAt: 'desc' }
+    }),
+    getCachedConferences(),
+  ]);
 
-  // 2. Get Conference Details
-  const data = await getCachedConferences();
   const allConferences = Object.values(data.months).flat();
 
-  // 3. Merge data
-  const trackedEvents = bookmarks.map(bm => {
-    const conf = allConferences.find(c => c.id === bm.conferenceId);
-    return {
-      ...bm,
-      conference: conf || null
-    };
-  }).filter(e => e.conference !== null);
+  // Merge data — Map lookup (O(1)) instead of find() inside map (O(n·m)),
+  // flatMap to merge+filter in one pass, and only the fields the client
+  // actually renders (no Date serialization workaround needed).
+  const confById = new Map(allConferences.map(c => [c.id, c]));
+  const trackedEvents = bookmarks.flatMap(bm => {
+    const conf = confById.get(bm.conferenceId);
+    return conf
+      ? [{ id: bm.id, conferenceId: bm.conferenceId, status: bm.status, conference: conf }]
+      : [];
+  });
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -42,7 +45,7 @@ export default async function DashboardPage() {
           <p className="text-zinc-400">Manage your conference applications and tracked events.</p>
         </header>
 
-        <DashboardClient initialEvents={JSON.parse(JSON.stringify(trackedEvents))} />
+        <DashboardClient initialEvents={trackedEvents} />
       </main>
       <Footer />
     </div>

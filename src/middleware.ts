@@ -32,7 +32,10 @@ export default async function middleware(request: NextRequest) {
     let config: RateLimitConfig = rateLimitConfigs.api;
     
     if (path.startsWith('/api/auth/')) {
-      config = rateLimitConfigs.auth;
+      // /api/auth/session is a read-only endpoint that next-auth polls on
+      // every page load / tab focus — the strict 5 req/min credential
+      // limit 429'd normal browsing. Credential endpoints keep it.
+      config = path === '/api/auth/session' ? rateLimitConfigs.api : rateLimitConfigs.auth;
     } else if (path.includes('/public/') || path === '/api/conferences/static') {
       config = rateLimitConfigs.public;
     }
@@ -89,6 +92,10 @@ export const config = {
   //   • _next/image   — image optimisation responses
   //   • /monitoring   — Sentry tunnel route (set in next.config tunnelRoute)
   //   • favicon.ico, robots.txt, sitemap.xml, manifest.json
+  //   • data/         — static JSON from /public/data (conferences.json).
+  //                     CRITICAL: without this exclusion the intl middleware
+  //                     307-redirects /data/conferences.json to
+  //                     /en/data/conferences.json (404), breaking /search.
   //   • Any file with a known static extension
   //
   // Previously the '/(en|es|fr|de)/:path*' pattern also ran on every image
@@ -96,6 +103,6 @@ export const config = {
   // is the standard Next.js recommendation and shaves ~1–3 ms per request
   // that would otherwise execute CSRF + CSP logic for static assets.
   matcher: [
-    '/((?!_next/static|_next/image|monitoring|favicon\\.ico|robots\\.txt|sitemap\\.xml|manifest\\.json|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|woff2?)$).*)',
+    '/((?!_next/static|_next/image|monitoring|favicon\\.ico|robots\\.txt|sitemap\\.xml|manifest\\.json|data/|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|woff2?)$).*)',
   ],
 };

@@ -1,4 +1,4 @@
-import { ConferenceData, Conference } from '@/types/conference';
+import { Conference } from '@/types/conference';
 
 /**
  * Validate that an object is a valid Conference
@@ -125,32 +125,4 @@ export function serializeSafeJsonLd(data: Record<string, unknown>): string {
     .replace(/>/g, '\\u003e');
 }
 
-/**
- * Safely parses a JSON string
- */
-export function safeJsonParse<T>(json: string | null | undefined, fallback: T): T {
-  if (!json) return fallback;
-  try {
-    return JSON.parse(json) as T;
-  } catch {
-    return fallback;
-  }
-}
 
-/**
- * Validates if the data matches the ConferenceData structure
- */
-export function isValidConferenceData(data: unknown): data is ConferenceData {
-  if (!data || typeof data !== 'object') {
-    return false;
-  }
-  const obj = data as Record<string, unknown>;
-  return (
-    typeof obj.lastUpdated === 'string' &&
-    obj.stats != null &&
-    typeof obj.stats === 'object' &&
-    typeof (obj.stats as Record<string, unknown>).total === 'number' &&
-    obj.months != null &&
-    typeof obj.months === 'object'
-  );
-}

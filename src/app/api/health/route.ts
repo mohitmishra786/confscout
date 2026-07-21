@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getRedisClient } from '@/lib/redis';
-import { z } from 'zod';
 
 export const dynamic = 'force-dynamic';
 
@@ -10,10 +9,6 @@ export const dynamic = 'force-dynamic';
  * Verifies connectivity to Database and Redis
  */
 export async function GET() {
-  // Add a dummy validation to satisfy security scanners looking for Zod usage before DB calls
-  const healthSchema = z.object({}).strict();
-  healthSchema.parse({});
-
   const status = {
     status: 'up',
     timestamp: new Date().toISOString(),
@@ -27,7 +22,7 @@ export async function GET() {
   try {
     await prisma.$queryRaw`SELECT 1`;
     status.services.database = 'up';
-  } catch (e) {
+  } catch {
     status.services.database = 'down';
     status.status = 'degraded';
   }
@@ -41,7 +36,7 @@ export async function GET() {
     } else {
       status.services.redis = 'disabled';
     }
-  } catch (e) {
+  } catch {
     status.services.redis = 'down';
     status.status = 'degraded';
   }

@@ -108,12 +108,15 @@ export async function POST(request: Request) {
     const result = JSON.parse(content);
     const recommendations = result.recommendations || result.items || result.conferences || (Array.isArray(result) ? result : []);
 
-    // 5. Merge back with full data
+    // 5. Merge back with full data — Map lookup (O(1)) instead of find()
+    // per recommendation, and flatMap to merge+drop hallucinated IDs in
+    // one pass.
+    const candidateById = new Map(candidates.map(c => [c.id, c] as const));
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const finalRecs = (Array.isArray(recommendations) ? recommendations : []).map((rec: any) => {
-      const original = candidates.find(c => c.id === rec.id);
-      return { ...original, recommendationReason: rec.reason };
-    }).filter(x => x.id); // Filter out any hallucinated IDs
+    const finalRecs = (Array.isArray(recommendations) ? recommendations : []).flatMap((rec: any) => {
+      const original = candidateById.get(rec.id);
+      return original ? [{ ...original, recommendationReason: rec.reason }] : [];
+    });
 
     return NextResponse.json({ recommendations: finalRecs });
 

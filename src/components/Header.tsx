@@ -1,14 +1,42 @@
 'use client';
 
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { useSession, signOut } from 'next-auth/react';
 import { useTranslations, useLocale } from 'next-intl';
+
+const NAV_LINK_CLASS =
+  'text-zinc-400 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-zinc-800/50 min-h-[2.75rem] flex items-center';
 
 export default function Header() {
   const { data: session, status } = useSession();
   const t = useTranslations('Header');
   const locale = useLocale();
+  const pathname = usePathname();
+
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+
+  // Close the mobile menu on route change.
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
+
+  // Escape closes the menu and returns focus to the trigger.
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMobileOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [mobileOpen]);
 
   return (
     <header className="sticky top-0 z-50 backdrop-blur-xl bg-black/80 border-b border-zinc-800/50">
@@ -22,6 +50,7 @@ export default function Header() {
                   src="/logo.png"
                   alt="ConfScouting Logo"
                   fill
+                  sizes="36px"
                   className="object-contain rounded-xl"
                   priority
                 />
@@ -32,34 +61,18 @@ export default function Header() {
             </Link>
           </div>
 
-          {/* Navigation */}
-          <nav className="flex items-center space-x-1" aria-label="Main navigation">
-            <Link
-              href={`/${locale}`}
-              prefetch={true}
-              className="text-zinc-400 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-zinc-800/50 min-h-[2.75rem] flex items-center"
-            >
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-1" aria-label="Main navigation">
+            <Link href={`/${locale}`} prefetch={true} className={NAV_LINK_CLASS}>
               {t('explore')}
             </Link>
-            <Link
-              href={`/${locale}/search?cfp=true`}
-              prefetch={true}
-              className="text-zinc-400 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-zinc-800/50 min-h-[2.75rem] flex items-center"
-            >
+            <Link href={`/${locale}/search?cfp=true`} prefetch={true} className={NAV_LINK_CLASS}>
               {t('openCfps')}
             </Link>
-            <Link
-              href={`/${locale}/recommendations`}
-              prefetch={true}
-              className="text-zinc-400 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-zinc-800/50 min-h-[2.75rem] flex items-center"
-            >
+            <Link href={`/${locale}/recommendations`} prefetch={true} className={NAV_LINK_CLASS}>
               <span className="mr-1" aria-hidden="true">✨</span> {t('aiMatch')}
             </Link>
-            <Link
-              href={`/${locale}/about`}
-              prefetch={true}
-              className="text-zinc-400 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-zinc-800/50 min-h-[2.75rem] flex items-center"
-            >
+            <Link href={`/${locale}/about`} prefetch={true} className={NAV_LINK_CLASS}>
               {t('about')}
             </Link>
 
@@ -79,7 +92,7 @@ export default function Header() {
                   {t('submit')}
                 </Link>
                 <div className="relative group">
-                  <button className="flex items-center gap-2 text-zinc-400 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-zinc-800/50">
+                  <button type="button" className="flex items-center gap-2 text-zinc-400 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-zinc-800/50">
                     {session.user.image ? (
                       <Image
                         src={session.user.image}
@@ -95,7 +108,7 @@ export default function Header() {
                     )}
                     <span>{session.user.name || session.user.email?.split('@')[0]}</span>
                   </button>
-                  <div className="absolute right-0 mt-2 w-48 bg-zinc-900 border border-zinc-800 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                  <div className="absolute right-0 mt-2 w-48 bg-zinc-900 border border-zinc-800 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-[opacity,visibility] duration-150">
                     <Link
                       href={`/${locale}/u/${session.user.id}`}
                       className="block px-4 py-2 text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
@@ -115,6 +128,7 @@ export default function Header() {
                       {t('bookmarks')}
                     </Link>
                     <button
+                      type="button"
                       onClick={() => signOut({ callbackUrl: `/${locale}` })}
                       className="w-full text-left px-4 py-2 text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
                     >
@@ -126,7 +140,7 @@ export default function Header() {
             ) : (
               <Link
                 href={`/${locale}/auth/signin`}
-                className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition-[background-color,transform] duration-150 ease-out motion-safe:active:scale-95"
               >
                 {t('signIn')}
               </Link>
@@ -160,8 +174,104 @@ export default function Header() {
               <span className="hidden md:inline">{t('support')}</span>
             </a>
           </nav>
+
+          {/* Mobile menu trigger */}
+          <div className="flex items-center gap-2 md:hidden">
+            {status !== 'loading' && !session?.user && (
+              <Link
+                href={`/${locale}/auth/signin`}
+                className="bg-blue-600 hover:bg-blue-500 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors"
+              >
+                {t('signIn')}
+              </Link>
+            )}
+            <button
+              ref={menuButtonRef}
+              type="button"
+              onClick={() => setMobileOpen((v) => !v)}
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-nav"
+              aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              className="p-2.5 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800/50 transition-colors min-h-[2.75rem] min-w-[2.75rem] flex items-center justify-center"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                {mobileOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
+
+      {/* Mobile Navigation panel */}
+      {mobileOpen && (
+        <div
+          id="mobile-nav"
+          ref={panelRef}
+          className="md:hidden border-t border-zinc-800/50 bg-black/95 backdrop-blur-xl"
+        >
+          <nav className="px-4 py-3 flex flex-col gap-1" aria-label="Mobile navigation">
+            <Link href={`/${locale}`} className={NAV_LINK_CLASS}>
+              {t('explore')}
+            </Link>
+            <Link href={`/${locale}/search?cfp=true`} className={NAV_LINK_CLASS}>
+              {t('openCfps')}
+            </Link>
+            <Link href={`/${locale}/recommendations`} className={NAV_LINK_CLASS}>
+              <span className="mr-1" aria-hidden="true">✨</span> {t('aiMatch')}
+            </Link>
+            <Link href={`/${locale}/about`} className={NAV_LINK_CLASS}>
+              {t('about')}
+            </Link>
+
+            {session?.user && (
+              <>
+                <div className="w-full h-px bg-zinc-800 my-1" aria-hidden="true" />
+                <Link href={`/${locale}/submit`} className={NAV_LINK_CLASS}>
+                  {t('submit')}
+                </Link>
+                <Link href={`/${locale}/u/${session.user.id}`} className={NAV_LINK_CLASS}>
+                  {t('myProfile')}
+                </Link>
+                <Link href={`/${locale}/dashboard`} className={NAV_LINK_CLASS}>
+                  {t('dashboard')}
+                </Link>
+                <Link href={`/${locale}/bookmarks`} className={NAV_LINK_CLASS}>
+                  {t('bookmarks')}
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => signOut({ callbackUrl: `/${locale}` })}
+                  className={`${NAV_LINK_CLASS} w-full text-left`}
+                >
+                  {t('signOut')}
+                </button>
+              </>
+            )}
+
+            <div className="w-full h-px bg-zinc-800 my-1" aria-hidden="true" />
+            <a
+              href="https://github.com/mohitmishra786/conf-finder"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={NAV_LINK_CLASS}
+            >
+              {t('star')}
+            </a>
+            <a
+              href="https://buymeacoffee.com/mohitmishra7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${NAV_LINK_CLASS} text-yellow-400 hover:text-yellow-300`}
+            >
+              {t('support')}
+            </a>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }

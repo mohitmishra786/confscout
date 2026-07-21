@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { createContext, useContext, useState, ReactNode, useEffect, useMemo, useCallback, useRef } from 'react';
 import type { Conference } from '@/types/conference';
 import { isValidConference } from '@/lib/validation';
 
@@ -42,26 +42,41 @@ export function CompareProvider({ children }: { children: ReactNode }) {
     }
   }, [selectedConferences]);
 
-  const addToCompare = (conf: Conference) => {
-    if (selectedConferences.length >= 4) {
+  // Latest-value ref so addToCompare stays stable without stale closures.
+  const selectedRef = useRef(selectedConferences);
+  useEffect(() => {
+    selectedRef.current = selectedConferences;
+  }, [selectedConferences]);
+
+  const addToCompare = useCallback((conf: Conference) => {
+    const current = selectedRef.current;
+    if (current.length >= 4) {
       alert("You can only compare up to 4 conferences.");
       return;
     }
-    if (!selectedConferences.find(c => c.id === conf.id)) {
-      setSelectedConferences([...selectedConferences, conf]);
-    }
-  };
+    if (current.find(c => c.id === conf.id)) return;
+    setSelectedConferences([...current, conf]);
+  }, []);
 
-  const removeFromCompare = (confId: string) => {
-    setSelectedConferences(selectedConferences.filter(c => c.id !== confId));
-  };
+  const removeFromCompare = useCallback((confId: string) => {
+    setSelectedConferences((current) => current.filter(c => c.id !== confId));
+  }, []);
 
-  const clearCompare = () => setSelectedConferences([]);
+  const clearCompare = useCallback(() => setSelectedConferences([]), []);
 
-  const isInCompare = (confId: string) => selectedConferences.some(c => c.id === confId);
+  const isInCompare = useCallback(
+    (confId: string) => selectedConferences.some(c => c.id === confId),
+    [selectedConferences]
+  );
+
+  // Memoized so consumers don't re-render on every provider render.
+  const value = useMemo(
+    () => ({ selectedConferences, addToCompare, removeFromCompare, clearCompare, isInCompare }),
+    [selectedConferences, addToCompare, removeFromCompare, clearCompare, isInCompare]
+  );
 
   return (
-    <CompareContext.Provider value={{ selectedConferences, addToCompare, removeFromCompare, clearCompare, isInCompare }}>
+    <CompareContext.Provider value={value}>
       {children}
     </CompareContext.Provider>
   );
