@@ -13,10 +13,14 @@ import { type Conference, DOMAIN_INFO } from '@/types/conference';
 import { useCompare } from '@/context/CompareContext';
 import { SafeHighlightedText } from '@/components/SafeHighlightedText';
 import { SafeImage } from '@/components/SafeImage';
-import VisaModal from './VisaModal';
-import TravelModal from './TravelModal';
+import dynamic from 'next/dynamic';
+import ShareButtons from '@/components/ShareButtons';
 import { secureFetch } from '@/lib/api';
 import { parseLocalDate } from '@/lib/date';
+
+// Lazy-load modals so the default card grid does not pay for modal JS (issue #100).
+const VisaModal = dynamic(() => import('./VisaModal'), { ssr: false });
+const TravelModal = dynamic(() => import('./TravelModal'), { ssr: false });
 
 interface ConferenceCardProps {
   conference: Omit<Conference, 'description'>;
@@ -315,6 +319,12 @@ const ConferenceCard = memo(function ConferenceCard({ conference, searchTerm }: 
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
               </svg>
             </button>
+
+            <ShareButtons
+              url={conference.url}
+              title={conference.name}
+              text={`Check out ${conference.name} on ConfScouting`}
+            />
 
             {/* Visa Support Button */}
             {!conference.online && (
