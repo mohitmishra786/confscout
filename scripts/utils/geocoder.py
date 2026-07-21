@@ -217,12 +217,40 @@ class GeocodeCache:
         return {}
     
     def _save_cache(self) -> bool:
+        """Atomic write + rolling .bak (issue #205) to avoid corrupt JSON."""
+        import os
+        import tempfile
+
         try:
             self.cache_file.parent.mkdir(parents=True, exist_ok=True)
-            with open(self.cache_file, 'w', encoding='utf-8') as f:
-                json.dump(self.cache, f, indent=2, ensure_ascii=False)
+            payload = json.dumps(self.cache, indent=2, ensure_ascii=False)
+
+            if self.cache_file.exists():
+                bak = self.cache_file.with_suffix(self.cache_file.suffix + ".bak")
+                try:
+                    bak.write_bytes(self.cache_file.read_bytes())
+                except OSError:
+                    pass
+
+            fd, tmp_name = tempfile.mkstemp(
+                dir=str(self.cache_file.parent),
+                prefix=".city_cache.",
+                suffix=".tmp",
+            )
+            try:
+                with os.fdopen(fd, "w", encoding="utf-8") as f:
+                    f.write(payload)
+                    f.flush()
+                    os.fsync(f.fileno())
+                os.replace(tmp_name, self.cache_file)
+            except Exception:
+                try:
+                    os.unlink(tmp_name)
+                except OSError:
+                    pass
+                raise
             return True
-        except IOError:
+        except (IOError, OSError):
             return False
     
     def get(self, key: str) -> Optional[Tuple[float, float]]:

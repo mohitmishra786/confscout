@@ -98,6 +98,10 @@ FINANCIAL_AID_KEYWORDS = [
     "opportunity grant", "diversity fund", "inclusion"
 ]
 
+# Precomputed lowercase set for O(1) membership (issues #96, #110)
+FINANCIAL_AID_KEYWORDS_SET = frozenset(k.lower() for k in FINANCIAL_AID_KEYWORDS)
+
+
 # Country to continent mapping (common countries)
 COUNTRY_CONTINENTS = {
     "U.S.A.": "North America", "USA": "North America", "United States": "North America",
@@ -138,10 +142,41 @@ def load_cache():
 
 
 def save_cache():
-    """Save city coordinates cache."""
+    """Save city coordinates cache atomically (issue #205).
+
+    Writes to a temp file then renames over the target so a crash mid-write
+    cannot leave a half-written JSON that corrupts the next run. Also keeps
+    a single rolling .bak of the previous good cache when one exists.
+    """
+    import os
+    import tempfile
+
     CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
-    with open(CACHE_PATH, 'w', encoding='utf-8') as f:
-        json.dump(city_cache, f, indent=2, ensure_ascii=False)
+    payload = json.dumps(city_cache, indent=2, ensure_ascii=False)
+
+    # Backup previous good cache (best-effort).
+    if CACHE_PATH.exists():
+        bak = CACHE_PATH.with_suffix(CACHE_PATH.suffix + ".bak")
+        try:
+            bak.write_bytes(CACHE_PATH.read_bytes())
+        except OSError as exc:
+            print(f"[WARN] Could not write cache backup: {exc}")
+
+    fd, tmp_name = tempfile.mkstemp(
+        dir=str(CACHE_PATH.parent), prefix=".city_cache.", suffix=".tmp"
+    )
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as f:
+            f.write(payload)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp_name, CACHE_PATH)
+    except Exception:
+        try:
+            os.unlink(tmp_name)
+        except OSError:
+            pass
+        raise
     print(f"[INFO] Saved {len(city_cache)} locations to cache.")
 
 
@@ -210,7 +245,7 @@ def detect_financial_aid(description: str = "", name: str = "") -> dict:
     text = f"{name} {description}".lower()
 
     detected_types = []
-    for keyword in FINANCIAL_AID_KEYWORDS:
+    for keyword in FINANCIAL_AID_KEYWORDS_SET:
         if keyword in text:
             if "travel" in keyword:
                 if "travel" not in detected_types:
