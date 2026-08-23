@@ -1,8 +1,9 @@
-const { PrismaClient } = require('@prisma/client');
 const fs = require('fs');
 const path = require('path');
+const { createPrismaClient } = require('../utils/prisma');
 
-const prisma = new PrismaClient();
+// Prisma v7 requires a driver adapter — see scripts/utils/prisma.js
+const prisma = createPrismaClient();
 
 async function migrateData() {
   try {

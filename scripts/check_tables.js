@@ -1,5 +1,7 @@
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const { createPrismaClient } = require('./utils/prisma');
+
+// Prisma v7 requires a driver adapter — see scripts/utils/prisma.js
+const prisma = createPrismaClient();
 
 async function checkTables() {
   try {
