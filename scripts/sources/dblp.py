@@ -61,8 +61,9 @@ def _search_venues(query: str, max_results: int = 50) -> list[dict]:
                 "format": "xml",
                 "h": max_results,
             }
-            # Use client session for proper User-Agent header
-            response = client.get(DBLP_SEARCH_URL, params=params, timeout=15)
+            # Use client session with retry + exponential backoff
+            # (dblp rate-limits aggressive scrapers with HTTP 429)
+            response = client.get_with_retry(DBLP_SEARCH_URL, params=params, timeout=15)
             response.raise_for_status()
 
             root = ET.fromstring(response.content)
