@@ -21,6 +21,12 @@ function filterGrepResults(
     if (!line) return false;
     if (line.includes('node_modules')) return false;
     if (line.includes('.test.') || line.includes('.spec.') || line.includes('__tests__')) return false;
+
+    // Skip hidden tooling directories (.agents/, .claude/, .github/, ...)
+    // Bundled third-party scripts there are editor/agent assets,
+    // not application source code.
+    const filePath = line.split(':')[0];
+    if (filePath.startsWith('.')) return false;
     
     // Check allowlist (ensure files exist)
     if (opts?.allowlist) {
