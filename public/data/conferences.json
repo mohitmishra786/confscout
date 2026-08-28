@@ -1,20 +1,20 @@
 {
-  "lastUpdated": "2026-08-28T07:12:39.212963Z",
+  "lastUpdated": "2026-08-28T18:00:09.113072Z",
   "stats": {
-    "total": 1783,
-    "withOpenCFP": 125,
-    "withLocation": 1673,
+    "total": 1703,
+    "withOpenCFP": 127,
+    "withLocation": 1592,
     "byDomain": {
-        "cloud": 63,
+        "cloud": 56,
         "software": 77,
         "general": 1235,
         "mobile": 17,
         "web": 27,
-        "security": 65,
-        "data": 8,
+        "security": 43,
+        "data": 7,
         "devops": 5,
-        "ai": 103,
-        "academic": 176,
+        "ai": 89,
+        "academic": 140,
         "opensource": 7
     }
 },
@@ -749,8 +749,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "mobile",
         "subDomains": [],
@@ -1814,8 +1814,8 @@
         "source": "developers.events",
         "twitter": "@code_europe",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -2130,8 +2130,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -2333,8 +2333,8 @@
         "source": "developers.events",
         "twitter": "@@dotaiconf",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -2387,8 +2387,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "cloud",
         "subDomains": [],
@@ -2716,8 +2716,8 @@
         "source": "developers.events",
         "twitter": "@dotJS",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -3313,8 +3313,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -3516,8 +3516,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "software",
         "subDomains": [],
@@ -5219,8 +5219,8 @@
         "source": "developers.events",
         "twitter": "@APIdaysGlobal",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "software",
         "subDomains": [],
@@ -5273,8 +5273,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -5573,8 +5573,8 @@
         "source": "developers.events",
         "twitter": "@btcplusplus",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -6084,6 +6084,31 @@
         "id": "4e8fab2b6491"
     },
     {
+        "name": "KCD Argentina",
+        "url": "https://ocgroups.dev/cncf/group/6vnv695",
+        "startDate": "2026-10-03",
+        "endDate": "2026-10-03",
+        "location": {
+            "city": "Buenos Aires",
+            "country": "Argentina",
+            "raw": "Buenos Aires (Argentina)",
+            "lat": -34.6037,
+            "lng": -58.3816
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/kubernetes-community-days-argentina-2026/",
+            "endDate": "2026-08-29",
+            "daysRemaining": 0,
+            "status": "closed"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "20728436a2b5"
+    },
+    {
         "name": "Offensive AI Con",
         "url": "https://www.offensiveaicon.com",
         "startDate": "2026-10-04",
@@ -6571,8 +6596,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -6648,8 +6673,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -7513,8 +7538,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -7843,8 +7868,8 @@
         "source": "developers.events",
         "twitter": "@xopsconference",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -7945,29 +7970,6 @@
         "id": "ea86caaa412f"
     },
     {
-        "name": "IEEE International Symposium on Mixed and Augmented Reality 2026 (ISMAR)",
-        "url": "https://ismar.net",
-        "startDate": "2026-10-15",
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "TBD",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://ismar.net",
-            "endDate": null
-        },
-        "domain": "academic",
-        "tags": [],
-        "source": "ieee",
-        "subDomains": [],
-        "id": "631028a0669a"
-    },
-    {
         "name": "IEEE/RSJ International Conference on Intelligent Robots and Systems 2026 (IROS)",
         "url": "https://www.ieee-ras.org/conferences-workshops",
         "startDate": "2026-10-15",
@@ -8012,6 +8014,29 @@
         "source": "ieee",
         "subDomains": [],
         "id": "f24324455fa6"
+    },
+    {
+        "name": "IEEE International Symposium on Mixed and Augmented Reality 2026 (ISMAR)",
+        "url": "https://ismar.net",
+        "startDate": "2026-10-15",
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "TBD",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://ismar.net",
+            "endDate": null
+        },
+        "domain": "academic",
+        "tags": [],
+        "source": "ieee",
+        "subDomains": [],
+        "id": "631028a0669a"
     },
     {
         "name": "ACM Conference on Computer-Supported Cooperative Work 2026",
@@ -8597,8 +8622,8 @@
         "source": "developers.events",
         "twitter": "@Novelticsgroup",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "ai",
         "subDomains": [
@@ -8782,8 +8807,8 @@
         "source": "developers.events",
         "twitter": "@jfrog",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -8860,8 +8885,8 @@
         "source": "developers.events",
         "twitter": "@Testcon",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -9061,8 +9086,8 @@
         "source": "developers.events",
         "twitter": "@cityjsconf",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -9264,8 +9289,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -9291,8 +9316,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "devops",
         "subDomains": [
@@ -9474,8 +9499,8 @@
         "source": "developers.events",
         "twitter": "@mauiday",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -9783,6 +9808,29 @@
         "id": "e1ef4c8fb226"
     },
     {
+        "name": "DevFest Panam\u00e1 2026",
+        "url": "https://gdg.community.dev/events/details/google-gdg-panama-presents-devfest-panama-2026",
+        "startDate": "2026-10-24",
+        "endDate": "2026-10-24",
+        "location": {
+            "city": "Panama City",
+            "country": "Panama",
+            "raw": "Panama City (Panama)"
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/devfest-panama-2026/",
+            "endDate": "2026-09-06",
+            "daysRemaining": 8,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "7da0a52e030d"
+    },
+    {
         "name": "DevFest Callao 2026",
         "url": "https://gdg.community.dev/events/details/google-gdg-callao-presents-devfest-callao-2026/",
         "startDate": "2026-10-24",
@@ -9972,8 +10020,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "academic",
         "subDomains": [],
@@ -10249,8 +10297,8 @@
         "source": "developers.events",
         "twitter": "@APIdaysGlobal",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "software",
         "subDomains": [],
@@ -10328,8 +10376,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -10408,8 +10456,8 @@
         "source": "developers.events",
         "twitter": "@lambda_world",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -10513,8 +10561,8 @@
         "source": "developers.events",
         "twitter": "@WeyWeyWeb",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "web",
         "subDomains": [],
@@ -10999,8 +11047,8 @@
         "source": "developers.events",
         "twitter": "@nullcon",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -11095,8 +11143,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -11124,8 +11172,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -11302,8 +11350,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -11361,29 +11409,6 @@
         "id": "345cb995195d"
     },
     {
-        "name": "KCD Budapest 2026",
-        "url": "https://kcdbudapest.hu",
-        "startDate": "2026-11-04",
-        "endDate": "2026-11-04",
-        "location": {
-            "city": "Budapest",
-            "country": "Hungary",
-            "raw": "Budapest (Hungary)"
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://sessionize.com/kcd-budapest-2026",
-            "endDate": "2026-06-20",
-            "daysRemaining": -70,
-            "status": "closed"
-        },
-        "source": "developers.events",
-        "domain": "general",
-        "subDomains": [],
-        "tags": [],
-        "id": "1efd5ca71d39"
-    },
-    {
         "name": "2026 BSIDES Columbus",
         "url": "https://www.bsidescolumbus.com/",
         "startDate": "2026-11-04",
@@ -11432,6 +11457,29 @@
         "subDomains": [],
         "tags": [],
         "id": "d2d5da8203f2"
+    },
+    {
+        "name": "KCD Budapest 2026",
+        "url": "https://kcdbudapest.hu",
+        "startDate": "2026-11-04",
+        "endDate": "2026-11-04",
+        "location": {
+            "city": "Budapest",
+            "country": "Hungary",
+            "raw": "Budapest (Hungary)"
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/kcd-budapest-2026",
+            "endDate": "2026-08-29",
+            "daysRemaining": 0,
+            "status": "closed"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "1efd5ca71d39"
     },
     {
         "name": "BarCamp RD 2026",
@@ -11648,8 +11696,8 @@
         "source": "developers.events",
         "twitter": "@btcplusplus",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "security",
         "subDomains": [],
@@ -11723,8 +11771,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -12299,8 +12347,8 @@
         "source": "developers.events",
         "twitter": "@PortoTechHub",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -12431,8 +12479,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -12536,8 +12584,8 @@
         "source": "developers.events",
         "twitter": "@tokyotestfest",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -13118,8 +13166,8 @@
         "source": "developers.events",
         "twitter": "@JSNation",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -13147,8 +13195,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "software",
         "subDomains": [],
@@ -13226,8 +13274,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "software",
         "subDomains": [],
@@ -13256,8 +13304,8 @@
         "source": "developers.events",
         "twitter": "@AICodingSummit",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -13285,8 +13333,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -13314,8 +13362,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "cloud",
         "subDomains": [],
@@ -13410,8 +13458,8 @@
         "source": "developers.events",
         "twitter": "@ReactSummit",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "web",
         "subDomains": [],
@@ -13692,8 +13740,8 @@
         "source": "developers.events",
         "twitter": "@Chur_Conf",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -14026,8 +14074,8 @@
         "source": "developers.events",
         "twitter": "@xopsconference",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -14459,8 +14507,8 @@
         "source": "developers.events",
         "twitter": "@xtremeaiconf",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -14639,8 +14687,8 @@
         "source": "developers.events",
         "twitter": "@BigDataConfEU",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -14668,8 +14716,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "software",
         "subDomains": [],
@@ -14869,8 +14917,8 @@
         "source": "developers.events",
         "twitter": "@wpninjasummit",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -15138,8 +15186,8 @@
         "source": "developers.events",
         "twitter": "@APIdaysGlobal",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "software",
         "subDomains": [],
@@ -15405,8 +15453,8 @@
         "source": "developers.events",
         "twitter": "@reactdayberlin",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "web",
         "subDomains": [],
@@ -15487,8 +15535,8 @@
         "source": "developers.events",
         "twitter": "@AICodingSummit",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -15541,8 +15589,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -15658,8 +15706,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -15765,8 +15813,8 @@
         "source": "developers.events",
         "twitter": "@droidcon",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "mobile",
         "subDomains": [],
@@ -15964,8 +16012,8 @@
         "source": "developers.events",
         "twitter": "@AIDevConf",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "software",
         "subDomains": [],
@@ -16425,6 +16473,31 @@
 ],
     "March 2027": [
     {
+        "name": "JavaLand",
+        "url": "https://www.javaland.eu/en/home/",
+        "startDate": "2027-03-02",
+        "endDate": "2027-03-04",
+        "location": {
+            "city": "Rust",
+            "country": "Germany",
+            "raw": "Rust (Germany)",
+            "lat": 51.1657,
+            "lng": 10.4515
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://www.javaland.eu/en/speaking/",
+            "endDate": "2026-09-14",
+            "daysRemaining": 16,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "31d5a99e5b52"
+    },
+    {
         "name": "INTED",
         "url": "https://iated.org/inted",
         "startDate": "2027-03-09",
@@ -16829,28 +16902,6 @@
 ],
     "TBD": [
     {
-        "name": "Artificial Intelligence and Cloud Computing Conference (AICCC)",
-        "url": "https://dblp.org/db/conf/aiccc/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "ai",
-        "source": "dblp",
-        "subDomains": [
-            "cloud"
-        ],
-        "tags": [],
-        "id": "3996ea840681"
-    },
-    {
         "name": "International Conference on Computer Games (CGAMES)",
         "url": "https://dblp.org/db/conf/cgames/",
         "startDate": null,
@@ -16866,9 +16917,6 @@
         "cfp": null,
         "domain": "academic",
         "source": "dblp",
-        "sources": [
-            "dblp"
-        ],
         "subDomains": [],
         "tags": [],
         "id": "72a902ab6043"
@@ -17112,9 +17160,6 @@
         "cfp": null,
         "domain": "ai",
         "source": "dblp",
-        "sources": [
-            "dblp"
-        ],
         "subDomains": [
             "academic"
         ],
@@ -17378,329 +17423,6 @@
         "id": "1cd16c02332e"
     },
     {
-        "name": "International Conference on Database and Expert Systems Applications (DEXA)",
-        "url": "https://dblp.org/db/conf/dexa/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "subDomains": [
-            "data"
-        ],
-        "tags": [],
-        "id": "3456ccce6ea1"
-    },
-    {
-        "name": "International Conference on Data Science, E-Learning and Information Systems (DATA)",
-        "url": "https://dblp.org/db/conf/data2/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "sources": [
-            "dblp"
-        ],
-        "subDomains": [
-            "ai"
-        ],
-        "tags": [],
-        "id": "23b73e54d446"
-    },
-    {
-        "name": "International Conference on Cybersecurity, Situational Awareness and Social Media (Cyber Science)",
-        "url": "https://dblp.org/db/conf/cybersa/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "security",
-        "source": "dblp",
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "1f0486809e1c"
-    },
-    {
-        "name": "International Conference on Advances in Computing and Data Sciences (ICACDS)",
-        "url": "https://dblp.org/db/conf/icacds/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "sources": [
-            "dblp"
-        ],
-        "subDomains": [
-            "ai"
-        ],
-        "tags": [],
-        "id": "6e133ba75e2c"
-    },
-    {
-        "name": "International Conference on Big Data Science and Engineering (BigDataSE)",
-        "url": "https://dblp.org/db/conf/bigdatase/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "sources": [
-            "dblp"
-        ],
-        "subDomains": [
-            "ai"
-        ],
-        "tags": [],
-        "id": "e413986681a3"
-    },
-    {
-        "name": "International Conference on Conceptual Modeling (ER)",
-        "url": "https://dblp.org/db/conf/er/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "subDomains": [],
-        "tags": [],
-        "id": "382a5687d1c7"
-    },
-    {
-        "name": "International Conference on Dynamic Data-Driven Environmental Systems Science (DyDESS)",
-        "url": "https://dblp.org/db/conf/dydess/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "subDomains": [],
-        "tags": [],
-        "id": "eaa82b99cf37"
-    },
-    {
-        "name": "International Conference on Information Technology, Data Science, and Optimization (I-DO)",
-        "url": "https://dblp.org/db/conf/i-do/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "subDomains": [
-            "ai"
-        ],
-        "tags": [],
-        "id": "1736224f5742"
-    },
-    {
-        "name": "International Conference on Intelligent Data Science Technologies and Applications (IDSTA)",
-        "url": "https://dblp.org/db/conf/idsta/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "subDomains": [
-            "ai"
-        ],
-        "tags": [],
-        "id": "f8b93dda299e"
-    },
-    {
-        "name": "International Conference on Cloud Computing and Big Data (CloudCom-Asia)",
-        "url": "https://dblp.org/db/conf/cloudcom-asia/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "sources": [
-            "dblp"
-        ],
-        "subDomains": [
-            "cloud"
-        ],
-        "tags": [],
-        "id": "dc27bf6c1caf"
-    },
-    {
-        "name": "International Conference on Internet of Things, Data, and Cloud Computing (ICC)",
-        "url": "https://dblp.org/db/conf/iotdcc/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "sources": [
-            "dblp"
-        ],
-        "subDomains": [
-            "cloud"
-        ],
-        "tags": [],
-        "id": "bca6822e40b4"
-    },
-    {
-        "name": "International Conference on Cloud and Autonomic Computing (ICCAC)",
-        "url": "https://dblp.org/db/conf/iccac/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "sources": [
-            "dblp"
-        ],
-        "subDomains": [
-            "cloud"
-        ],
-        "tags": [],
-        "id": "c0220f266f80"
-    },
-    {
-        "name": "International Conference on P2P, Parallel, Grid, Cloud and Internet Computing (3PGCIC)",
-        "url": "https://dblp.org/db/conf/3pgcic/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "subDomains": [
-            "cloud"
-        ],
-        "tags": [],
-        "id": "1da9626cae7e"
-    },
-    {
-        "name": "International Conferences on Artificial Intelligence, Information Processing and Cloud Computing (AIIPCC)",
-        "url": "https://dblp.org/db/conf/aiipcc/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "ai",
-        "source": "dblp",
-        "subDomains": [
-            "cloud",
-            "academic"
-        ],
-        "tags": [],
-        "id": "9611ab562803"
-    },
-    {
         "name": "International Joint Conferences on Computer, Information, and Systems Sciences, and Engineering (CISSE)",
         "url": "https://dblp.org/db/conf/cisse/",
         "startDate": null,
@@ -17875,48 +17597,6 @@
         "id": "23da1c90b80a"
     },
     {
-        "name": "European Conference on Parallel Processing (Euro-Par)",
-        "url": "https://dblp.org/db/conf/europar/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "subDomains": [],
-        "tags": [],
-        "id": "84c4fdccf386"
-    },
-    {
-        "name": "European Conference on Service-Oriented and Cloud Computing (ESOCC)",
-        "url": "https://dblp.org/db/conf/esocc/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "cloud",
-        "source": "dblp",
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "1be400152aca"
-    },
-    {
         "name": "AAAI Conference on Artificial Intelligence and Interactive Digital Entertainment Conference (AIIDE)",
         "url": "https://dblp.org/db/conf/aiide/",
         "startDate": null,
@@ -18050,54 +17730,6 @@
         "id": "c42b2ce8e54f"
     },
     {
-        "name": "IEEE International Conference on Data Science and Data Intensive Systems (DSDIS)",
-        "url": "https://dblp.org/db/conf/dsdis/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "sources": [
-            "dblp"
-        ],
-        "subDomains": [
-            "ai"
-        ],
-        "tags": [],
-        "id": "79d6d5a83d2e"
-    },
-    {
-        "name": "IEEE International Conference on Mobile Cloud Computing, Services, and Engineering (MobileCloud)",
-        "url": "https://dblp.org/db/conf/mobilecloud/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "subDomains": [
-            "mobile",
-            "cloud"
-        ],
-        "tags": [],
-        "id": "5706e886a2be"
-    },
-    {
         "name": "Austrian Conference on Artificial Intelligence (\u00d6GAI)",
         "url": "https://dblp.org/db/conf/ogai/",
         "startDate": null,
@@ -18210,283 +17842,6 @@
         ],
         "tags": [],
         "id": "cfcd0e65ad4f"
-    },
-    {
-        "name": "International Symposium on Human Aspects of Information Security and Assurance (HAISA)",
-        "url": "https://dblp.org/db/conf/haisa/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "security",
-        "source": "dblp",
-        "sources": [
-            "dblp"
-        ],
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "11b12db6fffb"
-    },
-    {
-        "name": "International Symposium for ICS & SCADA Cyber Security Research (ICS-CSR)",
-        "url": "https://dblp.org/db/conf/ics-csr/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "security",
-        "source": "dblp",
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "17dd5a536fb3"
-    },
-    {
-        "name": "International Symposium on Advanced Security on Software and Systems (ASSS)",
-        "url": "https://dblp.org/db/conf/asss/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "security",
-        "source": "dblp",
-        "sources": [
-            "dblp"
-        ],
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "35d1fa20b6bb"
-    },
-    {
-        "name": "International Symposium on Biometrics and Security Technologies (ISBAST)",
-        "url": "https://dblp.org/db/conf/isbast/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "security",
-        "source": "dblp",
-        "sources": [
-            "dblp"
-        ],
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "373d1653d6bb"
-    },
-    {
-        "name": "International Symposium on Cyberspace Safety and Security (CSS)",
-        "url": "https://dblp.org/db/conf/css/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "security",
-        "source": "dblp",
-        "sources": [
-            "dblp"
-        ],
-        "subDomains": [
-            "web",
-            "academic"
-        ],
-        "tags": [],
-        "id": "e51a42d0b2e3"
-    },
-    {
-        "name": "International Symposium on High-Performance Parallel Distributed Computing (HPDC)",
-        "url": "https://dblp.org/db/conf/hpdc/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "subDomains": [],
-        "tags": [],
-        "id": "f7cc4b5e47eb"
-    },
-    {
-        "name": "International Symposium on Mobile Internet Security (MobiSec)",
-        "url": "https://dblp.org/db/conf/mobisec2/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "security",
-        "source": "dblp",
-        "subDomains": [
-            "mobile",
-            "academic"
-        ],
-        "tags": [],
-        "id": "6ba917c62080"
-    },
-    {
-        "name": "International Symposium on Security and Privacy in Social Networks and Big Data (SocialSec)",
-        "url": "https://dblp.org/db/conf/socialsec/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "security",
-        "source": "dblp",
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "78e289a45c0f"
-    },
-    {
-        "name": "International Symposium on Security in Computing and Communications (SSCC)",
-        "url": "https://dblp.org/db/conf/sscc/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "security",
-        "source": "dblp",
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "e0a5a28ff051"
-    },
-    {
-        "name": "International Symposium on System Security, Safety, and Reliability (ISSSR)",
-        "url": "https://dblp.org/db/conf/isssr/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "security",
-        "source": "dblp",
-        "subDomains": [
-            "devops",
-            "academic"
-        ],
-        "tags": [],
-        "id": "06219982b4b6"
-    },
-    {
-        "name": "International Symposium on Statistical Learning and Data Sciences (SLDS)",
-        "url": "https://dblp.org/db/conf/slds/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "ai",
-        "source": "dblp",
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "03d45152e442"
-    },
-    {
-        "name": "International Symposium on Algorithmic Aspects of Cloud Computing (ALGOCLOUD)",
-        "url": "https://dblp.org/db/conf/algocloud/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "cloud",
-        "source": "dblp",
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "2792efe00c35"
     },
     {
         "name": "International Workshop on Artificial Intelligence for Knowledge Management, Energy, and Sustainability (AI4KMES)",
@@ -18621,73 +17976,6 @@
         ],
         "tags": [],
         "id": "3b3fd4f3d037"
-    },
-    {
-        "name": "International Workshop on Data Science for Macro-Modeling (DSMM)",
-        "url": "https://dblp.org/db/conf/dsmm-ws/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "ai",
-        "source": "dblp",
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "2419c153bb3f"
-    },
-    {
-        "name": "International Workshop on Cloud Computing Platforms (CloudCP)",
-        "url": "https://dblp.org/db/conf/cloudcp/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "cloud",
-        "source": "dblp",
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "f18077cdbafa"
-    },
-    {
-        "name": "International Workshop on Security in Blockchain and Cloud Computing (SBC)",
-        "url": "https://dblp.org/db/conf/asiaccsscc/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "security",
-        "source": "dblp",
-        "subDomains": [
-            "cloud",
-            "academic"
-        ],
-        "tags": [],
-        "id": "7ab351305179"
     },
     {
         "name": "Asia Conference on Artificial Intelligence, Machine Learning and Robotics (AIMLR)",
@@ -19023,29 +18311,6 @@
         "id": "a83ec73eac46"
     },
     {
-        "name": "IEEE/ACIS International Conference on Big Data, Cloud Computing, and Data Science (BCD)",
-        "url": "https://dblp.org/db/conf/bcd/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "subDomains": [
-            "ai",
-            "cloud"
-        ],
-        "tags": [],
-        "id": "8803a767db49"
-    },
-    {
         "name": "IFIP International Conference on Artificial Intelligence (IFIP AI)",
         "url": "https://dblp.org/db/conf/ifipai/",
         "startDate": null,
@@ -19113,28 +18378,6 @@
         ],
         "tags": [],
         "id": "8903cbdc4d09"
-    },
-    {
-        "name": "USENIX Symposium on Vehicle Security and Privacy (VehicleSec)",
-        "url": "https://dblp.org/db/conf/vehiclesec/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "security",
-        "source": "dblp",
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "b63138eefbe6"
     },
     {
         "name": "Conference on Machine Learning and Systems (MLSys)",
@@ -19792,1001 +19035,6 @@
         "id": "7dc3b94c0faa"
     },
     {
-        "name": "IEEE Symposium on Visualization for Cyber Security (VizSec)",
-        "url": "https://dblp.org/db/conf/vizsec/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "subDomains": [
-            "security"
-        ],
-        "tags": [],
-        "id": "a20f43a92127"
-    },
-    {
-        "name": "Symposium On Usable Privacy and Security (SOUPS)",
-        "url": "https://dblp.org/db/conf/soups/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "security",
-        "source": "dblp",
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "2125d08634e4"
-    },
-    {
-        "name": "USENIX Security Symposium",
-        "url": "https://dblp.org/db/conf/uss/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "security",
-        "source": "dblp",
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "e388c0a51a7b"
-    },
-    {
-        "name": "ACM International Symposium on QoS and Security for Wireless and Mobile Networks (Q2SWinet)",
-        "url": "https://dblp.org/db/conf/q2swinet/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "subDomains": [
-            "security",
-            "mobile"
-        ],
-        "tags": [],
-        "id": "7d0189032b05"
-    },
-    {
-        "name": "IEEE Computer Security Foundations Symposium (CSF)",
-        "url": "https://dblp.org/db/conf/csfw/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "subDomains": [
-            "security"
-        ],
-        "tags": [],
-        "id": "8ec0c5622b26"
-    },
-    {
-        "name": "IEEE International Symposium on Hardware Oriented Security and Trust (HOST)",
-        "url": "https://dblp.org/db/conf/host/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "subDomains": [
-            "security"
-        ],
-        "tags": [],
-        "id": "dd37254d18f1"
-    },
-    {
-        "name": "IEEE International Symposium on Safety, Security, and Rescue Robotics (SSRR)",
-        "url": "https://dblp.org/db/conf/ssrr/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "subDomains": [
-            "security"
-        ],
-        "tags": [],
-        "id": "32758dba4362"
-    },
-    {
-        "name": "OnTheMove Federated Conferences & Workshops (OTM)",
-        "url": "https://dblp.org/db/conf/otm/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "subDomains": [],
-        "tags": [],
-        "id": "17a6f3e4e093"
-    },
-    {
-        "name": "Symposium on the Science of Security (HotSoS)",
-        "url": "https://dblp.org/db/conf/hotsos/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "security",
-        "source": "dblp",
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "2f742d0eba4c"
-    },
-    {
-        "name": "ACM International Joint Conference on Pervasive and Ubiquitous Computing (UbiComp)",
-        "url": "https://dblp.org/db/conf/huc/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "subDomains": [],
-        "tags": [],
-        "id": "da7b664db0af"
-    },
-    {
-        "name": "Asian Hardware-Oriented Security and Trust Symposium (AsianHOST)",
-        "url": "https://dblp.org/db/conf/asianhost/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "security",
-        "source": "dblp",
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "d83d32a61b13"
-    },
-    {
-        "name": "Cyber Security Cars Symposium (CSCS)",
-        "url": "https://dblp.org/db/conf/cscs2/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "security",
-        "source": "dblp",
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "f228d2dc78d9"
-    },
-    {
-        "name": "European Symposium on Research in Computer Security (ESORICS)",
-        "url": "https://dblp.org/db/conf/esorics/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "security",
-        "source": "dblp",
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "0d4d6a8ff713"
-    },
-    {
-        "name": "European Symposium on Security and Privacy (EuroS&P)",
-        "url": "https://dblp.org/db/conf/eurosp/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "security",
-        "source": "dblp",
-        "sources": [
-            "dblp"
-        ],
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "ee8794a1a26e"
-    },
-    {
-        "name": "IEEE Symposium on Computational Intelligence for Security and Defense Applications (CISDA)",
-        "url": "https://dblp.org/db/conf/cisda/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "sources": [
-            "dblp"
-        ],
-        "subDomains": [
-            "security"
-        ],
-        "tags": [],
-        "id": "f2d20ec0e6bf"
-    },
-    {
-        "name": "International Doctoral Symposium on Applied Computation and Security Systems (ACSS)",
-        "url": "https://dblp.org/db/conf/acss/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "security",
-        "source": "dblp",
-        "subDomains": [
-            "web",
-            "academic"
-        ],
-        "tags": [],
-        "id": "83df9c6a60d5"
-    },
-    {
-        "name": "Network and Distributed System Security Symposium (NDSS)",
-        "url": "https://dblp.org/db/conf/ndss/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "security",
-        "source": "dblp",
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "68cfef846330"
-    },
-    {
-        "name": "Northeast ACM Symposium on Personal Computer Security (PCS)",
-        "url": "https://dblp.org/db/conf/pcsec/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "subDomains": [
-            "security"
-        ],
-        "tags": [],
-        "id": "914da32f509f"
-    },
-    {
-        "name": "Joint International Conference on Data Science & Management of Data (COMAD)",
-        "url": "https://dblp.org/db/conf/comad/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "subDomains": [
-            "ai"
-        ],
-        "tags": [],
-        "id": "1decbefb51af"
-    },
-    {
-        "name": "Workshop on Data Science with Human-in-the-Loop (DaSH)",
-        "url": "https://dblp.org/db/conf/dash/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "ai",
-        "source": "dblp",
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "ff080a6afe1a"
-    },
-    {
-        "name": "Workshop on Data Science Techniques for Datasets on Mental and Neurodegenerative Disorders (DSTNDS)",
-        "url": "https://dblp.org/db/conf/dstnds/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "ai",
-        "source": "dblp",
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "3dd1edec7149"
-    },
-    {
-        "name": "Italian Conference on Big Data and Data Science (itaDATA)",
-        "url": "https://dblp.org/db/conf/itadata/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "ai",
-        "source": "dblp",
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "2959cbebae2d"
-    },
-    {
-        "name": "SIGHUM Workshop on Language Technology for Cultural Heritage, Social Sciences, and Humanities (LaTeCH)",
-        "url": "https://dblp.org/db/conf/latech/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "subDomains": [],
-        "tags": [],
-        "id": "a9d646dfd3f8"
-    },
-    {
-        "name": "ACM IKDD Conference on Data Science (CODS)",
-        "url": "https://dblp.org/db/conf/cods/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "subDomains": [
-            "ai"
-        ],
-        "tags": [],
-        "id": "5048b5f08463"
-    },
-    {
-        "name": "ACM SIGSPATIAL International Workshop on Polar Data Science (PoIDS)",
-        "url": "https://dblp.org/db/conf/poids/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "subDomains": [
-            "ai"
-        ],
-        "tags": [],
-        "id": "0e29f7d352f7"
-    },
-    {
-        "name": "Chinese Academy of Sciences Symposium on Data Mining and Knowledge Management (CASDMKM)",
-        "url": "https://dblp.org/db/conf/casdmkm/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "subDomains": [],
-        "tags": [],
-        "id": "ade0a93a99fc"
-    },
-    {
-        "name": "Data Integration in the Life Sciences (DILS)",
-        "url": "https://dblp.org/db/conf/dils/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "source": "dblp",
-        "subDomains": [],
-        "tags": [],
-        "id": "32486fed80f2"
-    },
-    {
-        "name": "Data Science Workshop (DSW)",
-        "url": "https://dblp.org/db/conf/dsw/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "ai",
-        "source": "dblp",
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "e74ce2f46ee1"
-    },
-    {
-        "name": "Foundations of Data Science Conference (FODS)",
-        "url": "https://dblp.org/db/conf/fods/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "ai",
-        "source": "dblp",
-        "subDomains": [],
-        "tags": [],
-        "id": "9ea9931891cc"
-    },
-    {
-        "name": "International Council of Scientific Unions Committee on Data for Science and Technology (CODATA )",
-        "url": "https://dblp.org/db/conf/codata/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "source": "dblp",
-        "subDomains": [],
-        "tags": [],
-        "id": "9e8f75542418"
-    },
-    {
-        "name": "Modern Data Science Technologies Workshop (MoDaST)",
-        "url": "https://dblp.org/db/conf/modast/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "ai",
-        "source": "dblp",
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "069f2d4c87d3"
-    },
-    {
-        "name": "Modern Machine Learning Technologies and Data Science Workshop (MoMLeT)",
-        "url": "https://dblp.org/db/conf/momlet/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "ai",
-        "source": "dblp",
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "8bfc03fc3579"
-    },
-    {
-        "name": "Sino-foreign-interchange Workshop on Intelligent Science and Intelligent Data Engineering (IScIDE)",
-        "url": "https://dblp.org/db/conf/iscide/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "data",
-        "source": "dblp",
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "95a4f8727a29"
-    },
-    {
-        "name": "Southwest Data Science Conference (SDSC)",
-        "url": "https://dblp.org/db/conf/sdsc/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "ai",
-        "source": "dblp",
-        "subDomains": [],
-        "tags": [],
-        "id": "437ac625ee50"
-    },
-    {
-        "name": "Swiss Conference on Data Science (SDS)",
-        "url": "https://dblp.org/db/conf/sds2/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "ai",
-        "source": "dblp",
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "e73f8709b22e"
-    },
-    {
-        "name": "Cloud Computing (CloudComp)",
-        "url": "https://dblp.org/db/conf/cloudcomp/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "cloud",
-        "source": "dblp",
-        "subDomains": [],
-        "tags": [],
-        "id": "3c0ce6b6312a"
-    },
-    {
-        "name": "ACM Symposium on Cloud Computing (SoCC)",
-        "url": "https://dblp.org/db/conf/cloud/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "subDomains": [
-            "cloud"
-        ],
-        "tags": [],
-        "id": "8e2f9a6dacf2"
-    },
-    {
-        "name": "Green, Pervasive, and Cloud Computing (GPC)",
-        "url": "https://dblp.org/db/conf/gpc/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "cloud",
-        "source": "dblp",
-        "subDomains": [],
-        "tags": [],
-        "id": "311e390cc41e"
-    },
-    {
-        "name": "IEEE/ACM International Symposium on Cluster, Cloud and Internet Computing (CCGRID)",
-        "url": "https://dblp.org/db/conf/ccgrid/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "subDomains": [
-            "cloud"
-        ],
-        "tags": [],
-        "id": "fa2f99079408"
-    },
-    {
-        "name": "International Middleware Conference (Middleware)",
-        "url": "https://dblp.org/db/conf/middleware/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "source": "dblp",
-        "subDomains": [],
-        "tags": [],
-        "id": "3d711117ca04"
-    },
-    {
-        "name": "ACM Cloud and Autonomic Computing Conference (CAC)",
-        "url": "https://dblp.org/db/conf/cac/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "cloud",
-        "source": "dblp",
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "9e664d3e657c"
-    },
-    {
-        "name": "ACM SIGCOMM Conference (SIGCOMM)",
-        "url": "https://dblp.org/db/conf/sigcomm/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "subDomains": [],
-        "tags": [],
-        "id": "2a26f9114a4c"
-    },
-    {
-        "name": "Annual ACM Conference on Computer and Communications Security (CCS)",
-        "url": "https://dblp.org/db/conf/ccs/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "subDomains": [
-            "security"
-        ],
-        "tags": [],
-        "id": "2d8a70b52e33"
-    },
-    {
-        "name": "Cloud Computing Security Workshop (CCSW)",
-        "url": "https://dblp.org/db/conf/ccsw-ws/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "security",
-        "source": "dblp",
-        "subDomains": [
-            "cloud",
-            "academic"
-        ],
-        "tags": [],
-        "id": "a48931ad3e01"
-    },
-    {
-        "name": "Conference on Cloud Computing & Big Data (JCC&BD)",
-        "url": "https://dblp.org/db/conf/jcc-bd/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "cloud",
-        "source": "dblp",
-        "subDomains": [
-            "academic"
-        ],
-        "tags": [],
-        "id": "c100b11c444d"
-    },
-    {
-        "name": "Conference on Emerging Network Experiment and Technology (CoNEXT)",
-        "url": "https://dblp.org/db/conf/conext/",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "source": "dblp",
-        "subDomains": [],
-        "tags": [],
-        "id": "41e6e33bf1a4"
-    },
-    {
         "name": "Forgot Login",
         "url": "https://www.papercall.io/signin",
         "startDate": null,
@@ -20853,6 +19101,26 @@
         "id": "7648cc02da05"
     },
     {
+        "name": "AICiViL  2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=189740&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "c5e646c08f8f"
+    },
+    {
         "name": "DMCIS 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201648&copyownerid=199698",
         "startDate": null,
@@ -20876,66 +19144,6 @@
         "id": "0df1fff97ef6"
     },
     {
-        "name": "IJGTT 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199977&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "849dff688c57"
-    },
-    {
-        "name": "AICiViL  2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=189740&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "c5e646c08f8f"
-    },
-    {
-        "name": "ISAIE 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201163&copyownerid=163220",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "63f5761e01e4"
-    },
-    {
         "name": "GRAPH-HOC 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192768&copyownerid=33993",
         "startDate": null,
@@ -20954,6 +19162,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "fd04dd619afa"
+    },
+    {
+        "name": "IJGTT 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199977&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "849dff688c57"
     },
     {
         "name": "IJE 2026",
@@ -20976,8 +19204,8 @@
         "id": "24dca02a080a"
     },
     {
-        "name": "Call for Papers: AIFORGE  2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202727&copyownerid=200007",
+        "name": "ISAIE 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201163&copyownerid=163220",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -20993,7 +19221,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "e8b59d61b2a8"
+        "id": "63f5761e01e4"
     },
     {
         "name": "DaKM 2026",
@@ -21016,8 +19244,8 @@
         "id": "94c02d86f14c"
     },
     {
-        "name": "CSITAI 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201167&copyownerid=33993",
+        "name": "Call for Papers: AIFORGE  2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202727&copyownerid=200007",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -21033,7 +19261,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "3261d995be4c"
+        "id": "e8b59d61b2a8"
     },
     {
         "name": "ICAICI 2026",
@@ -21054,46 +19282,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "2a50c9091063"
-    },
-    {
-        "name": "AIMCS 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195478&copyownerid=13149",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "cf83c41c4cf8"
-    },
-    {
-        "name": "ITE 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200044&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "d45ab6893bf4"
     },
     {
         "name": "PDCTA 2026",
@@ -21156,8 +19344,8 @@
         "id": "a1fba8db28bf"
     },
     {
-        "name": "ACINT 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201452&copyownerid=33993",
+        "name": "CSITAI 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201167&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -21173,7 +19361,47 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "434661139f48"
+        "id": "3261d995be4c"
+    },
+    {
+        "name": "AIMCS 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195478&copyownerid=13149",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "cf83c41c4cf8"
+    },
+    {
+        "name": "ITE 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200044&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "d45ab6893bf4"
     },
     {
         "name": "SIPP 2026",
@@ -21196,26 +19424,6 @@
         "id": "d1dfae4a0071"
     },
     {
-        "name": "IEEE ICEBE 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201183&copyownerid=199452",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "5de09746dc09"
-    },
-    {
         "name": "IWMEN 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192618&copyownerid=33993",
         "startDate": null,
@@ -21236,8 +19444,8 @@
         "id": "0afcdd14ba61"
     },
     {
-        "name": "MEAI 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200340&copyownerid=163220",
+        "name": "ACINT 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201452&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -21253,7 +19461,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "cf2e6253ca4e"
+        "id": "434661139f48"
     },
     {
         "name": "IJMVSC 2026",
@@ -21276,6 +19484,26 @@
         "id": "1bc1db1206e6"
     },
     {
+        "name": "IEEE ICEBE 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201183&copyownerid=199452",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "academic",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "5de09746dc09"
+    },
+    {
         "name": "IEEE-ICAICI 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=190816&copyownerid=182680",
         "startDate": null,
@@ -21296,26 +19524,6 @@
         "id": "bcbe7322239f"
     },
     {
-        "name": "MLAIJ 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199941&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "ai",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "4195fe8f7e62"
-    },
-    {
         "name": "NLPCL 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195149&copyownerid=33993",
         "startDate": null,
@@ -21334,6 +19542,46 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "e3b74d36b272"
+    },
+    {
+        "name": "MEAI 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200340&copyownerid=163220",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "cf2e6253ca4e"
+    },
+    {
+        "name": "MLAIJ 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199941&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "ai",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "4195fe8f7e62"
     },
     {
         "name": "CISAI 2026",
@@ -21439,26 +19687,6 @@
         "id": "404d1fbdd3d6"
     },
     {
-        "name": "IJFCST 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200313&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "d7cf8412e172"
-    },
-    {
         "name": "VLSIA  2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191434&copyownerid=46167",
         "startDate": null,
@@ -21497,26 +19725,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "031275e9424d"
-    },
-    {
-        "name": "ICCSEA 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201650&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "9e95f1b601a1"
     },
     {
         "name": "UBIC 2026",
@@ -21559,6 +19767,26 @@
         "id": "cb6918606cf6"
     },
     {
+        "name": "IJFCST 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200313&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "d7cf8412e172"
+    },
+    {
         "name": "AIIoT  2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191479&copyownerid=46167",
         "startDate": null,
@@ -21577,6 +19805,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "80cea587b371"
+    },
+    {
+        "name": "ICCSEA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201650&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "9e95f1b601a1"
     },
     {
         "name": "MATE 2026",
@@ -21599,26 +19847,6 @@
         "id": "4feba3382d70"
     },
     {
-        "name": "SCAI 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202539&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "15bb91c826d8"
-    },
-    {
         "name": "CSSE 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191990&copyownerid=46167",
         "startDate": null,
@@ -21639,26 +19867,6 @@
         "id": "7f43dbc37ede"
     },
     {
-        "name": "RTCA 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202573&copyownerid=199911",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "d724a33f43f0"
-    },
-    {
         "name": "CACIT 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192273&copyownerid=46167",
         "startDate": null,
@@ -21677,6 +19885,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "e9b2e32c646e"
+    },
+    {
+        "name": "SCAI 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202539&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "15bb91c826d8"
     },
     {
         "name": "AIFZ 2026",
@@ -21717,6 +19945,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "51827f1062fc"
+    },
+    {
+        "name": "RTCA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202573&copyownerid=199911",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "d724a33f43f0"
     },
     {
         "name": "SPPR 2026",
@@ -21879,46 +20127,6 @@
         "id": "acd51e39e4ee"
     },
     {
-        "name": "BIOSE 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201306&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "mobile",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "e3e2eb0bc4b1"
-    },
-    {
-        "name": "CSIA 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200354&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "7b87dcc454d9"
-    },
-    {
         "name": "IJNSA 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=190234&copyownerid=33993",
         "startDate": null,
@@ -21979,8 +20187,28 @@
         "id": "680d6ada8d41"
     },
     {
-        "name": "ITCSE 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202605&copyownerid=33993",
+        "name": "BIOSE 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201306&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "mobile",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "e3e2eb0bc4b1"
+    },
+    {
+        "name": "CSIA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200354&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -21996,7 +20224,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "70ecc38f004e"
+        "id": "7b87dcc454d9"
     },
     {
         "name": "CAIML  2026",
@@ -22037,6 +20265,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "596f75956fde"
+    },
+    {
+        "name": "ASOFT 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191553&copyownerid=46167",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "be58b31345ab"
     },
     {
         "name": "IJBB 2026",
@@ -22119,26 +20367,6 @@
         "id": "27c5cc187a5f"
     },
     {
-        "name": "ITEORY 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195487&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "38bb48db1d13"
-    },
-    {
         "name": "MLDS 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191741&copyownerid=46167",
         "startDate": null,
@@ -22159,8 +20387,8 @@
         "id": "f7d8f48c2307"
     },
     {
-        "name": "NLAI 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202479&copyownerid=33993",
+        "name": "ITEORY 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195487&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -22176,7 +20404,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "16f01cee165d"
+        "id": "38bb48db1d13"
     },
     {
         "name": "CRYPIS 2026",
@@ -22217,6 +20445,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "ac7389b3abf6"
+    },
+    {
+        "name": "NLAI 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202479&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "16f01cee165d"
     },
     {
         "name": "DTMN 2026",
@@ -22339,26 +20587,6 @@
         "id": "8fb6656a7058"
     },
     {
-        "name": "IJSCAI 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199700&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "a2aad9f980e7"
-    },
-    {
         "name": "AIMLM 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191658&copyownerid=182680",
         "startDate": null,
@@ -22399,6 +20627,26 @@
         "id": "a5ca45b20761"
     },
     {
+        "name": "IJSCAI 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199700&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "a2aad9f980e7"
+    },
+    {
         "name": "VSIP 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191732&copyownerid=13881",
         "startDate": null,
@@ -22417,26 +20665,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "4788b25a11a9"
-    },
-    {
-        "name": "AIAA 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202738&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "3621c50def43"
     },
     {
         "name": "ICMV 2026",
@@ -22499,8 +20727,8 @@
         "id": "409bcadc5ba7"
     },
     {
-        "name": "MLSC 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200215&copyownerid=182680",
+        "name": "AIAA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202738&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -22512,11 +20740,31 @@
         },
         "online": false,
         "cfp": null,
-        "domain": "ai",
+        "domain": "general",
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "d677a0306ebf"
+        "id": "3621c50def43"
+    },
+    {
+        "name": "CSEA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192039&copyownerid=46167",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "c9b658929cbf"
     },
     {
         "name": "BDNNDL 2026",
@@ -22597,26 +20845,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "00f0916df541"
-    },
-    {
-        "name": "CSEA 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192039&copyownerid=46167",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "c9b658929cbf"
     },
     {
         "name": "ACM WSSE 2026",
@@ -25453,6 +23681,9 @@
         "domain": "general",
         "tags": [],
         "source": "wikicfp",
+        "sources": [
+            "wikicfp"
+        ],
         "subDomains": [],
         "id": "c89900d5307d"
     },
@@ -25657,26 +23888,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "008a0d06bbf9"
-    },
-    {
-        "name": "ASOFT 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191553&copyownerid=46167",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "be58b31345ab"
     },
     {
         "name": "IJSPTM 2026",
@@ -29749,6 +27960,26 @@
         "id": "41e7b39a72a3"
     },
     {
+        "name": "ITCSE 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202605&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "70ecc38f004e"
+    },
+    {
         "name": "IEEEBigData-HealthcareData 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195266&copyownerid=198690",
         "startDate": null,
@@ -29787,6 +28018,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "014614fb3f0f"
+    },
+    {
+        "name": "WeST  2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191953&copyownerid=46167",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "114daab002f5"
     },
     {
         "name": "IEEE-EECCT 2026",
@@ -32399,26 +30650,6 @@
         "id": "598a4e8b7d00"
     },
     {
-        "name": "WeST  2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191953&copyownerid=46167",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "114daab002f5"
-    },
-    {
         "name": "IJMNCT 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192934&copyownerid=33993",
         "startDate": null,
@@ -32557,6 +30788,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "e353bc4648a8"
+    },
+    {
+        "name": "IEEE AIICRTA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195463&copyownerid=198789",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "academic",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "da21759715ee"
     },
     {
         "name": "IEEE BSS 2026",
@@ -32699,26 +30950,6 @@
         "id": "a2b256c0912a"
     },
     {
-        "name": "IEEE RISC 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194574&copyownerid=186441",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "2719cd0fbd3a"
-    },
-    {
         "name": "IEEE TPS 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194567&copyownerid=186441",
         "startDate": null,
@@ -32739,6 +30970,26 @@
         "id": "3868e55fe783"
     },
     {
+        "name": "IEEE RISC 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194574&copyownerid=186441",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "academic",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "2719cd0fbd3a"
+    },
+    {
         "name": "IJCIS 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200236&copyownerid=33993",
         "startDate": null,
@@ -32757,26 +31008,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "59f9f3e1aced"
-    },
-    {
-        "name": "IEEE AIICRTA 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195463&copyownerid=198789",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "da21759715ee"
     },
     {
         "name": "IWQPS 2026",
