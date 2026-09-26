@@ -1,15 +1,15 @@
 {
-  "lastUpdated": "2026-09-26T02:07:54.513723Z",
+  "lastUpdated": "2026-09-26T10:38:16.311713Z",
   "stats": {
-    "total": 1546,
-    "withOpenCFP": 115,
-    "withLocation": 1441,
+    "total": 1551,
+    "withOpenCFP": 120,
+    "withLocation": 1444,
     "byDomain": {
         "cloud": 48,
         "software": 50,
-        "general": 1193,
+        "general": 1197,
         "mobile": 12,
-        "security": 30,
+        "security": 31,
         "web": 24,
         "data": 8,
         "devops": 4,
@@ -8466,6 +8466,29 @@
         "id": "3b2400803801"
     },
     {
+        "name": "DevFest Dar Es Salaam 2026",
+        "url": "https://gdg.community.dev/events/details/google-gdg-dar-es-salaam-presents-devfest-dar-es-salaam-2026-kickoff-workshop/",
+        "startDate": "2026-11-07",
+        "endDate": "2026-11-07",
+        "location": {
+            "city": "Dar es Salaam",
+            "country": "Tanzania",
+            "raw": "Dar es Salaam (Tanzania)"
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/devfest-dar-es-salaam-2026",
+            "endDate": "2026-10-10",
+            "daysRemaining": 13,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "9ca5ed4ed05c"
+    },
+    {
         "name": "DevFest Jalingo 2026",
         "url": "https://gdg.community.dev/events/details/google-gdg-jalingo-presents-devfest-jalingo-2026/",
         "startDate": "2026-11-07",
@@ -11859,6 +11882,31 @@
         "id": "237b22173666"
     },
     {
+        "name": "Data Pulse 2026",
+        "url": "https://www.datapulseconf.com",
+        "startDate": "2026-11-26",
+        "endDate": "2026-11-26",
+        "location": {
+            "city": "Reading",
+            "country": "UK",
+            "raw": "Reading (UK)",
+            "lat": 55.3781,
+            "lng": -3.436
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/data-pulse-2026/",
+            "endDate": "2026-10-30",
+            "daysRemaining": 33,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "c57d1ea66b81"
+    },
+    {
         "name": "betterCode() Rust",
         "url": "https://rust.bettercode.eu",
         "startDate": "2026-11-26",
@@ -12054,6 +12102,31 @@
         "subDomains": [],
         "tags": [],
         "id": "02ea8f7bdbfa"
+    },
+    {
+        "name": "BSides Newcastle 2026",
+        "url": "https://bsidesnewcastle.org",
+        "startDate": "2026-11-28",
+        "endDate": "2026-11-28",
+        "location": {
+            "city": "Newcastle upon Tyne",
+            "country": "UK",
+            "raw": "Newcastle upon Tyne (UK)",
+            "lat": 55.3781,
+            "lng": -3.436
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/boncl2026/",
+            "endDate": "2026-10-23",
+            "daysRemaining": 26,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "security",
+        "subDomains": [],
+        "tags": [],
+        "id": "1ae680562e74"
     },
     {
         "name": "GambiConf 2026",
@@ -12782,6 +12855,31 @@
         "id": "6a738c109c86"
     },
     {
+        "name": "GDG Ahmedabad DevFest 2026",
+        "url": "https://devfest26.gdgahmedabad.com/",
+        "startDate": "2026-12-05",
+        "endDate": "2026-12-05",
+        "location": {
+            "city": "Ahmedabad",
+            "country": "India",
+            "raw": "Ahmedabad (India)",
+            "lat": 20.5937,
+            "lng": 78.9629
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/gdg-ahmedabad-devfest-2026/",
+            "endDate": "2026-10-20",
+            "daysRemaining": 23,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "5d37853246e3"
+    },
+    {
         "name": "HTMD Conference 2026",
         "url": "https://htmdcommunity.org",
         "startDate": "2026-12-05",
@@ -13331,6 +13429,29 @@
         "subDomains": [],
         "tags": [],
         "id": "7bd3253a4354"
+    },
+    {
+        "name": "Christmas Power Data Platform 2026",
+        "url": "https://christmaspowerdataplatform.com/",
+        "startDate": "2026-12-11",
+        "endDate": "2026-12-12",
+        "location": {
+            "city": "Online",
+            "country": "",
+            "raw": "Online"
+        },
+        "online": true,
+        "cfp": {
+            "url": "https://sessionize.com/christmas-power-data-platform-2026/",
+            "endDate": "2026-10-31",
+            "daysRemaining": 34,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "254628ac2061"
     },
     {
         "name": "GHI CON",
@@ -20339,66 +20460,6 @@
         "id": "4af06dfa784c"
     },
     {
-        "name": "NLP4CALL  2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195230&copyownerid=320",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "ai",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "6f71e90c382a"
-    },
-    {
-        "name": "SEMTEC  2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199836&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "4825498f9a74"
-    },
-    {
-        "name": "ASOFT 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191553&copyownerid=46167",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "be58b31345ab"
-    },
-    {
         "name": "NGNCT 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201716&copyownerid=33993",
         "startDate": null,
@@ -20439,6 +20500,26 @@
         "id": "e992aa0458a2"
     },
     {
+        "name": "ASOFT 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191553&copyownerid=46167",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "be58b31345ab"
+    },
+    {
         "name": "NATL 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191646&copyownerid=46167",
         "startDate": null,
@@ -20459,8 +20540,28 @@
         "id": "bd66a673ebb1"
     },
     {
-        "name": "KNLP 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202785&copyownerid=320",
+        "name": "SEMTEC  2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199836&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "4825498f9a74"
+    },
+    {
+        "name": "KNLP@SAC 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203406&copyownerid=320",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -20476,7 +20577,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "d4656f608c6c"
+        "id": "99c54edd4c42"
     },
     {
         "name": "IJSPTM 2026",
@@ -20499,8 +20600,8 @@
         "id": "3b4b74582409"
     },
     {
-        "name": "KNLP@SAC 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203406&copyownerid=320",
+        "name": "KNLP 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202785&copyownerid=320",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -20516,7 +20617,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "99c54edd4c42"
+        "id": "d4656f608c6c"
     },
     {
         "name": "NAACL  2027",
@@ -20697,6 +20798,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "9fe6100d057c"
+    },
+    {
+        "name": "NLP4CALL  2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195230&copyownerid=320",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "ai",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "6f71e90c382a"
     },
     {
         "name": "ISAI-NLP 2026",
