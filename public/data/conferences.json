@@ -1,12 +1,12 @@
 {
-  "lastUpdated": "2026-10-10T02:52:55.467022Z",
+  "lastUpdated": "2026-10-10T11:44:33.402206Z",
   "stats": {
-    "total": 1476,
-    "withOpenCFP": 110,
-    "withLocation": 1377,
+    "total": 1478,
+    "withOpenCFP": 111,
+    "withLocation": 1379,
     "byDomain": {
         "cloud": 44,
-        "general": 1136,
+        "general": 1138,
         "software": 46,
         "mobile": 12,
         "web": 27,
@@ -7035,6 +7035,35 @@
         "subDomains": [],
         "tags": [],
         "id": "385b00521e3b"
+    },
+    {
+        "name": "VIC AI Boom",
+        "url": "https://vicaiboom.com",
+        "startDate": "2026-11-13",
+        "endDate": "2026-11-13",
+        "location": {
+            "city": "Melbourne",
+            "country": "Australia",
+            "raw": "Melbourne, Australia",
+            "lat": -37.8136,
+            "lng": 144.9631
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://forms.gle/gRGNcMAqbwxPaYpC6",
+            "endDate": "2026-10-16",
+            "daysRemaining": 5,
+            "status": "open"
+        },
+        "twitter": "@vicaiboom",
+        "domain": "general",
+        "tags": [],
+        "source": "tech-conferences",
+        "sources": [
+            "tech-conferences"
+        ],
+        "subDomains": [],
+        "id": "3d16b4e1f9e6"
     },
     {
         "name": "Capitole du Libre",
@@ -27082,6 +27111,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "942dbe3e3d87"
+    },
+    {
+        "name": "SPCNC 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203671&copyownerid=163220",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "16418bc44a81"
     },
     {
         "name": "ICCNS 2026",
