@@ -1,12 +1,12 @@
 {
-  "lastUpdated": "2026-10-13T04:03:31.920718Z",
+  "lastUpdated": "2026-10-13T13:20:43.440663Z",
   "stats": {
-    "total": 1519,
-    "withOpenCFP": 135,
-    "withLocation": 1421,
+    "total": 1514,
+    "withOpenCFP": 136,
+    "withLocation": 1416,
     "byDomain": {
         "cloud": 43,
-        "general": 1173,
+        "general": 1167,
         "software": 45,
         "mobile": 12,
         "web": 28,
@@ -14,7 +14,7 @@
         "data": 9,
         "devops": 4,
         "ai": 60,
-        "academic": 106,
+        "academic": 107,
         "opensource": 14
     }
 },
@@ -13679,6 +13679,33 @@
         "id": "e9cb5185c3cf"
     },
     {
+        "name": "DevOpsDays Atlanta 2027",
+        "url": "https://talks.devopsdays.org/devopsdays-atlanta-2027/",
+        "startDate": "2027-04-20",
+        "endDate": "2027-04-21",
+        "location": {
+            "city": "Atlanta, GA",
+            "country": "USA",
+            "raw": "Atlanta, GA (USA)",
+            "lat": 37.0902,
+            "lng": -95.7129
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://talks.devopsdays.org/devopsdays-atlanta-2027/cfp",
+            "endDate": "2027-01-19",
+            "daysRemaining": 97,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "software",
+        "subDomains": [
+            "devops"
+        ],
+        "tags": [],
+        "id": "d1b3a6a8c681"
+    },
+    {
         "name": "STAREAST 2027",
         "url": "https://stareast.techwell.com/",
         "startDate": "2027-04-25",
@@ -14175,8 +14202,8 @@
         "id": "82a5660ce161"
     },
     {
-        "name": "ELEG  2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192077&copyownerid=46167",
+        "name": "CEEE 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191991&copyownerid=46167",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -14192,7 +14219,67 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "f0e846c938ad"
+        "id": "37464ada425a"
+    },
+    {
+        "name": "AINMNE 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195480&copyownerid=182680",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "c224b6f4083d"
+    },
+    {
+        "name": "BLKCA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192038&copyownerid=46167",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "28268ff05340"
+    },
+    {
+        "name": "ICOECAI 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195387&copyownerid=182680",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "a7c4d1b832f1"
     },
     {
         "name": "AIVRCH 2026",
@@ -14218,26 +14305,6 @@
         "id": "3ee376d08e99"
     },
     {
-        "name": "HCAI 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194558&copyownerid=198220",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "9ce7e99c1e76"
-    },
-    {
         "name": "EDAI 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202474&copyownerid=163220",
         "startDate": null,
@@ -14258,8 +14325,8 @@
         "id": "626a901ca82a"
     },
     {
-        "name": "CGASP 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191851&copyownerid=46167",
+        "name": "ELEG  2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192077&copyownerid=46167",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -14275,27 +14342,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "6ecde1fc30ed"
-    },
-    {
-        "name": "AINMNE 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195480&copyownerid=182680",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "c224b6f4083d"
+        "id": "f0e846c938ad"
     },
     {
         "name": "ICECAI 2026",
@@ -14318,8 +14365,8 @@
         "id": "b0c62f19669f"
     },
     {
-        "name": "ICOECAI 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195387&copyownerid=182680",
+        "name": "CGASP 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191851&copyownerid=46167",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -14335,31 +14382,11 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "a7c4d1b832f1"
+        "id": "6ecde1fc30ed"
     },
     {
-        "name": "MLIoT  2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191990&copyownerid=46167",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "ai",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "47f2e59d9b2e"
-    },
-    {
-        "name": "CEEE 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191991&copyownerid=46167",
+        "name": "HCAI 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194558&copyownerid=198220",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -14375,7 +14402,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "37464ada425a"
+        "id": "9ce7e99c1e76"
     },
     {
         "name": "ISAIMS 2026",
@@ -14418,8 +14445,28 @@
         "id": "2abbbc034db5"
     },
     {
-        "name": "BLKCA 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192038&copyownerid=46167",
+        "name": "MLIoT  2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191990&copyownerid=46167",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "ai",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "47f2e59d9b2e"
+    },
+    {
+        "name": "AI4Science 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=190538&copyownerid=182680",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -14435,7 +14482,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "28268ff05340"
+        "id": "1f70c460bec5"
     },
     {
         "name": "ISRIMT 2026",
@@ -14478,26 +14525,6 @@
         "id": "ad1dde80fb68"
     },
     {
-        "name": "AI4Science 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=190538&copyownerid=182680",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "1f70c460bec5"
-    },
-    {
         "name": "AINMD 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202953&copyownerid=182680",
         "startDate": null,
@@ -14518,8 +14545,8 @@
         "id": "6d1bfc3f123d"
     },
     {
-        "name": "ICECC 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195429&copyownerid=13881",
+        "name": "Springer ICCDA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192793&copyownerid=13881",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -14535,7 +14562,49 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "b41d8f15a6be"
+        "id": "3476aece0c6e"
+    },
+    {
+        "name": "IEEE ICSSIP 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194578&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "web",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [
+            "academic"
+        ],
+        "id": "447de73f134e"
+    },
+    {
+        "name": "WAAE 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194146&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "40e9d158986c"
     },
     {
         "name": "MMAL 2027",
@@ -14578,46 +14647,6 @@
         "id": "a442021fba00"
     },
     {
-        "name": "IEEE ICAITE 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192949&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "04b7042af76f"
-    },
-    {
-        "name": "ICEEL 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192392&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "5fcf7f238a94"
-    },
-    {
         "name": "AISSA 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201172&copyownerid=196813",
         "startDate": null,
@@ -14658,28 +14687,6 @@
         "id": "82b46e65821f"
     },
     {
-        "name": "IEEE ICSSIP 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194578&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "web",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [
-            "academic"
-        ],
-        "id": "447de73f134e"
-    },
-    {
         "name": "CRET 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=190988&copyownerid=13881",
         "startDate": null,
@@ -14698,6 +14705,46 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "31b56c8fccf9"
+    },
+    {
+        "name": "IEEE ICAITE 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192949&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "academic",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "04b7042af76f"
+    },
+    {
+        "name": "ICEEL 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192392&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "5fcf7f238a94"
     },
     {
         "name": "GIAIISD 2026",
@@ -14720,8 +14767,8 @@
         "id": "422907b02a1c"
     },
     {
-        "name": "ICACS 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192792&copyownerid=13881",
+        "name": "ICECC 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195429&copyownerid=13881",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -14737,27 +14784,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "f66d58a6bc65"
-    },
-    {
-        "name": "WAAE 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194146&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "40e9d158986c"
+        "id": "b41d8f15a6be"
     },
     {
         "name": "Teaching without GenAI 2027",
@@ -14780,8 +14807,28 @@
         "id": "15fbdd3435e0"
     },
     {
-        "name": "Springer ICCDA 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192793&copyownerid=13881",
+        "name": "IEEE CSPE 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=186208&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "academic",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "915207f19980"
+    },
+    {
+        "name": "ICACS 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192792&copyownerid=13881",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -14797,7 +14844,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "3476aece0c6e"
+        "id": "f66d58a6bc65"
     },
     {
         "name": "IEEE ICAISG 2026",
@@ -14820,26 +14867,6 @@
         "id": "11182a74981b"
     },
     {
-        "name": "IEEE CSPE 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=186208&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "915207f19980"
-    },
-    {
         "name": "AISNS 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203066&copyownerid=163220",
         "startDate": null,
@@ -14858,26 +14885,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "942dbe3e3d87"
-    },
-    {
-        "name": "ICRTT 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194547&copyownerid=182680",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "9e2b82cc8b33"
     },
     {
         "name": "SHWID 2026",
@@ -14918,6 +14925,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "f710e58f389f"
+    },
+    {
+        "name": "ICRTT 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194547&copyownerid=182680",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "9e2b82cc8b33"
     },
     {
         "name": "GWC 2027",
@@ -14980,8 +15007,8 @@
         "id": "71925fca252f"
     },
     {
-        "name": "IJCSIT 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192075&copyownerid=33993",
+        "name": "IJCCSA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195330&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -14997,7 +15024,187 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "69995344d386"
+        "id": "014614fb3f0f"
+    },
+    {
+        "name": "CCSEAI 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191506&copyownerid=46167",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "ad15f5cb3f95"
+    },
+    {
+        "name": "AIDDS  2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191741&copyownerid=46167",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "52a3b9e891b6"
+    },
+    {
+        "name": "NLPCL 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195149&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "ai",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "e3b74d36b272"
+    },
+    {
+        "name": "ICDIPV 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191992&copyownerid=46167",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "1f9adc95bf9c"
+    },
+    {
+        "name": "MAT 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195331&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "50d9e194a615"
+    },
+    {
+        "name": "AICiViL 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195488&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "e992aa0458a2"
+    },
+    {
+        "name": "NLAII  2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191786&copyownerid=46167",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "ad64f54062e1"
+    },
+    {
+        "name": "SIPIJ 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195150&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "5966e86ef1fd"
+    },
+    {
+        "name": "IJCSEA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191359&copyownerid=46167",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "c955b77b7e3c"
     },
     {
         "name": "ICSS 2026",
@@ -15020,8 +15227,8 @@
         "id": "fbf81c4a3632"
     },
     {
-        "name": "CNDC 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194249&copyownerid=46167",
+        "name": "VISCOM 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201239&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -15037,7 +15244,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "b397d65ee08b"
+        "id": "497b8cc2947b"
     },
     {
         "name": "NLPTAI 2026",
@@ -15060,8 +15267,8 @@
         "id": "1e84130f3a57"
     },
     {
-        "name": "DaKM 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195297&copyownerid=33993",
+        "name": "IJWesT 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192578&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -15077,11 +15284,11 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "94c02d86f14c"
+        "id": "16397f2fa3ba"
     },
     {
-        "name": "IJAIT 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192885&copyownerid=33993",
+        "name": "BIGML 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195227&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -15093,191 +15300,11 @@
         },
         "online": false,
         "cfp": null,
-        "domain": "general",
+        "domain": "ai",
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "8f11c6cc6a67"
-    },
-    {
-        "name": "MEDS  2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191553&copyownerid=46167",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "69ab60b8b691"
-    },
-    {
-        "name": "VLSI 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194324&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "28a5bfe037ba"
-    },
-    {
-        "name": "NETWORKS 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195009&copyownerid=46167",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "a58ff2f9297e"
-    },
-    {
-        "name": "NLAICSE 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191788&copyownerid=46167",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "41f71db1551d"
-    },
-    {
-        "name": "IWMEN 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192618&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "0afcdd14ba61"
-    },
-    {
-        "name": "SCM  2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191360&copyownerid=46167",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "30a2ef441d13"
-    },
-    {
-        "name": "IJMNCT 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192934&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "3081dd267c15"
-    },
-    {
-        "name": "VISCOM 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201239&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "497b8cc2947b"
-    },
-    {
-        "name": "AISC 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191554&copyownerid=46167",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "54b7bfd03a75"
+        "id": "c6a7e54e54e4"
     },
     {
         "name": "MLSC 2026",
@@ -15420,8 +15447,8 @@
         "id": "b3d426372650"
     },
     {
-        "name": "EDIT 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191585&copyownerid=46167",
+        "name": "AISC 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191554&copyownerid=46167",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -15437,11 +15464,11 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "ca0b1ebd63d0"
+        "id": "54b7bfd03a75"
     },
     {
-        "name": "IJNLC 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199502&copyownerid=33993",
+        "name": "ELE 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192539&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -15457,11 +15484,11 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "1d2aa758efd2"
+        "id": "58b348e6aee6"
     },
     {
-        "name": "NC 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191951&copyownerid=46167",
+        "name": "IJITCS 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195437&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -15477,127 +15504,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "031275e9424d"
-    },
-    {
-        "name": "SIGEM 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202479&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "be8f111c9749"
-    },
-    {
-        "name": "MLTEC  2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192175&copyownerid=46167",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "ai",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "f95f29014a59"
-    },
-    {
-        "name": "MEAP 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195388&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "c55377b338ff"
-    },
-    {
-        "name": "SPT 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191586&copyownerid=46167",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "f66d45ff0353"
-    },
-    {
-        "name": "EEI 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192768&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "d825045f8868"
-    },
-    {
-        "name": "IJCNC 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195389&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "51827f1062fc"
+        "id": "8e0edc424e07"
     },
     {
         "name": "SOEN 2026",
@@ -15640,8 +15547,8 @@
         "id": "77fbed26ff6c"
     },
     {
-        "name": "ICDIPV 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191992&copyownerid=46167",
+        "name": "AIDD 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195089&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -15657,7 +15564,130 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "1f9adc95bf9c"
+        "id": "1de0cf2ecf90"
+    },
+    {
+        "name": "EDIT 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191585&copyownerid=46167",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "ca0b1ebd63d0"
+    },
+    {
+        "name": "IWMEN 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192618&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "0afcdd14ba61"
+    },
+    {
+        "name": "ISTECH 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195438&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "1052f9b7488f"
+    },
+    {
+        "name": "CCSITA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191883&copyownerid=46167",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "1d488ec5752e"
+    },
+    {
+        "name": "SPT 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191586&copyownerid=46167",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "f66d45ff0353"
+    },
+    {
+        "name": "DSA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195439&copyownerid=46167",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "sources": [
+            "wikicfp"
+        ],
+        "subDomains": [],
+        "id": "84ce14829ba3"
     },
     {
         "name": "AIAA 2026",
@@ -15680,8 +15710,8 @@
         "id": "3621c50def43"
     },
     {
-        "name": "AIDDS  2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191741&copyownerid=46167",
+        "name": "NC 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191951&copyownerid=46167",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -15697,11 +15727,11 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "52a3b9e891b6"
+        "id": "031275e9424d"
     },
     {
-        "name": "CSEA 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192039&copyownerid=46167",
+        "name": "MLTEC  2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192175&copyownerid=46167",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -15713,11 +15743,11 @@
         },
         "online": false,
         "cfp": null,
-        "domain": "general",
+        "domain": "ai",
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "c9b658929cbf"
+        "id": "f95f29014a59"
     },
     {
         "name": "ENERGY 2026",
@@ -15760,26 +15790,6 @@
         "id": "8234e457a976"
     },
     {
-        "name": "IJITCS 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195437&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "8e0edc424e07"
-    },
-    {
         "name": "CCSIT 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203625&copyownerid=33993",
         "startDate": null,
@@ -15800,8 +15810,8 @@
         "id": "35ba54782902"
     },
     {
-        "name": "NLAII  2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191786&copyownerid=46167",
+        "name": "EEI 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192768&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -15817,11 +15827,11 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "ad64f54062e1"
+        "id": "d825045f8868"
     },
     {
-        "name": "NLCA 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191401&copyownerid=46167",
+        "name": "IJAIT 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192885&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -15837,11 +15847,11 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "510103ae5479"
+        "id": "8f11c6cc6a67"
     },
     {
-        "name": "SIPP 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192361&copyownerid=33993",
+        "name": "ITEORY 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195487&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -15857,27 +15867,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "d1dfae4a0071"
-    },
-    {
-        "name": "ISTECH 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195438&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "1052f9b7488f"
+        "id": "38bb48db1d13"
     },
     {
         "name": "ACINT 2026",
@@ -15900,8 +15890,8 @@
         "id": "434661139f48"
     },
     {
-        "name": "AIDD 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195089&copyownerid=33993",
+        "name": "SCM  2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191360&copyownerid=46167",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -15917,90 +15907,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "1de0cf2ecf90"
-    },
-    {
-        "name": "EDUAI 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191434&copyownerid=46167",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "50d2162e9c10"
-    },
-    {
-        "name": "DSA 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195439&copyownerid=46167",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "sources": [
-            "wikicfp"
-        ],
-        "subDomains": [],
-        "id": "84ce14829ba3"
-    },
-    {
-        "name": "NLPCL 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195149&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "ai",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "e3b74d36b272"
-    },
-    {
-        "name": "CSITAI 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201167&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "3261d995be4c"
+        "id": "30a2ef441d13"
     },
     {
         "name": "ICAIT 2026",
@@ -16026,8 +15933,8 @@
         "id": "ca8d898256ec"
     },
     {
-        "name": "AIMDS 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191480&copyownerid=46167",
+        "name": "CBIoT 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191400&copyownerid=46167",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -16043,7 +15950,67 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "19a6e0b2041a"
+        "id": "cc965c424f5a"
+    },
+    {
+        "name": "CSITAI 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201167&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "3261d995be4c"
+    },
+    {
+        "name": "IJNLC 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199502&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "1d2aa758efd2"
+    },
+    {
+        "name": "CSEA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192039&copyownerid=46167",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "c9b658929cbf"
     },
     {
         "name": "ITE 2026",
@@ -16066,28 +16033,8 @@
         "id": "d45ab6893bf4"
     },
     {
-        "name": "BIGML 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195227&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "ai",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "c6a7e54e54e4"
-    },
-    {
-        "name": "CCSEAI 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191506&copyownerid=46167",
+        "name": "NLCA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191401&copyownerid=46167",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -16103,11 +16050,11 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "ad15f5cb3f95"
+        "id": "510103ae5479"
     },
     {
-        "name": "ELE 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192539&copyownerid=33993",
+        "name": "MEAP 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195388&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -16123,7 +16070,47 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "58b348e6aee6"
+        "id": "c55377b338ff"
+    },
+    {
+        "name": "IJCSIT 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192075&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "69995344d386"
+    },
+    {
+        "name": "EDUAI 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191434&copyownerid=46167",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "50d2162e9c10"
     },
     {
         "name": "IEEE CRET 2026",
@@ -16166,8 +16153,8 @@
         "id": "0909d9e61dfc"
     },
     {
-        "name": "MAT 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195331&copyownerid=33993",
+        "name": "VLSI 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194324&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -16183,7 +16170,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "50d9e194a615"
+        "id": "28a5bfe037ba"
     },
     {
         "name": "IJSCAI 2026",
@@ -16206,8 +16193,8 @@
         "id": "a2aad9f980e7"
     },
     {
-        "name": "ICDIC 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=190960&copyownerid=182680",
+        "name": "MLAIJ 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199941&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -16219,51 +16206,11 @@
         },
         "online": false,
         "cfp": null,
-        "domain": "general",
+        "domain": "ai",
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "73ffefb1c6c3"
-    },
-    {
-        "name": "SPNNA 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202512&copyownerid=163220",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "53d832049839"
-    },
-    {
-        "name": "CVIC 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192872&copyownerid=182680",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "20c45efe7802"
+        "id": "4195fe8f7e62"
     },
     {
         "name": "DSInS 2026",
@@ -16286,28 +16233,8 @@
         "id": "5f751db463ce"
     },
     {
-        "name": "CTML--EI 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194405&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "ai",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "530deff4a658"
-    },
-    {
-        "name": "ICAID 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200158&copyownerid=13881",
+        "name": "IJGTT 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199977&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -16323,7 +16250,87 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "5a0a91fd1971"
+        "id": "849dff688c57"
+    },
+    {
+        "name": "ICDIC 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=190960&copyownerid=182680",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "73ffefb1c6c3"
+    },
+    {
+        "name": "IJITE 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195298&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "a1fba8db28bf"
+    },
+    {
+        "name": "CVIC 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192872&copyownerid=182680",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "20c45efe7802"
+    },
+    {
+        "name": "SPNNA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202512&copyownerid=163220",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "53d832049839"
     },
     {
         "name": "IEEE-MLNLP 2026",
@@ -16348,6 +16355,26 @@
         "id": "b7fa27c86932"
     },
     {
+        "name": "CTML--EI 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194405&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "ai",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "530deff4a658"
+    },
+    {
         "name": "ICSCA 2027",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194996&copyownerid=13881",
         "startDate": null,
@@ -16368,8 +16395,8 @@
         "id": "1b4b8b665440"
     },
     {
-        "name": "ICCAE 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195292&copyownerid=13881",
+        "name": "ICBCB 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199497&copyownerid=13881",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -16385,7 +16412,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "be9484ba3bd9"
+        "id": "61491bd0309c"
     },
     {
         "name": "Singapore-ICBDAA 2026",
@@ -16408,6 +16435,46 @@
         "id": "a8eded8eb5c2"
     },
     {
+        "name": "ICCAE 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195292&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "be9484ba3bd9"
+    },
+    {
+        "name": "ICAID 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200158&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "5a0a91fd1971"
+    },
+    {
         "name": "AAIE 2027",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194956&copyownerid=13881",
         "startDate": null,
@@ -16426,26 +16493,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "0b40c10f7aff"
-    },
-    {
-        "name": "ICBCB 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199497&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "61491bd0309c"
     },
     {
         "name": "AIGC 2026",
@@ -16570,8 +16617,8 @@
         "id": "380519facc39"
     },
     {
-        "name": "ACM ICIIT 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199681&copyownerid=13881",
+        "name": "ICMLSC 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199963&copyownerid=13881",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -16583,11 +16630,11 @@
         },
         "online": false,
         "cfp": null,
-        "domain": "academic",
+        "domain": "ai",
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "3c81833541e5"
+        "id": "e2646a3a5e01"
     },
     {
         "name": "IEEE ISCBI 2027",
@@ -16608,6 +16655,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "9e5b0ccf748b"
+    },
+    {
+        "name": "ACM ICIIT 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199681&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "academic",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "3c81833541e5"
     },
     {
         "name": "AIBT--EI 2026",
@@ -16710,26 +16777,6 @@
         "id": "6fc73807a382"
     },
     {
-        "name": "ICMLSC 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199963&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "ai",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "e2646a3a5e01"
-    },
-    {
         "name": "ICRMV--EI 2027",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195433&copyownerid=13881",
         "startDate": null,
@@ -16748,6 +16795,46 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "4d8ff54bcd49"
+    },
+    {
+        "name": "APIET 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194990&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "software",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "76568b6b976f"
+    },
+    {
+        "name": "CSP 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199954&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "f192920a6b55"
     },
     {
         "name": "ICCDE 2027",
@@ -16850,26 +16937,6 @@
         "id": "87219dba2af4"
     },
     {
-        "name": "CSP 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199954&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "f192920a6b55"
-    },
-    {
         "name": "APCT--EI 2027",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194987&copyownerid=13881",
         "startDate": null,
@@ -16890,8 +16957,8 @@
         "id": "4e955a9508d8"
     },
     {
-        "name": "APIET 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194990&copyownerid=13881",
+        "name": "CVCI 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194353&copyownerid=13881",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -16903,11 +16970,11 @@
         },
         "online": false,
         "cfp": null,
-        "domain": "software",
+        "domain": "general",
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "76568b6b976f"
+        "id": "0006a334a04c"
     },
     {
         "name": "SPRA 2027",
@@ -16970,8 +17037,8 @@
         "id": "f56a76b22dd1"
     },
     {
-        "name": "ICCAI 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201220&copyownerid=13881",
+        "name": "CNDC 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194249&copyownerid=46167",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -16987,87 +17054,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "0c74011ccd8b"
-    },
-    {
-        "name": "ICIGP 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195428&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "952f1478c7a7"
-    },
-    {
-        "name": "CVCI 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194353&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "0006a334a04c"
-    },
-    {
-        "name": "WCCCT 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202771&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "541541600fc0"
-    },
-    {
-        "name": "NFGNN 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203217&copyownerid=200426",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "cc61a2612b1d"
+        "id": "b397d65ee08b"
     },
     {
         "name": "AIMLNET 2026",
@@ -17670,26 +17657,6 @@
         "id": "74e60917a558"
     },
     {
-        "name": "SIPIJ 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195150&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "5966e86ef1fd"
-    },
-    {
         "name": "CSTY 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192130&copyownerid=46167",
         "startDate": null,
@@ -17733,6 +17700,26 @@
             "academic"
         ],
         "id": "9b3b6e97ba9b"
+    },
+    {
+        "name": "IJBB 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199582&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "91dff8dcdeef"
     },
     {
         "name": "MMLDS 2026",
@@ -17995,26 +17982,6 @@
         "id": "92a41c287833"
     },
     {
-        "name": "ICAIP 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194780&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "cd2f75ad8ebf"
-    },
-    {
         "name": "ACM ASIG 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192390&copyownerid=13881",
         "startDate": null,
@@ -18033,6 +18000,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "f9925cbbd189"
+    },
+    {
+        "name": "ICAIP 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194780&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "cd2f75ad8ebf"
     },
     {
         "name": "ICRMV 2027",
@@ -18438,8 +18425,8 @@
         "id": "6e189cd3d432"
     },
     {
-        "name": "CVIT 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203171&copyownerid=13881",
+        "name": "NETWORKS 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195009&copyownerid=46167",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -18455,27 +18442,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "a565d5e66b63"
-    },
-    {
-        "name": "WSCG 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203448&copyownerid=190968",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "b1c785f678cb"
+        "id": "a58ff2f9297e"
     },
     {
         "name": "DPPR  2026",
@@ -18616,26 +18583,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "efc127fa568b"
-    },
-    {
-        "name": "CBIoT 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191400&copyownerid=46167",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "cc965c424f5a"
     },
     {
         "name": "ACLing 2026",
@@ -19395,8 +19342,8 @@
         "id": "a0c5ed97f12b"
     },
     {
-        "name": "AICiViL 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195488&copyownerid=33993",
+        "name": "IJCNC 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195389&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -19412,11 +19359,11 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "e992aa0458a2"
+        "id": "51827f1062fc"
     },
     {
-        "name": "SEMTEC  2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199836&copyownerid=33993",
+        "name": "MEDS  2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191553&copyownerid=46167",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -19432,7 +19379,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "4825498f9a74"
+        "id": "69ab60b8b691"
     },
     {
         "name": "NATL 2026",
@@ -19455,8 +19402,8 @@
         "id": "bd66a673ebb1"
     },
     {
-        "name": "IJWesT 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192578&copyownerid=33993",
+        "name": "SEMTEC  2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199836&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -19472,7 +19419,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "16397f2fa3ba"
+        "id": "4825498f9a74"
     },
     {
         "name": "SEAPP  2026",
@@ -19495,8 +19442,8 @@
         "id": "0c38de01ec11"
     },
     {
-        "name": "NGNCT 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201716&copyownerid=33993",
+        "name": "SIGEM 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202479&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -19512,7 +19459,27 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "061554c52fba"
+        "id": "be8f111c9749"
+    },
+    {
+        "name": "NLAICSE 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191788&copyownerid=46167",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "academic",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "41f71db1551d"
     },
     {
         "name": "IJSPTM 2026",
@@ -19533,6 +19500,46 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "3b4b74582409"
+    },
+    {
+        "name": "NGNCT 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201716&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "061554c52fba"
+    },
+    {
+        "name": "IJESA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194152&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "033f709dc103"
     },
     {
         "name": "Cross-AI ReNL2SQL 2026",
@@ -19677,6 +19684,26 @@
         "id": "a1d68d5c569c"
     },
     {
+        "name": "CHOMPS  2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203703&copyownerid=320",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "e1e43906bd85"
+    },
+    {
         "name": "MDTT  2027",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203634&copyownerid=320",
         "startDate": null,
@@ -19755,26 +19782,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "fe4fc9929271"
-    },
-    {
-        "name": "IJESA 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194152&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "033f709dc103"
     },
     {
         "name": "IWCLUL 2026",
@@ -19877,26 +19884,6 @@
         "id": "564214073b9c"
     },
     {
-        "name": "LT4CPR 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201593&copyownerid=320",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "ff65dd31c935"
-    },
-    {
         "name": "ABCSS 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201637&copyownerid=24906",
         "startDate": null,
@@ -19977,8 +19964,8 @@
         "id": "9833bbea190d"
     },
     {
-        "name": "CCSITA 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191883&copyownerid=46167",
+        "name": "DaKM 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195297&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -19994,7 +19981,27 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "1d488ec5752e"
+        "id": "94c02d86f14c"
+    },
+    {
+        "name": "AIMDS 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191480&copyownerid=46167",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "19a6e0b2041a"
     },
     {
         "name": "MaVaS 2026",
@@ -20035,6 +20042,46 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "e20188cc0b54"
+    },
+    {
+        "name": "IJDKP 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199584&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "0c159db0c034"
+    },
+    {
+        "name": "IJDPS 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199638&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "dd951462c976"
     },
     {
         "name": "HIIJ 2026",
@@ -20097,6 +20144,26 @@
         "id": "d948113ab392"
     },
     {
+        "name": "IJWSC 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192427&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "6f2e012cf7fd"
+    },
+    {
         "name": "BDEE--EI 2027",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202768&copyownerid=13881",
         "startDate": null,
@@ -20117,26 +20184,6 @@
         "id": "6d89d85c7c1b"
     },
     {
-        "name": "Springer ICBTA 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194133&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "3835992789ca"
-    },
-    {
         "name": "IEEE-DSIT 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=187819&copyownerid=163993",
         "startDate": null,
@@ -20155,6 +20202,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "61f8123fa49e"
+    },
+    {
+        "name": "Springer ICBTA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194133&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "3835992789ca"
     },
     {
         "name": "IEEE ICAID 2027",
@@ -20357,6 +20424,48 @@
         "id": "06e909dad153"
     },
     {
+        "name": "Springer ICGDA 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200261&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "f870223b4be1"
+    },
+    {
+        "name": "ACM MLCI 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202553&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "ai",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [
+            "academic"
+        ],
+        "id": "4aa3d44385d8"
+    },
+    {
         "name": "PAKDD 2027",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203483&copyownerid=13149",
         "startDate": null,
@@ -20415,48 +20524,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "194c8ba23c8b"
-    },
-    {
-        "name": "Springer ICGDA 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200261&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "f870223b4be1"
-    },
-    {
-        "name": "ACM MLCI 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202553&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "ai",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [
-            "academic"
-        ],
-        "id": "4aa3d44385d8"
     },
     {
         "name": "JCICE 2027",
@@ -20619,66 +20686,6 @@
         "id": "590282900d12"
     },
     {
-        "name": "ICCRAIDS 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201458&copyownerid=13149",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "f35746d2b4e2"
-    },
-    {
-        "name": "AMLDS 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=180065&copyownerid=186741",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "ai",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "e61dbaf6fffc"
-    },
-    {
-        "name": "Ei/Scopus/CPCI-ICRPA 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=178685&copyownerid=165700",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "7bb4257b3043"
-    },
-    {
         "name": "CBASE 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202608&copyownerid=182680",
         "startDate": null,
@@ -20697,6 +20704,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "2bb4431c49b0"
+    },
+    {
+        "name": "ICSSIP 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194579&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "web",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "44d0f1805959"
     },
     {
         "name": "ICSeB 2026",
@@ -20739,26 +20766,6 @@
         "id": "c8443a67b8ab"
     },
     {
-        "name": "ICSSIP 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194579&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "web",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "44d0f1805959"
-    },
-    {
         "name": "NGDN 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203212&copyownerid=163220",
         "startDate": null,
@@ -20799,6 +20806,26 @@
         "id": "76223200bd42"
     },
     {
+        "name": "ICIT 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192419&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "53ef10865414"
+    },
+    {
         "name": "INCC 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192423&copyownerid=13881",
         "startDate": null,
@@ -20817,6 +20844,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "66539fae797a"
+    },
+    {
+        "name": "BDEE 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202767&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "ff704a36a441"
     },
     {
         "name": "ACM-AAMLDS 2026",
@@ -20881,46 +20928,6 @@
         "id": "925b85c918df"
     },
     {
-        "name": "BDEE 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202767&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "ff704a36a441"
-    },
-    {
-        "name": "ICIT 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192419&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "53ef10865414"
-    },
-    {
         "name": "AIBDSG 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203014&copyownerid=163220",
         "startDate": null,
@@ -20939,6 +20946,68 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "eafbd008bb92"
+    },
+    {
+        "name": "IEEE MLCC 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195434&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "ai",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [
+            "academic"
+        ],
+        "id": "5058c8711cb2"
+    },
+    {
+        "name": "ICBAIE 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203261&copyownerid=163220",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "24d995cb8326"
+    },
+    {
+        "name": "ICBAR 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202912&copyownerid=182680",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "e75cc205d9a9"
     },
     {
         "name": "AIBT 2026",
@@ -21001,68 +21070,6 @@
         "id": "8b1742c82a9b"
     },
     {
-        "name": "ICBAIE 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203261&copyownerid=163220",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "24d995cb8326"
-    },
-    {
-        "name": "IEEE MLCC 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195434&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "ai",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [
-            "academic"
-        ],
-        "id": "5058c8711cb2"
-    },
-    {
-        "name": "ICBAR 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202912&copyownerid=182680",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "e75cc205d9a9"
-    },
-    {
         "name": "ICCDE--EI 2027",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194774&copyownerid=13881",
         "startDate": null,
@@ -21123,26 +21130,6 @@
         "id": "461abd2ba704"
     },
     {
-        "name": "APIT 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194351&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "software",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "8f6650f9f612"
-    },
-    {
         "name": "ICSIE--EI 2027",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194525&copyownerid=13881",
         "startDate": null,
@@ -21181,66 +21168,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "b05b37cb56a6"
-    },
-    {
-        "name": "ICINT--EI 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199949&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "fe61f22f05b4"
-    },
-    {
-        "name": "IDEAS 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203685&copyownerid=200695",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "b75b49b8e979"
-    },
-    {
-        "name": "IoTBDS 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201739&copyownerid=45217",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "66c42e060f90"
     },
     {
         "name": "ICRTIS 2026",
@@ -21846,7 +21773,7 @@
         "id": "c4b77938e15e"
     },
     {
-        "name": "ICARA 2027",
+        "name": "IEEE ICARA 2027",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194580&copyownerid=13881",
         "startDate": null,
         "endDate": null,
@@ -21859,11 +21786,11 @@
         },
         "online": false,
         "cfp": null,
-        "domain": "general",
+        "domain": "academic",
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "31452825b4c0"
+        "id": "10b2fe6450f7"
     },
     {
         "name": "ACM--CFP--RobCE 2027",
@@ -22026,6 +21953,26 @@
         "id": "b18f2502a88c"
     },
     {
+        "name": "IJAIA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191849&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "596f75956fde"
+    },
+    {
         "name": "ICEVA 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=186543&copyownerid=182680",
         "startDate": null,
@@ -22044,6 +21991,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "d173bcf81e29"
+    },
+    {
+        "name": "ICFTIC 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202743&copyownerid=182680",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "0e7bd1391f11"
     },
     {
         "name": "ICRAE 2026",
@@ -22104,26 +22071,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "6d10d806fe4b"
-    },
-    {
-        "name": "ICFTIC 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202743&copyownerid=182680",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "0e7bd1391f11"
     },
     {
         "name": "ICAART 2027",
@@ -22246,6 +22193,26 @@
         "id": "24d966c89c01"
     },
     {
+        "name": "ISCBI 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195295&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "a83c5aeec612"
+    },
+    {
         "name": "AIAIS 2027",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194810&copyownerid=186741",
         "startDate": null,
@@ -22324,26 +22291,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "4a8143615509"
-    },
-    {
-        "name": "ISCBI 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195295&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "a83c5aeec612"
     },
     {
         "name": "ICAICE 2026",
@@ -22486,6 +22433,46 @@
         "id": "89be28066f5e"
     },
     {
+        "name": "ICSTE--EI 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194645&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "9d4e797f662d"
+    },
+    {
+        "name": "ICCAI--EI 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201221&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "abda5276a476"
+    },
+    {
         "name": "IMIP--EI 2027",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201223&copyownerid=13881",
         "startDate": null,
@@ -22526,7 +22513,7 @@
         "id": "3fb691c51e65"
     },
     {
-        "name": "ICARA--EI 2027",
+        "name": "ICARA 2027",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194581&copyownerid=13881",
         "startDate": null,
         "endDate": null,
@@ -22543,7 +22530,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "505c2af0c085"
+        "id": "f0fbb8106480"
     },
     {
         "name": "ICRCA--EI 2027",
@@ -22586,8 +22573,8 @@
         "id": "61df20594812"
     },
     {
-        "name": "ICSTE--EI 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194645&copyownerid=13881",
+        "name": "WCCCT 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202771&copyownerid=13881",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -22603,27 +22590,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "9d4e797f662d"
-    },
-    {
-        "name": "ICCAI--EI 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201221&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "abda5276a476"
+        "id": "541541600fc0"
     },
     {
         "name": "WCSC 2027",
@@ -22666,8 +22633,8 @@
         "id": "cede46dd0d78"
     },
     {
-        "name": "ISDEA 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202552&copyownerid=13881",
+        "name": "ACM ICACS 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192791&copyownerid=13881",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -22679,11 +22646,11 @@
         },
         "online": false,
         "cfp": null,
-        "domain": "general",
+        "domain": "academic",
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "f1cf40f751f4"
+        "id": "868b6984eac8"
     },
     {
         "name": "ACM ICSeB 2026",
@@ -22704,26 +22671,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "934337d8306d"
-    },
-    {
-        "name": "ACM ICACS 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192791&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "868b6984eac8"
     },
     {
         "name": "SANER 2026",
@@ -22806,6 +22753,46 @@
         "id": "94e796858b2d"
     },
     {
+        "name": "ICCC 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192405&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "0bee61526b67"
+    },
+    {
+        "name": "ACM ICSCA 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194995&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "academic",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "f0e043e8ad05"
+    },
+    {
         "name": "IEEE-PEESE 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=182446&copyownerid=163993",
         "startDate": null,
@@ -22884,46 +22871,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "e69048b7f84a"
-    },
-    {
-        "name": "ACM ICSCA 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194995&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "f0e043e8ad05"
-    },
-    {
-        "name": "ICCC 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192405&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "0bee61526b67"
     },
     {
         "name": "BIODEVICES 2027",
@@ -23046,8 +22993,8 @@
         "id": "f7310dcafc89"
     },
     {
-        "name": "ACM ICCRD 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194958&copyownerid=13881",
+        "name": "Springer ICMLSC 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199962&copyownerid=13881",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -23059,11 +23006,11 @@
         },
         "online": false,
         "cfp": null,
-        "domain": "academic",
+        "domain": "ai",
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "f79ee2396e7f"
+        "id": "9c3a562f6751"
     },
     {
         "name": "MLPR 2026",
@@ -23086,6 +23033,26 @@
         "id": "823d55e699d7"
     },
     {
+        "name": "ACM ICCRD 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194958&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "academic",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "f79ee2396e7f"
+    },
+    {
         "name": "ITNG  2027",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203689&copyownerid=103024",
         "startDate": null,
@@ -23104,26 +23071,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "e1bcebd003b8"
-    },
-    {
-        "name": "AST 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199950&copyownerid=52988",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "e0463902d4d3"
     },
     {
         "name": "IEEE ICNCC 2026",
@@ -23146,8 +23093,8 @@
         "id": "c2666c9f3b52"
     },
     {
-        "name": "Springer ICMLSC 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199962&copyownerid=13881",
+        "name": "AST 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199950&copyownerid=52988",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -23159,11 +23106,11 @@
         },
         "online": false,
         "cfp": null,
-        "domain": "ai",
+        "domain": "general",
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "9c3a562f6751"
+        "id": "e0463902d4d3"
     },
     {
         "name": "Special Issue IEEE TSC: LLM-SOA 2026",
@@ -23186,26 +23133,6 @@
             "academic"
         ],
         "id": "949494ff259d"
-    },
-    {
-        "name": "APCT 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194986&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "c69098c189d0"
     },
     {
         "name": "ICMIP 2027",
@@ -23288,8 +23215,8 @@
         "id": "1125fa8d096d"
     },
     {
-        "name": "ACITY  2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194359&copyownerid=33993",
+        "name": "CSAE 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192298&copyownerid=187514",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -23305,7 +23232,27 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "b5607f59f993"
+        "id": "ac74fee0f966"
+    },
+    {
+        "name": "SIPP 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192361&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "d1dfae4a0071"
     },
     {
         "name": "RTEE  2026",
@@ -23328,8 +23275,8 @@
         "id": "775200f8ace5"
     },
     {
-        "name": "IJWMN 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194593&copyownerid=33993",
+        "name": "IJMA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200174&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -23345,11 +23292,11 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "42e53925d331"
+        "id": "2f05afe0f44e"
     },
     {
-        "name": "ITEORY 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195487&copyownerid=33993",
+        "name": "ACITY  2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194359&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -23365,7 +23312,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "38bb48db1d13"
+        "id": "b5607f59f993"
     },
     {
         "name": "BCYIoT 2026",
@@ -23388,8 +23335,8 @@
         "id": "c45fe65491c4"
     },
     {
-        "name": "IJMA 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200174&copyownerid=33993",
+        "name": "IJWMN 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194593&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -23405,47 +23352,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "2f05afe0f44e"
-    },
-    {
-        "name": "WeST  2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191953&copyownerid=46167",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "114daab002f5"
-    },
-    {
-        "name": "CSAE 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192298&copyownerid=187514",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "ac74fee0f966"
+        "id": "42e53925d331"
     },
     {
         "name": "ISPDS 2026",
@@ -23509,6 +23416,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "a35985d4fc02"
+    },
+    {
+        "name": "ACIJ 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194496&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "f4615f2fe206"
     },
     {
         "name": "IEEE ICCC 2026",
@@ -23594,6 +23521,46 @@
         "id": "b4804931f5d2"
     },
     {
+        "name": "APCT 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194986&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "c69098c189d0"
+    },
+    {
+        "name": "ICSTE 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194644&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "6b460bd712b9"
+    },
+    {
         "name": "ACM CCAT 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192685&copyownerid=13881",
         "startDate": null,
@@ -23634,8 +23601,8 @@
         "id": "ce6be655084c"
     },
     {
-        "name": "ICSTE 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194644&copyownerid=13881",
+        "name": "ICCAI 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201220&copyownerid=13881",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -23651,7 +23618,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "6b460bd712b9"
+        "id": "0c74011ccd8b"
     },
     {
         "name": "IEEE ICCIT 2026",
@@ -24012,26 +23979,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "28b8c10cac19"
-    },
-    {
-        "name": "ICITS 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203506&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "10b32777dde9"
     },
     {
         "name": "IWCEAA 2026",
@@ -25769,26 +25716,6 @@
         "id": "5adc645150b3"
     },
     {
-        "name": "ACIJ 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194496&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "f4615f2fe206"
-    },
-    {
         "name": "CCPCDL 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200164&copyownerid=182680",
         "startDate": null,
@@ -26262,7 +26189,7 @@
     },
     {
         "name": "PriSC 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203278&copyownerid=200475",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203279&copyownerid=200475",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -26281,11 +26208,11 @@
             "wikicfp"
         ],
         "subDomains": [],
-        "id": "c7d07fd48903"
+        "id": "70b46594f99c"
     },
     {
-        "name": "IJCCSA 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195330&copyownerid=33993",
+        "name": "WeST  2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191953&copyownerid=46167",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -26301,7 +26228,27 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "014614fb3f0f"
+        "id": "114daab002f5"
+    },
+    {
+        "name": "IJMNCT 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192934&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "3081dd267c15"
     },
     {
         "name": "IJNSA 2026",
@@ -26322,6 +26269,66 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "6960df433707"
+    },
+    {
+        "name": "IJCIS 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200236&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "59f9f3e1aced"
+    },
+    {
+        "name": "IJE 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200354&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "68756f36512d"
+    },
+    {
+        "name": "IJGCA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199503&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "c2e3dc5cbd27"
     },
     {
         "name": "ICISSP 2027",
@@ -26402,6 +26409,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "b8007146765a"
+    },
+    {
+        "name": "IoTBDS 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201739&copyownerid=45217",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "66c42e060f90"
     },
     {
         "name": "NGCS 2027",
@@ -26567,86 +26594,6 @@
         "id": "a2b256c0912a"
     },
     {
-        "name": "IJE 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200354&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "68756f36512d"
-    },
-    {
-        "name": "IJDPS 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199638&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "dd951462c976"
-    },
-    {
-        "name": "IJCIS 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200236&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "59f9f3e1aced"
-    },
-    {
-        "name": "IJGCA 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199503&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "c2e3dc5cbd27"
-    },
-    {
         "name": "CLSB 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194548&copyownerid=33993",
         "startDate": null,
@@ -26767,26 +26714,6 @@
         "id": "6a7476afa171"
     },
     {
-        "name": "IEEE BSS 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202741&copyownerid=200020",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "df74f4d06756"
-    },
-    {
         "name": "IEEE AIICRTA 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195463&copyownerid=198789",
         "startDate": null,
@@ -26807,8 +26734,8 @@
         "id": "da21759715ee"
     },
     {
-        "name": "SSR 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195094&copyownerid=198517",
+        "name": "IEEE BSS 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202741&copyownerid=200020",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -26820,11 +26747,11 @@
         },
         "online": false,
         "cfp": null,
-        "domain": "general",
+        "domain": "academic",
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "e353bc4648a8"
+        "id": "df74f4d06756"
     },
     {
         "name": "CISSE 2026 \u00e2\u0080\u0093 Cybersecurity Education Con 2026",
@@ -26845,6 +26772,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "f6003d068114"
+    },
+    {
+        "name": "SSR 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195094&copyownerid=198517",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "e353bc4648a8"
     },
     {
         "name": "AID 2026",
@@ -26927,26 +26874,6 @@
         "id": "bcbe7322239f"
     },
     {
-        "name": "IEEE RISC 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194574&copyownerid=186441",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "2719cd0fbd3a"
-    },
-    {
         "name": "IEEE TPS 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194567&copyownerid=186441",
         "startDate": null,
@@ -26965,6 +26892,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "3868e55fe783"
+    },
+    {
+        "name": "IEEE RISC 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194574&copyownerid=186441",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "academic",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "2719cd0fbd3a"
     },
     {
         "name": "MSN 2026",
@@ -28034,6 +27981,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "6775e2f744c8"
+    },
+    {
+        "name": "ICINT--EI 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199949&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "fe61f22f05b4"
     },
     {
         "name": "IEEE SRSE 2027",
@@ -29185,6 +29152,26 @@
         "id": "1ff7833f3d88"
     },
     {
+        "name": "IJSEA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194120&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "41e7b39a72a3"
+    },
+    {
         "name": "ICVIP--EI 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192417&copyownerid=13881",
         "startDate": null,
@@ -29263,46 +29250,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "e88b25f43f14"
-    },
-    {
-        "name": "IJGTT 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199977&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "849dff688c57"
-    },
-    {
-        "name": "IJSEA 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194120&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "41e7b39a72a3"
     },
     {
         "name": "VSIP 2026",
@@ -30086,6 +30033,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "ac54e3b4095e"
+    },
+    {
+        "name": "Ei/Scopus/CPCI-ICRPA 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=178685&copyownerid=165700",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "7bb4257b3043"
     },
     {
         "name": "Ucom 2026",
@@ -30954,6 +30921,26 @@
         "id": "55cc50d9fc51"
     },
     {
+        "name": "ICCRAIDS 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201458&copyownerid=13149",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "f35746d2b4e2"
+    },
+    {
         "name": "ICVARS 2027",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201695&copyownerid=13881",
         "startDate": null,
@@ -31072,46 +31059,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "5e0cb1fb4844"
-    },
-    {
-        "name": "CoIMCT 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203317&copyownerid=139659",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "a45d24f30b70"
-    },
-    {
-        "name": "IJWSC 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192427&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "6f2e012cf7fd"
     },
     {
         "name": "ICECC--ESCI 2027",
@@ -31932,6 +31879,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "fa63e542f2cd"
+    },
+    {
+        "name": "IDEAS 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203685&copyownerid=200695",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "b75b49b8e979"
     },
     {
         "name": "NOVAS 2026",
@@ -32803,26 +32770,6 @@
         "id": "948efe5c99ab"
     },
     {
-        "name": "IEEE-ICSCIS 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191143&copyownerid=163220",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "academic",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "995d30d484ac"
-    },
-    {
         "name": "EICE 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191184&copyownerid=163220",
         "startDate": null,
@@ -32841,6 +32788,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "c37cac863a18"
+    },
+    {
+        "name": "IEEE-ICSCIS 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191143&copyownerid=163220",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "academic",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "995d30d484ac"
     },
     {
         "name": "JOWO 2026",
@@ -32963,8 +32930,8 @@
         "id": "924a4f757ea9"
     },
     {
-        "name": "ISIMA 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203131&copyownerid=163220",
+        "name": "IEEE-IC4 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203426&copyownerid=200548",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -32976,11 +32943,11 @@
         },
         "online": false,
         "cfp": null,
-        "domain": "general",
+        "domain": "academic",
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "4de1ca124f7c"
+        "id": "874ecb7d498d"
     },
     {
         "name": "ICICM 2026",
@@ -33003,8 +32970,8 @@
         "id": "0999037c1be5"
     },
     {
-        "name": "IEEE-IC4 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203426&copyownerid=200548",
+        "name": "ISIMA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203131&copyownerid=163220",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -33016,11 +32983,31 @@
         },
         "online": false,
         "cfp": null,
-        "domain": "academic",
+        "domain": "general",
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "874ecb7d498d"
+        "id": "4de1ca124f7c"
+    },
+    {
+        "name": "IMCA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191837&copyownerid=182680",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "7ff97bd5f934"
     },
     {
         "name": "IFEEA 2026",
@@ -33043,8 +33030,8 @@
         "id": "4abb87ebb2a6"
     },
     {
-        "name": "IMCA 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191837&copyownerid=182680",
+        "name": "IJCCMS 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=193037&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -33060,7 +33047,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "7ff97bd5f934"
+        "id": "bf57537295e7"
     },
     {
         "name": "IEEE ICBCB 2027",
@@ -33103,66 +33090,6 @@
         "id": "ba7248bebf7c"
     },
     {
-        "name": "ADIP 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192223&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "5cf6d884aa79"
-    },
-    {
-        "name": "AEIT 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194952&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "e975b14f6c85"
-    },
-    {
-        "name": "GIRST 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202955&copyownerid=182680",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "b2fc6326fdd9"
-    },
-    {
         "name": "IJMVSC 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194196&copyownerid=33993",
         "startDate": null,
@@ -33181,26 +33108,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "1bc1db1206e6"
-    },
-    {
-        "name": "IJDKP 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199584&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "0c159db0c034"
     },
     {
         "name": "ICEKIM 2026",
@@ -33306,26 +33213,6 @@
         "id": "52a680371ff1"
     },
     {
-        "name": "KDIR 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191923&copyownerid=193627",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "6fe72f05b9c3"
-    },
-    {
         "name": "KEOD 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191924&copyownerid=193627",
         "startDate": null,
@@ -33344,6 +33231,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "188966f5e0e6"
+    },
+    {
+        "name": "KDIR 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191923&copyownerid=193627",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "6fe72f05b9c3"
     },
     {
         "name": "CAMP 2026",
