@@ -1,49 +1,25 @@
 {
-  "lastUpdated": "2026-11-05T03:59:13.906266Z",
+  "lastUpdated": "2026-11-05T13:58:47.271582Z",
   "stats": {
-    "total": 585,
+    "total": 551,
     "withOpenCFP": 170,
-    "withLocation": 440,
+    "withLocation": 411,
     "byDomain": {
-        "general": 426,
-        "software": 43,
-        "mobile": 9,
+        "general": 404,
+        "software": 37,
+        "mobile": 7,
         "cloud": 32,
         "web": 11,
-        "security": 28,
-        "devops": 3,
+        "security": 27,
         "data": 8,
+        "devops": 2,
         "academic": 8,
-        "opensource": 11,
-        "ai": 6
+        "opensource": 10,
+        "ai": 5
     }
 },
   "months": {
     "November 2026": [
-    {
-        "name": "Heapcon",
-        "url": "https://heapcon.io/2026",
-        "startDate": "2026-11-05",
-        "endDate": "2026-11-06",
-        "location": {
-            "city": "Belgrade",
-            "country": "Serbia",
-            "raw": "Belgrade, Serbia"
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://forms.gle/QBM1aqkL8yS4c6YM8",
-            "endDate": "2026-06-01",
-            "daysRemaining": -158,
-            "status": "closed"
-        },
-        "twitter": "@Heapconf",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "64900603859c"
-    },
     {
         "name": "Droidcon & Fluttercon Kenya 2026",
         "url": "https://droidcon.co.ke/",
@@ -210,11 +186,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "twitter": "@btcplusplus",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "security",
         "subDomains": [],
         "tags": [],
@@ -409,10 +380,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -488,30 +455,6 @@
         "subDomains": [],
         "tags": [],
         "id": "5ca03bf6029a"
-    },
-    {
-        "name": "UX Brighton",
-        "url": "https://uxbri.org",
-        "startDate": "2026-11-06",
-        "endDate": "2026-11-06",
-        "location": {
-            "city": "Brighton",
-            "country": "U.K.",
-            "raw": "Brighton, U.K."
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://cal.com/dannyhope/uxbrighton",
-            "endDate": "2026-09-04",
-            "daysRemaining": -63,
-            "status": "closed"
-        },
-        "twitter": "@uxbri",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "5da657658b69"
     },
     {
         "name": "Iowa Code Camp Fall 2026",
@@ -1171,30 +1114,6 @@
         "id": "c9f8737ef32f"
     },
     {
-        "name": "LeadDev Berlin",
-        "url": "https://leaddev.com/leaddev-berlin",
-        "startDate": "2026-11-09",
-        "endDate": "2026-11-10",
-        "location": {
-            "city": "Berlin",
-            "country": "Germany",
-            "raw": "Berlin, Germany",
-            "lat": 52.52,
-            "lng": 13.405
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "665e167de26d"
-    },
-    {
         "name": "ArgoCon North America",
         "url": "https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/co-located-events/argocon/",
         "startDate": "2026-11-09",
@@ -1466,35 +1385,10 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
         "id": "f6bdc3ba7911"
-    },
-    {
-        "name": "Unhacked 360 Germany: FutureSec Summit",
-        "url": "https://momentera.org/conference/unhacked-360-germany-futuresec-world-summit",
-        "startDate": "2026-11-09",
-        "endDate": "2026-11-10",
-        "location": {
-            "city": "Berlin",
-            "country": "Germany",
-            "raw": "Berlin, Germany",
-            "lat": 52.52,
-            "lng": 13.405
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "22f6bde7a5d7"
     },
     {
         "name": "Porto Tech Hub Conference 2026",
@@ -1514,11 +1408,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "twitter": "@PortoTechHub",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -1573,32 +1462,6 @@
         "subDomains": [],
         "tags": [],
         "id": "55b1aa31cfcc"
-    },
-    {
-        "name": "XtremeJS Online Conference",
-        "url": "https://xtremejs.dev",
-        "startDate": "2026-11-10",
-        "endDate": "2026-11-10",
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": true,
-        "cfp": {
-            "url": "https://tinyurl.com/xtreme2026",
-            "endDate": "2026-07-10",
-            "daysRemaining": -119,
-            "status": "closed"
-        },
-        "twitter": "@xtremejsconf",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "7e0ce5e67c69"
     },
     {
         "name": "Conference on Empirical Methods in Natural Language Processing 2026 (EMNLP)",
@@ -1672,10 +1535,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -1799,11 +1658,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "twitter": "@tokyotestfest",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -2000,11 +1854,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "twitter": "@ubuntu",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -2107,58 +1956,6 @@
         "subDomains": [],
         "tags": [],
         "id": "906d69d2d305"
-    },
-    {
-        "name": "SpiceWorld",
-        "url": "https://www.spiceworks.com/spiceworld",
-        "startDate": "2026-11-12",
-        "endDate": "2026-11-13",
-        "location": {
-            "city": "Austin, TX",
-            "country": "U.S.A.",
-            "raw": "Austin, TX, U.S.A.",
-            "lat": 30.2672,
-            "lng": -97.7431
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://sessionize.com/spiceworld-2026",
-            "endDate": "2026-05-01",
-            "daysRemaining": -189,
-            "status": "closed"
-        },
-        "twitter": "@spiceworks",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "25bad51fbfec"
-    },
-    {
-        "name": "CMS Conf",
-        "url": "https://cmsconf.com",
-        "startDate": "2026-11-12",
-        "endDate": "2026-11-14",
-        "location": {
-            "city": "Gdynia",
-            "country": "Poland",
-            "raw": "Gdynia, Poland",
-            "lat": 51.9194,
-            "lng": 19.1451
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://cmsconf.com/call-for-papers",
-            "endDate": "2026-04-30",
-            "daysRemaining": -190,
-            "status": "closed"
-        },
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "ad5307f5d852"
     },
     {
         "name": "Italian Agile Days 2026",
@@ -2409,11 +2206,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "twitter": "@vicaiboom",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -3002,11 +2794,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "twitter": "@JSNation",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -3032,10 +2819,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "software",
         "subDomains": [],
         "tags": [
@@ -3136,10 +2919,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "software",
         "subDomains": [],
         "tags": [],
@@ -3165,11 +2944,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "twitter": "@AICodingSummit",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -3195,10 +2969,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -3224,10 +2994,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "cloud",
         "subDomains": [],
         "tags": [],
@@ -3253,81 +3019,10 @@
             "status": "open"
         },
         "source": "developers.events",
-        "twitter": "@halfstackconf",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
         "id": "9dc97e602e5b"
-    },
-    {
-        "name": "API Conference Berlin",
-        "url": "https://apiconference.net/berlin",
-        "startDate": "2026-11-16",
-        "endDate": "2026-11-20",
-        "location": {
-            "city": "Berlin",
-            "country": "Germany",
-            "raw": "Berlin, Germany",
-            "lat": 52.52,
-            "lng": 13.405
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": "@api_conference",
-        "domain": "software",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "ae956adedbbc"
-    },
-    {
-        "name": "MLCon Berlin",
-        "url": "https://mlconference.ai/berlin",
-        "startDate": "2026-11-16",
-        "endDate": "2026-11-20",
-        "location": {
-            "city": "Berlin",
-            "country": "Germany",
-            "raw": "Berlin, Germany",
-            "lat": 52.52,
-            "lng": 13.405
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": "@mlconference",
-        "domain": "ai",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "fcb9b3579394"
-    },
-    {
-        "name": "VibeKode Berlin",
-        "url": "https://vibekode.it/berlin",
-        "startDate": "2026-11-16",
-        "endDate": "2026-11-20",
-        "location": {
-            "city": "Berlin",
-            "country": "Germany",
-            "raw": "Berlin, Germany",
-            "lat": 52.52,
-            "lng": 13.405
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": "@vibekode",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "50b5694c40a7"
     },
     {
         "name": "React Summit US",
@@ -3349,45 +3044,12 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "twitter": "@ReactSummit",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "web",
         "subDomains": [],
         "tags": [
             "react"
         ],
         "id": "76b5964d023a"
-    },
-    {
-        "name": "Open Source Monitoring conference",
-        "url": "https://osmc.de",
-        "startDate": "2026-11-17",
-        "endDate": "2026-11-19",
-        "location": {
-            "city": "N\u00fcrnberg",
-            "country": "Germany",
-            "raw": "N\u00fcrnberg, Germany",
-            "lat": 51.1657,
-            "lng": 10.4515
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://osmc.de/call-for-papers",
-            "endDate": "2026-06-30",
-            "daysRemaining": -129,
-            "status": "closed"
-        },
-        "twitter": null,
-        "domain": "devops",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [
-            "opensource"
-        ],
-        "id": "af75e0ac4228"
     },
     {
         "name": "NG Poland",
@@ -3540,77 +3202,6 @@
         "id": "db17cfa0a860"
     },
     {
-        "name": "XtremePython Online Conference",
-        "url": "https://xtremepython.dev",
-        "startDate": "2026-11-17",
-        "endDate": "2026-11-17",
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": true,
-        "cfp": {
-            "url": "http://www.zindell.com/documents/codeofconduct.pdf",
-            "endDate": "2026-07-10",
-            "daysRemaining": -119,
-            "status": "closed"
-        },
-        "twitter": "@xtremepython",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "ebe201b3d11b"
-    },
-    {
-        "name": "betterCode() .NET 11.0",
-        "url": "https://net.bettercode.eu",
-        "startDate": "2026-11-17",
-        "endDate": "2026-11-17",
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "fa8f86df8bd1"
-    },
-    {
-        "name": "Community Over Code Sydney",
-        "url": "https://communityovercode.apache.org/events/sydney-2026",
-        "startDate": "2026-11-18",
-        "endDate": "2026-11-19",
-        "location": {
-            "city": "Sydney",
-            "country": "Australia",
-            "raw": "Sydney, Australia",
-            "lat": 33.8688,
-            "lng": 151.2093
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "b16a885dec3f"
-    },
-    {
         "name": "Molding Conference 2026",
         "url": "https://www.moldingconference.com/",
         "startDate": "2026-11-18",
@@ -3730,11 +3321,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "twitter": "@Chur_Conf",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -4087,11 +3673,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "twitter": "@xopsconference",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -4190,29 +3771,6 @@
         "subDomains": [],
         "tags": [],
         "id": "9cad36c98d7b"
-    },
-    {
-        "name": "inside agile Product Owner Day",
-        "url": "https://pod.inside-agile.de",
-        "startDate": "2026-11-19",
-        "endDate": "2026-11-19",
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": null,
-        "domain": "software",
-        "tags": [
-            "agile"
-        ],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "e246a42be2fe"
     },
     {
         "name": "Swiftsonic '26",
@@ -4527,56 +4085,6 @@
         "subDomains": [],
         "tags": [],
         "id": "9a94ceaa6c81"
-    },
-    {
-        "name": "droidCon India",
-        "url": "https://india.droidcon.com",
-        "startDate": "2026-11-20",
-        "endDate": "2026-11-20",
-        "location": {
-            "city": "Bengaluru",
-            "country": "India",
-            "raw": "Bengaluru, India",
-            "lat": 20.5937,
-            "lng": 78.9629
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": "@droidconIN",
-        "domain": "mobile",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "773e798373f7"
-    },
-    {
-        "name": "Agentic Engineering Days Zurich",
-        "url": "https://www.agenticdays.com",
-        "startDate": "2026-11-20",
-        "endDate": "2026-11-20",
-        "location": {
-            "city": "Zurich",
-            "country": "Switzerland",
-            "raw": "Zurich, Switzerland",
-            "lat": 47.3769,
-            "lng": 8.5417
-        },
-        "online": false,
-        "cfp": {
-            "url": "https://sessionize.com/agentic-engineering-days-zurich-2026",
-            "endDate": "2026-07-23",
-            "daysRemaining": -106,
-            "status": "closed"
-        },
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "7299ece3d400"
     },
     {
         "name": "DevFest Johannesburg 2026",
@@ -5130,27 +4638,6 @@
         "id": "ce0170e5e1cb"
     },
     {
-        "name": "flutterCon India",
-        "url": "https://india.fluttercon.dev",
-        "startDate": "2026-11-21",
-        "endDate": "2026-11-21",
-        "location": {
-            "city": "Bangalore",
-            "country": "India",
-            "raw": "Bangalore, India",
-            "lat": 12.9716,
-            "lng": 77.5946
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "mobile",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "96e04fb95661"
-    },
-    {
         "name": "Reality Check - Delhi Edition",
         "url": "https://www.commudle.com/communities/noclue/events/reality-check-delhi-edition",
         "startDate": "2026-11-22",
@@ -5176,27 +4663,6 @@
         "id": "9a3945cb8630"
     },
     {
-        "name": "DDC .NET Developer Conference",
-        "url": "https://www.developer-world.de/ddc",
-        "startDate": "2026-11-23",
-        "endDate": "2026-11-26",
-        "location": {
-            "city": "Cologne",
-            "country": "Germany",
-            "raw": "Cologne, Germany",
-            "lat": 51.1657,
-            "lng": 10.4515
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "software",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "12b3587b5842"
-    },
-    {
         "name": "XtremeAI Online Conference",
         "url": "https://xtremeai.dev",
         "startDate": "2026-11-24",
@@ -5214,11 +4680,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "twitter": "@xtremeaiconf",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -5394,11 +4855,6 @@
             "status": "open"
         },
         "source": "developers.events",
-        "twitter": "@BigDataConfEU",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -5424,10 +4880,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "software",
         "subDomains": [],
         "tags": [],
@@ -5455,27 +4907,6 @@
         "subDomains": [],
         "tags": [],
         "id": "cf7ea1883128"
-    },
-    {
-        "name": "AI World Congress",
-        "url": "https://aiconference.london",
-        "startDate": "2026-11-25",
-        "endDate": "2026-11-26",
-        "location": {
-            "city": "London",
-            "country": "U.K.",
-            "raw": "London, U.K.",
-            "lat": 51.5074,
-            "lng": -0.1278
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "0986bb6c8fdd"
     },
     {
         "name": "SymfonyCon Warsaw 2026",
@@ -5624,71 +5055,6 @@
         "id": "2e651d50828b"
     },
     {
-        "name": "betterCode() Rust",
-        "url": "https://rust.bettercode.eu",
-        "startDate": "2026-11-26",
-        "endDate": "2026-11-26",
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [
-            "rust"
-        ],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "5bfcdd11b245"
-    },
-    {
-        "name": "EdTech Conference",
-        "url": "https://edtechconferences.london",
-        "startDate": "2026-11-26",
-        "endDate": "2026-11-27",
-        "location": {
-            "city": "London",
-            "country": "U.K.",
-            "raw": "London, U.K.",
-            "lat": 51.5074,
-            "lng": -0.1278
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "5e7444c4a079"
-    },
-    {
-        "name": "SymfonyCon",
-        "url": "https://live.symfony.com/2026-warsaw-con",
-        "startDate": "2026-11-26",
-        "endDate": "2026-11-27",
-        "location": {
-            "city": "Warsaw",
-            "country": "Poland",
-            "raw": "Warsaw, Poland",
-            "lat": 52.2297,
-            "lng": 21.0122
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": "@symfony_live",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "de1485d024e9"
-    },
-    {
         "name": "DevFest Budapest 2026 - On Campus Conference",
         "url": "https://devfest.hu",
         "startDate": "2026-11-27",
@@ -5833,11 +5199,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "twitter": "@wpninjasummit",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -6395,53 +5756,6 @@
         "id": "7880847227dc"
     },
     {
-        "name": "FOSS for All Conference",
-        "url": "https://2026.fossforall.org",
-        "startDate": "2026-11-28",
-        "endDate": "2026-11-28",
-        "location": {
-            "city": "Seoul",
-            "country": "South Korea",
-            "raw": "Seoul, South Korea",
-            "lat": 37.5665,
-            "lng": 126.978
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": "@FOSS_for_All",
-        "domain": "opensource",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "3ec16329da80"
-    },
-    {
-        "name": "DevOpsCon Munich",
-        "url": "https://devopscon.io/muenchen",
-        "startDate": "2026-11-30",
-        "endDate": "2026-12-04",
-        "location": {
-            "city": "Munich",
-            "country": "Germany",
-            "raw": "Munich, Germany",
-            "lat": 48.1351,
-            "lng": 11.582
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": "@devops_con",
-        "domain": "software",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [
-            "devops"
-        ],
-        "id": "825e34ad95e3"
-    },
-    {
         "name": "Reversim Summit 2026",
         "url": "https://summit2026.reversim.com/",
         "startDate": "2026-11-30",
@@ -6465,73 +5779,6 @@
         "subDomains": [],
         "tags": [],
         "id": "0bdc6bdf5eb4"
-    },
-    {
-        "name": "APIConf",
-        "url": "https://apiconf.io",
-        "startDate": "2026-11-30",
-        "endDate": "2026-12-02",
-        "location": {
-            "city": "Clear Water, FL",
-            "country": "U.S.A.",
-            "raw": "Clear Water, FL, U.S.A."
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": null,
-        "domain": "software",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "df7b06724043"
-    },
-    {
-        "name": "IT Security Summit Munich",
-        "url": "https://it-security-summit.com/munich",
-        "startDate": "2026-11-30",
-        "endDate": "2026-12-04",
-        "location": {
-            "city": "Munich",
-            "country": "Germany",
-            "raw": "Munich, Germany",
-            "lat": 48.1351,
-            "lng": 11.582
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": "@ITSecSummit",
-        "domain": "security",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "bdfaa8cad478"
-    },
-    {
-        "name": "ESPC",
-        "url": "https://www.sharepointeurope.com",
-        "startDate": "2026-11-30",
-        "endDate": "2026-12-03",
-        "location": {
-            "city": "Amsterdam",
-            "country": "Netherlands",
-            "raw": "Amsterdam, Netherlands",
-            "lat": 52.3676,
-            "lng": 4.9041
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": "@ESPC_Community",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "52c4c4d94dac"
     }
 ],
     "December 2026": [
@@ -6578,11 +5825,6 @@
             "status": "open"
         },
         "source": "developers.events",
-        "twitter": "@APIdaysGlobal",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "software",
         "subDomains": [],
         "tags": [],
@@ -6656,10 +5898,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -6712,29 +5950,6 @@
         "subDomains": [],
         "tags": [],
         "id": "1adc0026c1d1"
-    },
-    {
-        "name": "inside agile: Agile Leadership Conference",
-        "url": "https://alc.inside-agile.de",
-        "startDate": "2026-12-01",
-        "endDate": "2026-12-02",
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": null,
-        "domain": "software",
-        "tags": [
-            "agile"
-        ],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "9cfc43181ba6"
     },
     {
         "name": "Power Conference 2026",
@@ -6837,25 +6052,6 @@
         "id": "8528959fb788"
     },
     {
-        "name": "Tech Leader Summit",
-        "url": "https://techleadersummit.io",
-        "startDate": "2026-12-02",
-        "endDate": "2026-12-04",
-        "location": {
-            "city": "Clearwater, FL",
-            "country": "U.S.A.",
-            "raw": "Clearwater, FL, U.S.A."
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "7c46d6e727a3"
-    },
-    {
         "name": "Write the Docs Australia",
         "url": "https://www.writethedocs.org/conf/australia/2026",
         "startDate": "2026-12-03",
@@ -6875,10 +6071,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -6959,29 +6151,6 @@
         "id": "0e90fdda4095"
     },
     {
-        "name": "betterCode() PHP",
-        "url": "https://php.bettercode.eu",
-        "startDate": "2026-12-03",
-        "endDate": "2026-12-03",
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": true,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [
-            "php"
-        ],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "d1eb51237820"
-    },
-    {
         "name": "React Day Berlin",
         "url": "https://reactday.berlin",
         "startDate": "2026-12-04",
@@ -7001,11 +6170,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "twitter": "@reactdayberlin",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "web",
         "subDomains": [],
         "tags": [
@@ -7083,11 +6247,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "twitter": "@AICodingSummit",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -7113,10 +6272,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -7434,10 +6589,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -7776,10 +6927,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -7809,25 +6956,6 @@
         "subDomains": [],
         "tags": [],
         "id": "17244ac2666d"
-    },
-    {
-        "name": "ArchConf",
-        "url": "https://archconf.com",
-        "startDate": "2026-12-07",
-        "endDate": "2026-12-10",
-        "location": {
-            "city": "Clearwater, FL",
-            "country": "U.S.A.",
-            "raw": "Clearwater, FL, U.S.A."
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "7c1f4e182768"
     },
     {
         "name": "Dynamics Summit 08.-09. Dezember 2026",
@@ -7899,27 +7027,6 @@
         "id": "dfade88b0a6d"
     },
     {
-        "name": "Conversations Roadshow: New York by CTO Craft",
-        "url": "https://conversations.ctocraft.com/new-york",
-        "startDate": "2026-12-08",
-        "endDate": "2026-12-09",
-        "location": {
-            "city": "New York, NY",
-            "country": "U.S.A.",
-            "raw": "New York, NY, U.S.A.",
-            "lat": 40.7128,
-            "lng": -74.006
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": null,
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "subDomains": [],
-        "id": "6379fe0a7bd5"
-    },
-    {
         "name": "Great International AI Native Summit (GAINS)",
         "url": "https://ainativesummit.com",
         "startDate": "2026-12-09",
@@ -7939,10 +7046,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -8018,11 +7121,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "twitter": "@droidcon",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "mobile",
         "subDomains": [],
         "tags": [],
@@ -8676,11 +7774,6 @@
             "status": "closed"
         },
         "source": "developers.events",
-        "twitter": "@AIDevConf",
-        "sources": [
-            "tech-conferences",
-            "developers.events"
-        ],
         "domain": "software",
         "subDomains": [],
         "tags": [],
@@ -8896,30 +7989,6 @@
         "subDomains": [],
         "tags": [],
         "id": "ca34dc38b546"
-    },
-    {
-        "name": "SciPy India",
-        "url": "https://scipy.in/2026/",
-        "startDate": "2026-12-19",
-        "endDate": "2026-12-20",
-        "location": {
-            "city": "Chennai",
-            "country": "India",
-            "raw": "Chennai, India",
-            "lat": 20.5937,
-            "lng": 78.9629
-        },
-        "online": false,
-        "cfp": null,
-        "twitter": "@scipy_india",
-        "domain": "general",
-        "tags": [],
-        "source": "tech-conferences",
-        "sources": [
-            "tech-conferences"
-        ],
-        "subDomains": [],
-        "id": "007655682e5e"
     },
     {
         "name": "DevOpsDays Tel Aviv TLV 2026",
