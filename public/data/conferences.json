@@ -1,21 +1,21 @@
 {
-  "lastUpdated": "2026-11-07T03:29:10.050431Z",
+  "lastUpdated": "2026-11-07T12:23:48.127140Z",
   "stats": {
-    "total": 572,
-    "withOpenCFP": 172,
-    "withLocation": 435,
+    "total": 588,
+    "withOpenCFP": 187,
+    "withLocation": 447,
     "byDomain": {
-        "general": 417,
+        "general": 429,
         "software": 43,
         "mobile": 8,
-        "cloud": 31,
+        "cloud": 32,
         "web": 11,
-        "security": 28,
+        "security": 30,
         "devops": 3,
         "data": 7,
+        "opensource": 11,
         "academic": 8,
-        "ai": 6,
-        "opensource": 10
+        "ai": 6
     }
 },
   "months": {
@@ -974,8 +974,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "general",
         "subDomains": [],
@@ -1023,8 +1023,8 @@
         "source": "developers.events",
         "twitter": "@PortoTechHub",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "general",
         "subDomains": [],
@@ -1180,8 +1180,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "general",
         "subDomains": [],
@@ -1308,8 +1308,8 @@
         "source": "developers.events",
         "twitter": "@tokyotestfest",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "general",
         "subDomains": [],
@@ -1509,8 +1509,8 @@
         "source": "developers.events",
         "twitter": "@ubuntu",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "general",
         "subDomains": [],
@@ -1918,8 +1918,8 @@
         "source": "developers.events",
         "twitter": "@vicaiboom",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "general",
         "subDomains": [],
@@ -2511,8 +2511,8 @@
         "source": "developers.events",
         "twitter": "@JSNation",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "general",
         "subDomains": [],
@@ -2540,8 +2540,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "software",
         "subDomains": [],
@@ -2644,8 +2644,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "software",
         "subDomains": [],
@@ -2674,8 +2674,8 @@
         "source": "developers.events",
         "twitter": "@AICodingSummit",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "general",
         "subDomains": [],
@@ -2703,8 +2703,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "general",
         "subDomains": [],
@@ -2732,8 +2732,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "cloud",
         "subDomains": [],
@@ -2762,8 +2762,8 @@
         "source": "developers.events",
         "twitter": "@halfstackconf",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "general",
         "subDomains": [],
@@ -2858,8 +2858,8 @@
         "source": "developers.events",
         "twitter": "@ReactSummit",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "web",
         "subDomains": [],
@@ -3239,8 +3239,8 @@
         "source": "developers.events",
         "twitter": "@Chur_Conf",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "general",
         "subDomains": [],
@@ -3596,8 +3596,8 @@
         "source": "developers.events",
         "twitter": "@xopsconference",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "general",
         "subDomains": [],
@@ -4128,6 +4128,9 @@
             "status": "closed"
         },
         "source": "developers.events",
+        "sources": [
+            "developers.events"
+        ],
         "domain": "cloud",
         "subDomains": [],
         "tags": [
@@ -4683,6 +4686,31 @@
         "id": "9a3945cb8630"
     },
     {
+        "name": "GDG Palermo - Last commit of the year 2026",
+        "url": "https://sessionize.com/gdg-palermo-last-commit-of-the-year-2026/",
+        "startDate": "2026-11-23",
+        "endDate": "2026-11-23",
+        "location": {
+            "city": "Palermo",
+            "country": "Italy",
+            "raw": "Palermo (Italy)",
+            "lat": 41.8719,
+            "lng": 12.5674
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/gdg-palermo-last-commit-of-the-year-2026/",
+            "endDate": "2026-11-06",
+            "daysRemaining": -2,
+            "status": "closed"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "aecd5b400f79"
+    },
+    {
         "name": "DDC .NET Developer Conference",
         "url": "https://www.developer-world.de/ddc",
         "startDate": "2026-11-23",
@@ -4723,8 +4751,8 @@
         "source": "developers.events",
         "twitter": "@xtremeaiconf",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "general",
         "subDomains": [],
@@ -4903,8 +4931,8 @@
         "source": "developers.events",
         "twitter": "@BigDataConfEU",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "general",
         "subDomains": [],
@@ -4932,8 +4960,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "software",
         "subDomains": [],
@@ -5342,8 +5370,8 @@
         "source": "developers.events",
         "twitter": "@wpninjasummit",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "general",
         "subDomains": [],
@@ -5854,6 +5882,56 @@
         "id": "d51af6d162aa"
     },
     {
+        "name": "Sustainability in IT The Conversation Continues 2026",
+        "url": "https://sessionize.com/sustainability-in-it-the-conversation-c",
+        "startDate": "2026-11-28",
+        "endDate": "2026-11-28",
+        "location": {
+            "city": "Bengaluru",
+            "country": "India",
+            "raw": "Bengaluru (India)",
+            "lat": 20.5937,
+            "lng": 78.9629
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/sustainability-in-it-the-conversation-c",
+            "endDate": "2026-11-18",
+            "daysRemaining": 10,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "f0c209fac80c"
+    },
+    {
+        "name": ".NET Conf 2026 Ahmedabad",
+        "url": "https://www.meetup.com/m365ahmedabad/events/317280748/",
+        "startDate": "2026-11-28",
+        "endDate": "2026-11-28",
+        "location": {
+            "city": "Ahmedabad",
+            "country": "India",
+            "raw": "Ahmedabad (India)",
+            "lat": 20.5937,
+            "lng": 78.9629
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/net-conf-2026-ahmedabad-in-person/",
+            "endDate": "2026-11-19",
+            "daysRemaining": 11,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "e5e62b966211"
+    },
+    {
         "name": "DevFest Singapore 2026",
         "url": "https://luma.com/gdgsg-devfest26",
         "startDate": "2026-11-28",
@@ -5947,6 +6025,31 @@
             "devops"
         ],
         "id": "825e34ad95e3"
+    },
+    {
+        "name": "Global Security Bootcamp Melbourne 2026",
+        "url": "https://globalsecurity.community/events/global-security-bootcamp-melbourne-2026-nov/",
+        "startDate": "2026-11-30",
+        "endDate": "2026-11-30",
+        "location": {
+            "city": "Melbourne",
+            "country": "Australia",
+            "raw": "Melbourne (Australia)",
+            "lat": -37.8136,
+            "lng": 144.9631
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/global-security-bootcamp-melbourne-20261177/",
+            "endDate": "2026-11-17",
+            "daysRemaining": 9,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "security",
+        "subDomains": [],
+        "tags": [],
+        "id": "1ff102832cfe"
     },
     {
         "name": "Reversim Summit 2026",
@@ -6087,8 +6190,8 @@
         "source": "developers.events",
         "twitter": "@APIdaysGlobal",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "software",
         "subDomains": [],
@@ -6164,8 +6267,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "general",
         "subDomains": [],
@@ -6406,8 +6509,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "general",
         "subDomains": [],
@@ -6533,8 +6636,8 @@
         "source": "developers.events",
         "twitter": "@reactdayberlin",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "web",
         "subDomains": [],
@@ -6615,8 +6718,8 @@
         "source": "developers.events",
         "twitter": "@AICodingSummit",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "general",
         "subDomains": [],
@@ -6644,8 +6747,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "general",
         "subDomains": [],
@@ -6914,6 +7017,9 @@
             "status": "closed"
         },
         "source": "developers.events",
+        "sources": [
+            "developers.events"
+        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -6965,8 +7071,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "general",
         "subDomains": [],
@@ -7239,6 +7345,31 @@
         "id": "4412a565e22d"
     },
     {
+        "name": "DevFest Ottawa 2026",
+        "url": "https://gdg.community.dev/events/details/google-gdg-ottawa-presents-devfest-ottawa-2026-build-secure-amp-scale-in-the-agentic-era/",
+        "startDate": "2026-12-05",
+        "endDate": "2026-12-05",
+        "location": {
+            "city": "Ottawa, ON",
+            "country": "Canada",
+            "raw": "Ottawa, ON (Canada)",
+            "lat": 56.1304,
+            "lng": -106.3468
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/devfest-ottawa-2026/",
+            "endDate": "2026-11-28",
+            "daysRemaining": 20,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "feaa630aaf44"
+    },
+    {
         "name": "DevFest Nepal 2026: Agents of Change - Buildathon",
         "url": "https://gdg.community.dev/events/details/google-gdg-kathmandu-presents-agents-of-change-buildathon/",
         "startDate": "2026-12-05",
@@ -7307,8 +7438,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "general",
         "subDomains": [],
@@ -7470,8 +7601,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "general",
         "subDomains": [],
@@ -7550,8 +7681,8 @@
         "source": "developers.events",
         "twitter": "@droidcon",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "mobile",
         "subDomains": [],
@@ -8024,6 +8155,29 @@
         "id": "847381b70c0d"
     },
     {
+        "name": "PyTorch Day 2026",
+        "url": "https://www.lfopensource.cn/pytorch-day-china/",
+        "startDate": "2026-12-12",
+        "endDate": "2026-12-12",
+        "location": {
+            "city": "Beijing",
+            "country": "China",
+            "raw": "Beijing (China)"
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/pytorch-day-china-2026/",
+            "endDate": "2026-11-10",
+            "daysRemaining": 2,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "700a45445574"
+    },
+    {
         "name": "DevFest Lubumbashi 2026",
         "url": "https://gdg.community.dev/events/details/google-gdg-lubumbashi-presents-devfest-lubumbashi-2026/",
         "startDate": "2026-12-12",
@@ -8118,6 +8272,31 @@
         "subDomains": [],
         "tags": [],
         "id": "91de8fcf1ca8"
+    },
+    {
+        "name": "Pune DevCon 2026",
+        "url": "https://punedevcon.org",
+        "startDate": "2026-12-12",
+        "endDate": "2026-12-12",
+        "location": {
+            "city": "Pune",
+            "country": "India",
+            "raw": "Pune (India)",
+            "lat": 20.5937,
+            "lng": 78.9629
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/pune-devcon-2026/",
+            "endDate": "2026-12-05",
+            "daysRemaining": 27,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "db227f40f8a3"
     },
     {
         "name": "Devfest Pune 2026",
@@ -8233,8 +8412,8 @@
         "source": "developers.events",
         "twitter": "@AIDevConf",
         "sources": [
-            "developers.events",
-            "tech-conferences"
+            "tech-conferences",
+            "developers.events"
         ],
         "domain": "software",
         "subDomains": [],
@@ -8573,6 +8752,31 @@
         "id": "21dbbae824e6"
     },
     {
+        "name": "AWS Community Day Lahore 2026",
+        "url": "https://awscommunity.pk/lahore",
+        "startDate": "2026-12-26",
+        "endDate": "2026-12-26",
+        "location": {
+            "city": "Lahore",
+            "country": "Pakistan",
+            "raw": "Lahore (Pakistan)"
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/aws-community-day-lahore-2026",
+            "endDate": "2026-11-22",
+            "daysRemaining": 14,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "cloud",
+        "subDomains": [],
+        "tags": [
+            "aws"
+        ],
+        "id": "e47a5093de4d"
+    },
+    {
         "name": "Eventos Albacete 2026",
         "url": "https://sessionize.com/eventos-albacete-2026/",
         "startDate": "2026-12-31",
@@ -8719,6 +8923,29 @@
         "subDomains": [],
         "tags": [],
         "id": "a5300cf3a270"
+    },
+    {
+        "name": "SUGCON Global Online 2027",
+        "url": "https://virtual.sugcon.events",
+        "startDate": "2027-01-17",
+        "endDate": "2027-01-17",
+        "location": {
+            "city": "Online",
+            "country": "",
+            "raw": "Online"
+        },
+        "online": true,
+        "cfp": {
+            "url": "https://sessionize.com/sugcon-global-virtual-2027/",
+            "endDate": "2026-11-20",
+            "daysRemaining": 12,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "add9c4f10f08"
     },
     {
         "name": "Data Community Day Austria 2027",
@@ -8919,6 +9146,29 @@
         "id": "0dce3a93cdf6"
     },
     {
+        "name": "eBPF Security Summit Online 2027",
+        "url": "https://ebpf.io/summit-2027/",
+        "startDate": "2027-01-27",
+        "endDate": "2027-01-27",
+        "location": {
+            "city": "Online",
+            "country": "",
+            "raw": "Online"
+        },
+        "online": true,
+        "cfp": {
+            "url": "https://sessionize.com/ebpf-security-summit-2027/",
+            "endDate": "2026-11-24",
+            "daysRemaining": 16,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "security",
+        "subDomains": [],
+        "tags": [],
+        "id": "537e5b3e1bbe"
+    },
+    {
         "name": "Drupal 4 Gov 2027",
         "url": "http://drupal4gov.eu/",
         "startDate": "2027-01-28",
@@ -8969,6 +9219,31 @@
             "mysql"
         ],
         "id": "4bad081a91f0"
+    },
+    {
+        "name": "Code & Compliance 2027",
+        "url": "https://codeandcompliance.orcwg.org",
+        "startDate": "2027-01-28",
+        "endDate": "2027-01-28",
+        "location": {
+            "city": "Brussels",
+            "country": "Belgium",
+            "raw": "Brussels (Belgium)",
+            "lat": 50.8503,
+            "lng": 4.3517
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/codeandcompliance_jan2027/",
+            "endDate": "2026-12-07",
+            "daysRemaining": 29,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "4de1c5e87a0f"
     },
     {
         "name": "FOSSapalooza",
@@ -9469,6 +9744,31 @@
         "id": "f4cf8775b461"
     },
     {
+        "name": "Open Source Forum 2027",
+        "url": "https://events.linuxfoundation.org/aswf-open-source-forum/",
+        "startDate": "2027-02-18",
+        "endDate": "2027-02-18",
+        "location": {
+            "city": "Los Angeles, CA",
+            "country": "USA",
+            "raw": "Los Angeles, CA (USA)",
+            "lat": 34.0522,
+            "lng": -118.2437
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/open-source-forum-2027/",
+            "endDate": "2026-12-06",
+            "daysRemaining": 28,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "opensource",
+        "subDomains": [],
+        "tags": [],
+        "id": "7b95159eac38"
+    },
+    {
         "name": "Touraine Tech 2027",
         "url": "https://touraine.tech/",
         "startDate": "2027-02-18",
@@ -9538,6 +9838,9 @@
             "status": "open"
         },
         "source": "developers.events",
+        "sources": [
+            "developers.events"
+        ],
         "domain": "general",
         "subDomains": [],
         "tags": [],
@@ -10015,6 +10318,31 @@
         "subDomains": [],
         "tags": [],
         "id": "242dbeb185c3"
+    },
+    {
+        "name": "PyData Venice Day 2027",
+        "url": "https://venice.pydata.org/pydata-venice-day-27/",
+        "startDate": "2027-02-27",
+        "endDate": "2027-02-27",
+        "location": {
+            "city": "Mestre",
+            "country": "Italy",
+            "raw": "Mestre (Italy)",
+            "lat": 41.8719,
+            "lng": 12.5674
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/pydata-venice-day/",
+            "endDate": "2026-12-22",
+            "daysRemaining": 44,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "35ba4abee1b1"
     },
     {
         "name": "Coderioja-2027",
@@ -10543,6 +10871,31 @@
         "subDomains": [],
         "tags": [],
         "id": "ed3df8eeef98"
+    },
+    {
+        "name": "DataTune 2027",
+        "url": "https://DataTuneConf.com/",
+        "startDate": "2027-03-12",
+        "endDate": "2027-03-13",
+        "location": {
+            "city": "Nashville, TN",
+            "country": "USA",
+            "raw": "Nashville, TN (USA)",
+            "lat": 37.0902,
+            "lng": -95.7129
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/datatune-2027/",
+            "endDate": "2026-11-15",
+            "daysRemaining": 7,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "979e8d5f5783"
     },
     {
         "name": "Maintainer Summit: KubeCon + CloudNativeCon Europe 2027",
@@ -12678,6 +13031,56 @@
         "subDomains": [],
         "tags": [],
         "id": "de6165e7c13b"
+    },
+    {
+        "name": "ElixirConf EU 2027",
+        "url": "https://www.elixirconf.eu/",
+        "startDate": "2027-04-22",
+        "endDate": "2027-04-23",
+        "location": {
+            "city": "Lisbon",
+            "country": "Portugal",
+            "raw": "Lisbon (Portugal)",
+            "lat": 38.7223,
+            "lng": -9.1393
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/elixirconf-eu-2027/",
+            "endDate": "2026-12-15",
+            "daysRemaining": 37,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "33d88a69d4bc"
+    },
+    {
+        "name": "Women in Tech Conference 2027",
+        "url": "https://womenintechmalaga.com/",
+        "startDate": "2027-04-22",
+        "endDate": "2027-04-22",
+        "location": {
+            "city": "M\u00e1laga",
+            "country": "Spain",
+            "raw": "M\u00e1laga (Spain)",
+            "lat": 40.4637,
+            "lng": -3.7492
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/women-in-tech-malaga-conference-2027/",
+            "endDate": "2026-12-31",
+            "daysRemaining": 53,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "70cc1e54fc09"
     },
     {
         "name": "Gophercamp Czechia 2027",
