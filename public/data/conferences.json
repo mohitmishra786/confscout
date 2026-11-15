@@ -1,21 +1,21 @@
 {
-  "lastUpdated": "2026-11-15T03:17:58.953397Z",
+  "lastUpdated": "2026-11-15T13:17:30.702546Z",
   "stats": {
-    "total": 1441,
-    "withOpenCFP": 158,
-    "withLocation": 1320,
+    "total": 1474,
+    "withOpenCFP": 194,
+    "withLocation": 1343,
     "byDomain": {
-        "general": 1141,
+        "general": 1164,
         "software": 43,
         "mobile": 10,
-        "cloud": 25,
-        "web": 20,
+        "cloud": 26,
+        "web": 21,
         "devops": 2,
-        "security": 31,
+        "security": 37,
         "data": 7,
-        "opensource": 17,
-        "academic": 82,
-        "ai": 63
+        "opensource": 19,
+        "academic": 83,
+        "ai": 62
     }
 },
   "months": {
@@ -142,8 +142,8 @@
         "source": "developers.events",
         "twitter": "@JSNation",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -171,8 +171,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "software",
         "subDomains": [],
@@ -275,8 +275,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "software",
         "subDomains": [],
@@ -305,8 +305,8 @@
         "source": "developers.events",
         "twitter": "@AICodingSummit",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -334,8 +334,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -363,8 +363,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "cloud",
         "subDomains": [],
@@ -393,8 +393,8 @@
         "source": "developers.events",
         "twitter": "@halfstackconf",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -489,8 +489,8 @@
         "source": "developers.events",
         "twitter": "@ReactSummit",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "web",
         "subDomains": [],
@@ -870,8 +870,8 @@
         "source": "developers.events",
         "twitter": "@Chur_Conf",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -1227,8 +1227,8 @@
         "source": "developers.events",
         "twitter": "@xopsconference",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -2382,8 +2382,8 @@
         "source": "developers.events",
         "twitter": "@xtremeaiconf",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -2562,8 +2562,8 @@
         "source": "developers.events",
         "twitter": "@BigDataConfEU",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -2591,8 +2591,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "software",
         "subDomains": [],
@@ -2621,6 +2621,29 @@
         "subDomains": [],
         "tags": [],
         "id": "cf7ea1883128"
+    },
+    {
+        "name": "NET Conf Online 2026",
+        "url": "https://www.meetup.com/es/net-baires/events/311541156/",
+        "startDate": "2026-11-25",
+        "endDate": "2026-11-25",
+        "location": {
+            "city": "Online",
+            "country": "",
+            "raw": "Online"
+        },
+        "online": true,
+        "cfp": {
+            "url": "https://sessionize.com/net-conf-2026-net-baires/",
+            "endDate": "2026-11-20",
+            "daysRemaining": 4,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "bba1eebedba4"
     },
     {
         "name": "AI World Congress",
@@ -3001,8 +3024,8 @@
         "source": "developers.events",
         "twitter": "@wpninjasummit",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -3588,6 +3611,29 @@
         "id": "86103a275081"
     },
     {
+        "name": "Microsoft Foundry Day",
+        "url": "https://axet.nttdata.com/flows/cloud/nttdata-eventos-programas/?form=Programas&nombrePrograma=40-Microsoft%20Foundry%20Day%20en%20NTT%20DATA",
+        "startDate": "2026-11-28",
+        "endDate": "2026-11-28",
+        "location": {
+            "city": "Lima",
+            "country": "Peru",
+            "raw": "Lima (Peru)"
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/microsoft-foundry-day/",
+            "endDate": "2026-11-22",
+            "daysRemaining": 6,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "97a1e7f37ae8"
+    },
+    {
         "name": "Cloud Native Per\u00fa 2026",
         "url": "https://cloud-native.pe",
         "startDate": "2026-11-28",
@@ -3821,8 +3867,8 @@
         "source": "developers.events",
         "twitter": "@APIdaysGlobal",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "software",
         "subDomains": [],
@@ -3898,8 +3944,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -4140,8 +4186,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -4267,8 +4313,8 @@
         "source": "developers.events",
         "twitter": "@reactdayberlin",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "web",
         "subDomains": [],
@@ -4349,8 +4395,8 @@
         "source": "developers.events",
         "twitter": "@AICodingSummit",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -4378,8 +4424,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -4702,8 +4748,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -4976,6 +5022,29 @@
         "id": "4412a565e22d"
     },
     {
+        "name": ".NET Conf GT Online 2026",
+        "url": "https://www.meetup.com/techcommunitygt/events/317026280/",
+        "startDate": "2026-12-05",
+        "endDate": "2026-12-05",
+        "location": {
+            "city": "Online",
+            "country": "",
+            "raw": "Online"
+        },
+        "online": true,
+        "cfp": {
+            "url": "https://sessionize.com/net-conf-gt-2026/",
+            "endDate": "2026-11-16",
+            "daysRemaining": 0,
+            "status": "closed"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "24695ac27534"
+    },
+    {
         "name": "DevFest Ottawa 2026",
         "url": "https://gdg.community.dev/events/details/google-gdg-ottawa-presents-devfest-ottawa-2026-build-secure-amp-scale-in-the-agentic-era/",
         "startDate": "2026-12-05",
@@ -5069,8 +5138,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -5232,8 +5301,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -5291,6 +5360,31 @@
         "id": "471a73215b37"
     },
     {
+        "name": "Global AI Community Helsinki 2026",
+        "url": "https://globalai.community/chapters/helsinki",
+        "startDate": "2026-12-09",
+        "endDate": "2026-12-09",
+        "location": {
+            "city": "Helsinki",
+            "country": "Finland",
+            "raw": "Helsinki (Finland)",
+            "lat": 60.1699,
+            "lng": 24.9384
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/global-ai-community-helsinki/",
+            "endDate": "2026-11-22",
+            "daysRemaining": 6,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "f49ffeae60d8"
+    },
+    {
         "name": "droidcon London",
         "url": "https://london.droidcon.com",
         "startDate": "2026-12-10",
@@ -5312,8 +5406,8 @@
         "source": "developers.events",
         "twitter": "@droidcon",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "mobile",
         "subDomains": [],
@@ -5421,6 +5515,31 @@
         "subDomains": [],
         "tags": [],
         "id": "ef5a0e991712"
+    },
+    {
+        "name": ".NET Conf 2026",
+        "url": "https://dotNetConf2026.eventbrite.com",
+        "startDate": "2026-12-10",
+        "endDate": "2026-12-10",
+        "location": {
+            "city": "Sofia",
+            "country": "Bulgaria",
+            "raw": "Sofia (Bulgaria)",
+            "lat": 42.6977,
+            "lng": 23.3219
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/net-conf-2026-bulgaria/",
+            "endDate": "2026-11-14",
+            "daysRemaining": -2,
+            "status": "closed"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "1cde90e8c880"
     },
     {
         "name": "Conference on Neural Information Processing Systems 2026 (NeurIPS)",
@@ -5978,6 +6097,31 @@
         "id": "3da2e2f4934f"
     },
     {
+        "name": "Global AI Nights Sofia 2026",
+        "url": "https://globalai.community/e/3bpbrt9d",
+        "startDate": "2026-12-15",
+        "endDate": "2026-12-15",
+        "location": {
+            "city": "Sofia",
+            "country": "Bulgaria",
+            "raw": "Sofia (Bulgaria)",
+            "lat": 42.6977,
+            "lng": 23.3219
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/gloabal-ai-nights-sofia/",
+            "endDate": "2026-11-27",
+            "daysRemaining": 11,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "d3e2d40fd0ca"
+    },
+    {
         "name": "\"12 Reasons Why\" with Tech Experts  - Season 2",
         "url": "https://12reasons.theazway.com",
         "startDate": "2026-12-15",
@@ -6043,8 +6187,8 @@
         "source": "developers.events",
         "twitter": "@AIDevConf",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "software",
         "subDomains": [],
@@ -6098,6 +6242,29 @@
         "subDomains": [],
         "tags": [],
         "id": "f0d8e745c937"
+    },
+    {
+        "name": ".NET Conf 2026",
+        "url": "https://dotnetliguria.net",
+        "startDate": "2026-12-18",
+        "endDate": "2026-12-18",
+        "location": {
+            "city": "Italy",
+            "country": "",
+            "raw": "Italy"
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/net-conf-2026-by-dotnetliguria/",
+            "endDate": "2026-12-14",
+            "daysRemaining": 28,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "5b4898497a31"
     },
     {
         "name": "DevFest Cairo 2026",
@@ -6825,6 +6992,31 @@
         "id": "b14fe4b1a05a"
     },
     {
+        "name": "FOSSapalooza 2027",
+        "url": "https://fossapalooza.eu/",
+        "startDate": "2027-01-28",
+        "endDate": "2027-01-28",
+        "location": {
+            "city": "Brussels",
+            "country": "Belgium",
+            "raw": "Brussels (Belgium)",
+            "lat": 50.8503,
+            "lng": 4.3517
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://pretalx.com/fossapalooza-2027/submit/",
+            "endDate": "2026-11-30",
+            "daysRemaining": 14,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "opensource",
+        "subDomains": [],
+        "tags": [],
+        "id": "d731c8efe3bb"
+    },
+    {
         "name": "MySQL Belgian Days 2027",
         "url": "https://sessionize.com/mysql-belgian-days-2027/",
         "startDate": "2027-01-28",
@@ -7178,7 +7370,7 @@
     },
     {
         "name": "AI DevWorld 2027",
-        "url": "https://www.developerweek.com/ai-devworld/",
+        "url": "https://aidevworld.com/",
         "startDate": "2027-02-09",
         "endDate": "2027-02-11",
         "location": {
@@ -7199,7 +7391,7 @@
         "domain": "general",
         "subDomains": [],
         "tags": [],
-        "id": "8c46b7d298da"
+        "id": "8a96612289be"
     },
     {
         "name": "DeveloperWeek 2027",
@@ -7478,6 +7670,54 @@
         "id": "e1e660c33f71"
     },
     {
+        "name": "Global Power Platform & Agent Bootcamp Polish Edition Online 2027",
+        "url": "https://events.teams.microsoft.com/event/12b6322d-fa03-4f5d-8da2-6082a7bef4c0@c35399f0-5ea9-4b99-b28c-2e01481c1b07",
+        "startDate": "2027-02-19",
+        "endDate": "2027-02-19",
+        "location": {
+            "city": "Online",
+            "country": "",
+            "raw": "Online"
+        },
+        "online": true,
+        "cfp": {
+            "url": "https://sessionize.com/gppb2027pl/",
+            "endDate": "2027-01-03",
+            "daysRemaining": 48,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "0bc61bbc5f1f"
+    },
+    {
+        "name": "Experience Global Power Platform & Agent Bootcamp 2027",
+        "url": "https://www.powerplatformbootcamp.com/2027/location-detail/?id=fe7be890-a9b8-f111-aad2-000d3ae9a84f&city=Copenhagen",
+        "startDate": "2027-02-19",
+        "endDate": "2027-02-19",
+        "location": {
+            "city": "Kongens Lyngby",
+            "country": "Denmark",
+            "raw": "Kongens Lyngby (Denmark)",
+            "lat": 56.2639,
+            "lng": 9.5018
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/GPPB-2027-Copenhagen-Denmark/",
+            "endDate": "2027-01-15",
+            "daysRemaining": 60,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "c3dd98ecea1c"
+    },
+    {
         "name": "Autoresearch Berlin Conference",
         "url": "https://pretalx.com/autoresearch-berlin-2027/",
         "startDate": "2027-02-19",
@@ -7501,6 +7741,31 @@
         "subDomains": [],
         "tags": [],
         "id": "5353e056a668"
+    },
+    {
+        "name": "Global AI Bootcamp 2027",
+        "url": "https://www.globalaicastellon.es/",
+        "startDate": "2027-02-20",
+        "endDate": "2027-02-20",
+        "location": {
+            "city": "Castell\u00f3 de la Plana",
+            "country": "Spain",
+            "raw": "Castell\u00f3 de la Plana (Spain)",
+            "lat": 40.4637,
+            "lng": -3.7492
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/global-ai-bootcamp-castellon-2027/",
+            "endDate": "2027-01-18",
+            "daysRemaining": 63,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "d8ca63540366"
     },
     {
         "name": "DDD Melbourne 2027",
@@ -8155,7 +8420,7 @@
         "id": "4eb9a3e2b8ab"
     },
     {
-        "name": "Winterkongress",
+        "name": "Winterkongress 2027",
         "url": "https://www.winterkongress.ch/",
         "startDate": "2027-03-05",
         "endDate": "2027-03-06",
@@ -8168,7 +8433,7 @@
         },
         "online": false,
         "cfp": {
-            "url": "https://pretalx.com/wk27/cfp",
+            "url": "https://pretalx.com/wk27/submit/",
             "endDate": "2026-12-06",
             "daysRemaining": 20,
             "status": "open"
@@ -8177,7 +8442,7 @@
         "domain": "general",
         "subDomains": [],
         "tags": [],
-        "id": "387e66f8f99c"
+        "id": "b3a2ca267ebf"
     },
     {
         "name": "BSidesZagreb 2027",
@@ -9633,6 +9898,31 @@
         "id": "b202a8639905"
     },
     {
+        "name": "BsidesSGF 2027",
+        "url": "https://bsidessgf.com/",
+        "startDate": "2027-03-30",
+        "endDate": "2027-03-30",
+        "location": {
+            "city": "Springfield, IL",
+            "country": "USA",
+            "raw": "Springfield, IL (USA)",
+            "lat": 37.0902,
+            "lng": -95.7129
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/sgf-bsides/",
+            "endDate": "2027-01-31",
+            "daysRemaining": 76,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "security",
+        "subDomains": [],
+        "tags": [],
+        "id": "01157ea11f79"
+    },
+    {
         "name": "Voxxed Days Amsterdam",
         "url": "https://amsterdam.voxxeddays.com/",
         "startDate": "2027-03-31",
@@ -9860,6 +10150,31 @@
         "subDomains": [],
         "tags": [],
         "id": "505d8c75fdd3"
+    },
+    {
+        "name": "OWASP BASC 2027",
+        "url": "https://basconf.org/",
+        "startDate": "2027-04-03",
+        "endDate": "2027-04-03",
+        "location": {
+            "city": "Boston, MA",
+            "country": "USA",
+            "raw": "Boston, MA (USA)",
+            "lat": 42.3601,
+            "lng": -71.0589
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/owasp-basc-2027/",
+            "endDate": "2027-01-15",
+            "daysRemaining": 60,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "c6dcf9baa1e2"
     },
     {
         "name": "Data Saturday #93 Brisbane 2027",
@@ -10335,6 +10650,31 @@
         "id": "b8169b50268b"
     },
     {
+        "name": "Southwest Food Security and Technology Summit 2027",
+        "url": "https://swnomsec.org",
+        "startDate": "2027-04-13",
+        "endDate": "2027-04-14",
+        "location": {
+            "city": "Las Cruces, NM",
+            "country": "USA",
+            "raw": "Las Cruces, NM (USA)",
+            "lat": 37.0902,
+            "lng": -95.7129
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/southwest-food-security-and-technology-s/",
+            "endDate": "2027-01-15",
+            "daysRemaining": 60,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "security",
+        "subDomains": [],
+        "tags": [],
+        "id": "be6f0be14435"
+    },
+    {
         "name": "MODERN ENDPOINT MANAGEMENT EMEA SUMMIT 2027",
         "url": "https://www.endpointsummit.com",
         "startDate": "2027-04-14",
@@ -10485,6 +10825,29 @@
         "id": "ca5b8e41a5c7"
     },
     {
+        "name": "NODES AI Online 2027",
+        "url": "https://neo4j.com/nodes-ai/",
+        "startDate": "2027-04-15",
+        "endDate": "2027-04-15",
+        "location": {
+            "city": "Online",
+            "country": "",
+            "raw": "Online"
+        },
+        "online": true,
+        "cfp": {
+            "url": "https://neo4j.com/nodes-ai/",
+            "endDate": "2026-12-19",
+            "daysRemaining": 33,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "web",
+        "subDomains": [],
+        "tags": [],
+        "id": "3048288b4776"
+    },
+    {
         "name": "React Summit Asia 2027",
         "url": "https://reactsummit.asia/",
         "startDate": "2027-04-15",
@@ -10612,6 +10975,31 @@
         "id": "d84ca0973546"
     },
     {
+        "name": "Directions North America 2027",
+        "url": "https://directionsna.com/",
+        "startDate": "2027-04-17",
+        "endDate": "2027-04-20",
+        "location": {
+            "city": "New Orleans, LA",
+            "country": "USA",
+            "raw": "New Orleans, LA (USA)",
+            "lat": 37.0902,
+            "lng": -95.7129
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/directions-north-america-2027/",
+            "endDate": "2027-01-01",
+            "daysRemaining": 46,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "26043dec56eb"
+    },
+    {
         "name": "Arc of AI 2027",
         "url": "https://www.arcofai.com/",
         "startDate": "2027-04-19",
@@ -10635,6 +11023,31 @@
         "subDomains": [],
         "tags": [],
         "id": "9738ec19784f"
+    },
+    {
+        "name": "foss-north 2027",
+        "url": "https://foss-north.se/2027/index.html",
+        "startDate": "2027-04-19",
+        "endDate": "2027-04-20",
+        "location": {
+            "city": "G\u00f6teborg",
+            "country": "Sweden",
+            "raw": "G\u00f6teborg (Sweden)",
+            "lat": 60.1282,
+            "lng": 18.6435
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://foss-north.se/events/2027/callforpapers/",
+            "endDate": "2027-02-15",
+            "daysRemaining": 91,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "opensource",
+        "subDomains": [],
+        "tags": [],
+        "id": "2a2fa1790e1b"
     },
     {
         "name": "DevOpsDays Atlanta 2027",
@@ -10860,6 +11273,31 @@
         "subDomains": [],
         "tags": [],
         "id": "d1841a81ce63"
+    },
+    {
+        "name": "BSidesCharm 2027",
+        "url": "https://bsidescharm.org/",
+        "startDate": "2027-04-23",
+        "endDate": "2027-04-24",
+        "location": {
+            "city": "Baltimore, MD",
+            "country": "USA",
+            "raw": "Baltimore, MD (USA)",
+            "lat": 37.0902,
+            "lng": -95.7129
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://pretalx.com/bsidescharm2027/submit/",
+            "endDate": "2027-01-31",
+            "daysRemaining": 76,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "security",
+        "subDomains": [],
+        "tags": [],
+        "id": "394004fab3c1"
     },
     {
         "name": "BSidesCharm2027",
@@ -11114,6 +11552,31 @@
         "id": "a8e9f8d5f2d7"
     },
     {
+        "name": "AGNTCon + MCPCon 2027",
+        "url": "https://events.linuxfoundation.org/agntcon-mcpcon-north-america/",
+        "startDate": "2027-04-28",
+        "endDate": "2027-04-29",
+        "location": {
+            "city": "San Francisco, CA",
+            "country": "USA",
+            "raw": "San Francisco, CA (USA)",
+            "lat": 37.7749,
+            "lng": -122.4194
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/agntcon-mcpcon-north-america-2027/",
+            "endDate": "2027-01-18",
+            "daysRemaining": 63,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "fe4297487d9d"
+    },
+    {
         "name": "East of England Summit 2027",
         "url": "https://www.eoes.co.uk",
         "startDate": "2027-04-30",
@@ -11339,6 +11802,56 @@
         "id": "0dbcdb476e53"
     },
     {
+        "name": "Percona Live Bay Area 2027",
+        "url": "http://perconalive.com/",
+        "startDate": "2027-05-11",
+        "endDate": "2027-05-13",
+        "location": {
+            "city": "Mountain View, CA",
+            "country": "USA",
+            "raw": "Mountain View, CA (USA)",
+            "lat": 37.0902,
+            "lng": -95.7129
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/percona-live-BayArea-2027/",
+            "endDate": "2027-03-05",
+            "daysRemaining": 109,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "c8420990de41"
+    },
+    {
+        "name": "Codemotion Madrid 2027",
+        "url": "https://conferences.codemotion.com/madrid/",
+        "startDate": "2027-05-12",
+        "endDate": "2027-05-13",
+        "location": {
+            "city": "Madrid",
+            "country": "Spain",
+            "raw": "Madrid (Spain)",
+            "lat": 40.4168,
+            "lng": -3.7038
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/codemotion-madrid-2027/",
+            "endDate": "2026-11-30",
+            "daysRemaining": 14,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "a735de6c05a6"
+    },
+    {
         "name": "phpday 2027",
         "url": "https://www.phpday.it/",
         "startDate": "2027-05-13",
@@ -11464,6 +11977,54 @@
         "id": "b60fb00a16ab"
     },
     {
+        "name": "BA & Beyond Europe Luxembourg 2027",
+        "url": "https://ba-beyond.eu",
+        "startDate": "2027-05-18",
+        "endDate": "2027-05-18",
+        "location": {
+            "city": "Luxembourg",
+            "country": "Luxembourg",
+            "raw": "Luxembourg (Luxembourg)"
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/ba-beyond-27/",
+            "endDate": "2026-11-30",
+            "daysRemaining": 14,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "c04b1963bf26"
+    },
+    {
+        "name": "BA & Beyond Europe Utrecht 2027",
+        "url": "https://ba-beyond.eu",
+        "startDate": "2027-05-18",
+        "endDate": "2027-05-18",
+        "location": {
+            "city": "Utrecht",
+            "country": "Netherlands",
+            "raw": "Utrecht (Netherlands)",
+            "lat": 52.1326,
+            "lng": 5.2913
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/ba-beyond-27/",
+            "endDate": "2026-11-30",
+            "daysRemaining": 14,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "fcc018985ffa"
+    },
+    {
         "name": "Platmosphere 2027",
         "url": "https://platmosphere.com",
         "startDate": "2027-05-18",
@@ -11566,6 +12127,29 @@
         "id": "afbd0fe1fe7e"
     },
     {
+        "name": "BA & Beyond Europe Budapest 2027",
+        "url": "https://ba-beyond.eu",
+        "startDate": "2027-05-20",
+        "endDate": "2027-05-20",
+        "location": {
+            "city": "Budapest",
+            "country": "Hungary",
+            "raw": "Budapest (Hungary)"
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/ba-beyond-27/",
+            "endDate": "2026-11-30",
+            "daysRemaining": 14,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "dc5a4711ae69"
+    },
+    {
         "name": "Workplace Ninjas 2027",
         "url": "https://wpninjas.no",
         "startDate": "2027-05-20",
@@ -11616,7 +12200,30 @@
         "id": "d539ce71273e"
     },
     {
-        "name": "OffensiveCon27",
+        "name": "BA & Beyond Europe Cluj-Napoca 2027",
+        "url": "https://ba-beyond.eu",
+        "startDate": "2027-05-21",
+        "endDate": "2027-05-21",
+        "location": {
+            "city": "Cluj-Napoca",
+            "country": "Romania",
+            "raw": "Cluj-Napoca (Romania)"
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/ba-beyond-27/",
+            "endDate": "2026-11-30",
+            "daysRemaining": 14,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "733a218fe6ee"
+    },
+    {
+        "name": "OffensiveCon 2027",
         "url": "https://pretalx.com/offensivecon27/",
         "startDate": "2027-05-21",
         "endDate": "2027-05-22",
@@ -11629,7 +12236,7 @@
         },
         "online": false,
         "cfp": {
-            "url": "https://pretalx.com/offensivecon27/cfp",
+            "url": "https://cfp.offensivecon.org",
             "endDate": "2027-03-01",
             "daysRemaining": 105,
             "status": "open"
@@ -11638,7 +12245,32 @@
         "domain": "general",
         "subDomains": [],
         "tags": [],
-        "id": "690f329dcb11"
+        "id": "8ec25b0a3c9a"
+    },
+    {
+        "name": "BA & Beyond Europe Stockholm 2027",
+        "url": "https://ba-beyond.eu",
+        "startDate": "2027-05-24",
+        "endDate": "2027-05-24",
+        "location": {
+            "city": "Stockholm",
+            "country": "Sweden",
+            "raw": "Stockholm (Sweden)",
+            "lat": 59.3293,
+            "lng": 18.0686
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/ba-beyond-27/",
+            "endDate": "2026-11-30",
+            "daysRemaining": 14,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "9cabce0a1a1b"
     },
     {
         "name": "RustWeek 2027",
@@ -11766,6 +12398,31 @@
         "id": "6ee4573fab71"
     },
     {
+        "name": "BA & Beyond Europe Copenhagen 2027",
+        "url": "https://ba-beyond.eu",
+        "startDate": "2027-05-25",
+        "endDate": "2027-05-25",
+        "location": {
+            "city": "Copenhagen",
+            "country": "Denmark",
+            "raw": "Copenhagen (Denmark)",
+            "lat": 55.6761,
+            "lng": 12.5683
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/ba-beyond-27/",
+            "endDate": "2026-11-30",
+            "daysRemaining": 14,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "9a4ec7035ce0"
+    },
+    {
         "name": "OW2con'27",
         "url": "https://www.ow2con.org/",
         "startDate": "2027-05-25",
@@ -11841,6 +12498,31 @@
         "id": "da666f938853"
     },
     {
+        "name": "BA & Beyond Europe Mechelen 2027",
+        "url": "https://ba-beyond.eu",
+        "startDate": "2027-05-27",
+        "endDate": "2027-05-28",
+        "location": {
+            "city": "Mechelen",
+            "country": "Belgium",
+            "raw": "Mechelen (Belgium)",
+            "lat": 50.5039,
+            "lng": 4.4699
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/ba-beyond-27/",
+            "endDate": "2026-11-30",
+            "daysRemaining": 14,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "f9ad24cf1ab1"
+    },
+    {
         "name": "DevSum 2027",
         "url": "https://www.devsum.se",
         "startDate": "2027-05-27",
@@ -11889,6 +12571,31 @@
         "subDomains": [],
         "tags": [],
         "id": "28f1b1af98b5"
+    },
+    {
+        "name": "Cloudland 2027",
+        "url": "https://www.cloudland.org",
+        "startDate": "2027-05-31",
+        "endDate": "2027-06-02",
+        "location": {
+            "city": "Soltau",
+            "country": "Germany",
+            "raw": "Soltau (Germany)",
+            "lat": 51.1657,
+            "lng": 10.4515
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/cloudland-2027/",
+            "endDate": "2027-03-17",
+            "daysRemaining": 121,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "cloud",
+        "subDomains": [],
+        "tags": [],
+        "id": "a6cd40874664"
     }
 ],
     "June 2027": [
@@ -11941,6 +12648,29 @@
         "id": "fe3242c86d6e"
     },
     {
+        "name": "NTD 2027",
+        "url": "https://sessionize.com/ntd-2027/",
+        "startDate": "2027-06-02",
+        "endDate": "2027-06-03",
+        "location": {
+            "city": "Tallinn",
+            "country": "Estonia",
+            "raw": "Tallinn (Estonia)"
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/ntd-2027/",
+            "endDate": "2026-12-31",
+            "daysRemaining": 45,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "ac446ab3dd97"
+    },
+    {
         "name": "EUCTech Oslo 2027",
         "url": "https://euctech.no/",
         "startDate": "2027-06-02",
@@ -11989,6 +12719,31 @@
         "id": "7fd707201ea4"
     },
     {
+        "name": "BSides Kristiansand 2027",
+        "url": "https://bsideskrs.no/",
+        "startDate": "2027-06-04",
+        "endDate": "2027-06-04",
+        "location": {
+            "city": "Kristiansand",
+            "country": "Norway",
+            "raw": "Kristiansand (Norway)",
+            "lat": 60.472,
+            "lng": 8.4689
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/bsides-kristiansand-2027/",
+            "endDate": "2027-01-03",
+            "daysRemaining": 48,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "security",
+        "subDomains": [],
+        "tags": [],
+        "id": "7becc22e358c"
+    },
+    {
         "name": "AI Con USA 2027",
         "url": "https://aiconusa.techwell.com/",
         "startDate": "2027-06-06",
@@ -12012,6 +12767,56 @@
         "subDomains": [],
         "tags": [],
         "id": "989ecf14ca8f"
+    },
+    {
+        "name": "21st Silicon Saxony Days 2027",
+        "url": "https://www.silicon-saxony-day.de/",
+        "startDate": "2027-06-08",
+        "endDate": "2027-06-09",
+        "location": {
+            "city": "Dresden",
+            "country": "Germany",
+            "raw": "Dresden (Germany)",
+            "lat": 51.1657,
+            "lng": 10.4515
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/21st-silicon-saxony-days/",
+            "endDate": "2026-12-13",
+            "daysRemaining": 27,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "fca24c48f307"
+    },
+    {
+        "name": "University:Future Festival 2027",
+        "url": "https://festival.hfd.digital/",
+        "startDate": "2027-06-08",
+        "endDate": "2027-06-10",
+        "location": {
+            "city": "Berlin",
+            "country": "Germany",
+            "raw": "Berlin (Germany)",
+            "lat": 52.52,
+            "lng": 13.405
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/universityfuture-festival-2027-arts/",
+            "endDate": "2027-01-11",
+            "daysRemaining": 56,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "98678c6a43e8"
     },
     {
         "name": "AI in Production",
@@ -12235,9 +13040,134 @@
         "subDomains": [],
         "tags": [],
         "id": "ec905f6097f4"
+    },
+    {
+        "name": "Homebrew Con 2027",
+        "url": "https://homebrewcon.org/",
+        "startDate": "2027-07-16",
+        "endDate": "2027-07-17",
+        "location": {
+            "city": "Milwaukee, WI",
+            "country": "USA",
+            "raw": "Milwaukee, WI (USA)",
+            "lat": 37.0902,
+            "lng": -95.7129
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/aha-homebrew-con-2027/",
+            "endDate": "2027-01-20",
+            "daysRemaining": 65,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "88032d3e776a"
+    },
+    {
+        "name": "Security BSides CDMX 2027",
+        "url": "https://bsidescdmx.org/",
+        "startDate": "2027-07-16",
+        "endDate": "2027-07-16",
+        "location": {
+            "city": "Mexico City",
+            "country": "Mexico",
+            "raw": "Mexico City (Mexico)",
+            "lat": 23.6345,
+            "lng": -102.5528
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/bsidescdmx27/",
+            "endDate": "2027-04-17",
+            "daysRemaining": 152,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "security",
+        "subDomains": [],
+        "tags": [],
+        "id": "2e9bffeebd41"
+    },
+    {
+        "name": "Scenic City Summit 2027",
+        "url": "http://www.sceniccitysummit.com",
+        "startDate": "2027-07-22",
+        "endDate": "2027-07-23",
+        "location": {
+            "city": "Chattanooga, TN",
+            "country": "USA",
+            "raw": "Chattanooga, TN (USA)",
+            "lat": 37.0902,
+            "lng": -95.7129
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/SCS2027/",
+            "endDate": "2027-01-06",
+            "daysRemaining": 51,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "general",
+        "subDomains": [],
+        "tags": [],
+        "id": "6e2144686f99"
     }
 ],
     "August 2027": [
+    {
+        "name": "Visual Studio Live! & Artificial Intelligence Live! 2027",
+        "url": "https://vslive.com/events/microsofthq-2027/home.aspx",
+        "startDate": "2027-08-02",
+        "endDate": "2027-08-06",
+        "location": {
+            "city": "Redmond, WA",
+            "country": "USA",
+            "raw": "Redmond, WA (USA)",
+            "lat": 37.0902,
+            "lng": -95.7129
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/VSLAILMSHQ27/",
+            "endDate": "2026-12-14",
+            "daysRemaining": 28,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "ai",
+        "subDomains": [],
+        "tags": [],
+        "id": "f2949b060191"
+    },
+    {
+        "name": "TechMentor & Cybersecurity Live 2027",
+        "url": "https://techmentorevents.com/events/microsofthq-2027/home.aspx",
+        "startDate": "2027-08-09",
+        "endDate": "2027-08-13",
+        "location": {
+            "city": "Redmond, WA",
+            "country": "USA",
+            "raw": "Redmond, WA (USA)",
+            "lat": 37.0902,
+            "lng": -95.7129
+        },
+        "online": false,
+        "cfp": {
+            "url": "https://sessionize.com/TMCLMSHQ27/",
+            "endDate": "2026-12-14",
+            "daysRemaining": 28,
+            "status": "open"
+        },
+        "source": "developers.events",
+        "domain": "security",
+        "subDomains": [],
+        "tags": [],
+        "id": "92f6b9fe0d6f"
+    },
     {
         "name": "DynamicsCon Regional Midwest 2027",
         "url": "https://www.eventbrite.com/e/2000484907209?aff=oddtdtcreator",
@@ -12341,106 +13271,6 @@
 ],
     "TBD": [
     {
-        "name": "AISH 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199881&copyownerid=182680",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "18fcbf42e089"
-    },
-    {
-        "name": "AIIM 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203424&copyownerid=163220",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "ad1dde80fb68"
-    },
-    {
-        "name": "GEAI 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202834&copyownerid=182680",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "025ce0053940"
-    },
-    {
-        "name": "AIPNS 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201643&copyownerid=182680",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "8c4c9b42e09d"
-    },
-    {
-        "name": "CASE2Space 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203149&copyownerid=182247",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "78e012c92321"
-    },
-    {
         "name": "IOTSEC 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191479&copyownerid=46167",
         "startDate": null,
@@ -12499,6 +13329,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "8c83ab30a71f"
+    },
+    {
+        "name": "FuzzyAI 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202539&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "8234e457a976"
     },
     {
         "name": "NATL 2026",
@@ -12741,26 +13591,6 @@
         "id": "46abc958a139"
     },
     {
-        "name": "FuzzyAI 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202539&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "8234e457a976"
-    },
-    {
         "name": "SEAPP  2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191688&copyownerid=46167",
         "startDate": null,
@@ -12861,6 +13691,66 @@
         "id": "ad15f5cb3f95"
     },
     {
+        "name": "IJGTT 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199977&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "849dff688c57"
+    },
+    {
+        "name": "AISCA 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201239&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "a9d1f617deee"
+    },
+    {
+        "name": "IJCSEIT 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203478&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "699bc39264b5"
+    },
+    {
         "name": "AIDDS  2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191741&copyownerid=46167",
         "startDate": null,
@@ -12941,6 +13831,26 @@
         "id": "b397d65ee08b"
     },
     {
+        "name": "NGNCT 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201716&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "061554c52fba"
+    },
+    {
         "name": "AIMLNET 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191507&copyownerid=46167",
         "startDate": null,
@@ -12959,46 +13869,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "80df148e8545"
-    },
-    {
-        "name": "IJGTT 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199977&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "849dff688c57"
-    },
-    {
-        "name": "AISCA 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201239&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "a9d1f617deee"
     },
     {
         "name": "IJAIT 2026",
@@ -13039,6 +13909,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "0c159db0c034"
+    },
+    {
+        "name": "AIAA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202738&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "3621c50def43"
     },
     {
         "name": "BLKCA 2026",
@@ -13101,6 +13991,26 @@
         "id": "94c02d86f14c"
     },
     {
+        "name": "AIVRV 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203979&copyownerid=163220",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "6f740d74dd06"
+    },
+    {
         "name": "ICSS 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191552&copyownerid=46167",
         "startDate": null,
@@ -13119,6 +14029,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "fbf81c4a3632"
+    },
+    {
+        "name": "ITE 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200044&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "d45ab6893bf4"
     },
     {
         "name": "IJSC 2026",
@@ -13201,26 +14131,6 @@
         "id": "a1fba8db28bf"
     },
     {
-        "name": "NGNCT 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201716&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "061554c52fba"
-    },
-    {
         "name": "MEDS  2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191553&copyownerid=46167",
         "startDate": null,
@@ -13259,26 +14169,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "ab0895721da3"
-    },
-    {
-        "name": "ITE 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200044&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "d45ab6893bf4"
     },
     {
         "name": "NLPTAI 2026",
@@ -13321,8 +14211,8 @@
         "id": "a58ff2f9297e"
     },
     {
-        "name": "AIAA 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202738&copyownerid=33993",
+        "name": "P2PTM 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201650&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -13338,7 +14228,7 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "3621c50def43"
+        "id": "77fbed26ff6c"
     },
     {
         "name": "SCM  2026",
@@ -13501,6 +14391,26 @@
         "id": "b5607f59f993"
     },
     {
+        "name": "SIGEM 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202479&copyownerid=33993",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "be8f111c9749"
+    },
+    {
         "name": "IJFCST 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191584&copyownerid=46167",
         "startDate": null,
@@ -13521,8 +14431,8 @@
         "id": "84854f87e4a4"
     },
     {
-        "name": "IJCSEIT 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203478&copyownerid=33993",
+        "name": "IJCSA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202605&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -13538,11 +14448,11 @@
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "699bc39264b5"
+        "id": "bacc2844793e"
     },
     {
-        "name": "9th AccML 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202913&copyownerid=200180",
+        "name": "IJAIA 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191849&copyownerid=33993",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -13554,11 +14464,11 @@
         },
         "online": false,
         "cfp": null,
-        "domain": "ai",
+        "domain": "general",
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "6aa588d665b1"
+        "id": "596f75956fde"
     },
     {
         "name": "MECN  2026",
@@ -13744,26 +14654,6 @@
         "id": "e20188cc0b54"
     },
     {
-        "name": "IJAIA 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191849&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "596f75956fde"
-    },
-    {
         "name": "MLAIJ 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199941&copyownerid=33993",
         "startDate": null,
@@ -13802,26 +14692,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "919db3f23c54"
-    },
-    {
-        "name": "SIGEM 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202479&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "be8f111c9749"
     },
     {
         "name": "CSEITT 2026",
@@ -14002,26 +14872,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "f66d45ff0353"
-    },
-    {
-        "name": "P2PTM 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201650&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "77fbed26ff6c"
     },
     {
         "name": "WCCCT 2027",
@@ -19010,66 +19860,6 @@
         "id": "83538526c675"
     },
     {
-        "name": "ISRASC 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194864&copyownerid=182680",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "0588c00b39f2"
-    },
-    {
-        "name": "SMAICT 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192763&copyownerid=182680",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "2e2a78f57b1f"
-    },
-    {
-        "name": "ARCI 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201270&copyownerid=93289",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "5b695d51999a"
-    },
-    {
         "name": "Springer CMAME 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192394&copyownerid=13881",
         "startDate": null,
@@ -19088,26 +19878,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "6f3ecfd3d68d"
-    },
-    {
-        "name": "PMAE 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192396&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "b4e0f111f8e9"
     },
     {
         "name": "Humanoid Safety & Assurance 2026",
@@ -19131,6 +19901,46 @@
         ],
         "subDomains": [],
         "id": "997c39646898"
+    },
+    {
+        "name": "PMAE 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192396&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "b4e0f111f8e9"
+    },
+    {
+        "name": "ARCI 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201270&copyownerid=93289",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "5b695d51999a"
     },
     {
         "name": "IRAC 2026",
@@ -19393,26 +20203,6 @@
         "id": "d7a048836fe1"
     },
     {
-        "name": "EECR 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199686&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "bce49314df99"
-    },
-    {
         "name": "ICMERR 2027",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203680&copyownerid=13881",
         "startDate": null,
@@ -19473,6 +20263,26 @@
         "id": "c4b77938e15e"
     },
     {
+        "name": "EECR 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199686&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "bce49314df99"
+    },
+    {
         "name": "Springer ICMT 2027",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194516&copyownerid=13881",
         "startDate": null,
@@ -19491,26 +20301,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "2a46370d4a3a"
-    },
-    {
-        "name": "ICRIC 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199688&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "2880bb67dcdf"
     },
     {
         "name": "MERE--EI 2027",
@@ -19571,6 +20361,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "d3c9ee4fd90c"
+    },
+    {
+        "name": "ICRIC 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199688&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "2880bb67dcdf"
     },
     {
         "name": "Paris CFP-RCVE 2027",
@@ -19751,6 +20561,46 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "3fcd56f2b626"
+    },
+    {
+        "name": "IEEE ICRAS 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201692&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "academic",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "4b83fbb7db60"
+    },
+    {
+        "name": "ICCRT 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203823&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "b9bf3d09876d"
     },
     {
         "name": "CSAI--EI 2026",
@@ -20673,6 +21523,26 @@
         "id": "233626aef2be"
     },
     {
+        "name": "CATA 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=204229&copyownerid=66802",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "9703e9a460f3"
+    },
+    {
         "name": "ACM ICCRD 2027",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194958&copyownerid=13881",
         "startDate": null,
@@ -20833,106 +21703,6 @@
         "id": "68163bf5280a"
     },
     {
-        "name": "ECCST 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203750&copyownerid=182680",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "f3beeba3eee1"
-    },
-    {
-        "name": "ES 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203249&copyownerid=118738",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "930aa1b3f5ab"
-    },
-    {
-        "name": "CITCE 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203800&copyownerid=182680",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "b339cbfde69f"
-    },
-    {
-        "name": "ML 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203250&copyownerid=118738",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "ai",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "63c921670371"
-    },
-    {
-        "name": "IADIS IS 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203251&copyownerid=118738",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "cf4a6885064a"
-    },
-    {
         "name": "WeST  2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191953&copyownerid=46167",
         "startDate": null,
@@ -20971,26 +21741,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "42e53925d331"
-    },
-    {
-        "name": "IJCSA 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202605&copyownerid=33993",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "bacc2844793e"
     },
     {
         "name": "IJSEA 2026",
@@ -21113,26 +21863,6 @@
         "id": "325538ce40c1"
     },
     {
-        "name": "ICISE-IE 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203887&copyownerid=182680",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "8ba74bb768a5"
-    },
-    {
         "name": "ICAID 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192334&copyownerid=182680",
         "startDate": null,
@@ -21171,6 +21901,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "474ae0d16c26"
+    },
+    {
+        "name": "ICISE-IE 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203887&copyownerid=182680",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "8ba74bb768a5"
     },
     {
         "name": "ICoSSE 2027",
@@ -21596,6 +22346,26 @@
         "id": "cc677ec9860e"
     },
     {
+        "name": "IOP-RICAS 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=171907&copyownerid=165700",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "c97eb77b526e"
+    },
+    {
         "name": "SoCG 2027",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=204215&copyownerid=35838",
         "startDate": null,
@@ -21636,26 +22406,6 @@
         "id": "417b4d5500f6"
     },
     {
-        "name": "IOP-RICAS 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=171907&copyownerid=165700",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "c97eb77b526e"
-    },
-    {
         "name": "IEEE-CACML 2027",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=182446&copyownerid=163993",
         "startDate": null,
@@ -21676,6 +22426,26 @@
             "ai"
         ],
         "id": "48fd231f0d5c"
+    },
+    {
+        "name": "AISH 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=199881&copyownerid=182680",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "18fcbf42e089"
     },
     {
         "name": "AHPCAI 2026",
@@ -21778,26 +22548,6 @@
         "id": "452a227db7aa"
     },
     {
-        "name": "EIRIS 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194147&copyownerid=182680",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "a940ddd81316"
-    },
-    {
         "name": "IAR 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=202658&copyownerid=182680",
         "startDate": null,
@@ -21816,6 +22566,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "345d13f145ce"
+    },
+    {
+        "name": "EIRIS 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=194147&copyownerid=182680",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "a940ddd81316"
     },
     {
         "name": "ASMA 2026",
@@ -24748,6 +25518,26 @@
         "id": "fdd0b749c48f"
     },
     {
+        "name": "AIPNS 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201643&copyownerid=182680",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "8c4c9b42e09d"
+    },
+    {
         "name": "ITASEC 2027",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203907&copyownerid=191752",
         "startDate": null,
@@ -24829,7 +25619,7 @@
     },
     {
         "name": "TIW 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200119&copyownerid=199230",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200120&copyownerid=199230",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -24848,7 +25638,7 @@
             "wikicfp"
         ],
         "subDomains": [],
-        "id": "b0c49fe8ec0c"
+        "id": "7526fc33f1fc"
     },
     {
         "name": "ICCSIE  2026",
@@ -26139,26 +26929,6 @@
         "id": "918201e971c2"
     },
     {
-        "name": "ICCT 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191326&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "b2878b2e8ad2"
-    },
-    {
         "name": "ACM CCIOT 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191775&copyownerid=13881",
         "startDate": null,
@@ -26177,6 +26947,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "8ee2e8b3116e"
+    },
+    {
+        "name": "ICCT 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191326&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "b2878b2e8ad2"
     },
     {
         "name": "ICIDC 2026",
@@ -26477,6 +27267,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "5ee181df722a"
+    },
+    {
+        "name": "DAISY 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195211&copyownerid=198653",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "0fbe747db6a2"
     },
     {
         "name": "ICINT 2027",
@@ -27945,26 +28755,6 @@
         "id": "ceac2d42f81d"
     },
     {
-        "name": "EIC 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203403&copyownerid=163220",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "ffd4961147d3"
-    },
-    {
         "name": "IEEE ICCBN 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=192668&copyownerid=13881",
         "startDate": null,
@@ -28023,6 +28813,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "0b565bb37050"
+    },
+    {
+        "name": "EIC 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203403&copyownerid=163220",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "ffd4961147d3"
     },
     {
         "name": "IEEE INCC 2026",
@@ -28185,6 +28995,26 @@
         "id": "4ec59c16fff5"
     },
     {
+        "name": "Ei/Scopus-CCNML  2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195220&copyownerid=165700",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "ai",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "dfeab425d33d"
+    },
+    {
         "name": "ICAIDM 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=200184&copyownerid=182680",
         "startDate": null,
@@ -28208,8 +29038,8 @@
         "id": "7c8ca8cd7340"
     },
     {
-        "name": "Ei/Scopus-CCNML  2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=195220&copyownerid=165700",
+        "name": "APCC 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201353&copyownerid=13881",
         "startDate": null,
         "endDate": null,
         "location": {
@@ -28221,11 +29051,11 @@
         },
         "online": false,
         "cfp": null,
-        "domain": "ai",
+        "domain": "general",
         "tags": [],
         "source": "wikicfp",
         "subDomains": [],
-        "id": "dfeab425d33d"
+        "id": "2f63976e335b"
     },
     {
         "name": "SecuPriv-IoT 2026",
@@ -28246,26 +29076,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "8246b6057e9e"
-    },
-    {
-        "name": "APCC 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201353&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "2f63976e335b"
     },
     {
         "name": "ICAIPS 2026",
@@ -28571,26 +29381,6 @@
         "id": "a8d3b5b1ec5e"
     },
     {
-        "name": "ISCEIC 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203400&copyownerid=163220",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "1a448d967db0"
-    },
-    {
         "name": "ITCON 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201367&copyownerid=33993",
         "startDate": null,
@@ -28791,26 +29581,6 @@
         "id": "ee5a3226b5c8"
     },
     {
-        "name": "BDCI--EI 2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203501&copyownerid=13881",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "fed13c9fa2f8"
-    },
-    {
         "name": "ICFCC--EI 2027",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203505&copyownerid=13881",
         "startDate": null,
@@ -28849,6 +29619,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "55cc50d9fc51"
+    },
+    {
+        "name": "BDCI--EI 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203501&copyownerid=13881",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "fed13c9fa2f8"
     },
     {
         "name": "ICVARS 2027",
@@ -30034,26 +30824,6 @@
         "id": "ee80fe082c6f"
     },
     {
-        "name": "CAiSE  2027",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203940&copyownerid=200790",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "fd69cf86fa0d"
-    },
-    {
         "name": "BISS 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=204165&copyownerid=200908",
         "startDate": null,
@@ -30072,6 +30842,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "1ca9105dcc7b"
+    },
+    {
+        "name": "CAiSE  2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203940&copyownerid=200790",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "fd69cf86fa0d"
     },
     {
         "name": "GISTAM 2027",
@@ -30215,6 +31005,46 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "a114b75e5972"
+    },
+    {
+        "name": "IADIS IS 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203251&copyownerid=118738",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "cf4a6885064a"
+    },
+    {
+        "name": "ES 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=203249&copyownerid=118738",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "930aa1b3f5ab"
     },
     {
         "name": "ISPCT 2026",
@@ -30763,26 +31593,6 @@
         "id": "943b1a882cac"
     },
     {
-        "name": "DMLS 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191605&copyownerid=182680",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "ai",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "3befadce6313"
-    },
-    {
         "name": "OIFM 2026",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191631&copyownerid=163220",
         "startDate": null,
@@ -30801,6 +31611,26 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "aa9109775525"
+    },
+    {
+        "name": "DMLS 2026",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191605&copyownerid=182680",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "ai",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "3befadce6313"
     },
     {
         "name": "Symplatform 2026",
