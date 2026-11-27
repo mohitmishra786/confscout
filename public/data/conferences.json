@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-27T05:31:07.160003Z",
+  "lastUpdated": "2026-11-27T06:08:16.246562Z",
   "stats": {
     "total": 1416,
     "withOpenCFP": 194,
@@ -167,8 +167,8 @@
         "source": "developers.events",
         "twitter": "@wpninjasummit",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -985,8 +985,8 @@
         "source": "developers.events",
         "twitter": "@JakartaOneConf",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -1015,8 +1015,8 @@
         "source": "developers.events",
         "twitter": "@APIdaysGlobal",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "software",
         "subDomains": [],
@@ -1092,8 +1092,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -1355,8 +1355,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -1482,8 +1482,8 @@
         "source": "developers.events",
         "twitter": "@reactdayberlin",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "web",
         "subDomains": [],
@@ -1564,8 +1564,8 @@
         "source": "developers.events",
         "twitter": "@AICodingSummit",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -1593,8 +1593,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -1917,8 +1917,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -2301,8 +2301,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -2489,8 +2489,8 @@
         },
         "source": "developers.events",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "general",
         "subDomains": [],
@@ -2594,8 +2594,8 @@
         "source": "developers.events",
         "twitter": "@droidcon",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "mobile",
         "subDomains": [],
@@ -3467,8 +3467,8 @@
         "source": "developers.events",
         "twitter": "@AIDevConf",
         "sources": [
-            "tech-conferences",
-            "developers.events"
+            "developers.events",
+            "tech-conferences"
         ],
         "domain": "software",
         "subDomains": [],
@@ -14638,6 +14638,26 @@
         "id": "91dff8dcdeef"
     },
     {
+        "name": "ISIP 2027",
+        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=204546&copyownerid=163220",
+        "startDate": null,
+        "endDate": null,
+        "location": {
+            "city": "",
+            "country": "",
+            "raw": "",
+            "lat": 48.8566,
+            "lng": 2.3522
+        },
+        "online": false,
+        "cfp": null,
+        "domain": "general",
+        "tags": [],
+        "source": "wikicfp",
+        "subDomains": [],
+        "id": "3a92b8792f8b"
+    },
+    {
         "name": "MLSC 2027",
         "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=191787&copyownerid=46167",
         "startDate": null,
@@ -15239,26 +15259,6 @@
         "source": "wikicfp",
         "subDomains": [],
         "id": "7fbdd06d144e"
-    },
-    {
-        "name": "ICVISP 2026",
-        "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=201196&copyownerid=93140",
-        "startDate": null,
-        "endDate": null,
-        "location": {
-            "city": "",
-            "country": "",
-            "raw": "",
-            "lat": 48.8566,
-            "lng": 2.3522
-        },
-        "online": false,
-        "cfp": null,
-        "domain": "general",
-        "tags": [],
-        "source": "wikicfp",
-        "subDomains": [],
-        "id": "c67131e05443"
     },
     {
         "name": "VarDial 2027",
